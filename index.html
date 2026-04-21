@@ -32,9 +32,10 @@
 
     /* ── FIXED UI ── */
     /* ── RIGHT NAV RAIL ── */
-    #right-nav { position:fixed; right:0; top:0; bottom:0; width:56px; z-index:200; display:flex; flex-direction:column; align-items:center; padding:22px 0 24px; }
-    .nav-logo { height:28px; width:auto; max-width:38px; object-fit:contain; margin-bottom:16px; transition:opacity .2s; }
-    .nav-hamburger { display:flex; flex-direction:column; gap:5px; cursor:pointer; background:none; border:none; padding:6px; align-items:center; }
+    #right-nav { position:fixed; right:0; top:0; bottom:0; width:80px; z-index:200; display:flex; flex-direction:column; align-items:center; padding:20px 0 24px; }
+    #rn-top { display:flex; flex-direction:row; align-items:center; gap:12px; padding:0 12px; }
+    .nav-logo { height:30px; width:auto; object-fit:contain; flex-shrink:0; }
+    .nav-hamburger { display:flex; flex-direction:column; gap:5px; cursor:pointer; background:none; border:none; padding:4px; align-items:center; flex-shrink:0; }
     .nav-hamburger span { display:block; width:18px; height:1.5px; background:var(--white); border-radius:2px; transition:transform .3s,opacity .3s,background .2s; }
     .nav-hamburger.open span:nth-child(1) { transform:translateY(6.5px) rotate(45deg); }
     .nav-hamburger.open span:nth-child(2) { opacity:0; }
@@ -278,8 +279,10 @@
   <div id="veil"></div>
 
   <nav id="right-nav">
-    <img class="nav-logo" src="img/logo-white.png" alt="Bright Promises Foundation" id="nav-logo">
-    <button class="nav-hamburger" id="hamburger" onclick="toggleMobile()"><span></span><span></span><span></span></button>
+    <div id="rn-top">
+      <button class="nav-hamburger" id="hamburger" onclick="toggleMobile()"><span></span><span></span><span></span></button>
+      <img class="nav-logo" src="_assets/symbol.svg" alt="Bright Promises" id="nav-logo">
+    </div>
     <div id="dot-nav"></div>
     <div id="nav-arrows">
       <button class="arr" id="prev-btn" onclick="nav(-1)">&#x2191;</button>
@@ -904,7 +907,6 @@
       const burger = document.getElementById('hamburger');
       const logo = document.getElementById('nav-logo');
       burger.classList.toggle('dark', !dark);
-      logo.src = dark ? 'img/logo-white.png' : 'img/logo-color.png';
       document.querySelectorAll('.arr').forEach(a => {
         a.style.borderColor = dark ? 'var(--orange)' : 'var(--teal)';
         a.style.color = dark ? 'var(--orange)' : 'var(--teal)';
