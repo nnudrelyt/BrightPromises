@@ -70,6 +70,10 @@
       from { opacity:0; transform:translateY(26px); }
       to   { opacity:1; transform:translateY(0); }
     }
+    @keyframes menuItemDown {
+      from { opacity:1; transform:translateY(0); }
+      to   { opacity:0; transform:translateY(18px); }
+    }
     #mobile-menu { display:flex; position:fixed; inset:0; background:var(--bg-light); z-index:190; flex-direction:column; justify-content:center; padding:0 72px; opacity:0; pointer-events:none; transition:opacity .3s cubic-bezier(.4,0,.2,1); }
     #mobile-menu.open { opacity:1; pointer-events:auto; }
     #mobile-menu.open .menu-label { animation:menuItemUp .36s cubic-bezier(.4,0,.2,1) .04s both; }
@@ -84,7 +88,7 @@
     .menu-label { font-size:11px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--orange); margin-bottom:28px; }
     .menu-nav { display:flex; flex-direction:column; gap:6px; }
     .menu-item { display:flex; align-items:center; gap:22px; text-decoration:none; padding:10px 0; transition:transform .22s ease; }
-    .menu-item:hover { transform:translateX(14px); }
+    .menu-item:hover { transform:translateX(-10px); }
     .menu-arr { display:flex; align-items:center; justify-content:center; flex-shrink:0; }
     .menu-arr svg { transform:rotate(90deg); display:block; }
     .menu-item:hover .btn-circle { fill:var(--teal); }
@@ -347,6 +351,7 @@
   </nav>
 
   <div id="mobile-menu">
+    <img class="menu-symbol" src="_Assets/symbol.svg" alt="Bright Promises">
     <div class="menu-label">Table of Contents</div>
     <nav class="menu-nav">
       <a href="#" class="menu-item" onclick="goTo(1);closeMobile()">
@@ -1012,22 +1017,34 @@
       if (e.key === 'ArrowUp'   || e.key === 'PageUp')   { e.preventDefault(); nav(-1); }
     });
 
-    function toggleMobile() {
+    function openMobile() {
       const m = document.getElementById('mobile-menu');
       const b = document.getElementById('hamburger');
-      const open = m.classList.toggle('open');
-      b.classList.toggle('open', open);
-      if (open) {
-        m.querySelectorAll('.menu-label, .menu-item').forEach(el => {
-          el.style.animation = 'none';
-          el.offsetHeight;
-          el.style.animation = '';
-        });
-      }
+      m.classList.add('open');
+      b.classList.add('open');
+      m.querySelectorAll('.menu-label, .menu-item').forEach(el => {
+        el.style.animation = 'none';
+        el.offsetHeight;
+        el.style.animation = '';
+      });
     }
     function closeMobile() {
-      document.getElementById('mobile-menu').classList.remove('open');
-      document.getElementById('hamburger').classList.remove('open');
+      const m = document.getElementById('mobile-menu');
+      const b = document.getElementById('hamburger');
+      if (!m.classList.contains('open')) return;
+      b.classList.remove('open');
+      const items = [...m.querySelectorAll('.menu-label, .menu-item')].reverse();
+      items.forEach((el, i) => {
+        el.style.animation = `menuItemDown .22s cubic-bezier(.4,0,.2,1) ${i * 0.04}s both`;
+      });
+      setTimeout(() => {
+        m.classList.remove('open');
+        items.forEach(el => { el.style.animation = ''; });
+      }, items.length * 40 + 240);
+    }
+    function toggleMobile() {
+      const m = document.getElementById('mobile-menu');
+      m.classList.contains('open') ? closeMobile() : openMobile();
     }
 
     function toggleAcc(id) {
