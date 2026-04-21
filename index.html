@@ -33,9 +33,9 @@
     /* ── FIXED UI ── */
     /* ── RIGHT NAV RAIL ── */
     #right-nav { position:fixed; right:0; top:0; bottom:0; width:80px; z-index:200; display:flex; flex-direction:column; align-items:center; padding:20px 0 24px; }
-    #rn-top { display:flex; flex-direction:row; align-items:center; gap:12px; padding:0 12px; }
-    .nav-logo { height:30px; width:auto; object-fit:contain; flex-shrink:0; }
-    .nav-hamburger { display:flex; align-items:center; justify-content:center; cursor:pointer; background:none; border:none; padding:4px; color:var(--white); transition:color .2s; flex-shrink:0; outline:none; }
+    #rn-top { display:flex; align-items:center; justify-content:center; }
+    .nav-logo { position:absolute; top:62px; left:50%; transform:translateX(-50%); width:28px; height:28px; object-fit:contain; transition:filter .3s ease; }
+    .nav-hamburger { display:flex; align-items:center; justify-content:center; cursor:pointer; background:none; border:none; padding:4px; color:var(--white); transition:color .2s; outline:none; }
     .nav-hamburger.dark { color:var(--teal); }
     .nav-hamburger svg { width:18px; height:18px; }
     .nav-hamburger .icon-menu path { fill:currentColor; }
@@ -43,10 +43,9 @@
     .nav-hamburger.open .icon-menu { display:none; }
     .nav-hamburger.open .icon-close { display:block; color:var(--teal-dk); }
     #right-nav:has(.nav-hamburger.open) #nav-arrows { visibility:hidden; }
-    #right-nav:has(.nav-hamburger.open) .nav-logo { visibility:hidden; }
 
-    /* warm-background slides: white symbol + arrows */
-    #right-nav.nav-warm:not(:has(.nav-hamburger.open)) .nav-logo { filter:brightness(0) invert(1); }
+    /* warm-background slides: white symbol */
+    #right-nav.nav-warm .nav-logo { filter:brightness(0) invert(1); }
     #right-nav.nav-warm .btn-circle { stroke:rgba(255,255,255,.7); }
     #right-nav.nav-warm .btn-arrow { fill:rgba(255,255,255,.85); stroke:rgba(255,255,255,.85); }
     #right-nav.nav-warm .arr:hover .btn-circle { fill:rgba(255,255,255,.2); stroke:white; }
@@ -330,8 +329,8 @@
           </svg>
         </span>
       </button>
-      <img class="nav-logo" src="_Assets/symbol.svg" alt="Bright Promises" id="nav-logo">
     </div>
+    <img class="nav-logo" src="_Assets/symbol.svg" alt="Bright Promises" id="nav-logo">
     <div id="dot-nav"></div>
     <div id="nav-arrows">
       <button class="arr" id="prev-btn" onclick="nav(-1)" title="Previous">
