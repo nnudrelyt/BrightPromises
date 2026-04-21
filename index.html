@@ -26,9 +26,10 @@
 
     html, body { height:100%; overflow:hidden; font-family:var(--font); -webkit-font-smoothing:antialiased; background:var(--teal-dk); }
 
-    /* ── SCROLL CONTAINER ── */
-    #slides { position:fixed; inset:0; overflow-y:scroll; scroll-snap-type:y mandatory; scroll-behavior:smooth; }
-    .slide { height:100vh; width:100%; scroll-snap-align:start; position:relative; overflow:hidden; }
+    /* ── STAGE ── */
+    #slides { position:fixed; inset:0; overflow:hidden; }
+    .slide { position:absolute; inset:0; width:100%; height:100%; overflow:hidden; opacity:0; pointer-events:none; will-change:opacity,transform; }
+    .slide.is-active { opacity:1; pointer-events:auto; }
 
     /* ── FIXED UI ── */
     /* ── RIGHT NAV RAIL ── */
@@ -279,10 +280,10 @@
 
     /* ── ANIMATIONS ── */
     @keyframes fadeUp { from { opacity:0; transform:translateY(18px); } to { opacity:1; transform:translateY(0); } }
-    .slide.active .hero-h1  { animation:fadeUp .7s ease both; }
-    .slide.active .hero-sub { animation:fadeUp .7s .1s ease both; }
-    .slide.active .sh       { animation:fadeUp .65s ease both; }
-    .slide.active .sb       { animation:fadeUp .65s .1s ease both; }
+    .slide.is-active .hero-h1  { animation:fadeUp .7s ease both; }
+    .slide.is-active .hero-sub { animation:fadeUp .7s .1s ease both; }
+    .slide.is-active .sh       { animation:fadeUp .65s ease both; }
+    .slide.is-active .sb       { animation:fadeUp .65s .1s ease both; }
 
     /* ── RESPONSIVE ── */
     @media (max-width:900px) {
@@ -975,13 +976,87 @@
       });
     }
 
-    const slidesEl = document.getElementById('slides');
+    // ── TRANSITION TYPES ──────────────────────────────────────────────
+    const T = {
+      cinematic: {
+        dur: 860,
+        prepIn:  (el, dir) => { el.style.opacity='0'; el.style.transform=`scale(${dir>0?0.97:1.03})`; },
+        prepOut: (el, dir) => {},
+        runIn:   (el)      => { el.style.opacity='1'; el.style.transform='scale(1)'; },
+        runOut:  (el, dir) => { el.style.opacity='0'; el.style.transform=`scale(${dir>0?1.03:0.97})`; }
+      },
+      drift: {
+        dur: 700,
+        prepIn:  (el, dir) => { el.style.opacity='0'; el.style.transform=`translateY(${dir>0?52:-52}px)`; },
+        prepOut: (el, dir) => {},
+        runIn:   (el)      => { el.style.opacity='1'; el.style.transform='translateY(0)'; },
+        runOut:  (el, dir) => { el.style.opacity='0'; el.style.transform=`translateY(${dir>0?-36:36}px)`; }
+      },
+      dissolve: {
+        dur: 980,
+        prepIn:  (el)      => { el.style.opacity='0'; el.style.transform='scale(1.005)'; },
+        prepOut: (el)      => {},
+        runIn:   (el)      => { el.style.opacity='1'; el.style.transform='scale(1)'; },
+        runOut:  (el)      => { el.style.opacity='0'; el.style.transform='scale(0.995)'; }
+      },
+      lift: {
+        dur: 760,
+        prepIn:  (el, dir) => { el.style.opacity='0'; el.style.transform=`translateY(${dir>0?64:-64}px)`; },
+        prepOut: (el, dir) => {},
+        runIn:   (el)      => { el.style.opacity='1'; el.style.transform='translateY(0)'; },
+        runOut:  (el, dir) => { el.style.opacity='0'; el.style.transform=`translateY(${dir>0?-24:24}px)`; }
+      }
+    };
 
-    function goTo(i) {
-      i = Math.max(0, Math.min(TOTAL-1, i));
-      cur = i;
-      SLIDES[i].scrollIntoView({ behavior:'smooth' });
-      updateUI(i);
+    function getTType(idx, crossSection) {
+      if (crossSection) return T.cinematic;
+      const cl = SLIDES[idx].classList;
+      if (cl.contains('s-quote'))                         return T.dissolve;
+      if (cl.contains('s-chart'))                         return T.lift;
+      if (cl.contains('s-hero') || cl.contains('s-cover') ||
+          cl.contains('s-hlc')  || cl.contains('s-mvv'))  return T.cinematic;
+      return T.drift;
+    }
+
+    const EASE = 'cubic-bezier(.4,0,.2,1)';
+    let animating = false;
+
+    function goTo(next) {
+      next = Math.max(0, Math.min(TOTAL-1, next));
+      if (next === cur || animating) return;
+      const dir = next > cur ? 1 : -1;
+      const crossSection = getSec(next) !== getSec(cur);
+      const tt = getTType(next, crossSection);
+      animating = true;
+
+      const prevEl = SLIDES[cur];
+      const nextEl = SLIDES[next];
+
+      // prepare incoming slide (off-screen, no transition)
+      nextEl.style.transition = 'none';
+      tt.prepIn(nextEl, dir);
+      nextEl.classList.add('is-active');
+      nextEl.offsetHeight; // force reflow
+
+      // animate both
+      const tr = `opacity ${tt.dur}ms ${EASE}, transform ${tt.dur}ms ${EASE}`;
+      prevEl.style.transition = tr;
+      nextEl.style.transition = tr;
+
+      tt.runOut(prevEl, dir);
+      tt.runIn(nextEl);
+
+      cur = next;
+      updateUI(next);
+
+      setTimeout(() => {
+        prevEl.classList.remove('is-active');
+        prevEl.style.transition = '';
+        prevEl.style.opacity = '';
+        prevEl.style.transform = '';
+        nextEl.style.transition = '';
+        animating = false;
+      }, tt.dur + 40);
     }
 
     function nav(d) { goTo(cur + d); }
@@ -999,18 +1074,29 @@
       document.getElementById('right-nav').classList.toggle('nav-warm', isWarm(i));
       document.getElementById('prev-btn').disabled = i === 0;
       document.getElementById('next-btn').disabled = i === TOTAL-1;
-      SLIDES.forEach((s,j) => s.classList.toggle('active', j === i));
     }
 
-    let scrollTimer;
-    slidesEl.addEventListener('scroll', () => {
-      clearTimeout(scrollTimer);
-      scrollTimer = setTimeout(() => {
-        const i = Math.round(slidesEl.scrollTop / window.innerHeight);
-        if (i !== cur) { cur = i; updateUI(i); }
-      }, 60);
+    // ── INPUT: WHEEL ──────────────────────────────────────────────────
+    let wheelLocked = false;
+    window.addEventListener('wheel', e => {
+      e.preventDefault();
+      if (wheelLocked) return;
+      if (Math.abs(e.deltaY) > 8) {
+        wheelLocked = true;
+        nav(e.deltaY > 0 ? 1 : -1);
+        setTimeout(() => { wheelLocked = false; }, 820);
+      }
+    }, { passive:false });
+
+    // ── INPUT: TOUCH ──────────────────────────────────────────────────
+    let touchY = 0;
+    window.addEventListener('touchstart', e => { touchY = e.touches[0].clientY; }, { passive:true });
+    window.addEventListener('touchend', e => {
+      const delta = touchY - e.changedTouches[0].clientY;
+      if (Math.abs(delta) > 50) nav(delta > 0 ? 1 : -1);
     }, { passive:true });
 
+    // ── INPUT: KEYBOARD ───────────────────────────────────────────────
     document.addEventListener('keydown', e => {
       if (e.key === 'ArrowDown' || e.key === 'PageDown') { e.preventDefault(); nav(1); }
       if (e.key === 'ArrowUp'   || e.key === 'PageUp')   { e.preventDefault(); nav(-1); }
@@ -1059,6 +1145,7 @@
       setTimeout(() => { veil.style.display = 'none'; }, 700);
     }));
 
+    SLIDES[0].classList.add('is-active');
     updateUI(0);
   </script>
 </body>
