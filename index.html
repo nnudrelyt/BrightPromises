@@ -43,7 +43,13 @@
     .nav-hamburger.open .icon-menu { display:none; }
     .nav-hamburger.open .icon-close { display:block; color:var(--teal); }
     #right-nav:has(.nav-hamburger.open) #nav-arrows { visibility:hidden; }
-    #right-nav:has(.nav-hamburger.open) .nav-logo { visibility:hidden; }
+
+    /* warm-background slides: white symbol + arrows */
+    #right-nav.nav-warm .nav-logo { filter:brightness(0) invert(1); }
+    #right-nav.nav-warm .btn-circle { stroke:rgba(255,255,255,.7); }
+    #right-nav.nav-warm .btn-arrow { fill:rgba(255,255,255,.85); stroke:rgba(255,255,255,.85); }
+    #right-nav.nav-warm .arr:hover .btn-circle { fill:rgba(255,255,255,.2); stroke:white; }
+    #right-nav.nav-warm .arr:hover .btn-arrow { fill:white; stroke:white; }
 
     #dot-nav { margin-top:auto; margin-bottom:auto; display:flex; flex-direction:column; gap:9px; align-items:center; }
     .dot { width:7px; height:7px; border-radius:50%; background:rgba(255,255,255,.3); border:1.5px solid rgba(255,255,255,.55); cursor:pointer; transition:background .2s,transform .2s; padding:0; }
@@ -964,12 +970,17 @@
 
     function nav(d) { goTo(cur + d); }
 
+    function isWarm(i) {
+      const cl = SLIDES[i].classList;
+      return cl.contains('s-cover') || cl.contains('s-mvv');
+    }
+
     function updateUI(i) {
       renderDots(i);
       const dark = isDark(i);
       const burger = document.getElementById('hamburger');
-      const logo = document.getElementById('nav-logo');
       burger.classList.toggle('dark', !dark);
+      document.getElementById('right-nav').classList.toggle('nav-warm', isWarm(i));
       document.getElementById('prev-btn').disabled = i === 0;
       document.getElementById('next-btn').disabled = i === TOTAL-1;
       SLIDES.forEach((s,j) => s.classList.toggle('active', j === i));
