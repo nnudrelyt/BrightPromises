@@ -43,6 +43,7 @@
     .nav-hamburger.open .icon-menu { display:none; }
     .nav-hamburger.open .icon-close { display:block; }
     #right-nav:has(.nav-hamburger.open) #nav-arrows { visibility:hidden; }
+    #right-nav:has(.nav-hamburger.open) .nav-logo { visibility:hidden; }
 
     #dot-nav { margin-top:auto; margin-bottom:auto; display:flex; flex-direction:column; gap:9px; align-items:center; }
     .dot { width:7px; height:7px; border-radius:50%; background:rgba(255,255,255,.3); border:1.5px solid rgba(255,255,255,.55); cursor:pointer; transition:background .2s,transform .2s; padding:0; }
@@ -58,11 +59,15 @@
     .arr:hover .btn-circle { fill:var(--teal); }
     .arr:hover .btn-arrow { fill:var(--yellow); stroke:var(--yellow); }
 
-    #mobile-menu { display:none; position:fixed; inset:0; background:rgba(18,65,85,.97); z-index:190; flex-direction:column; align-items:center; justify-content:center; gap:32px; }
+    #mobile-menu { display:none; position:fixed; inset:0; background:var(--bg-light); z-index:190; flex-direction:column; justify-content:center; padding:0 72px; }
     #mobile-menu.open { display:flex; }
-    #mobile-menu a { font-size:24px; font-weight:700; color:var(--white); text-decoration:none; transition:color .2s; }
-    #mobile-menu a:hover { color:var(--orange); }
-    #mobile-menu .menu-close { position:absolute; top:20px; right:24px; background:none; border:none; cursor:pointer; font-size:28px; color:var(--white); }
+    .menu-label { font-size:11px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--orange); margin-bottom:28px; }
+    .menu-nav { display:flex; flex-direction:column; gap:6px; }
+    .menu-item { display:flex; align-items:center; gap:22px; text-decoration:none; padding:10px 0; transition:transform .22s ease; }
+    .menu-item:hover { transform:translateX(14px); }
+    .menu-arr { width:40px; height:40px; border-radius:50%; border:2px solid var(--yellow); color:var(--teal); display:flex; align-items:center; justify-content:center; font-size:16px; flex-shrink:0; transition:background .22s, color .22s; }
+    .menu-item:hover .menu-arr { background:var(--teal); color:var(--white); border-color:var(--teal); }
+    .menu-item-text { font-size:clamp(18px,2.2vw,34px); font-weight:700; color:var(--teal); line-height:1.15; }
 
     /* ── COVER ── */
     .s-cover { display:grid; grid-template-columns:62% 38%; }
@@ -320,16 +325,41 @@
   </nav>
 
   <div id="mobile-menu">
-    <button class="menu-close" onclick="closeMobile()">&#x2715;</button>
-    <a href="#" onclick="goTo(0);closeMobile()">Home</a>
-    <a href="#" onclick="goTo(2);closeMobile()">Table of Contents</a>
-    <a href="#" onclick="goTo(3);closeMobile()">Key Insight 1</a>
-    <a href="#" onclick="goTo(7);closeMobile()">Key Insight 2</a>
-    <a href="#" onclick="goTo(16);closeMobile()">Key Insight 3</a>
-    <a href="#" onclick="goTo(19);closeMobile()">Key Insight 4</a>
-    <a href="#" onclick="goTo(24);closeMobile()">Key Insight 5</a>
-    <a href="#" onclick="goTo(27);closeMobile()">Financials</a>
-    <a href="#" onclick="goTo(35);closeMobile()">Closing</a>
+    <div class="menu-label">Table of Contents</div>
+    <nav class="menu-nav">
+      <a href="#" class="menu-item" onclick="goTo(1);closeMobile()">
+        <span class="menu-arr">&#x2192;</span>
+        <span class="menu-item-text"><em>The Power of Promise in 2026</em> &mdash; A Letter from the Executive Director</span>
+      </a>
+      <a href="#" class="menu-item" onclick="goTo(3);closeMobile()">
+        <span class="menu-arr">&#x2192;</span>
+        <span class="menu-item-text">Key Insight 1: The Opportunity Gap is Widening</span>
+      </a>
+      <a href="#" class="menu-item" onclick="goTo(7);closeMobile()">
+        <span class="menu-arr">&#x2192;</span>
+        <span class="menu-item-text">Key Insight 2: Building the Conditions Youth Need to Succeed</span>
+      </a>
+      <a href="#" class="menu-item" onclick="goTo(16);closeMobile()">
+        <span class="menu-arr">&#x2192;</span>
+        <span class="menu-item-text">Key Insight 3: Children Thrive When Adults Are Supported</span>
+      </a>
+      <a href="#" class="menu-item" onclick="goTo(19);closeMobile()">
+        <span class="menu-arr">&#x2192;</span>
+        <span class="menu-item-text">Key Insight 4: Effective Solutions Start Early</span>
+      </a>
+      <a href="#" class="menu-item" onclick="goTo(24);closeMobile()">
+        <span class="menu-arr">&#x2192;</span>
+        <span class="menu-item-text">Key Insight 5: Scaling Community-Proven Solutions</span>
+      </a>
+      <a href="#" class="menu-item" onclick="goTo(27);closeMobile()">
+        <span class="menu-arr">&#x2192;</span>
+        <span class="menu-item-text">Financials &amp; Stewardship</span>
+      </a>
+      <a href="#" class="menu-item" onclick="goTo(35);closeMobile()">
+        <span class="menu-arr">&#x2192;</span>
+        <span class="menu-item-text">Closing &amp; Special Thanks</span>
+      </a>
+    </nav>
   </div>
 
   <main id="slides">
