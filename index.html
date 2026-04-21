@@ -35,15 +35,14 @@
     #right-nav { position:fixed; right:0; top:0; bottom:0; width:80px; z-index:200; display:flex; flex-direction:column; align-items:center; padding:20px 0 24px; }
     #rn-top { display:flex; flex-direction:row; align-items:center; gap:12px; padding:0 12px; }
     .nav-logo { height:30px; width:auto; object-fit:contain; flex-shrink:0; }
-    .nav-hamburger { display:flex; align-items:center; justify-content:center; cursor:pointer; background:none; border:none; padding:4px; color:var(--white); transition:color .2s; flex-shrink:0; }
+    .nav-hamburger { display:flex; align-items:center; justify-content:center; cursor:pointer; background:none; border:none; padding:4px; color:var(--white); transition:color .2s; flex-shrink:0; outline:none; }
     .nav-hamburger.dark { color:var(--teal); }
     .nav-hamburger svg { width:18px; height:18px; }
     .nav-hamburger .icon-menu path { fill:currentColor; }
     .nav-hamburger .icon-close { display:none; }
     .nav-hamburger.open .icon-menu { display:none; }
-    .nav-hamburger.open .icon-close { display:block; color:var(--teal); }
+    .nav-hamburger.open .icon-close { display:block; color:var(--teal-dk); }
     #right-nav:has(.nav-hamburger.open) #nav-arrows { visibility:hidden; }
-    #right-nav:has(.nav-hamburger.open) .nav-logo { visibility:hidden; }
 
     /* warm-background slides: white symbol + arrows */
     #right-nav.nav-warm:not(:has(.nav-hamburger.open)) .nav-logo { filter:brightness(0) invert(1); }
