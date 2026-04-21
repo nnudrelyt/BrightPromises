@@ -41,7 +41,7 @@
     .nav-hamburger .icon-menu path { fill:currentColor; }
     .nav-hamburger .icon-close { display:none; }
     .nav-hamburger.open .icon-menu { display:none; }
-    .nav-hamburger.open .icon-close { display:block; }
+    .nav-hamburger.open .icon-close { display:block; color:var(--teal); }
     #right-nav:has(.nav-hamburger.open) #nav-arrows { visibility:hidden; }
     #right-nav:has(.nav-hamburger.open) .nav-logo { visibility:hidden; }
 
@@ -61,12 +61,15 @@
 
     #mobile-menu { display:none; position:fixed; inset:0; background:var(--bg-light); z-index:190; flex-direction:column; justify-content:center; padding:0 72px; }
     #mobile-menu.open { display:flex; }
+    .menu-symbol { position:absolute; top:28px; right:96px; height:40px; width:auto; }
     .menu-label { font-size:11px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--orange); margin-bottom:28px; }
     .menu-nav { display:flex; flex-direction:column; gap:6px; }
     .menu-item { display:flex; align-items:center; gap:22px; text-decoration:none; padding:10px 0; transition:transform .22s ease; }
     .menu-item:hover { transform:translateX(14px); }
-    .menu-arr { width:40px; height:40px; border-radius:50%; border:2px solid var(--yellow); color:var(--teal); display:flex; align-items:center; justify-content:center; font-size:16px; flex-shrink:0; transition:background .22s, color .22s; }
-    .menu-item:hover .menu-arr { background:var(--teal); color:var(--white); border-color:var(--teal); }
+    .menu-arr { display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+    .menu-arr svg { transform:rotate(90deg); display:block; }
+    .menu-item:hover .btn-circle { fill:var(--teal); }
+    .menu-item:hover .btn-arrow { fill:var(--yellow); stroke:var(--yellow); }
     .menu-item-text { font-size:clamp(18px,2.2vw,34px); font-weight:700; color:var(--teal); line-height:1.15; }
 
     /* ── COVER ── */
@@ -325,38 +328,39 @@
   </nav>
 
   <div id="mobile-menu">
+    <img class="menu-symbol" src="_Assets/symbol.svg" alt="Bright Promises">
     <div class="menu-label">Table of Contents</div>
     <nav class="menu-nav">
       <a href="#" class="menu-item" onclick="goTo(1);closeMobile()">
-        <span class="menu-arr">&#x2192;</span>
+        <span class="menu-arr"><svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg"><path class="btn-circle" d="M17 1C25.8366 1 33 8.16345 33 17C33 25.8365 25.8366 33 17 33C8.16345 33 1 25.8366 1 17C1 8.16345 8.16345 1 17 1Z" stroke="#FFD855" stroke-width="2"/><path class="btn-arrow" d="M12.7183 17.6064C12.4064 17.2946 12.4064 16.7884 12.7183 16.4766L16.731 12.4648L16.9077 12.2881L21.0962 16.4766C21.4081 16.7884 21.4081 17.2946 21.0962 17.6064C20.7845 17.918 20.2792 17.9178 19.9673 17.6064L17.7075 15.3506V20.8916C17.7074 21.3332 17.3493 21.6912 16.9077 21.6914C16.466 21.6914 16.107 21.3333 16.1069 20.8916V15.3506L13.8472 17.6064C13.5352 17.9178 13.0299 17.9181 12.7183 17.6064Z" fill="url(#menu-arr-grad)" stroke="#33A3BD" stroke-width="0.5"/><defs><linearGradient id="menu-arr-grad" x1="12.5073" y1="17.0414" x2="21.3073" y2="17.0414" gradientUnits="userSpaceOnUse"><stop stop-color="#008CAC"/><stop offset="1" stop-color="#33A3BD"/></linearGradient></defs></svg></span>
         <span class="menu-item-text"><em>The Power of Promise in 2026</em> &mdash; A Letter from the Executive Director</span>
       </a>
       <a href="#" class="menu-item" onclick="goTo(3);closeMobile()">
-        <span class="menu-arr">&#x2192;</span>
+        <span class="menu-arr"><svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg"><path class="btn-circle" d="M17 1C25.8366 1 33 8.16345 33 17C33 25.8365 25.8366 33 17 33C8.16345 33 1 25.8366 1 17C1 8.16345 8.16345 1 17 1Z" stroke="#FFD855" stroke-width="2"/><path class="btn-arrow" d="M12.7183 17.6064C12.4064 17.2946 12.4064 16.7884 12.7183 16.4766L16.731 12.4648L16.9077 12.2881L21.0962 16.4766C21.4081 16.7884 21.4081 17.2946 21.0962 17.6064C20.7845 17.918 20.2792 17.9178 19.9673 17.6064L17.7075 15.3506V20.8916C17.7074 21.3332 17.3493 21.6912 16.9077 21.6914C16.466 21.6914 16.107 21.3333 16.1069 20.8916V15.3506L13.8472 17.6064C13.5352 17.9178 13.0299 17.9181 12.7183 17.6064Z" fill="url(#menu-arr-grad)" stroke="#33A3BD" stroke-width="0.5"/></svg></span>
         <span class="menu-item-text">Key Insight 1: The Opportunity Gap is Widening</span>
       </a>
       <a href="#" class="menu-item" onclick="goTo(7);closeMobile()">
-        <span class="menu-arr">&#x2192;</span>
+        <span class="menu-arr"><svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg"><path class="btn-circle" d="M17 1C25.8366 1 33 8.16345 33 17C33 25.8365 25.8366 33 17 33C8.16345 33 1 25.8366 1 17C1 8.16345 8.16345 1 17 1Z" stroke="#FFD855" stroke-width="2"/><path class="btn-arrow" d="M12.7183 17.6064C12.4064 17.2946 12.4064 16.7884 12.7183 16.4766L16.731 12.4648L16.9077 12.2881L21.0962 16.4766C21.4081 16.7884 21.4081 17.2946 21.0962 17.6064C20.7845 17.918 20.2792 17.9178 19.9673 17.6064L17.7075 15.3506V20.8916C17.7074 21.3332 17.3493 21.6912 16.9077 21.6914C16.466 21.6914 16.107 21.3333 16.1069 20.8916V15.3506L13.8472 17.6064C13.5352 17.9178 13.0299 17.9181 12.7183 17.6064Z" fill="url(#menu-arr-grad)" stroke="#33A3BD" stroke-width="0.5"/></svg></span>
         <span class="menu-item-text">Key Insight 2: Building the Conditions Youth Need to Succeed</span>
       </a>
       <a href="#" class="menu-item" onclick="goTo(16);closeMobile()">
-        <span class="menu-arr">&#x2192;</span>
+        <span class="menu-arr"><svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg"><path class="btn-circle" d="M17 1C25.8366 1 33 8.16345 33 17C33 25.8365 25.8366 33 17 33C8.16345 33 1 25.8366 1 17C1 8.16345 8.16345 1 17 1Z" stroke="#FFD855" stroke-width="2"/><path class="btn-arrow" d="M12.7183 17.6064C12.4064 17.2946 12.4064 16.7884 12.7183 16.4766L16.731 12.4648L16.9077 12.2881L21.0962 16.4766C21.4081 16.7884 21.4081 17.2946 21.0962 17.6064C20.7845 17.918 20.2792 17.9178 19.9673 17.6064L17.7075 15.3506V20.8916C17.7074 21.3332 17.3493 21.6912 16.9077 21.6914C16.466 21.6914 16.107 21.3333 16.1069 20.8916V15.3506L13.8472 17.6064C13.5352 17.9178 13.0299 17.9181 12.7183 17.6064Z" fill="url(#menu-arr-grad)" stroke="#33A3BD" stroke-width="0.5"/></svg></span>
         <span class="menu-item-text">Key Insight 3: Children Thrive When Adults Are Supported</span>
       </a>
       <a href="#" class="menu-item" onclick="goTo(19);closeMobile()">
-        <span class="menu-arr">&#x2192;</span>
+        <span class="menu-arr"><svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg"><path class="btn-circle" d="M17 1C25.8366 1 33 8.16345 33 17C33 25.8365 25.8366 33 17 33C8.16345 33 1 25.8366 1 17C1 8.16345 8.16345 1 17 1Z" stroke="#FFD855" stroke-width="2"/><path class="btn-arrow" d="M12.7183 17.6064C12.4064 17.2946 12.4064 16.7884 12.7183 16.4766L16.731 12.4648L16.9077 12.2881L21.0962 16.4766C21.4081 16.7884 21.4081 17.2946 21.0962 17.6064C20.7845 17.918 20.2792 17.9178 19.9673 17.6064L17.7075 15.3506V20.8916C17.7074 21.3332 17.3493 21.6912 16.9077 21.6914C16.466 21.6914 16.107 21.3333 16.1069 20.8916V15.3506L13.8472 17.6064C13.5352 17.9178 13.0299 17.9181 12.7183 17.6064Z" fill="url(#menu-arr-grad)" stroke="#33A3BD" stroke-width="0.5"/></svg></span>
         <span class="menu-item-text">Key Insight 4: Effective Solutions Start Early</span>
       </a>
       <a href="#" class="menu-item" onclick="goTo(24);closeMobile()">
-        <span class="menu-arr">&#x2192;</span>
+        <span class="menu-arr"><svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg"><path class="btn-circle" d="M17 1C25.8366 1 33 8.16345 33 17C33 25.8365 25.8366 33 17 33C8.16345 33 1 25.8366 1 17C1 8.16345 8.16345 1 17 1Z" stroke="#FFD855" stroke-width="2"/><path class="btn-arrow" d="M12.7183 17.6064C12.4064 17.2946 12.4064 16.7884 12.7183 16.4766L16.731 12.4648L16.9077 12.2881L21.0962 16.4766C21.4081 16.7884 21.4081 17.2946 21.0962 17.6064C20.7845 17.918 20.2792 17.9178 19.9673 17.6064L17.7075 15.3506V20.8916C17.7074 21.3332 17.3493 21.6912 16.9077 21.6914C16.466 21.6914 16.107 21.3333 16.1069 20.8916V15.3506L13.8472 17.6064C13.5352 17.9178 13.0299 17.9181 12.7183 17.6064Z" fill="url(#menu-arr-grad)" stroke="#33A3BD" stroke-width="0.5"/></svg></span>
         <span class="menu-item-text">Key Insight 5: Scaling Community-Proven Solutions</span>
       </a>
       <a href="#" class="menu-item" onclick="goTo(27);closeMobile()">
-        <span class="menu-arr">&#x2192;</span>
+        <span class="menu-arr"><svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg"><path class="btn-circle" d="M17 1C25.8366 1 33 8.16345 33 17C33 25.8365 25.8366 33 17 33C8.16345 33 1 25.8366 1 17C1 8.16345 8.16345 1 17 1Z" stroke="#FFD855" stroke-width="2"/><path class="btn-arrow" d="M12.7183 17.6064C12.4064 17.2946 12.4064 16.7884 12.7183 16.4766L16.731 12.4648L16.9077 12.2881L21.0962 16.4766C21.4081 16.7884 21.4081 17.2946 21.0962 17.6064C20.7845 17.918 20.2792 17.9178 19.9673 17.6064L17.7075 15.3506V20.8916C17.7074 21.3332 17.3493 21.6912 16.9077 21.6914C16.466 21.6914 16.107 21.3333 16.1069 20.8916V15.3506L13.8472 17.6064C13.5352 17.9178 13.0299 17.9181 12.7183 17.6064Z" fill="url(#menu-arr-grad)" stroke="#33A3BD" stroke-width="0.5"/></svg></span>
         <span class="menu-item-text">Financials &amp; Stewardship</span>
       </a>
       <a href="#" class="menu-item" onclick="goTo(35);closeMobile()">
-        <span class="menu-arr">&#x2192;</span>
+        <span class="menu-arr"><svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg"><path class="btn-circle" d="M17 1C25.8366 1 33 8.16345 33 17C33 25.8365 25.8366 33 17 33C8.16345 33 1 25.8366 1 17C1 8.16345 8.16345 1 17 1Z" stroke="#FFD855" stroke-width="2"/><path class="btn-arrow" d="M12.7183 17.6064C12.4064 17.2946 12.4064 16.7884 12.7183 16.4766L16.731 12.4648L16.9077 12.2881L21.0962 16.4766C21.4081 16.7884 21.4081 17.2946 21.0962 17.6064C20.7845 17.918 20.2792 17.9178 19.9673 17.6064L17.7075 15.3506V20.8916C17.7074 21.3332 17.3493 21.6912 16.9077 21.6914C16.466 21.6914 16.107 21.3333 16.1069 20.8916V15.3506L13.8472 17.6064C13.5352 17.9178 13.0299 17.9181 12.7183 17.6064Z" fill="url(#menu-arr-grad)" stroke="#33A3BD" stroke-width="0.5"/></svg></span>
         <span class="menu-item-text">Closing &amp; Special Thanks</span>
       </a>
     </nav>
