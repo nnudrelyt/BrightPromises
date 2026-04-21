@@ -47,9 +47,12 @@
     .dot.dk.active { background:var(--orange); border-color:var(--orange); }
 
     #nav-arrows { display:flex; flex-direction:column; gap:8px; }
-    .arr { width:36px; height:36px; border-radius:50%; border:2px solid var(--orange); background:transparent; color:var(--orange); cursor:pointer; display:flex; align-items:center; justify-content:center; font-size:14px; transition:background .2s,color .2s; }
-    .arr:hover { background:var(--orange); color:var(--white); }
-    .arr:disabled { opacity:.3; cursor:default; }
+    .arr { background:none; border:none; cursor:pointer; padding:0; display:flex; align-items:center; justify-content:center; }
+    .arr:disabled { opacity:.3; cursor:default; pointer-events:none; }
+    .btn-circle { fill:transparent; transition:fill .25s ease; }
+    .btn-arrow { transition:fill .25s ease, stroke .25s ease; }
+    .arr:hover .btn-circle { fill:var(--teal); }
+    .arr:hover .btn-arrow { fill:var(--yellow); stroke:var(--yellow); }
 
     #mobile-menu { display:none; position:fixed; inset:0; background:rgba(18,65,85,.97); z-index:190; flex-direction:column; align-items:center; justify-content:center; gap:32px; }
     #mobile-menu.open { display:flex; }
@@ -287,8 +290,20 @@
     </div>
     <div id="dot-nav"></div>
     <div id="nav-arrows">
-      <button class="arr" id="prev-btn" onclick="nav(-1)">&#x2191;</button>
-      <button class="arr" id="next-btn" onclick="nav(1)">&#x2193;</button>
+      <button class="arr" id="prev-btn" onclick="nav(-1)" title="Previous">
+        <svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path class="btn-circle" d="M17 1C25.8366 1 33 8.16345 33 17C33 25.8365 25.8366 33 17 33C8.16345 33 1 25.8366 1 17C1 8.16345 8.16345 1 17 1Z" stroke="#FFD855" stroke-width="2"/>
+          <path class="btn-arrow" d="M12.7183 17.6064C12.4064 17.2946 12.4064 16.7884 12.7183 16.4766L16.731 12.4648L16.9077 12.2881L21.0962 16.4766C21.4081 16.7884 21.4081 17.2946 21.0962 17.6064C20.7845 17.918 20.2792 17.9178 19.9673 17.6064L17.7075 15.3506V20.8916C17.7074 21.3332 17.3493 21.6912 16.9077 21.6914C16.466 21.6914 16.107 21.3333 16.1069 20.8916V15.3506L13.8472 17.6064C13.5352 17.9178 13.0299 17.9181 12.7183 17.6064Z" fill="url(#back-grad)" stroke="#33A3BD" stroke-width="0.5"/>
+          <defs><linearGradient id="back-grad" x1="12.5073" y1="17.0414" x2="21.3073" y2="17.0414" gradientUnits="userSpaceOnUse"><stop stop-color="#008CAC"/><stop offset="1" stop-color="#33A3BD"/></linearGradient></defs>
+        </svg>
+      </button>
+      <button class="arr" id="next-btn" onclick="nav(1)" title="Next">
+        <svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path class="btn-circle" d="M17 1C25.8366 1 33 8.16345 33 17C33 25.8365 25.8366 33 17 33C8.16345 33 1 25.8366 1 17C1 8.16345 8.16345 1 17 1Z" stroke="#FFD855" stroke-width="2"/>
+          <path class="btn-arrow" d="M12.811 16.7671C12.4992 17.079 12.4992 17.5851 12.811 17.897L16.8237 21.9087L17.0005 22.0854L21.189 17.897C21.5008 17.5851 21.5008 17.079 21.189 16.7671C20.8773 16.4556 20.372 16.4557 20.0601 16.7671L17.8003 19.0229V13.4819C17.8002 13.0403 17.4421 12.6823 17.0005 12.6821C16.5587 12.6821 16.1998 13.0402 16.1997 13.4819V19.0229L13.9399 16.7671C13.628 16.4557 13.1227 16.4555 12.811 16.7671Z" fill="url(#fwd-grad)" stroke="#33A3BD" stroke-width="0.5"/>
+          <defs><linearGradient id="fwd-grad" x1="12.6001" y1="17.3321" x2="21.4001" y2="17.3321" gradientUnits="userSpaceOnUse"><stop stop-color="#008CAC"/><stop offset="1" stop-color="#33A3BD"/></linearGradient></defs>
+        </svg>
+      </button>
     </div>
   </nav>
 
@@ -909,10 +924,6 @@
       const burger = document.getElementById('hamburger');
       const logo = document.getElementById('nav-logo');
       burger.classList.toggle('dark', !dark);
-      document.querySelectorAll('.arr').forEach(a => {
-        a.style.borderColor = dark ? 'var(--orange)' : 'var(--teal)';
-        a.style.color = dark ? 'var(--orange)' : 'var(--teal)';
-      });
       document.getElementById('prev-btn').disabled = i === 0;
       document.getElementById('next-btn').disabled = i === TOTAL-1;
       SLIDES.forEach((s,j) => s.classList.toggle('active', j === i));
