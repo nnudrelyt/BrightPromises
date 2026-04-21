@@ -43,9 +43,10 @@
     .nav-hamburger.open .icon-menu { display:none; }
     .nav-hamburger.open .icon-close { display:block; color:var(--teal); }
     #right-nav:has(.nav-hamburger.open) #nav-arrows { visibility:hidden; }
+    #right-nav:has(.nav-hamburger.open) .nav-logo { visibility:hidden; }
 
     /* warm-background slides: white symbol + arrows */
-    #right-nav.nav-warm .nav-logo { filter:brightness(0) invert(1); }
+    #right-nav.nav-warm:not(:has(.nav-hamburger.open)) .nav-logo { filter:brightness(0) invert(1); }
     #right-nav.nav-warm .btn-circle { stroke:rgba(255,255,255,.7); }
     #right-nav.nav-warm .btn-arrow { fill:rgba(255,255,255,.85); stroke:rgba(255,255,255,.85); }
     #right-nav.nav-warm .arr:hover .btn-circle { fill:rgba(255,255,255,.2); stroke:white; }
