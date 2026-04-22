@@ -102,8 +102,10 @@
     .menu-arr { display:flex; align-items:center; justify-content:center; flex-shrink:0; width:clamp(28px,2.55vw,46px); height:clamp(28px,2.55vw,46px); transition:transform .3s cubic-bezier(.25,0,.2,1); }
     .menu-arr svg { width:100%; height:100%; transform:rotate(90deg); display:block; }
     .menu-item:hover .menu-arr { transform:translateX(12px); }
-    .menu-item-text { font-size:clamp(17px,2.08vw,32px); font-weight:700; color:var(--teal); line-height:1.15; transition:transform .3s cubic-bezier(.25,0,.2,1); }
-    .menu-item:hover .menu-item-text { transform:translateY(-6px); }
+    .menu-text { display:flex; flex-direction:column; transition:transform .3s cubic-bezier(.25,0,.2,1); }
+    .menu-item:hover .menu-text { transform:translateY(-6px); }
+    .menu-eyebrow { font-size:clamp(9px,0.75vw,12px); font-weight:900; letter-spacing:.18em; text-transform:uppercase; color:var(--orange); margin-bottom:clamp(2px,0.3vh,5px); }
+    .menu-item-text { font-size:clamp(17px,2.08vw,32px); font-weight:700; color:var(--teal); line-height:1.1; }
 
     /* ── COVER ── */
     .s-cover { display:grid; grid-template-columns:62% 38%; }
@@ -429,35 +431,35 @@
     <nav class="menu-nav">
       <a href="#" class="menu-item" onclick="goTo(1);closeMobile()">
         <span class="menu-arr"><svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg"><path class="btn-circle" d="M17 1C25.8366 1 33 8.16345 33 17C33 25.8365 25.8366 33 17 33C8.16345 33 1 25.8366 1 17C1 8.16345 8.16345 1 17 1Z" stroke="#FFD855" stroke-width="2"/><path class="btn-arrow" d="M12.7183 17.6064C12.4064 17.2946 12.4064 16.7884 12.7183 16.4766L16.731 12.4648L16.9077 12.2881L21.0962 16.4766C21.4081 16.7884 21.4081 17.2946 21.0962 17.6064C20.7845 17.918 20.2792 17.9178 19.9673 17.6064L17.7075 15.3506V20.8916C17.7074 21.3332 17.3493 21.6912 16.9077 21.6914C16.466 21.6914 16.107 21.3333 16.1069 20.8916V15.3506L13.8472 17.6064C13.5352 17.9178 13.0299 17.9181 12.7183 17.6064Z" fill="url(#menu-arr-grad)" stroke="#33A3BD" stroke-width="0.5"/><defs><linearGradient id="menu-arr-grad" x1="12.5073" y1="17.0414" x2="21.3073" y2="17.0414" gradientUnits="userSpaceOnUse"><stop stop-color="#008CAC"/><stop offset="1" stop-color="#33A3BD"/></linearGradient></defs></svg></span>
-        <span class="menu-item-text"><em>The Power of Promise in 2026</em> &mdash; A Letter from the Executive Director</span>
+        <span class="menu-text"><span class="menu-eyebrow">The Power of Promise in 2026</span><span class="menu-item-text">A Letter from Our Executive Director</span></span>
       </a>
       <a href="#" class="menu-item" onclick="goTo(3);closeMobile()">
         <span class="menu-arr"><svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg"><path class="btn-circle" d="M17 1C25.8366 1 33 8.16345 33 17C33 25.8365 25.8366 33 17 33C8.16345 33 1 25.8366 1 17C1 8.16345 8.16345 1 17 1Z" stroke="#FFD855" stroke-width="2"/><path class="btn-arrow" d="M12.7183 17.6064C12.4064 17.2946 12.4064 16.7884 12.7183 16.4766L16.731 12.4648L16.9077 12.2881L21.0962 16.4766C21.4081 16.7884 21.4081 17.2946 21.0962 17.6064C20.7845 17.918 20.2792 17.9178 19.9673 17.6064L17.7075 15.3506V20.8916C17.7074 21.3332 17.3493 21.6912 16.9077 21.6914C16.466 21.6914 16.107 21.3333 16.1069 20.8916V15.3506L13.8472 17.6064C13.5352 17.9178 13.0299 17.9181 12.7183 17.6064Z" fill="url(#menu-arr-grad)" stroke="#33A3BD" stroke-width="0.5"/></svg></span>
-        <span class="menu-item-text">Key Insight 1: The Opportunity Gap is Widening</span>
+        <span class="menu-text"><span class="menu-eyebrow">Key Insight 1</span><span class="menu-item-text">The Opportunity Gap is Widening</span></span>
       </a>
       <a href="#" class="menu-item" onclick="goTo(7);closeMobile()">
         <span class="menu-arr"><svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg"><path class="btn-circle" d="M17 1C25.8366 1 33 8.16345 33 17C33 25.8365 25.8366 33 17 33C8.16345 33 1 25.8366 1 17C1 8.16345 8.16345 1 17 1Z" stroke="#FFD855" stroke-width="2"/><path class="btn-arrow" d="M12.7183 17.6064C12.4064 17.2946 12.4064 16.7884 12.7183 16.4766L16.731 12.4648L16.9077 12.2881L21.0962 16.4766C21.4081 16.7884 21.4081 17.2946 21.0962 17.6064C20.7845 17.918 20.2792 17.9178 19.9673 17.6064L17.7075 15.3506V20.8916C17.7074 21.3332 17.3493 21.6912 16.9077 21.6914C16.466 21.6914 16.107 21.3333 16.1069 20.8916V15.3506L13.8472 17.6064C13.5352 17.9178 13.0299 17.9181 12.7183 17.6064Z" fill="url(#menu-arr-grad)" stroke="#33A3BD" stroke-width="0.5"/></svg></span>
-        <span class="menu-item-text">Key Insight 2: Building the Conditions Youth Need to Succeed</span>
+        <span class="menu-text"><span class="menu-eyebrow">Key Insight 2</span><span class="menu-item-text">Building the Conditions Youth Need to Succeed</span></span>
       </a>
       <a href="#" class="menu-item" onclick="goTo(16);closeMobile()">
         <span class="menu-arr"><svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg"><path class="btn-circle" d="M17 1C25.8366 1 33 8.16345 33 17C33 25.8365 25.8366 33 17 33C8.16345 33 1 25.8366 1 17C1 8.16345 8.16345 1 17 1Z" stroke="#FFD855" stroke-width="2"/><path class="btn-arrow" d="M12.7183 17.6064C12.4064 17.2946 12.4064 16.7884 12.7183 16.4766L16.731 12.4648L16.9077 12.2881L21.0962 16.4766C21.4081 16.7884 21.4081 17.2946 21.0962 17.6064C20.7845 17.918 20.2792 17.9178 19.9673 17.6064L17.7075 15.3506V20.8916C17.7074 21.3332 17.3493 21.6912 16.9077 21.6914C16.466 21.6914 16.107 21.3333 16.1069 20.8916V15.3506L13.8472 17.6064C13.5352 17.9178 13.0299 17.9181 12.7183 17.6064Z" fill="url(#menu-arr-grad)" stroke="#33A3BD" stroke-width="0.5"/></svg></span>
-        <span class="menu-item-text">Key Insight 3: Children Thrive When Adults Are Supported</span>
+        <span class="menu-text"><span class="menu-eyebrow">Key Insight 3</span><span class="menu-item-text">Children Thrive When Adults Are Supported</span></span>
       </a>
       <a href="#" class="menu-item" onclick="goTo(19);closeMobile()">
         <span class="menu-arr"><svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg"><path class="btn-circle" d="M17 1C25.8366 1 33 8.16345 33 17C33 25.8365 25.8366 33 17 33C8.16345 33 1 25.8366 1 17C1 8.16345 8.16345 1 17 1Z" stroke="#FFD855" stroke-width="2"/><path class="btn-arrow" d="M12.7183 17.6064C12.4064 17.2946 12.4064 16.7884 12.7183 16.4766L16.731 12.4648L16.9077 12.2881L21.0962 16.4766C21.4081 16.7884 21.4081 17.2946 21.0962 17.6064C20.7845 17.918 20.2792 17.9178 19.9673 17.6064L17.7075 15.3506V20.8916C17.7074 21.3332 17.3493 21.6912 16.9077 21.6914C16.466 21.6914 16.107 21.3333 16.1069 20.8916V15.3506L13.8472 17.6064C13.5352 17.9178 13.0299 17.9181 12.7183 17.6064Z" fill="url(#menu-arr-grad)" stroke="#33A3BD" stroke-width="0.5"/></svg></span>
-        <span class="menu-item-text">Key Insight 4: Effective Solutions Start Early</span>
+        <span class="menu-text"><span class="menu-eyebrow">Key Insight 4</span><span class="menu-item-text">Effective Solutions Start Early</span></span>
       </a>
       <a href="#" class="menu-item" onclick="goTo(24);closeMobile()">
         <span class="menu-arr"><svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg"><path class="btn-circle" d="M17 1C25.8366 1 33 8.16345 33 17C33 25.8365 25.8366 33 17 33C8.16345 33 1 25.8366 1 17C1 8.16345 8.16345 1 17 1Z" stroke="#FFD855" stroke-width="2"/><path class="btn-arrow" d="M12.7183 17.6064C12.4064 17.2946 12.4064 16.7884 12.7183 16.4766L16.731 12.4648L16.9077 12.2881L21.0962 16.4766C21.4081 16.7884 21.4081 17.2946 21.0962 17.6064C20.7845 17.918 20.2792 17.9178 19.9673 17.6064L17.7075 15.3506V20.8916C17.7074 21.3332 17.3493 21.6912 16.9077 21.6914C16.466 21.6914 16.107 21.3333 16.1069 20.8916V15.3506L13.8472 17.6064C13.5352 17.9178 13.0299 17.9181 12.7183 17.6064Z" fill="url(#menu-arr-grad)" stroke="#33A3BD" stroke-width="0.5"/></svg></span>
-        <span class="menu-item-text">Key Insight 5: Scaling Community-Proven Solutions</span>
+        <span class="menu-text"><span class="menu-eyebrow">Key Insight 5</span><span class="menu-item-text">Scaling Community-Proven Solutions</span></span>
       </a>
       <a href="#" class="menu-item" onclick="goTo(27);closeMobile()">
         <span class="menu-arr"><svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg"><path class="btn-circle" d="M17 1C25.8366 1 33 8.16345 33 17C33 25.8365 25.8366 33 17 33C8.16345 33 1 25.8366 1 17C1 8.16345 8.16345 1 17 1Z" stroke="#FFD855" stroke-width="2"/><path class="btn-arrow" d="M12.7183 17.6064C12.4064 17.2946 12.4064 16.7884 12.7183 16.4766L16.731 12.4648L16.9077 12.2881L21.0962 16.4766C21.4081 16.7884 21.4081 17.2946 21.0962 17.6064C20.7845 17.918 20.2792 17.9178 19.9673 17.6064L17.7075 15.3506V20.8916C17.7074 21.3332 17.3493 21.6912 16.9077 21.6914C16.466 21.6914 16.107 21.3333 16.1069 20.8916V15.3506L13.8472 17.6064C13.5352 17.9178 13.0299 17.9181 12.7183 17.6064Z" fill="url(#menu-arr-grad)" stroke="#33A3BD" stroke-width="0.5"/></svg></span>
-        <span class="menu-item-text">Financials &amp; Stewardship</span>
+        <span class="menu-text"><span class="menu-item-text">Financials &amp; Stewardship</span></span>
       </a>
       <a href="#" class="menu-item" onclick="goTo(35);closeMobile()">
         <span class="menu-arr"><svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg"><path class="btn-circle" d="M17 1C25.8366 1 33 8.16345 33 17C33 25.8365 25.8366 33 17 33C8.16345 33 1 25.8366 1 17C1 8.16345 8.16345 1 17 1Z" stroke="#FFD855" stroke-width="2"/><path class="btn-arrow" d="M12.7183 17.6064C12.4064 17.2946 12.4064 16.7884 12.7183 16.4766L16.731 12.4648L16.9077 12.2881L21.0962 16.4766C21.4081 16.7884 21.4081 17.2946 21.0962 17.6064C20.7845 17.918 20.2792 17.9178 19.9673 17.6064L17.7075 15.3506V20.8916C17.7074 21.3332 17.3493 21.6912 16.9077 21.6914C16.466 21.6914 16.107 21.3333 16.1069 20.8916V15.3506L13.8472 17.6064C13.5352 17.9178 13.0299 17.9181 12.7183 17.6064Z" fill="url(#menu-arr-grad)" stroke="#33A3BD" stroke-width="0.5"/></svg></span>
-        <span class="menu-item-text">Closing &amp; Special Thanks</span>
+        <span class="menu-text"><span class="menu-item-text">Closing &amp; Special Thanks</span></span>
       </a>
     </nav>
   </div>
