@@ -22,6 +22,11 @@
       --bg-light: #F1EDEA;
       --white:    #FFFFFF;
       --font:     'B1816','Helvetica Neue',Helvetica,sans-serif;
+      --ki1-c:    #1A607A;
+      --ki2-c:    #28B9CC;
+      --ki3-c:    #C05A35;
+      --ki4-c:    #B89020;
+      --ki5-c:    #124155;
     }
 
     html, body { height:100%; overflow:hidden; font-family:var(--font); -webkit-font-smoothing:antialiased; background:var(--teal-dk); }
@@ -286,6 +291,40 @@
     .slide.is-active .sh       { animation:fadeUp .65s ease both; }
     .slide.is-active .sb       { animation:fadeUp .65s .1s ease both; }
 
+    /* ── SECTION COLOR SYSTEM ── */
+    .toc-item:nth-child(2) .toc-arr { border-color:var(--ki1-c); color:var(--ki1-c); }
+    .toc-item:nth-child(3) .toc-arr { border-color:var(--ki2-c); color:var(--ki2-c); }
+    .toc-item:nth-child(4) .toc-arr { border-color:var(--ki3-c); color:var(--ki3-c); }
+    .toc-item:nth-child(5) .toc-arr { border-color:var(--ki4-c); color:var(--ki4-c); }
+    .toc-item:nth-child(6) .toc-arr { border-color:var(--ki5-c); color:var(--ki5-c); }
+
+    /* ── CHAPTER INDICATORS ── */
+    .chapter-tag { font-size:clamp(10px,0.85vw,13px); font-weight:900; letter-spacing:.2em; text-transform:uppercase; margin-bottom:clamp(8px,1vh,14px); }
+    [data-sec="ki1"] .chapter-tag { color:var(--ki1-c); }
+    [data-sec="ki2"] .chapter-tag { color:var(--ki2-c); }
+    [data-sec="ki3"] .chapter-tag { color:var(--ki3-c); }
+    .hero-chapter { font-size:clamp(72px,9vw,140px); font-weight:900; color:rgba(255,255,255,.12); position:absolute; top:clamp(24px,4vh,56px); right:clamp(40px,4vw,80px); letter-spacing:-.02em; line-height:1; z-index:3; pointer-events:none; }
+
+    /* ── ACCORDION TIMEFRAME COLORS ── */
+    .acc-item:nth-child(2) .acc-icon { border-color:var(--teal); color:var(--teal); }
+    .acc-item:nth-child(2).open .acc-icon { background:var(--teal); color:var(--white); }
+    .acc-item:nth-child(2) .acc-title { color:var(--teal); }
+    .acc-item:nth-child(3) .acc-icon { border-color:var(--cyan); color:var(--cyan); }
+    .acc-item:nth-child(3).open .acc-icon { background:var(--cyan); color:var(--white); }
+    .acc-item:nth-child(3) .acc-title { color:var(--cyan); }
+    .acc-item:nth-child(4) .acc-icon { border-color:var(--orange); color:var(--orange); }
+    .acc-item:nth-child(4).open .acc-icon { background:var(--orange); color:var(--white); }
+    .acc-item:nth-child(4) .acc-title { color:var(--orange); }
+
+    /* ── TYPOGRAPHY DENSITY ── */
+    .sb { line-height:1.85; }
+    .sb p+p { margin-top:1.2em; }
+    .letter-col { line-height:1.85; }
+    .letter-col p+p { margin-top:1.2em; }
+    .acc-intro { line-height:1.85; }
+    .acc-intro p+p { margin-top:1.2em; }
+    .acc-list li { line-height:1.65; padding:7px 0 7px 18px; }
+
     /* ── RESPONSIVE ── */
     @media (max-width:900px) {
       .s-cover { grid-template-columns:1fr; }
@@ -446,6 +485,7 @@
     <!-- 3: KI1 A -->
     <section class="slide s-split" data-i="3" data-sec="ki1">
       <div class="txt">
+        <div class="chapter-tag">Key Insight 01 / 05</div>
         <div class="eyebrow">The Inflection Point</div>
         <h2 class="sh"><strong>Key Insight 1:</strong> Not all children start with the same opportunities&mdash;and the gap is widening.</h2>
         <div class="sb"><p>Across Chicagoland, children and families are navigating fractured supports and rising stress and trauma. In partnership with community-based organizations and donors, Bright Promises helps children get the resources, guidance, and skills they deserve to grow, learn, and thrive.</p></div>
@@ -506,6 +546,7 @@
     <!-- 7: KI2 A -->
     <section class="slide s-split" data-i="7" data-sec="ki2">
       <div class="txt">
+        <div class="chapter-tag">Key Insight 02 / 05</div>
         <div class="eyebrow">Momentum, Not Miracles</div>
         <h2 class="sh"><strong>Key Insight 2:</strong> When young people have safe spaces, trusted relationships, and opportunities to lead, they don&rsquo;t just cope&mdash;they thrive.</h2>
         <div class="sb"><p>Bright Promises pilots initiatives that deliver measurable near and long-term outcomes for <strong>over 11,000 youth and families</strong> each year. From increased confidence and agency to reduced violence and improved wellbeing, these outcomes don&rsquo;t happen by chance&mdash;they happen through building the conditions young people need to succeed.</p></div>
@@ -521,7 +562,7 @@
           <p>Through Bright Promises, donors help pilot and scale solutions that deliver measurable near- and long-term outcomes for <strong>over 11,000 youth and families</strong> each year. Since 2016, Bright Promises has invested <strong>over $5.6 million in 100 community-based organizations</strong> serving low-income children and families across Chicagoland and Illinois.</p>
         </div>
       </div>
-      <div class="photo"><div class="pbg" style="background-image:url('img/community-4.jpg')"></div></div>
+      <div class="photo"><div class="pbg" style="background-image:url('img/community-4.jpg');background-position:center top"></div></div>
     </section>
 
     <!-- 9: KI2 C — Accordion -->
@@ -632,6 +673,7 @@
     <!-- 16: KI3 A -->
     <section class="slide s-split" data-i="16" data-sec="ki3">
       <div class="txt">
+        <div class="chapter-tag">Key Insight 03 / 05</div>
         <div class="eyebrow">We Invest in the People and Places Children Rely On</div>
         <h2 class="sh"><strong>Key Insight 3:</strong> Strong outcomes for children start with supported adults and organizations.</h2>
         <div class="sb"><p>When educators and caregivers have the resources, training, and stability they need, children experience more consistent care, stronger relationships, and healthier environments. With your support, Bright Promises helps youth-serving professionals build skills, reduce burnout, and stay in the field&mdash;leading to more stable classrooms and stronger programs.</p></div>
@@ -673,6 +715,7 @@
     <section class="slide s-hero" data-i="19" data-sec="ki4">
       <div class="bg" style="background-image:url('img/convening-3.jpg')"></div>
       <div class="overlay" style="background:var(--teal);opacity:.88"></div>
+      <div class="hero-chapter">04</div>
       <div class="content">
         <div class="eyebrow-pill">Key Insight 4</div>
         <h1 class="hero-h1">Upstream<br>Impact for<br>Lasting<br>Opportunity</h1>
@@ -689,7 +732,7 @@
           <p><strong>What Bright Promises Upstream Initiatives Produce:</strong> Proven practices coordinated across systems; durable change beyond the life of a grant; replication across organizations and sectors; reduced reliance on costly downstream interventions.</p>
         </div>
       </div>
-      <div class="photo"><div class="pbg" style="background-image:url('img/convening-3.jpg')"></div></div>
+      <div class="photo"><div class="pbg" style="background-image:url('img/convening-3.jpg');background-position:center 30%"></div></div>
     </section>
 
     <!-- 21: COMMUNITIES UNITED HERO -->
@@ -730,6 +773,7 @@
     <section class="slide s-hero" data-i="24" data-sec="ki5">
       <div class="bg" style="background-image:url('img/convening-1.jpg')"></div>
       <div class="overlay" style="background:var(--orange);opacity:.88"></div>
+      <div class="hero-chapter">05</div>
       <div class="content">
         <div class="eyebrow-pill">Looking Ahead</div>
         <h1 class="hero-h1">stabilizing<br>today,<br>building<br>what&rsquo;s next</h1>
