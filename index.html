@@ -303,9 +303,11 @@
     .toc-item:nth-child(6) .toc-arr { border-color:var(--ki5-c); color:var(--ki5-c); }
 
     /* ── COMMUNITY OF PARTNERS ── */
-    .cop-video { width:100%; border-radius:clamp(6px,0.8vw,12px); display:block; margin-bottom:clamp(12px,1.6vh,22px); }
-    .cop-logos { display:grid; grid-template-columns:repeat(5,1fr); gap:clamp(6px,0.8vw,12px); }
-    .cop-logo { width:100%; height:clamp(36px,3.8vh,52px); object-fit:contain; object-position:center; background:#fff; border-radius:4px; padding:4px 6px; }
+    .cop-video { width:100%; border-radius:clamp(6px,0.8vw,12px); display:block; margin-bottom:clamp(12px,1.6vh,20px); }
+    .cop-orgs { display:grid; grid-template-columns:1fr 1fr; gap:0; border-top:1px solid rgba(26,96,122,.12); }
+    .cop-org { font-size:clamp(11px,1vw,15px); font-weight:700; color:var(--teal); padding:clamp(5px,0.7vh,8px) 0; border-bottom:1px solid rgba(26,96,122,.12); letter-spacing:.02em; }
+    .cop-org:nth-child(odd) { padding-right:12px; }
+    .cop-org:nth-child(even) { padding-left:12px; border-left:1px solid rgba(26,96,122,.12); }
 
     /* ── IMAGE PLACEHOLDER ── */
     .img-placeholder { width:100%; aspect-ratio:3/4; max-height:62vh; border-radius:clamp(8px,1.2vw,20px); background:rgba(240,200,32,.28); border:2px dashed rgba(26,96,122,.22); display:flex; align-items:center; justify-content:center; }
@@ -554,27 +556,27 @@
           <video class="cop-video" controls playsinline>
             <source src="video/grantee-reveal.mp4" type="video/mp4">
           </video>
-          <div class="cop-logos">
-            <img class="cop-logo" src="img/logos/aaan.png" alt="AAAN">
-            <img class="cop-logo" src="img/logos/ase.png" alt="Alliance of the Southeast">
-            <img class="cop-logo" src="img/logos/alternatives.png" alt="Alternatives">
-            <img class="cop-logo" src="img/logos/build.png" alt="BUILD">
-            <img class="cop-logo" src="img/logos/chi-freedom-school.png" alt="Chicago Freedom School">
-            <img class="cop-logo" src="img/logos/chicago-commons.svg" alt="Chicago Commons">
-            <img class="cop-logo" src="img/logos/chicago-youth-centers.webp" alt="Chicago Youth Centers">
-            <img class="cop-logo" src="img/logos/chicago-youth-programs.jpg" alt="Chicago Youth Programs">
-            <img class="cop-logo" src="img/logos/communities-united.png" alt="Communities United">
-            <img class="cop-logo" src="img/logos/gads-hill.png" alt="Gads Hill Center">
-            <img class="cop-logo" src="img/logos/iasn.png" alt="IASN">
-            <img class="cop-logo" src="img/logos/kumba-lynx.png" alt="KumbaLynx">
-            <img class="cop-logo" src="img/logos/long-walk-home.jpg" alt="Long Walk Home">
-            <img class="cop-logo" src="img/logos/new-community-outreach.png" alt="New Community Outreach">
-            <img class="cop-logo" src="img/logos/northwest-center.png" alt="Northwest Center">
-            <img class="cop-logo" src="img/logos/onward-house.webp" alt="Onward House">
-            <img class="cop-logo" src="img/logos/palenque-lsna.png" alt="Palenque LSNA">
-            <img class="cop-logo" src="img/logos/project-vision.svg" alt="Project Vision">
-            <img class="cop-logo" src="img/logos/southside-together.png" alt="Southside Together">
-            <img class="cop-logo" src="img/logos/ucan.png" alt="UCAN">
+          <div class="cop-orgs">
+            <div class="cop-org">AAAN</div>
+            <div class="cop-org">Alliance of the Southeast</div>
+            <div class="cop-org">Alternatives</div>
+            <div class="cop-org">BUILD</div>
+            <div class="cop-org">Chicago Commons</div>
+            <div class="cop-org">Chicago Freedom School</div>
+            <div class="cop-org">Chicago Youth Centers</div>
+            <div class="cop-org">Chicago Youth Programs</div>
+            <div class="cop-org">Communities United</div>
+            <div class="cop-org">Gads Hill Center</div>
+            <div class="cop-org">IASN</div>
+            <div class="cop-org">KumbaLynx</div>
+            <div class="cop-org">Long Walk Home</div>
+            <div class="cop-org">New Community Outreach</div>
+            <div class="cop-org">Northwest Center</div>
+            <div class="cop-org">Onward House</div>
+            <div class="cop-org">Palenque LSNA</div>
+            <div class="cop-org">Project Vision</div>
+            <div class="cop-org">Southside Together</div>
+            <div class="cop-org">UCAN</div>
           </div>
         </div>
       </div>
