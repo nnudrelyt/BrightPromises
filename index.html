@@ -170,9 +170,7 @@
     .toc-text { display:flex; flex-direction:column; transition:transform .3s cubic-bezier(.25,0,.2,1); }
     .toc-item:hover .toc-text { transform:translateY(-6px); }
     .toc-eyebrow { font-size:clamp(9px,0.75vw,12px); font-weight:900; letter-spacing:.18em; text-transform:uppercase; color:var(--orange); margin-bottom:clamp(2px,0.3vh,5px); }
-    .toc-main { font-size:clamp(18px,2.4vw,44px); font-weight:700; color:var(--teal); line-height:1.1; position:relative; display:inline-block; }
-    .toc-main::after { content:''; position:absolute; left:0; bottom:-0.1em; width:100%; height:1px; background:rgba(26,96,122,.35); transform:scaleX(0); transform-origin:right; transition:transform .3s cubic-bezier(.25,0,.2,1); }
-    .toc-item:hover .toc-main::after { transform:scaleX(1); transform-origin:left; }
+    .toc-main { font-size:clamp(18px,2.4vw,44px); font-weight:700; color:var(--teal); line-height:1.1; }
 
     /* ── ED LETTER ── */
     .s-letter { background:var(--white); display:flex; align-items:center; padding:clamp(48px,5vw,100px) clamp(56px,6vw,120px); }
