@@ -302,6 +302,10 @@
     .toc-item:nth-child(5) .toc-arr { border-color:var(--ki4-c); color:var(--ki4-c); }
     .toc-item:nth-child(6) .toc-arr { border-color:var(--ki5-c); color:var(--ki5-c); }
 
+    /* ── IMAGE PLACEHOLDER ── */
+    .img-placeholder { width:100%; aspect-ratio:3/4; max-height:62vh; border-radius:clamp(8px,1.2vw,20px); background:rgba(240,200,32,.28); border:2px dashed rgba(26,96,122,.22); display:flex; align-items:center; justify-content:center; }
+    .img-placeholder::after { content:'Image'; font-family:var(--font); font-size:13px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:rgba(26,96,122,.35); }
+
     /* ── CHAPTER INDICATORS ── */
     .hero-chapter { font-size:clamp(72px,9vw,140px); font-weight:900; color:rgba(255,255,255,.12); position:absolute; top:clamp(24px,4vh,56px); right:clamp(40px,4vw,80px); letter-spacing:-.02em; line-height:1; z-index:3; pointer-events:none; }
 
@@ -589,11 +593,16 @@
 
     <!-- 10: HLC INTRO -->
     <section class="slide s-content" data-i="10" data-sec="hlc">
-      <div style="max-width:960px;position:relative;z-index:1">
-        <div class="eyebrow">Impact Spotlight</div>
-        <h2 class="sh" style="font-size:clamp(26px,3.2vw,48px);margin-bottom:24px">Healing Youth Racial Trauma</h2>
-        <p class="sb">Since launching the <strong>Healing, Leading, Changing</strong> initiative in 2021, Bright Promises has invested more than <strong>$2 million</strong> to create and scale programs that confront racial trauma and build youth leadership across Chicagoland.</p>
-        <p class="sb" style="margin-top:16px">Healing racial trauma and developing youth leadership are essential&mdash;not optional&mdash;for academic success, economic mobility, and participatory democracy. This initiative supports young people in building confidence, agency, identity, and leadership skills, laying the groundwork for long-term success in school, work, and life.</p>
+      <div style="width:100%;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:clamp(40px,5vw,100px)">
+        <div>
+          <div class="eyebrow">Impact Spotlight</div>
+          <h2 class="sh" style="font-size:clamp(26px,3.2vw,48px);margin-bottom:24px">Healing Youth Racial Trauma</h2>
+          <p class="sb">Since launching the <strong>Healing, Leading, Changing</strong> initiative in 2021, Bright Promises has invested more than <strong>$2 million</strong> to create and scale programs that confront racial trauma and build youth leadership across Chicagoland.</p>
+          <p class="sb" style="margin-top:16px">Healing racial trauma and developing youth leadership are essential&mdash;not optional&mdash;for academic success, economic mobility, and participatory democracy. This initiative supports young people in building confidence, agency, identity, and leadership skills, laying the groundwork for long-term success in school, work, and life.</p>
+        </div>
+        <div style="display:flex;align-items:center;justify-content:center">
+          <div class="img-placeholder"></div>
+        </div>
       </div>
     </section>
 
