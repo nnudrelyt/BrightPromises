@@ -166,6 +166,8 @@
     .toc-item:nth-child(6)::before,
     .toc-item:nth-child(7)::before,
     .toc-item:nth-child(8)::before { content:''; position:absolute; top:0; left:0; width:calc(100vw - 2 * clamp(56px,6vw,120px)); height:1px; background:rgba(26,96,122,.1); }
+    .toc-item:last-child { padding-bottom:clamp(16px,2.4vh,38px); }
+    .toc-item:last-child::after { content:''; position:absolute; bottom:0; left:0; width:calc(100vw - 2 * clamp(56px,6vw,120px)); height:1px; background:rgba(26,96,122,.1); }
     .toc-arr svg { width:100%; height:100%; display:block; transform:rotate(-90deg); }
     .toc-text { display:flex; flex-direction:column; transition:transform .3s cubic-bezier(.25,0,.2,1); }
     .toc-item:hover .toc-text { transform:translateY(-6px); }
