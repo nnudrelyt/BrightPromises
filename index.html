@@ -116,6 +116,10 @@
     .s-hero .content { position:relative; z-index:2; }
     .eyebrow-pill { display:inline-block; background:var(--yellow); color:var(--teal-dk); font-size:clamp(10px,0.9vw,13px); font-weight:700; letter-spacing:.14em; text-transform:uppercase; padding:5px 14px; border-radius:2px; margin-bottom:clamp(16px,1.5vh,28px); }
     .hero-h1 { font-size:clamp(52px,7vw,120px); font-weight:900; color:var(--white); line-height:.95; letter-spacing:-.01em; max-width:min(800px,65vw); margin-bottom:clamp(14px,1.5vh,24px); }
+    .s-hero .sh { color:var(--white); max-width:min(720px,60vw); }
+    .s-hero .sb { color:rgba(255,255,255,.8); max-width:min(640px,52vw); margin-top:clamp(14px,1.6vh,24px); }
+    .s-hero .sb strong { color:var(--white); }
+    .s-hero .eyebrow { color:var(--yellow); }
     .hero-sub { font-size:clamp(18px,2vw,32px); font-weight:700; color:var(--white); line-height:1.3; max-width:min(560px,45vw); }
     .hero-logo { position:absolute; bottom:clamp(56px,7vh,120px); left:clamp(56px,5vw,120px); height:clamp(44px,4vw,72px); z-index:2; }
 
@@ -299,10 +303,6 @@
     .toc-item:nth-child(6) .toc-arr { border-color:var(--ki5-c); color:var(--ki5-c); }
 
     /* ── CHAPTER INDICATORS ── */
-    .chapter-tag { font-size:clamp(10px,0.85vw,13px); font-weight:900; letter-spacing:.2em; text-transform:uppercase; margin-bottom:clamp(8px,1vh,14px); }
-    [data-sec="ki1"] .chapter-tag { color:var(--ki1-c); }
-    [data-sec="ki2"] .chapter-tag { color:var(--ki2-c); }
-    [data-sec="ki3"] .chapter-tag { color:var(--ki3-c); }
     .hero-chapter { font-size:clamp(72px,9vw,140px); font-weight:900; color:rgba(255,255,255,.12); position:absolute; top:clamp(24px,4vh,56px); right:clamp(40px,4vw,80px); letter-spacing:-.02em; line-height:1; z-index:3; pointer-events:none; }
 
     /* ── ACCORDION TIMEFRAME COLORS ── */
@@ -483,14 +483,14 @@
     </section>
 
     <!-- 3: KI1 A -->
-    <section class="slide s-split" data-i="3" data-sec="ki1">
-      <div class="txt">
-        <div class="chapter-tag">Key Insight 01 / 05</div>
+    <section class="slide s-hero" data-i="3" data-sec="ki1">
+      <div class="bg" style="background-image:url('img/community-2.jpg')"></div>
+      <div class="overlay" style="background:var(--teal-dk);opacity:.72"></div>
+      <div class="content">
         <div class="eyebrow">The Inflection Point</div>
         <h2 class="sh"><strong>Key Insight 1:</strong> Not all children start with the same opportunities&mdash;and the gap is widening.</h2>
         <div class="sb"><p>Across Chicagoland, children and families are navigating fractured supports and rising stress and trauma. In partnership with community-based organizations and donors, Bright Promises helps children get the resources, guidance, and skills they deserve to grow, learn, and thrive.</p></div>
       </div>
-      <div class="photo"><div class="pbg" style="background-image:url('img/community-2.jpg')"></div><span class="photo-credit">Image courtesy Stephen Serio Photography</span></div>
     </section>
 
     <!-- 4: KI1 B -->
@@ -544,14 +544,14 @@
     </section>
 
     <!-- 7: KI2 A -->
-    <section class="slide s-split" data-i="7" data-sec="ki2">
-      <div class="txt">
-        <div class="chapter-tag">Key Insight 02 / 05</div>
+    <section class="slide s-hero" data-i="7" data-sec="ki2">
+      <div class="bg" style="background-image:url('img/community-4.jpg')"></div>
+      <div class="overlay" style="background:var(--teal-dk);opacity:.72"></div>
+      <div class="content">
         <div class="eyebrow">Momentum, Not Miracles</div>
         <h2 class="sh"><strong>Key Insight 2:</strong> When young people have safe spaces, trusted relationships, and opportunities to lead, they don&rsquo;t just cope&mdash;they thrive.</h2>
         <div class="sb"><p>Bright Promises pilots initiatives that deliver measurable near and long-term outcomes for <strong>over 11,000 youth and families</strong> each year. From increased confidence and agency to reduced violence and improved wellbeing, these outcomes don&rsquo;t happen by chance&mdash;they happen through building the conditions young people need to succeed.</p></div>
       </div>
-      <div class="photo"><div class="pbg" style="background-image:url('img/community-4.jpg')"></div><span class="photo-credit">Image courtesy Long Walk Home</span></div>
     </section>
 
     <!-- 8: KI2 B -->
@@ -671,14 +671,14 @@
     </section>
 
     <!-- 16: KI3 A -->
-    <section class="slide s-split" data-i="16" data-sec="ki3">
-      <div class="txt">
-        <div class="chapter-tag">Key Insight 03 / 05</div>
+    <section class="slide s-hero" data-i="16" data-sec="ki3">
+      <div class="bg" style="background-image:url('img/convening-2.jpg')"></div>
+      <div class="overlay" style="background:var(--teal-dk);opacity:.72"></div>
+      <div class="content">
         <div class="eyebrow">We Invest in the People and Places Children Rely On</div>
         <h2 class="sh"><strong>Key Insight 3:</strong> Strong outcomes for children start with supported adults and organizations.</h2>
         <div class="sb"><p>When educators and caregivers have the resources, training, and stability they need, children experience more consistent care, stronger relationships, and healthier environments. With your support, Bright Promises helps youth-serving professionals build skills, reduce burnout, and stay in the field&mdash;leading to more stable classrooms and stronger programs.</p></div>
       </div>
-      <div class="photo"><div class="pbg" style="background-image:url('img/convening-2.jpg')"></div></div>
     </section>
 
     <!-- 17: KI3 B — Quality Care -->
