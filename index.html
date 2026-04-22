@@ -148,11 +148,12 @@
     .s-toc { background:var(--bg-light); display:flex; align-items:center; padding:clamp(48px,5vw,100px) clamp(56px,6vw,120px); }
     .toc-label { font-size:clamp(10px,0.9vw,13px); font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--teal); margin-bottom:clamp(20px,2.5vh,40px); position:relative; z-index:1; }
     .toc-list { list-style:none; position:relative; z-index:1; }
-    .toc-item { display:flex; align-items:center; gap:clamp(16px,1.6vw,28px); margin-bottom:clamp(10px,1.6vh,22px); cursor:pointer; transition:opacity .2s; }
+    .toc-item { display:flex; align-items:flex-start; gap:clamp(16px,1.6vw,28px); margin-bottom:clamp(12px,1.8vh,24px); cursor:pointer; transition:opacity .2s; }
     .toc-item:hover { opacity:.7; }
-    .toc-arr { width:clamp(30px,2.4vw,42px); height:clamp(30px,2.4vw,42px); border-radius:50%; border:2px solid var(--orange); display:flex; align-items:center; justify-content:center; color:var(--orange); font-size:14px; flex-shrink:0; }
-    .toc-text { font-size:clamp(17px,2vw,34px); font-weight:700; color:var(--teal); }
-    .toc-text em { font-style:italic; font-weight:300; }
+    .toc-arr { width:clamp(30px,2.4vw,44px); height:clamp(30px,2.4vw,44px); border-radius:50%; border:2px solid var(--orange); display:flex; align-items:center; justify-content:center; color:var(--orange); font-size:14px; flex-shrink:0; margin-top:clamp(18px,2vw,30px); }
+    .toc-text { display:flex; flex-direction:column; }
+    .toc-eyebrow { font-size:clamp(9px,0.72vw,11px); font-weight:900; letter-spacing:.18em; text-transform:uppercase; color:var(--orange); margin-bottom:clamp(2px,0.3vh,4px); }
+    .toc-main { font-size:clamp(20px,2.4vw,40px); font-weight:700; color:var(--teal); line-height:1.1; }
 
     /* ── ED LETTER ── */
     .s-letter { background:var(--white); display:flex; align-items:center; padding:clamp(48px,5vw,100px) clamp(56px,6vw,120px); }
@@ -479,14 +480,60 @@
       <div>
         <div class="toc-label">Table of Contents</div>
         <ul class="toc-list">
-          <li class="toc-item" onclick="goTo(1)"><span class="toc-arr">&#x2192;</span><span class="toc-text"><em>The Power of Promise in 2026</em> &mdash; A Letter from the Executive Director</span></li>
-          <li class="toc-item" onclick="goTo(3)"><span class="toc-arr">&#x2192;</span><span class="toc-text">Key Insight 1: The Opportunity Gap is Widening</span></li>
-          <li class="toc-item" onclick="goTo(7)"><span class="toc-arr">&#x2192;</span><span class="toc-text">Key Insight 2: Building the Conditions Youth Need to Succeed</span></li>
-          <li class="toc-item" onclick="goTo(16)"><span class="toc-arr">&#x2192;</span><span class="toc-text">Key Insight 3: Children Thrive When Adults Are Supported</span></li>
-          <li class="toc-item" onclick="goTo(19)"><span class="toc-arr">&#x2192;</span><span class="toc-text">Key Insight 4: Effective Solutions Start Early</span></li>
-          <li class="toc-item" onclick="goTo(24)"><span class="toc-arr">&#x2192;</span><span class="toc-text">Key Insight 5: Scaling Community-Proven Solutions</span></li>
-          <li class="toc-item" onclick="goTo(27)"><span class="toc-arr">&#x2192;</span><span class="toc-text">Financials &amp; Stewardship</span></li>
-          <li class="toc-item" onclick="goTo(35)"><span class="toc-arr">&#x2192;</span><span class="toc-text">Closing &amp; Special Thanks</span></li>
+          <li class="toc-item" onclick="goTo(1)">
+            <span class="toc-arr">&#x2192;</span>
+            <span class="toc-text">
+              <span class="toc-eyebrow">The Power of Promise in 2026</span>
+              <span class="toc-main">A Letter from Our Executive Director</span>
+            </span>
+          </li>
+          <li class="toc-item" onclick="goTo(3)">
+            <span class="toc-arr">&#x2192;</span>
+            <span class="toc-text">
+              <span class="toc-eyebrow">Key Insight 1</span>
+              <span class="toc-main">The Opportunity Gap is Widening</span>
+            </span>
+          </li>
+          <li class="toc-item" onclick="goTo(7)">
+            <span class="toc-arr">&#x2192;</span>
+            <span class="toc-text">
+              <span class="toc-eyebrow">Key Insight 2</span>
+              <span class="toc-main">Building the Conditions Youth Need to Succeed</span>
+            </span>
+          </li>
+          <li class="toc-item" onclick="goTo(16)">
+            <span class="toc-arr">&#x2192;</span>
+            <span class="toc-text">
+              <span class="toc-eyebrow">Key Insight 3</span>
+              <span class="toc-main">Children Thrive When Adults Are Supported</span>
+            </span>
+          </li>
+          <li class="toc-item" onclick="goTo(19)">
+            <span class="toc-arr">&#x2192;</span>
+            <span class="toc-text">
+              <span class="toc-eyebrow">Key Insight 4</span>
+              <span class="toc-main">Effective Solutions Start Early</span>
+            </span>
+          </li>
+          <li class="toc-item" onclick="goTo(24)">
+            <span class="toc-arr">&#x2192;</span>
+            <span class="toc-text">
+              <span class="toc-eyebrow">Key Insight 5</span>
+              <span class="toc-main">Scaling Community-Proven Solutions</span>
+            </span>
+          </li>
+          <li class="toc-item" onclick="goTo(27)">
+            <span class="toc-arr">&#x2192;</span>
+            <span class="toc-text">
+              <span class="toc-main">Financials &amp; Stewardship</span>
+            </span>
+          </li>
+          <li class="toc-item" onclick="goTo(35)">
+            <span class="toc-arr">&#x2192;</span>
+            <span class="toc-text">
+              <span class="toc-main">Closing &amp; Special Thanks</span>
+            </span>
+          </li>
         </ul>
       </div>
     </section>
