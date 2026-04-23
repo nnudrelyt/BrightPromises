@@ -210,7 +210,7 @@
     .acc-list li::before { content:'·'; position:absolute; left:5px; color:var(--body); }
 
     /* ── CHART SLIDES ── */
-    .s-chart { background:var(--cyan); display:flex; flex-direction:column; align-items:center; justify-content:center; padding:clamp(40px,4vh,80px) clamp(56px,6vw,120px); position:relative; overflow:hidden; }
+    .s-chart { background:var(--cyan); display:flex; flex-direction:column; align-items:center; justify-content:center; padding:clamp(40px,4vh,80px) clamp(56px,6vw,120px); overflow:hidden; }
     .s-chart::before { content:''; position:absolute; inset:0; background:repeating-linear-gradient(-45deg,transparent,transparent 80px,rgba(255,255,255,.04) 80px,rgba(255,255,255,.04) 81px); }
     .bg-circ { position:absolute; border-radius:50%; background:rgba(255,255,255,.05); pointer-events:none; }
     .chart-h { font-size:clamp(24px,3vw,56px); font-weight:900; color:var(--white); text-align:center; margin-bottom:4px; position:relative; z-index:1; }
@@ -288,14 +288,14 @@
     .photo-circle { position:absolute; width:58%; aspect-ratio:1; border-radius:50%; z-index:1; }
 
     /* ── DONORS ── */
-    .s-donors { background:var(--white); display:flex; flex-direction:column; padding:clamp(36px,3.5vh,64px) clamp(48px,5vw,100px); overflow:hidden; }
-    .donors-h { font-size:clamp(20px,2.2vw,38px); font-weight:700; color:var(--teal); margin-bottom:clamp(2px,0.4vh,6px); }
-    .donors-sub { font-size:clamp(12px,1.1vw,16px); font-weight:300; color:var(--body); margin-bottom:clamp(14px,2vh,28px); }
-    .donors-grid { display:grid; grid-template-columns:1fr 1fr 1fr 1fr 1fr; gap:clamp(10px,1.2vh,16px) clamp(20px,2.5vw,44px); flex:1; }
-    .donors-col h3 { font-size:clamp(8px,0.7vw,10px); font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--teal); margin-bottom:clamp(6px,0.8vh,10px); padding-bottom:5px; border-bottom:1px solid rgba(26,96,122,.15); }
-    .donors-col ul { list-style:none; }
-    .donors-col li { font-size:clamp(9px,0.82vw,12px); font-weight:300; color:var(--body); line-height:1.5; padding:1px 0; }
-    .donors-col li strong { font-weight:700; color:var(--teal); }
+    .s-donors { background:var(--white); display:flex; flex-direction:column; padding:clamp(36px,3.5vh,64px) clamp(48px,5vw,100px); overflow-y:auto; }
+    .donors-h { font-size:clamp(20px,2.2vw,38px); font-weight:700; color:var(--teal); margin-bottom:clamp(2px,0.4vh,6px); flex-shrink:0; }
+    .donors-sub { font-size:clamp(12px,1.1vw,16px); font-weight:300; color:var(--body); margin-bottom:clamp(14px,2vh,28px); flex-shrink:0; }
+    .donors-list { list-style:none; column-count:1; }
+    .donors-section-h { font-size:clamp(11px,0.9vw,14px); font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--orange); margin-top:clamp(28px,3.5vh,48px); margin-bottom:clamp(10px,1.4vh,18px); padding-bottom:6px; border-bottom:1px solid rgba(26,96,122,.15); }
+    .donors-section-h:first-child { margin-top:0; }
+    .donors-list li { font-size:clamp(16px,1.6vw,20px); font-weight:300; color:var(--body); line-height:1.6; padding:3px 0; }
+    .donors-list li strong { font-weight:700; color:var(--teal); }
 
     /* ── STAT CARDS ── */
     .stats-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:clamp(18px,2.5vw,40px); margin-top:clamp(16px,2vh,32px); }
@@ -921,13 +921,15 @@
     </section>
 
     <!-- 27: FINANCIALS INTRO -->
-    <section class="slide s-content" data-i="27" data-sec="financials">
-      <div style="max-width:min(1440px,90vw);position:relative;z-index:1">
+    <section class="slide s-hero" data-i="27" data-sec="financials" style="background:var(--teal-dk)">
+      <div class="content">
         <div class="eyebrow">Financials &amp; Stewardship</div>
         <h2 class="sh" style="font-size:clamp(48px,6.5vw,104px);line-height:1.04;margin-bottom:clamp(28px,3.5vh,56px)">Stewarding Community<br>Resources with Care</h2>
-        <p class="sb" style="font-size:clamp(16px,1.5vw,24px);max-width:min(800px,62vw)"><strong>We treat every dollar as a vote of trust&mdash;from our community and for our community.</strong></p>
-        <p class="sb" style="margin-top:clamp(14px,1.8vh,24px);font-size:clamp(14px,1.3vw,20px);max-width:min(800px,62vw)">This is why <strong>100% of every dollar donated by the public supports programs for children and families in need</strong> across Chicagoland. When you give to Bright Promises, you don&rsquo;t just help one program&mdash;you strengthen the systems children and families rely on.</p>
-        <p class="sb" style="margin-top:clamp(14px,1.8vh,24px);font-size:clamp(14px,1.3vw,20px);max-width:min(800px,62vw)">Every dollar entrusted to Bright Promises is deployed to maximize long-term impact&mdash;by strengthening people, organizations, and communities.</p>
+        <div class="sb" style="font-size:clamp(15px,1.4vw,22px);max-width:min(800px,62vw)">
+          <p><strong>We treat every dollar as a vote of trust&mdash;from our community and for our community.</strong></p>
+          <p>This is why <strong>100% of every dollar donated by the public supports programs for children and families in need</strong> across Chicagoland. When you give to Bright Promises, you don&rsquo;t just help one program&mdash;you strengthen the systems children and families rely on.</p>
+          <p>Every dollar entrusted to Bright Promises is deployed to maximize long-term impact&mdash;by strengthening people, organizations, and communities.</p>
+        </div>
       </div>
     </section>
 
@@ -1004,23 +1006,16 @@
     <section class="slide s-donors" data-i="30" data-sec="donors">
       <div class="donors-h">2025 Donor Honor Roll</div>
       <p class="donors-sub">Our donors and partners are an essential part of the ecosystem that makes this work possible.</p>
-      <div class="donors-grid">
-        <div class="donors-col"><h3>Individuals</h3><ul>
-          <li>Abraham Salinas</li><li>Aimee Hilado</li><li>Alana Gunn</li><li>Alexa Berg</li><li>Alexandra Padrul</li><li>Alice Martin</li><li>Amanda Vallejo</li><li>Amy Dragland-Johnson</li><li>Andreason Brown</li><li>Angela Fontes</li><li>Anna Musci</li><li>Anne Finn</li><li>Anonymous</li><li>Anthony Richards</li><li>Arielle Lentz</li><li>Ayanna Brown</li><li>Baronica Roberson</li><li>Bela Mote</li><li>Bethel Kifle</li><li>Bethel Kifleo</li><li>Bill and Patty Moss</li><li>Brad Berliner</li><li>Brian Korey</li><li>Britton Videbeck</li><li>Bryan Stokes</li><li>Camille Moore</li><li>Candace Moore</li><li>Carlos Perez</li><li>Carmelita Colbert</li><li>Carmen Velasquez, in memory of Jim Zander</li><li>C&eacute;sar Torruella</li><li>Cheryl Goldstein</li><li>Cheryl Wisniewski</li><li>Chris Kinnear</li><li>Christina Navarro</li><li>Christine Calderon</li><li>Chun Lung Lee</li><li>Clive Walcott</li><li>Craig Englert</li><li>Craig Llorens</li><li>Cyd Archer</li><li>Cynthia Hunt</li><li>Daniel Casara</li><li>Daniel Fumagalli</li><li>Darlene Murphy Jue</li><li>David and Susan Kreisman</li><li>David Beerman</li><li>David Chappell</li><li>David Hardy</li><li>David Rubenstein</li><li>Dean Benson</li><li>Deborah Frisch</li><li>Debra Schlies</li><li>Deepak Gaur</li><li>Deirdre Harrison</li><li>Diane Knoepke</li><li>Don Quincy Lamb Jr</li><li>Dorri McWhorter</li><li>Doug Moss</li><li>Elizabeth Tager</li><li>Emilio Araujo</li>
-        </ul></div>
-        <div class="donors-col"><h3>&nbsp;</h3><ul>
-          <li>Emily Fishman</li><li>Eric Zoberman</li><li>Gaylord and William Gieseke</li><li>Grace Araya</li><li>Harry and Lily Zoberman</li><li>Heather Kistner</li><li>Heather Parish</li><li>Helen J. Kessler</li><li>Helene Fishman</li><li>Ilene Korey</li><li>Iris Krieg</li><li>Jacki Davidoff</li><li>James P. Lynch</li><li>Jamie Klobuchar</li><li>Jamie Metcalf</li><li>Jason Kay</li><li>Jason Nierman</li><li>Jeff and Jamie Kost</li><li>Jeffrey Izenman</li><li>Jennifer Booth, in honor of Tara Leja</li><li>Jennifer Lyons</li><li>Jesseca Rhymes</li><li>Jill Katz</li><li>Jill Scott</li><li>Jim Hirsch</li><li>Julia Gilman</li><li>Julia Luscombe</li><li>Julia Waggoner</li><li>Julie Shaw</li><li>Julie Weinberg</li><li>Karla Davis</li><li>Karyn Watkins</li><li>Katherine Dreher</li><li>Kellie Martial</li><li>Kelly Kirkman</li><li>Kenneth Bartman</li><li>Kevin Conlon</li><li>Kimberly Van Horn</li><li>Kimbra Bell</li><li>Krishnaiah Revuluri</li><li>Krystle Bradley</li><li>Larry Joe and Kelley O&rsquo;Hern, in memory of Jim Zander</li><li>Larry Nierman</li><li>Lauren Gaither</li><li>Lauren Krieg</li><li>Lawrence Kuhn</li><li>Lee Menn</li><li>Lena Cohn</li><li>Linda Weinstein</li><li>Lionell Hill</li><li>Lisa Raju</li><li>Loester Lewis</li><li>Louise K. Smith</li><li>Luke Easterday</li><li>Lynda Wallis</li><li>M Steven Sager</li><li>Mallory Moreno</li><li>Marcella Oglesby</li><li>Margaret Anderson</li><li>Maria Allen</li><li>Maria Ghani and Emaad Rahman</li>
-        </ul></div>
-        <div class="donors-col"><h3>&nbsp;</h3><ul>
-          <li>Mark and Joni Croll</li><li>Mark McKinley</li><li>Matthew Colton</li><li>Matthew McGary</li><li>Matthew Somerman</li><li>Megan Rhyme</li><li>Melinda Hardy</li><li>Michele and Joel Shoolin, in honor of Katherine Korey</li><li>Michelle O&rsquo; Sullivan</li><li>Mitch Sparber</li><li>Myla Weinstein</li><li>Nancy Schimmel</li><li>Nancy Snyder</li><li>Nancy Stermer</li><li>Nannette Zander</li><li>Neelamjit Dhaliwal</li><li>Nicholas Kennedy</li><li>Nina Wong</li><li>Patricio Cadena</li><li>Patrick Grady</li><li>Paul and Peggy Bodine</li><li>Paul Fyle</li><li>Paul Hilder</li><li>Paula Frey</li><li>Randall Hardy</li><li>Rebecca Nierman</li><li>Rhonda Fried</li><li>Richard Sieracki</li><li>Robert and Barbara Finley</li><li>Robert Footlik</li><li>Ron and Queta Bauer</li><li>Roy Walker</li><li>Russell Brown</li><li>Ryan Biller</li><li>Ryan Emmer</li><li>Salina Barih</li><li>Sam Coady</li><li>Sam Spencer</li><li>Sanford Peck</li><li>Sarah Klebo</li><li>Scott and Emily Bishop</li><li>Scott Gendell</li><li>Sendhil Revuluri and Venu Gupta</li><li>Shari Runner</li><li>Shel and Renee Goldstein, in honor of Jason Nierman</li><li>Simone Weil</li><li>Sophie Padula</li><li>Stephanie Sorlien</li><li>Steven M Koch</li><li>Susan Gohl</li><li>Susan Irion</li><li>Tae Kim</li><li>Tanner Zelman</li><li>Tara Leja</li><li>Ted Cappas</li><li>Tenisha Phillips</li><li>Thomas Penning</li><li>Tiffany Scaparotti</li><li>Una Lewis</li><li>Valerie Coffman</li><li>Vickie and Irv Korey, in honor of Katherine Korey</li><li>William Enright</li><li>William O&rsquo;Hara</li>
-        </ul></div>
-        <div class="donors-col"><h3>Corporations</h3><ul>
-          <li>AbbVie Inc.</li><li>Allstate</li><li>Azteca Foods Inc</li><li>Carole Robertson Learning Center</li><li>Comcast NBC Universal</li><li>Concordia Place</li><li>Constellation</li><li>Discover</li><li>Hearst</li><li>RSM US</li><li>West Monroe</li><li>Wintrust</li>
-        </ul></div>
-        <div class="donors-col"><h3>Foundations</h3><ul>
-          <li>Clark-Halladay Memorial Foundation</li><li>Cigna Foundation</li><li>Comer Family Fund at the Chicago Community Trust</li><li>Field Foundation of Illinois</li><li>Francis Beidler III and Prudence R. Beidler Foundation</li><li>Gaylord and Dorothy Donnelley Foundation</li><li>Henry Crown &amp; Company</li><li>Hirsch Family Fund, in honor of Julie &amp; Mark Nufer and Scott Bishop</li><li>National Philanthropic Trust</li><li>Pledging Foundation</li><li>Robert M. McCormick Foundation</li><li>Spencer Foundation</li>
-        </ul></div>
-      </div>
+      <ul class="donors-list">
+        <li class="donors-section-h">Individuals</li>
+        <li>Abraham Salinas</li><li>Aimee Hilado</li><li>Alana Gunn</li><li>Alexa Berg</li><li>Alexandra Padrul</li><li>Alice Martin</li><li>Amanda Vallejo</li><li>Amy Dragland-Johnson</li><li>Andreason Brown</li><li>Angela Fontes</li><li>Anna Musci</li><li>Anne Finn</li><li>Anonymous</li><li>Anthony Richards</li><li>Arielle Lentz</li><li>Ayanna Brown</li><li>Baronica Roberson</li><li>Bela Mote</li><li>Bethel Kifle</li><li>Bethel Kifleo</li><li>Bill and Patty Moss</li><li>Brad Berliner</li><li>Brian Korey</li><li>Britton Videbeck</li><li>Bryan Stokes</li><li>Camille Moore</li><li>Candace Moore</li><li>Carlos Perez</li><li>Carmelita Colbert</li><li>Carmen Velasquez, in memory of Jim Zander</li><li>C&eacute;sar Torruella</li><li>Cheryl Goldstein</li><li>Cheryl Wisniewski</li><li>Chris Kinnear</li><li>Christina Navarro</li><li>Christine Calderon</li><li>Chun Lung Lee</li><li>Clive Walcott</li><li>Craig Englert</li><li>Craig Llorens</li><li>Cyd Archer</li><li>Cynthia Hunt</li><li>Daniel Casara</li><li>Daniel Fumagalli</li><li>Darlene Murphy Jue</li><li>David and Susan Kreisman</li><li>David Beerman</li><li>David Chappell</li><li>David Hardy</li><li>David Rubenstein</li><li>Dean Benson</li><li>Deborah Frisch</li><li>Debra Schlies</li><li>Deepak Gaur</li><li>Deirdre Harrison</li><li>Diane Knoepke</li><li>Don Quincy Lamb Jr</li><li>Dorri McWhorter</li><li>Doug Moss</li><li>Elizabeth Tager</li><li>Emilio Araujo</li>
+        <li>Emily Fishman</li><li>Eric Zoberman</li><li>Gaylord and William Gieseke</li><li>Grace Araya</li><li>Harry and Lily Zoberman</li><li>Heather Kistner</li><li>Heather Parish</li><li>Helen J. Kessler</li><li>Helene Fishman</li><li>Ilene Korey</li><li>Iris Krieg</li><li>Jacki Davidoff</li><li>James P. Lynch</li><li>Jamie Klobuchar</li><li>Jamie Metcalf</li><li>Jason Kay</li><li>Jason Nierman</li><li>Jeff and Jamie Kost</li><li>Jeffrey Izenman</li><li>Jennifer Booth, in honor of Tara Leja</li><li>Jennifer Lyons</li><li>Jesseca Rhymes</li><li>Jill Katz</li><li>Jill Scott</li><li>Jim Hirsch</li><li>Julia Gilman</li><li>Julia Luscombe</li><li>Julia Waggoner</li><li>Julie Shaw</li><li>Julie Weinberg</li><li>Karla Davis</li><li>Karyn Watkins</li><li>Katherine Dreher</li><li>Kellie Martial</li><li>Kelly Kirkman</li><li>Kenneth Bartman</li><li>Kevin Conlon</li><li>Kimberly Van Horn</li><li>Kimbra Bell</li><li>Krishnaiah Revuluri</li><li>Krystle Bradley</li><li>Larry Joe and Kelley O&rsquo;Hern, in memory of Jim Zander</li><li>Larry Nierman</li><li>Lauren Gaither</li><li>Lauren Krieg</li><li>Lawrence Kuhn</li><li>Lee Menn</li><li>Lena Cohn</li><li>Linda Weinstein</li><li>Lionell Hill</li><li>Lisa Raju</li><li>Loester Lewis</li><li>Louise K. Smith</li><li>Luke Easterday</li><li>Lynda Wallis</li><li>M Steven Sager</li><li>Mallory Moreno</li><li>Marcella Oglesby</li><li>Margaret Anderson</li><li>Maria Allen</li><li>Maria Ghani and Emaad Rahman</li>
+        <li>Mark and Joni Croll</li><li>Mark McKinley</li><li>Matthew Colton</li><li>Matthew McGary</li><li>Matthew Somerman</li><li>Megan Rhyme</li><li>Melinda Hardy</li><li>Michele and Joel Shoolin, in honor of Katherine Korey</li><li>Michelle O&rsquo; Sullivan</li><li>Mitch Sparber</li><li>Myla Weinstein</li><li>Nancy Schimmel</li><li>Nancy Snyder</li><li>Nancy Stermer</li><li>Nannette Zander</li><li>Neelamjit Dhaliwal</li><li>Nicholas Kennedy</li><li>Nina Wong</li><li>Patricio Cadena</li><li>Patrick Grady</li><li>Paul and Peggy Bodine</li><li>Paul Fyle</li><li>Paul Hilder</li><li>Paula Frey</li><li>Randall Hardy</li><li>Rebecca Nierman</li><li>Rhonda Fried</li><li>Richard Sieracki</li><li>Robert and Barbara Finley</li><li>Robert Footlik</li><li>Ron and Queta Bauer</li><li>Roy Walker</li><li>Russell Brown</li><li>Ryan Biller</li><li>Ryan Emmer</li><li>Salina Barih</li><li>Sam Coady</li><li>Sam Spencer</li><li>Sanford Peck</li><li>Sarah Klebo</li><li>Scott and Emily Bishop</li><li>Scott Gendell</li><li>Sendhil Revuluri and Venu Gupta</li><li>Shari Runner</li><li>Shel and Renee Goldstein, in honor of Jason Nierman</li><li>Simone Weil</li><li>Sophie Padula</li><li>Stephanie Sorlien</li><li>Steven M Koch</li><li>Susan Gohl</li><li>Susan Irion</li><li>Tae Kim</li><li>Tanner Zelman</li><li>Tara Leja</li><li>Ted Cappas</li><li>Tenisha Phillips</li><li>Thomas Penning</li><li>Tiffany Scaparotti</li><li>Una Lewis</li><li>Valerie Coffman</li><li>Vickie and Irv Korey, in honor of Katherine Korey</li><li>William Enright</li><li>William O&rsquo;Hara</li>
+        <li class="donors-section-h">Corporations</li>
+        <li>AbbVie Inc.</li><li>Allstate</li><li>Azteca Foods Inc</li><li>Carole Robertson Learning Center</li><li>Comcast NBC Universal</li><li>Concordia Place</li><li>Constellation</li><li>Discover</li><li>Hearst</li><li>RSM US</li><li>West Monroe</li><li>Wintrust</li>
+        <li class="donors-section-h">Foundations</li>
+        <li>Clark-Halladay Memorial Foundation</li><li>Cigna Foundation</li><li>Comer Family Fund at the Chicago Community Trust</li><li>Field Foundation of Illinois</li><li>Francis Beidler III and Prudence R. Beidler Foundation</li><li>Gaylord and Dorothy Donnelley Foundation</li><li>Henry Crown &amp; Company</li><li>Hirsch Family Fund, in honor of Julie &amp; Mark Nufer and Scott Bishop</li><li>National Philanthropic Trust</li><li>Pledging Foundation</li><li>Robert M. McCormick Foundation</li><li>Spencer Foundation</li>
+      </ul>
     </section>
 
     <!-- 31: WEST MONROE HERO -->
@@ -1069,16 +1064,14 @@
     </section>
 
     <!-- 35: CLOSING -->
-    <section class="slide s-closing" data-i="35" data-sec="closing" style="grid-template-columns:3fr 2fr">
-      <div class="close-txt">
+    <section class="slide s-hero" data-i="35" data-sec="closing" style="background:var(--teal-dk)">
+      <div class="content">
         <div class="eyebrow">Keeping Our Promise, Together</div>
-        <h2 class="close-h" style="font-size:clamp(38px,5.2vw,86px);line-height:1.04;margin-bottom:clamp(24px,3.5vh,52px)">Bright Promises Foundation is of the community and for the community.</h2>
-        <p class="sb" style="font-size:clamp(14px,1.3vw,20px);margin-bottom:clamp(12px,1.6vh,22px)">We are the only public foundation serving the State of Illinois solely focused on the needs of children and youth. Thank you to the partners, supporters, and advocates who are building this future with us.</p>
-        <p class="sb" style="font-size:clamp(14px,1.3vw,20px)"><strong>Together, we are proving what&rsquo;s possible when we invest early, act collectively, and trust what communities know works. This is how we keep our promise&mdash;to children today and to the future we share.</strong></p>
-      </div>
-      <div class="close-photo">
-        <div class="close-photo-bg" style="background-image:url('img/awards-1.jpg')"></div>
-        <div class="photo-circle" style="background:rgba(240,200,32,.55)"></div>
+        <h2 class="sh" style="font-size:clamp(38px,5.2vw,86px);line-height:1.04;margin-bottom:clamp(24px,3.5vh,52px)">Bright Promises Foundation is of the community and for the community.</h2>
+        <div class="sb" style="font-size:clamp(15px,1.4vw,22px);max-width:min(800px,62vw)">
+          <p>We are the only public foundation serving the State of Illinois solely focused on the needs of children and youth. Thank you to the partners, supporters, and advocates who are building this future with us.</p>
+          <p><strong>Together, we are proving what&rsquo;s possible when we invest early, act collectively, and trust what communities know works. This is how we keep our promise&mdash;to children today and to the future we share.</strong></p>
+        </div>
       </div>
     </section>
 
