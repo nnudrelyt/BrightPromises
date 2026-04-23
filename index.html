@@ -210,28 +210,30 @@
     .acc-list li::before { content:'·'; position:absolute; left:5px; color:var(--body); }
 
     /* ── CHART SLIDES ── */
-    .s-chart { background:var(--cyan); display:flex; flex-direction:column; align-items:center; justify-content:center; padding:clamp(40px,4vh,80px) clamp(56px,6vw,120px); overflow:hidden; }
+    .s-chart { background:var(--cyan); display:flex; flex-direction:column; padding:clamp(48px,5vh,80px) clamp(56px,6vw,120px); overflow:hidden; gap:clamp(14px,1.8vh,22px); }
     .s-chart::before { content:''; position:absolute; inset:0; background:repeating-linear-gradient(-45deg,transparent,transparent 80px,rgba(255,255,255,.04) 80px,rgba(255,255,255,.04) 81px); }
     .bg-circ { position:absolute; border-radius:50%; background:rgba(255,255,255,.05); pointer-events:none; }
-    .chart-h { font-size:clamp(24px,3vw,56px); font-weight:900; color:var(--white); text-align:center; margin-bottom:4px; position:relative; z-index:1; }
-    .chart-sub { font-size:clamp(12px,1vw,16px); font-weight:700; color:var(--yellow); text-align:center; margin-bottom:clamp(20px,3vh,44px); letter-spacing:.04em; position:relative; z-index:1; }
-    .chart-wrap { display:grid; grid-template-columns:1fr 1fr; gap:clamp(28px,3vw,56px); width:100%; max-width:min(1500px,94vw); position:relative; z-index:1; align-items:center; }
-    .tabs { display:flex; gap:clamp(14px,1.6vw,28px); margin-bottom:clamp(14px,1.8vh,28px); }
-    .tab { font-size:clamp(15px,1.4vw,20px); font-weight:300; color:rgba(255,255,255,.55); cursor:pointer; padding-bottom:3px; border:none; border-bottom:2px solid transparent; background:none; transition:color .2s,border-color .2s; }
+    .chart-h { font-size:clamp(26px,3.2vw,54px); font-weight:700; color:var(--white); line-height:1.12; margin-bottom:clamp(16px,2vh,28px); position:relative; z-index:1; }
+    .chart-sub { display:none; }
+    .chart-view { display:grid; grid-template-columns:1fr 1fr; gap:clamp(48px,6vw,96px); flex:1; align-items:center; position:relative; z-index:1; min-height:0; }
+    .chart-left { display:flex; flex-direction:column; justify-content:center; }
+    .chart-right { display:flex; align-items:center; justify-content:center; }
+    .tabs { display:flex; gap:clamp(14px,1.6vw,28px); margin-bottom:clamp(20px,2.5vh,36px); position:relative; z-index:1; }
+    .tab { font-size:clamp(15px,1.4vw,20px); font-weight:300; color:rgba(255,255,255,.55); cursor:pointer; padding-bottom:4px; border:none; border-bottom:2px solid transparent; background:none; transition:color .2s,border-color .2s; }
     .tab.active { font-weight:700; color:var(--white); border-bottom-color:var(--white); }
-    .filters { display:flex; gap:12px; margin-bottom:clamp(10px,1.4vh,20px); align-items:center; }
+    .filters { display:flex; gap:12px; margin-bottom:clamp(14px,1.8vh,24px); align-items:center; }
     .filt { font-size:clamp(12px,1vw,15px); font-weight:700; color:rgba(255,255,255,.55); background:none; border:none; cursor:pointer; padding:0; }
     .filt.active { color:var(--white); text-decoration:underline; }
     .filt-div { color:rgba(255,255,255,.3); font-size:13px; }
-    .legend { display:flex; flex-direction:column; gap:clamp(8px,1vh,14px); }
-    .leg-item { display:flex; align-items:center; gap:clamp(8px,1vw,14px); }
-    .leg-dot { width:clamp(12px,1.2vw,18px); height:clamp(12px,1.2vw,18px); border-radius:50%; flex-shrink:0; }
-    .leg-txt { font-size:clamp(13px,1.3vw,18px); font-weight:300; color:var(--white); }
+    .legend { display:flex; flex-direction:column; gap:clamp(10px,1.4vh,20px); }
+    .leg-item { display:flex; align-items:center; gap:clamp(10px,1.2vw,18px); }
+    .leg-dot { width:clamp(14px,1.4vw,20px); height:clamp(14px,1.4vw,20px); border-radius:50%; flex-shrink:0; }
+    .leg-txt { font-size:clamp(15px,1.5vw,22px); font-weight:300; color:var(--white); }
     .leg-txt strong { font-weight:700; }
     .donut-wrap { position:relative; display:flex; align-items:center; justify-content:center; }
     .donut-center { position:absolute; text-align:center; }
-    .donut-num { font-size:clamp(28px,4vw,66px); font-weight:700; color:var(--white); line-height:1; }
-    .donut-lbl { font-size:clamp(12px,1vw,15px); font-weight:300; color:rgba(255,255,255,.8); }
+    .donut-num { font-size:clamp(32px,4.5vw,72px); font-weight:700; color:var(--white); line-height:1; }
+    .donut-lbl { font-size:clamp(13px,1.1vw,17px); font-weight:300; color:rgba(255,255,255,.8); margin-top:4px; }
 
     /* ── HLC STATS ── */
     .s-hlc { background:var(--teal); display:flex; flex-direction:column; align-items:center; justify-content:center; padding:clamp(40px,5vh,80px) clamp(56px,6vw,120px); position:relative; overflow:hidden; }
@@ -288,13 +290,14 @@
     .photo-circle { position:absolute; width:58%; aspect-ratio:1; border-radius:50%; z-index:1; }
 
     /* ── DONORS ── */
-    .s-donors { background:var(--white); display:flex; flex-direction:column; padding:clamp(36px,3.5vh,64px) clamp(48px,5vw,100px); overflow-y:auto; }
-    .donors-h { font-size:clamp(20px,2.2vw,38px); font-weight:700; color:var(--teal); margin-bottom:clamp(2px,0.4vh,6px); flex-shrink:0; }
-    .donors-sub { font-size:clamp(12px,1.1vw,16px); font-weight:300; color:var(--body); margin-bottom:clamp(14px,2vh,28px); flex-shrink:0; }
-    .donors-section-h { font-size:clamp(11px,0.9vw,14px); font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--orange); margin-top:clamp(28px,3.5vh,48px); margin-bottom:clamp(10px,1.4vh,18px); padding-bottom:6px; border-bottom:1px solid rgba(26,96,122,.15); }
+    .s-donors { background:var(--white); display:flex; flex-direction:column; }
+    .donors-scroll { flex:1; overflow-y:auto; padding:min(600px,58vh) clamp(56px,6vw,120px) clamp(56px,6vh,100px); }
+    .donors-h { font-size:clamp(22px,2.8vw,52px); font-weight:700; color:var(--teal); line-height:1.12; margin-bottom:clamp(6px,0.8vh,12px); }
+    .donors-sub { font-size:clamp(15px,1.4vw,22px); font-weight:300; color:var(--body); line-height:1.75; margin-bottom:clamp(32px,4vh,56px); }
+    .donors-section-h { font-size:clamp(10px,0.9vw,13px); font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--orange); margin-top:clamp(40px,5vh,64px); margin-bottom:clamp(12px,1.6vh,20px); padding-bottom:8px; border-bottom:1px solid rgba(26,96,122,.15); }
     .donors-section-h:first-child { margin-top:0; }
     .donors-text { font-size:clamp(32px,3.2vw,40px); font-weight:300; color:var(--body); line-height:1.7; text-align:justify; }
-    .donors-text:last-child { padding-bottom:32vh; }
+    .donors-fade { position:absolute; bottom:0; left:0; right:0; height:clamp(140px,20vh,260px); background:linear-gradient(to bottom, rgba(255,255,255,0), var(--white)); pointer-events:none; z-index:5; }
 
     /* ── STAT CARDS ── */
     .stats-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:clamp(18px,2.5vw,40px); margin-top:clamp(16px,2vh,32px); }
@@ -934,16 +937,16 @@
 
     <!-- 28: DEMOGRAPHICS -->
     <section class="slide s-chart" data-i="28" data-sec="financials">
-      <div class="bg-circ" style="width:580px;height:580px;right:-180px;top:-120px"></div>
-      <div class="bg-circ" style="width:380px;height:380px;left:-100px;bottom:-140px"></div>
-      <h2 class="chart-h">igniting change, one child at-a-time</h2>
-      <p class="chart-sub">Bright Promises Foundation 2024/25 Demographics</p>
-      <div class="tabs" style="position:relative;z-index:1;margin-bottom:clamp(14px,2vh,28px)">
+      <div class="bg-circ" style="width:640px;height:640px;right:-200px;top:-160px"></div>
+      <div class="bg-circ" style="width:420px;height:420px;left:-120px;bottom:-160px"></div>
+      <div class="eyebrow">2024/25 Participants</div>
+      <h2 class="chart-h">igniting change,<br>one child at&#8209;a&#8209;time</h2>
+      <div class="tabs">
         <button class="tab active" onclick="switchChartTab(this,'c28-demo')">Demographics</button>
         <button class="tab" onclick="switchChartTab(this,'c28-age')">Age</button>
       </div>
-      <div class="chart-wrap" id="c28-demo">
-        <div>
+      <div class="chart-view" id="c28-demo">
+        <div class="chart-left">
           <div class="filters"><button class="filt active">HLC</button><span class="filt-div">|</span><button class="filt">EQUIP</button><span class="filt-div">|</span><button class="filt">FAIR</button></div>
           <div class="legend">
             <div class="leg-item"><div class="leg-dot" style="background:#F5A623"></div><div class="leg-txt">black : <strong>35%</strong></div></div>
@@ -955,22 +958,24 @@
             <div class="leg-item"><div class="leg-dot" style="background:#E87FA3"></div><div class="leg-txt">other : <strong>0%</strong></div></div>
           </div>
         </div>
-        <div class="donut-wrap" style="height:400px;width:400px">
-          <svg viewBox="0 0 200 200" width="380" height="380">
-            <circle cx="100" cy="100" r="70" fill="none" stroke="#1E9AAB" stroke-width="32"/>
-            <circle cx="100" cy="100" r="70" fill="none" stroke="#F0C820" stroke-width="32" stroke-dasharray="180 260" stroke-dashoffset="110" transform="rotate(-90 100 100)"/>
-            <circle cx="100" cy="100" r="70" fill="none" stroke="#F5A623" stroke-width="32" stroke-dasharray="154 286" stroke-dashoffset="-72" transform="rotate(-90 100 100)"/>
-            <circle cx="100" cy="100" r="70" fill="none" stroke="#9B6BBF" stroke-width="32" stroke-dasharray="70 370" stroke-dashoffset="-228" transform="rotate(-90 100 100)"/>
-            <circle cx="100" cy="100" r="70" fill="none" stroke="#666" stroke-width="32" stroke-dasharray="22 418" stroke-dashoffset="-298" transform="rotate(-90 100 100)"/>
-            <circle cx="100" cy="100" r="70" fill="none" stroke="#7FD178" stroke-width="32" stroke-dasharray="4 436" stroke-dashoffset="-320" transform="rotate(-90 100 100)"/>
-            <circle cx="100" cy="100" r="70" fill="none" stroke="#3BC8D8" stroke-width="32" stroke-dasharray="9 431" stroke-dashoffset="-324" transform="rotate(-90 100 100)"/>
-            <circle cx="100" cy="100" r="54" fill="#1E9AAB"/>
-          </svg>
-          <div class="donut-center"><div class="donut-num">11,800</div><div class="donut-lbl">served</div></div>
+        <div class="chart-right">
+          <div class="donut-wrap" style="height:min(52vh,520px);width:min(52vh,520px)">
+            <svg viewBox="0 0 200 200" style="width:100%;height:100%">
+              <circle cx="100" cy="100" r="70" fill="none" stroke="#1E9AAB" stroke-width="30"/>
+              <circle cx="100" cy="100" r="70" fill="none" stroke="#F0C820" stroke-width="30" stroke-dasharray="180 260" stroke-dashoffset="110" transform="rotate(-90 100 100)"/>
+              <circle cx="100" cy="100" r="70" fill="none" stroke="#F5A623" stroke-width="30" stroke-dasharray="154 286" stroke-dashoffset="-72" transform="rotate(-90 100 100)"/>
+              <circle cx="100" cy="100" r="70" fill="none" stroke="#9B6BBF" stroke-width="30" stroke-dasharray="70 370" stroke-dashoffset="-228" transform="rotate(-90 100 100)"/>
+              <circle cx="100" cy="100" r="70" fill="none" stroke="#666" stroke-width="30" stroke-dasharray="22 418" stroke-dashoffset="-298" transform="rotate(-90 100 100)"/>
+              <circle cx="100" cy="100" r="70" fill="none" stroke="#7FD178" stroke-width="30" stroke-dasharray="4 436" stroke-dashoffset="-320" transform="rotate(-90 100 100)"/>
+              <circle cx="100" cy="100" r="70" fill="none" stroke="#3BC8D8" stroke-width="30" stroke-dasharray="9 431" stroke-dashoffset="-324" transform="rotate(-90 100 100)"/>
+              <circle cx="100" cy="100" r="52" fill="#1E9AAB"/>
+            </svg>
+            <div class="donut-center"><div class="donut-num">11,800</div><div class="donut-lbl">served</div></div>
+          </div>
         </div>
       </div>
-      <div class="chart-wrap" id="c28-age" style="display:none">
-        <div>
+      <div class="chart-view" id="c28-age" style="display:none">
+        <div class="chart-left">
           <div class="legend">
             <div class="leg-item"><div class="leg-dot" style="background:#F5A623"></div><div class="leg-txt">under 5 : <strong>18%</strong></div></div>
             <div class="leg-item"><div class="leg-dot" style="background:#F0C820"></div><div class="leg-txt">5–11 : <strong>32%</strong></div></div>
@@ -978,32 +983,34 @@
             <div class="leg-item"><div class="leg-dot" style="background:#3BC8D8"></div><div class="leg-txt">18–24 : <strong>15%</strong></div></div>
           </div>
         </div>
-        <div class="donut-wrap" style="height:400px;width:400px">
-          <svg viewBox="0 0 200 200" width="380" height="380">
-            <circle cx="100" cy="100" r="70" fill="none" stroke="#1E9AAB" stroke-width="32"/>
-            <circle cx="100" cy="100" r="70" fill="none" stroke="#F5A623" stroke-width="32" stroke-dasharray="79 361" stroke-dashoffset="110" transform="rotate(-90 100 100)"/>
-            <circle cx="100" cy="100" r="70" fill="none" stroke="#F0C820" stroke-width="32" stroke-dasharray="141 299" stroke-dashoffset="31" transform="rotate(-90 100 100)"/>
-            <circle cx="100" cy="100" r="70" fill="none" stroke="#1A607A" stroke-width="32" stroke-dasharray="154 286" stroke-dashoffset="-110" transform="rotate(-90 100 100)"/>
-            <circle cx="100" cy="100" r="70" fill="none" stroke="#3BC8D8" stroke-width="32" stroke-dasharray="66 374" stroke-dashoffset="-264" transform="rotate(-90 100 100)"/>
-            <circle cx="100" cy="100" r="54" fill="#1E9AAB"/>
-          </svg>
-          <div class="donut-center"><div class="donut-num">11,800</div><div class="donut-lbl">served</div></div>
+        <div class="chart-right">
+          <div class="donut-wrap" style="height:min(52vh,520px);width:min(52vh,520px)">
+            <svg viewBox="0 0 200 200" style="width:100%;height:100%">
+              <circle cx="100" cy="100" r="70" fill="none" stroke="#1E9AAB" stroke-width="30"/>
+              <circle cx="100" cy="100" r="70" fill="none" stroke="#F5A623" stroke-width="30" stroke-dasharray="79 361" stroke-dashoffset="110" transform="rotate(-90 100 100)"/>
+              <circle cx="100" cy="100" r="70" fill="none" stroke="#F0C820" stroke-width="30" stroke-dasharray="141 299" stroke-dashoffset="31" transform="rotate(-90 100 100)"/>
+              <circle cx="100" cy="100" r="70" fill="none" stroke="#1A607A" stroke-width="30" stroke-dasharray="154 286" stroke-dashoffset="-110" transform="rotate(-90 100 100)"/>
+              <circle cx="100" cy="100" r="70" fill="none" stroke="#3BC8D8" stroke-width="30" stroke-dasharray="66 374" stroke-dashoffset="-264" transform="rotate(-90 100 100)"/>
+              <circle cx="100" cy="100" r="52" fill="#1E9AAB"/>
+            </svg>
+            <div class="donut-center"><div class="donut-num">11,800</div><div class="donut-lbl">served</div></div>
+          </div>
         </div>
       </div>
     </section>
 
     <!-- 29: REVENUE -->
     <section class="slide s-chart" data-i="29" data-sec="financials">
-      <div class="bg-circ" style="width:580px;height:580px;right:-180px;top:-120px"></div>
-      <h2 class="chart-h">igniting change, one dollar at-a-time</h2>
-      <p class="chart-sub">Bright Promises Foundation 2024/25 Financials</p>
-      <div class="tabs" style="position:relative;z-index:1;margin-bottom:clamp(14px,2vh,28px)">
+      <div class="bg-circ" style="width:640px;height:640px;right:-200px;top:-160px"></div>
+      <div class="eyebrow">2024/25 Financials</div>
+      <h2 class="chart-h">igniting change,<br>one dollar at&#8209;a&#8209;time</h2>
+      <div class="tabs">
         <button class="tab" onclick="switchChartTab(this,'c29-exp')">Expenses</button>
         <button class="tab active" onclick="switchChartTab(this,'c29-rev')">Revenue</button>
       </div>
-      <div class="chart-wrap" id="c29-rev">
-        <div>
-          <p style="font-size:15px;font-weight:700;color:var(--white);margin-bottom:14px">contributions</p>
+      <div class="chart-view" id="c29-rev">
+        <div class="chart-left">
+          <p style="font-size:clamp(11px,1vw,14px);font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.6);margin-bottom:clamp(14px,1.8vh,22px)">Contributions</p>
           <div class="legend">
             <div class="leg-item"><div class="leg-dot" style="background:#F5A623"></div><div class="leg-txt">corporations : <strong>$6,564</strong></div></div>
             <div class="leg-item"><div class="leg-dot" style="background:#F0C820"></div><div class="leg-txt">foundations : <strong>$245,850</strong></div></div>
@@ -1011,45 +1018,51 @@
             <div class="leg-item"><div class="leg-dot" style="background:#3BC8D8"></div><div class="leg-txt">events : <strong>$115,402</strong></div></div>
             <div class="leg-item"><div class="leg-dot" style="background:#555"></div><div class="leg-txt">other income : <strong>$5,849</strong></div></div>
           </div>
-          <div style="margin-top:20px"><a href="#" style="display:block;font-size:14px;color:rgba(255,255,255,.75);text-decoration:none;font-style:italic;margin-bottom:5px">&#xBB; 2024 audit</a><a href="#" style="display:block;font-size:14px;color:rgba(255,255,255,.75);text-decoration:none;font-style:italic">&#xBB; Form 990</a></div>
+          <div style="margin-top:clamp(18px,2.5vh,36px)"><a href="#" style="display:block;font-size:clamp(13px,1.1vw,16px);color:rgba(255,255,255,.75);text-decoration:none;font-style:italic;margin-bottom:6px">&#xBB; 2024 audit</a><a href="#" style="display:block;font-size:clamp(13px,1.1vw,16px);color:rgba(255,255,255,.75);text-decoration:none;font-style:italic">&#xBB; Form 990</a></div>
         </div>
-        <div class="donut-wrap" style="height:400px;width:400px">
-          <svg viewBox="0 0 200 200" width="380" height="380">
-            <circle cx="100" cy="100" r="70" fill="none" stroke="#1E9AAB" stroke-width="32"/>
-            <circle cx="100" cy="100" r="70" fill="none" stroke="#F0C820" stroke-width="32" stroke-dasharray="185 255" stroke-dashoffset="110" transform="rotate(-90 100 100)"/>
-            <circle cx="100" cy="100" r="70" fill="none" stroke="#3BC8D8" stroke-width="32" stroke-dasharray="88 352" stroke-dashoffset="-77" transform="rotate(-90 100 100)"/>
-            <circle cx="100" cy="100" r="70" fill="none" stroke="#7FD178" stroke-width="32" stroke-dasharray="31 409" stroke-dashoffset="-167" transform="rotate(-90 100 100)"/>
-            <circle cx="100" cy="100" r="70" fill="none" stroke="#F5A623" stroke-width="32" stroke-dasharray="4 436" stroke-dashoffset="-199" transform="rotate(-90 100 100)"/>
-            <circle cx="100" cy="100" r="70" fill="none" stroke="#555" stroke-width="32" stroke-dasharray="3 437" stroke-dashoffset="-203" transform="rotate(-90 100 100)"/>
-            <circle cx="100" cy="100" r="54" fill="#1E9AAB"/>
-          </svg>
-          <div class="donut-center"><div class="donut-num">$582,626</div><div class="donut-lbl">Total Revenue</div></div>
+        <div class="chart-right">
+          <div class="donut-wrap" style="height:min(52vh,520px);width:min(52vh,520px)">
+            <svg viewBox="0 0 200 200" style="width:100%;height:100%">
+              <circle cx="100" cy="100" r="70" fill="none" stroke="#1E9AAB" stroke-width="30"/>
+              <circle cx="100" cy="100" r="70" fill="none" stroke="#F0C820" stroke-width="30" stroke-dasharray="185 255" stroke-dashoffset="110" transform="rotate(-90 100 100)"/>
+              <circle cx="100" cy="100" r="70" fill="none" stroke="#3BC8D8" stroke-width="30" stroke-dasharray="88 352" stroke-dashoffset="-77" transform="rotate(-90 100 100)"/>
+              <circle cx="100" cy="100" r="70" fill="none" stroke="#7FD178" stroke-width="30" stroke-dasharray="31 409" stroke-dashoffset="-167" transform="rotate(-90 100 100)"/>
+              <circle cx="100" cy="100" r="70" fill="none" stroke="#F5A623" stroke-width="30" stroke-dasharray="4 436" stroke-dashoffset="-199" transform="rotate(-90 100 100)"/>
+              <circle cx="100" cy="100" r="70" fill="none" stroke="#555" stroke-width="30" stroke-dasharray="3 437" stroke-dashoffset="-203" transform="rotate(-90 100 100)"/>
+              <circle cx="100" cy="100" r="52" fill="#1E9AAB"/>
+            </svg>
+            <div class="donut-center"><div class="donut-num">$582,626</div><div class="donut-lbl">Total Revenue</div></div>
+          </div>
         </div>
       </div>
-      <div class="chart-wrap" id="c29-exp" style="display:none">
-        <div>
+      <div class="chart-view" id="c29-exp" style="display:none">
+        <div class="chart-left">
           <div class="legend">
             <div class="leg-item"><div class="leg-dot" style="background:#F0C820"></div><div class="leg-txt">programs : <strong>72% &mdash; $419,491</strong></div></div>
             <div class="leg-item"><div class="leg-dot" style="background:#F5A623"></div><div class="leg-txt">administration : <strong>16% &mdash; $93,220</strong></div></div>
             <div class="leg-item"><div class="leg-dot" style="background:#3BC8D8"></div><div class="leg-txt">fundraising : <strong>12% &mdash; $69,915</strong></div></div>
           </div>
-          <div style="margin-top:20px"><a href="#" style="display:block;font-size:14px;color:rgba(255,255,255,.75);text-decoration:none;font-style:italic;margin-bottom:5px">&#xBB; 2024 audit</a><a href="#" style="display:block;font-size:14px;color:rgba(255,255,255,.75);text-decoration:none;font-style:italic">&#xBB; Form 990</a></div>
+          <div style="margin-top:clamp(18px,2.5vh,36px)"><a href="#" style="display:block;font-size:clamp(13px,1.1vw,16px);color:rgba(255,255,255,.75);text-decoration:none;font-style:italic;margin-bottom:6px">&#xBB; 2024 audit</a><a href="#" style="display:block;font-size:clamp(13px,1.1vw,16px);color:rgba(255,255,255,.75);text-decoration:none;font-style:italic">&#xBB; Form 990</a></div>
         </div>
-        <div class="donut-wrap" style="height:400px;width:400px">
-          <svg viewBox="0 0 200 200" width="380" height="380">
-            <circle cx="100" cy="100" r="70" fill="none" stroke="#1E9AAB" stroke-width="32"/>
-            <circle cx="100" cy="100" r="70" fill="none" stroke="#F0C820" stroke-width="32" stroke-dasharray="317 123" stroke-dashoffset="110" transform="rotate(-90 100 100)"/>
-            <circle cx="100" cy="100" r="70" fill="none" stroke="#F5A623" stroke-width="32" stroke-dasharray="70 370" stroke-dashoffset="-207" transform="rotate(-90 100 100)"/>
-            <circle cx="100" cy="100" r="70" fill="none" stroke="#3BC8D8" stroke-width="32" stroke-dasharray="53 387" stroke-dashoffset="-277" transform="rotate(-90 100 100)"/>
-            <circle cx="100" cy="100" r="54" fill="#1E9AAB"/>
-          </svg>
-          <div class="donut-center"><div class="donut-num">$582,626</div><div class="donut-lbl">Total Expenses</div></div>
+        <div class="chart-right">
+          <div class="donut-wrap" style="height:min(52vh,520px);width:min(52vh,520px)">
+            <svg viewBox="0 0 200 200" style="width:100%;height:100%">
+              <circle cx="100" cy="100" r="70" fill="none" stroke="#1E9AAB" stroke-width="30"/>
+              <circle cx="100" cy="100" r="70" fill="none" stroke="#F0C820" stroke-width="30" stroke-dasharray="317 123" stroke-dashoffset="110" transform="rotate(-90 100 100)"/>
+              <circle cx="100" cy="100" r="70" fill="none" stroke="#F5A623" stroke-width="30" stroke-dasharray="70 370" stroke-dashoffset="-207" transform="rotate(-90 100 100)"/>
+              <circle cx="100" cy="100" r="70" fill="none" stroke="#3BC8D8" stroke-width="30" stroke-dasharray="53 387" stroke-dashoffset="-277" transform="rotate(-90 100 100)"/>
+              <circle cx="100" cy="100" r="52" fill="#1E9AAB"/>
+            </svg>
+            <div class="donut-center"><div class="donut-num">$582,626</div><div class="donut-lbl">Total Expenses</div></div>
+          </div>
         </div>
       </div>
     </section>
 
     <!-- 30: DONOR HONOR ROLL -->
     <section class="slide s-donors" data-i="30" data-sec="donors">
+      <div class="donors-scroll">
+      <div class="eyebrow">Our Supporters</div>
       <div class="donors-h">2025 Donor Honor Roll</div>
       <p class="donors-sub">Our donors and partners are an essential part of the ecosystem that makes this work possible.</p>
       <div class="donors-section-h">Individuals</div>
@@ -1058,6 +1071,8 @@
       <p class="donors-text">AbbVie Inc., Allstate, Azteca Foods Inc., Carole Robertson Learning Center, Comcast NBC Universal, Concordia Place, Constellation, Discover, Hearst, RSM US, West Monroe, Wintrust</p>
       <div class="donors-section-h">Foundations</div>
       <p class="donors-text">Clark-Halladay Memorial Foundation, Cigna Foundation, Comer Family Fund at the Chicago Community Trust, Field Foundation of Illinois, Francis Beidler III and Prudence R. Beidler Foundation, Gaylord and Dorothy Donnelley Foundation, Henry Crown &amp; Company, Hirsch Family Fund in honor of Julie &amp; Mark Nufer and Scott Bishop, National Philanthropic Trust, Pledging Foundation, Robert M. McCormick Foundation, Spencer Foundation</p>
+      </div><!-- end .donors-scroll -->
+      <div class="donors-fade"></div>
     </section>
 
     <!-- 31: WEST MONROE HERO -->
@@ -1207,6 +1222,7 @@
     };
 
     function getTType(idx, crossSection) {
+      if (idx === 31 && cur === 30) return T.dissolve;
       if (crossSection) return T.cinematic;
       const cl = SLIDES[idx].classList;
       if (cl.contains('s-quote'))                         return T.dissolve;
@@ -1245,7 +1261,7 @@
       tt.runIn(nextEl);
 
       cur = next;
-      if (next === 30) { donorsAdvanced = false; donorsSlide.scrollTop = 0; }
+      if (next === 30) { donorsAdvanced = false; donorsScroll.scrollTop = 0; }
       updateUI(next);
 
       setTimeout(() => {
@@ -1262,8 +1278,8 @@
 
     // Scroll-to-bottom on donors slide advances to next slide
     let donorsAdvanced = false;
-    const donorsSlide = document.querySelector('.s-donors');
-    donorsSlide.addEventListener('scroll', function() {
+    const donorsScroll = document.querySelector('.donors-scroll');
+    donorsScroll.addEventListener('scroll', function() {
       if (!donorsAdvanced && this.scrollTop + this.clientHeight >= this.scrollHeight - 4) {
         donorsAdvanced = true;
         setTimeout(() => nav(1), 700);
@@ -1290,7 +1306,7 @@
     window.addEventListener('wheel', e => {
       if (cur === 30) {
         // Let donors slide scroll naturally; only intercept scroll-up at top (go back)
-        if (donorsSlide.scrollTop === 0 && e.deltaY < 0) {
+        if (donorsScroll.scrollTop === 0 && e.deltaY < 0) {
           e.preventDefault();
           if (!wheelLocked) { wheelLocked = true; nav(-1); setTimeout(() => { wheelLocked = false; }, 820); }
         }
@@ -1353,7 +1369,7 @@
       const slide = btn.closest('.s-chart');
       slide.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
       btn.classList.add('active');
-      slide.querySelectorAll('.chart-wrap').forEach(p => { p.style.display = 'none'; });
+      slide.querySelectorAll('.chart-view').forEach(p => { p.style.display = 'none'; });
       document.getElementById(panelId).style.display = 'grid';
     }
 
