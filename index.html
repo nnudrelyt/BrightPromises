@@ -237,8 +237,10 @@
     .s-hlc { background:var(--teal); display:flex; flex-direction:column; align-items:center; justify-content:center; padding:clamp(40px,5vh,80px) clamp(56px,6vw,120px); position:relative; overflow:hidden; }
     .s-hlc::before { content:''; position:absolute; inset:0; background:repeating-linear-gradient(-45deg,transparent,transparent 80px,rgba(255,255,255,.03) 80px,rgba(255,255,255,.03) 81px); }
     .hlc-h { font-size:clamp(16px,1.6vw,26px); font-weight:900; color:var(--yellow); text-align:center; letter-spacing:.02em; margin-bottom:clamp(24px,3.5vh,52px); position:relative; z-index:1; text-transform:uppercase; }
-    .hlc-grid { display:grid; grid-template-columns:1fr 1fr; gap:clamp(24px,3vh,48px) clamp(40px,5vw,88px); width:100%; max-width:min(1400px,88vw); position:relative; z-index:1; }
-    .hlc-card { border-left:4px solid var(--orange); padding-left:clamp(18px,2vw,36px); }
+    .hlc-grid { display:flex; flex-direction:column; gap:0; width:100%; max-width:min(1440px,90vw); position:relative; z-index:1; }
+    .hlc-card { display:grid; grid-template-columns:clamp(200px,22vw,340px) 1fr; gap:clamp(28px,4vw,72px); align-items:center; border-top:1px solid rgba(255,255,255,.15); padding:clamp(14px,2.2vh,28px) 0; }
+    .hlc-card:first-child { border-top:none; padding-top:0; }
+    .hlc-left { border-left:4px solid var(--orange); padding-left:clamp(16px,1.8vw,32px); }
     .hlc-num { font-size:clamp(40px,5.5vw,88px); font-weight:900; color:var(--white); line-height:1; margin-bottom:clamp(4px,0.6vh,10px); }
     .hlc-title { font-size:clamp(14px,1.4vw,22px); font-weight:700; color:var(--yellow); margin-bottom:clamp(6px,0.8vh,12px); }
     .hlc-body { font-size:clamp(13px,1.2vw,18px); font-weight:300; color:rgba(255,255,255,.8); line-height:1.65; }
@@ -256,7 +258,7 @@
 
     /* ── QUOTE ── */
     .s-quote { background:var(--bg-light); display:flex; align-items:center; padding:clamp(48px,5vw,100px) clamp(72px,8vw,160px); }
-    .q-inner { max-width:min(1100px,78vw); position:relative; z-index:1; }
+    .q-inner { max-width:min(1500px,88vw); position:relative; z-index:1; }
     .q-mark { font-size:clamp(56px,6vw,100px); font-weight:900; color:var(--orange); line-height:.6; margin-bottom:clamp(12px,1.5vh,24px); display:block; }
     .q-txt { font-size:clamp(22px,2.8vw,48px); font-weight:700; color:var(--teal); line-height:1.38; margin-bottom:clamp(18px,2.5vh,36px); font-style:italic; }
     .q-attr { font-size:clamp(14px,1.2vw,18px); font-weight:300; color:var(--body); }
@@ -286,13 +288,13 @@
     .photo-circle { position:absolute; width:58%; aspect-ratio:1; border-radius:50%; z-index:1; }
 
     /* ── DONORS ── */
-    .s-donors { background:var(--white); display:flex; flex-direction:column; padding:clamp(48px,5vw,100px) clamp(56px,6vw,120px); overflow:hidden; }
-    .donors-h { font-size:clamp(24px,2.8vw,52px); font-weight:700; color:var(--teal); margin-bottom:clamp(4px,0.6vh,10px); }
-    .donors-sub { font-size:clamp(14px,1.3vw,20px); font-weight:300; color:var(--body); margin-bottom:clamp(20px,3vh,48px); }
-    .donors-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:clamp(14px,1.5vh,24px) clamp(32px,4vw,72px); flex:1; }
-    .donors-col h3 { font-size:clamp(11px,0.9vw,14px); font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--teal); margin-bottom:clamp(10px,1.2vh,18px); padding-bottom:8px; border-bottom:1px solid rgba(26,96,122,.15); }
+    .s-donors { background:var(--white); display:flex; flex-direction:column; padding:clamp(36px,3.5vh,64px) clamp(48px,5vw,100px); overflow:hidden; }
+    .donors-h { font-size:clamp(20px,2.2vw,38px); font-weight:700; color:var(--teal); margin-bottom:clamp(2px,0.4vh,6px); }
+    .donors-sub { font-size:clamp(12px,1.1vw,16px); font-weight:300; color:var(--body); margin-bottom:clamp(14px,2vh,28px); }
+    .donors-grid { display:grid; grid-template-columns:1fr 1fr 1fr 1fr 1fr; gap:clamp(10px,1.2vh,16px) clamp(20px,2.5vw,44px); flex:1; }
+    .donors-col h3 { font-size:clamp(8px,0.7vw,10px); font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--teal); margin-bottom:clamp(6px,0.8vh,10px); padding-bottom:5px; border-bottom:1px solid rgba(26,96,122,.15); }
     .donors-col ul { list-style:none; }
-    .donors-col li { font-size:clamp(13px,1.2vw,18px); font-weight:300; color:var(--body); line-height:1.65; padding:2px 0; }
+    .donors-col li { font-size:clamp(9px,0.82vw,12px); font-weight:300; color:var(--body); line-height:1.5; padding:1px 0; }
     .donors-col li strong { font-weight:700; color:var(--teal); }
 
     /* ── STAT CARDS ── */
@@ -708,22 +710,30 @@
       <h2 class="hlc-h">Healing, Leading, Changing: What Donor Partnership Makes Possible</h2>
       <div class="hlc-grid">
         <div class="hlc-card">
-          <div class="hlc-num">5,294</div>
-          <div class="hlc-title">youth reached</div>
+          <div class="hlc-left">
+            <div class="hlc-num">5,294</div>
+            <div class="hlc-title">youth reached</div>
+          </div>
           <div class="hlc-body">Young people participated in healing-centered programs that nurture safety, belonging, and self-advocacy.</div>
         </div>
         <div class="hlc-card">
-          <div class="hlc-num">91%</div>
-          <div class="hlc-title">Expanded Access</div>
+          <div class="hlc-left">
+            <div class="hlc-num">91%</div>
+            <div class="hlc-title">Expanded Access</div>
+          </div>
           <div class="hlc-body">Organizations deepened and expanded strategies like healing circles, youth-led workshops, and staff trainings.</div>
         </div>
         <div class="hlc-card">
-          <div class="hlc-num">15</div>
-          <div class="hlc-title">Growing Community Capacity</div>
+          <div class="hlc-left">
+            <div class="hlc-num">15</div>
+            <div class="hlc-title">Growing Community Capacity</div>
+          </div>
           <div class="hlc-body"><strong>Community-based organizations</strong> are building lasting, trauma-informed, healing-centered cultures.</div>
         </div>
         <div class="hlc-card">
-          <div class="hlc-num" style="font-size:clamp(22px,2.4vw,34px);margin-bottom:10px">Youth Leading Change</div>
+          <div class="hlc-left">
+            <div class="hlc-title" style="font-size:clamp(20px,2.2vw,34px);margin-bottom:0">Youth Leading Change</div>
+          </div>
           <div class="hlc-body">Young people are organizing campaigns, meeting with decision-makers, and using storytelling to shift narratives&mdash;supporting individual and community healing.</div>
         </div>
       </div>
@@ -898,26 +908,26 @@
 
     <!-- 26: KI5 B — Goals -->
     <section class="slide s-content" data-i="26" data-sec="ki5">
-      <div style="max-width:1060px;position:relative;z-index:1">
+      <div style="max-width:min(1440px,92vw);position:relative;z-index:1">
         <div class="eyebrow">Our Goals</div>
-        <h2 class="sh" style="margin-bottom:28px">These commitments reflect what our community has told us matters most&mdash;now and for the future.</h2>
-        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:28px">
-          <div style="border-top:3px solid var(--orange);padding-top:18px"><h3 style="font-size:17px;font-weight:700;color:var(--teal);margin-bottom:10px">Embed trauma-informed and SEL practices</h3><p class="sb" style="font-size:15px">Into organizational policy, leadership, and daily practice across community-based organizations throughout Chicagoland&mdash;so care, safety, and belonging are built into the systems children experience every day.</p></div>
-          <div style="border-top:3px solid var(--cyan);padding-top:18px"><h3 style="font-size:17px;font-weight:700;color:var(--teal);margin-bottom:10px">Strengthen workforce stability and resilience</h3><p class="sb" style="font-size:15px">By reducing burnout, supporting retention, and investing in the people who carry this work forward, even under extraordinary strain.</p></div>
-          <div style="border-top:3px solid var(--yellow);padding-top:18px"><h3 style="font-size:17px;font-weight:700;color:var(--teal);margin-bottom:10px">Build shared infrastructure for scale and influence</h3><p class="sb" style="font-size:15px">Enabling tools, learning, and promising practices to spread beyond individual grantees and drive broader systems uptake.</p></div>
+        <h2 class="sh" style="font-size:clamp(28px,3.6vw,60px);margin-bottom:clamp(24px,3.5vh,52px)">These commitments reflect what our community has told us matters most&mdash;now and for the future.</h2>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(20px,3vw,52px)">
+          <div style="border-top:3px solid var(--orange);padding-top:clamp(16px,2vh,28px)"><h3 style="font-size:clamp(16px,1.6vw,24px);font-weight:700;color:var(--teal);margin-bottom:12px">Embed trauma-informed and SEL practices</h3><p class="sb" style="font-size:clamp(14px,1.3vw,20px)">Into organizational policy, leadership, and daily practice across community-based organizations throughout Chicagoland&mdash;so care, safety, and belonging are built into the systems children experience every day.</p></div>
+          <div style="border-top:3px solid var(--cyan);padding-top:clamp(16px,2vh,28px)"><h3 style="font-size:clamp(16px,1.6vw,24px);font-weight:700;color:var(--teal);margin-bottom:12px">Strengthen workforce stability and resilience</h3><p class="sb" style="font-size:clamp(14px,1.3vw,20px)">By reducing burnout, supporting retention, and investing in the people who carry this work forward, even under extraordinary strain.</p></div>
+          <div style="border-top:3px solid var(--yellow);padding-top:clamp(16px,2vh,28px)"><h3 style="font-size:clamp(16px,1.6vw,24px);font-weight:700;color:var(--teal);margin-bottom:12px">Build shared infrastructure for scale and influence</h3><p class="sb" style="font-size:clamp(14px,1.3vw,20px)">Enabling tools, learning, and promising practices to spread beyond individual grantees and drive broader systems uptake.</p></div>
         </div>
-        <p class="sb" style="margin-top:28px;font-size:17px"><strong>If you believe children deserve more&mdash;and that communities already hold the answers&mdash;we invite you to keep building this future with us.</strong></p>
+        <p class="sb" style="margin-top:clamp(20px,3vh,44px);font-size:clamp(15px,1.5vw,22px)"><strong>If you believe children deserve more&mdash;and that communities already hold the answers&mdash;we invite you to keep building this future with us.</strong></p>
       </div>
     </section>
 
     <!-- 27: FINANCIALS INTRO -->
     <section class="slide s-content" data-i="27" data-sec="financials">
-      <div style="max-width:900px;position:relative;z-index:1">
+      <div style="max-width:min(1440px,90vw);position:relative;z-index:1">
         <div class="eyebrow">Financials &amp; Stewardship</div>
-        <h2 class="sh" style="font-size:clamp(28px,3.6vw,56px);margin-bottom:24px">Stewarding Community Resources with Care</h2>
-        <p class="sb"><strong>We treat every dollar as a vote of trust&mdash;from our community and for our community.</strong></p>
-        <p class="sb" style="margin-top:16px">This is why <strong>100% of every dollar donated by the public supports programs for children and families in need</strong> across Chicagoland. When you give to Bright Promises, you don&rsquo;t just help one program&mdash;you strengthen the systems children and families rely on.</p>
-        <p class="sb" style="margin-top:16px">Every dollar entrusted to Bright Promises is deployed to maximize long-term impact&mdash;by strengthening people, organizations, and communities.</p>
+        <h2 class="sh" style="font-size:clamp(48px,6.5vw,104px);line-height:1.04;margin-bottom:clamp(28px,3.5vh,56px)">Stewarding Community<br>Resources with Care</h2>
+        <p class="sb" style="font-size:clamp(16px,1.5vw,24px);max-width:min(800px,62vw)"><strong>We treat every dollar as a vote of trust&mdash;from our community and for our community.</strong></p>
+        <p class="sb" style="margin-top:clamp(14px,1.8vh,24px);font-size:clamp(14px,1.3vw,20px);max-width:min(800px,62vw)">This is why <strong>100% of every dollar donated by the public supports programs for children and families in need</strong> across Chicagoland. When you give to Bright Promises, you don&rsquo;t just help one program&mdash;you strengthen the systems children and families rely on.</p>
+        <p class="sb" style="margin-top:clamp(14px,1.8vh,24px);font-size:clamp(14px,1.3vw,20px);max-width:min(800px,62vw)">Every dollar entrusted to Bright Promises is deployed to maximize long-term impact&mdash;by strengthening people, organizations, and communities.</p>
       </div>
     </section>
 
@@ -992,16 +1002,23 @@
 
     <!-- 30: DONOR HONOR ROLL -->
     <section class="slide s-donors" data-i="30" data-sec="donors">
-      <div class="donors-h">Donor Honor Roll</div>
+      <div class="donors-h">2025 Donor Honor Roll</div>
       <p class="donors-sub">Our donors and partners are an essential part of the ecosystem that makes this work possible.</p>
       <div class="donors-grid">
-        <div class="donors-col"><h3>Board of Directors &amp; Lifetime Directors</h3><ul><li>[Board member names to be provided]</li></ul></div>
-        <div class="donors-col"><h3>Legacy Council</h3><ul><li>[Legacy council names to be provided]</li></ul></div>
-        <div class="donors-col"><h3>Partners &amp; Collaborators</h3><ul>
-          <li><strong>Evaluation:</strong> Dr. E. Chico, Ceily Moore</li>
-          <li><strong>Facilitation:</strong> Dr. Tonya Bibbs, Dr. Jenn Moore</li>
-          <li><strong>SEL Experts in Residence:</strong> Ashley V. Perkins, Jess Vann, Cynthia Townsend, Kam Green, Dr. Sonia M. Toledo</li>
-          <li><strong>Creative Design:</strong> Tyler Dunn and The Main Sequence</li>
+        <div class="donors-col"><h3>Individuals</h3><ul>
+          <li>Abraham Salinas</li><li>Aimee Hilado</li><li>Alana Gunn</li><li>Alexa Berg</li><li>Alexandra Padrul</li><li>Alice Martin</li><li>Amanda Vallejo</li><li>Amy Dragland-Johnson</li><li>Andreason Brown</li><li>Angela Fontes</li><li>Anna Musci</li><li>Anne Finn</li><li>Anonymous</li><li>Anthony Richards</li><li>Arielle Lentz</li><li>Ayanna Brown</li><li>Baronica Roberson</li><li>Bela Mote</li><li>Bethel Kifle</li><li>Bethel Kifleo</li><li>Bill and Patty Moss</li><li>Brad Berliner</li><li>Brian Korey</li><li>Britton Videbeck</li><li>Bryan Stokes</li><li>Camille Moore</li><li>Candace Moore</li><li>Carlos Perez</li><li>Carmelita Colbert</li><li>Carmen Velasquez, in memory of Jim Zander</li><li>C&eacute;sar Torruella</li><li>Cheryl Goldstein</li><li>Cheryl Wisniewski</li><li>Chris Kinnear</li><li>Christina Navarro</li><li>Christine Calderon</li><li>Chun Lung Lee</li><li>Clive Walcott</li><li>Craig Englert</li><li>Craig Llorens</li><li>Cyd Archer</li><li>Cynthia Hunt</li><li>Daniel Casara</li><li>Daniel Fumagalli</li><li>Darlene Murphy Jue</li><li>David and Susan Kreisman</li><li>David Beerman</li><li>David Chappell</li><li>David Hardy</li><li>David Rubenstein</li><li>Dean Benson</li><li>Deborah Frisch</li><li>Debra Schlies</li><li>Deepak Gaur</li><li>Deirdre Harrison</li><li>Diane Knoepke</li><li>Don Quincy Lamb Jr</li><li>Dorri McWhorter</li><li>Doug Moss</li><li>Elizabeth Tager</li><li>Emilio Araujo</li>
+        </ul></div>
+        <div class="donors-col"><h3>&nbsp;</h3><ul>
+          <li>Emily Fishman</li><li>Eric Zoberman</li><li>Gaylord and William Gieseke</li><li>Grace Araya</li><li>Harry and Lily Zoberman</li><li>Heather Kistner</li><li>Heather Parish</li><li>Helen J. Kessler</li><li>Helene Fishman</li><li>Ilene Korey</li><li>Iris Krieg</li><li>Jacki Davidoff</li><li>James P. Lynch</li><li>Jamie Klobuchar</li><li>Jamie Metcalf</li><li>Jason Kay</li><li>Jason Nierman</li><li>Jeff and Jamie Kost</li><li>Jeffrey Izenman</li><li>Jennifer Booth, in honor of Tara Leja</li><li>Jennifer Lyons</li><li>Jesseca Rhymes</li><li>Jill Katz</li><li>Jill Scott</li><li>Jim Hirsch</li><li>Julia Gilman</li><li>Julia Luscombe</li><li>Julia Waggoner</li><li>Julie Shaw</li><li>Julie Weinberg</li><li>Karla Davis</li><li>Karyn Watkins</li><li>Katherine Dreher</li><li>Kellie Martial</li><li>Kelly Kirkman</li><li>Kenneth Bartman</li><li>Kevin Conlon</li><li>Kimberly Van Horn</li><li>Kimbra Bell</li><li>Krishnaiah Revuluri</li><li>Krystle Bradley</li><li>Larry Joe and Kelley O&rsquo;Hern, in memory of Jim Zander</li><li>Larry Nierman</li><li>Lauren Gaither</li><li>Lauren Krieg</li><li>Lawrence Kuhn</li><li>Lee Menn</li><li>Lena Cohn</li><li>Linda Weinstein</li><li>Lionell Hill</li><li>Lisa Raju</li><li>Loester Lewis</li><li>Louise K. Smith</li><li>Luke Easterday</li><li>Lynda Wallis</li><li>M Steven Sager</li><li>Mallory Moreno</li><li>Marcella Oglesby</li><li>Margaret Anderson</li><li>Maria Allen</li><li>Maria Ghani and Emaad Rahman</li>
+        </ul></div>
+        <div class="donors-col"><h3>&nbsp;</h3><ul>
+          <li>Mark and Joni Croll</li><li>Mark McKinley</li><li>Matthew Colton</li><li>Matthew McGary</li><li>Matthew Somerman</li><li>Megan Rhyme</li><li>Melinda Hardy</li><li>Michele and Joel Shoolin, in honor of Katherine Korey</li><li>Michelle O&rsquo; Sullivan</li><li>Mitch Sparber</li><li>Myla Weinstein</li><li>Nancy Schimmel</li><li>Nancy Snyder</li><li>Nancy Stermer</li><li>Nannette Zander</li><li>Neelamjit Dhaliwal</li><li>Nicholas Kennedy</li><li>Nina Wong</li><li>Patricio Cadena</li><li>Patrick Grady</li><li>Paul and Peggy Bodine</li><li>Paul Fyle</li><li>Paul Hilder</li><li>Paula Frey</li><li>Randall Hardy</li><li>Rebecca Nierman</li><li>Rhonda Fried</li><li>Richard Sieracki</li><li>Robert and Barbara Finley</li><li>Robert Footlik</li><li>Ron and Queta Bauer</li><li>Roy Walker</li><li>Russell Brown</li><li>Ryan Biller</li><li>Ryan Emmer</li><li>Salina Barih</li><li>Sam Coady</li><li>Sam Spencer</li><li>Sanford Peck</li><li>Sarah Klebo</li><li>Scott and Emily Bishop</li><li>Scott Gendell</li><li>Sendhil Revuluri and Venu Gupta</li><li>Shari Runner</li><li>Shel and Renee Goldstein, in honor of Jason Nierman</li><li>Simone Weil</li><li>Sophie Padula</li><li>Stephanie Sorlien</li><li>Steven M Koch</li><li>Susan Gohl</li><li>Susan Irion</li><li>Tae Kim</li><li>Tanner Zelman</li><li>Tara Leja</li><li>Ted Cappas</li><li>Tenisha Phillips</li><li>Thomas Penning</li><li>Tiffany Scaparotti</li><li>Una Lewis</li><li>Valerie Coffman</li><li>Vickie and Irv Korey, in honor of Katherine Korey</li><li>William Enright</li><li>William O&rsquo;Hara</li>
+        </ul></div>
+        <div class="donors-col"><h3>Corporations</h3><ul>
+          <li>AbbVie Inc.</li><li>Allstate</li><li>Azteca Foods Inc</li><li>Carole Robertson Learning Center</li><li>Comcast NBC Universal</li><li>Concordia Place</li><li>Constellation</li><li>Discover</li><li>Hearst</li><li>RSM US</li><li>West Monroe</li><li>Wintrust</li>
+        </ul></div>
+        <div class="donors-col"><h3>Foundations</h3><ul>
+          <li>Clark-Halladay Memorial Foundation</li><li>Cigna Foundation</li><li>Comer Family Fund at the Chicago Community Trust</li><li>Field Foundation of Illinois</li><li>Francis Beidler III and Prudence R. Beidler Foundation</li><li>Gaylord and Dorothy Donnelley Foundation</li><li>Henry Crown &amp; Company</li><li>Hirsch Family Fund, in honor of Julie &amp; Mark Nufer and Scott Bishop</li><li>National Philanthropic Trust</li><li>Pledging Foundation</li><li>Robert M. McCormick Foundation</li><li>Spencer Foundation</li>
         </ul></div>
       </div>
     </section>
@@ -1052,12 +1069,12 @@
     </section>
 
     <!-- 35: CLOSING -->
-    <section class="slide s-closing" data-i="35" data-sec="closing">
+    <section class="slide s-closing" data-i="35" data-sec="closing" style="grid-template-columns:3fr 2fr">
       <div class="close-txt">
         <div class="eyebrow">Keeping Our Promise, Together</div>
-        <h2 class="close-h">Bright Promises Foundation is of the community and for the community.</h2>
-        <p class="sb" style="margin-bottom:20px">We are the only public foundation serving the State of Illinois solely focused on the needs of children and youth. Thank you to the partners, supporters, and advocates who are building this future with us.</p>
-        <p class="sb"><strong>Together, we are proving what&rsquo;s possible when we invest early, act collectively, and trust what communities know works. This is how we keep our promise&mdash;to children today and to the future we share.</strong></p>
+        <h2 class="close-h" style="font-size:clamp(38px,5.2vw,86px);line-height:1.04;margin-bottom:clamp(24px,3.5vh,52px)">Bright Promises Foundation is of the community and for the community.</h2>
+        <p class="sb" style="font-size:clamp(14px,1.3vw,20px);margin-bottom:clamp(12px,1.6vh,22px)">We are the only public foundation serving the State of Illinois solely focused on the needs of children and youth. Thank you to the partners, supporters, and advocates who are building this future with us.</p>
+        <p class="sb" style="font-size:clamp(14px,1.3vw,20px)"><strong>Together, we are proving what&rsquo;s possible when we invest early, act collectively, and trust what communities know works. This is how we keep our promise&mdash;to children today and to the future we share.</strong></p>
       </div>
       <div class="close-photo">
         <div class="close-photo-bg" style="background-image:url('img/awards-1.jpg')"></div>
