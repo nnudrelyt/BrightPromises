@@ -215,7 +215,7 @@
     .bg-circ { position:absolute; border-radius:50%; background:rgba(255,255,255,.05); pointer-events:none; }
     .chart-h { font-size:clamp(24px,3vw,56px); font-weight:900; color:var(--white); text-align:center; margin-bottom:4px; position:relative; z-index:1; }
     .chart-sub { font-size:clamp(12px,1vw,16px); font-weight:700; color:var(--yellow); text-align:center; margin-bottom:clamp(20px,3vh,44px); letter-spacing:.04em; position:relative; z-index:1; }
-    .chart-wrap { display:grid; grid-template-columns:1fr 1fr; gap:clamp(28px,3vw,56px); width:100%; max-width:min(1200px,86vw); position:relative; z-index:1; align-items:center; }
+    .chart-wrap { display:grid; grid-template-columns:1fr 1fr; gap:clamp(28px,3vw,56px); width:100%; max-width:min(1500px,94vw); position:relative; z-index:1; align-items:center; }
     .tabs { display:flex; gap:clamp(14px,1.6vw,28px); margin-bottom:clamp(14px,1.8vh,28px); }
     .tab { font-size:clamp(15px,1.4vw,20px); font-weight:300; color:rgba(255,255,255,.55); cursor:pointer; padding-bottom:3px; border:none; border-bottom:2px solid transparent; background:none; transition:color .2s,border-color .2s; }
     .tab.active { font-weight:700; color:var(--white); border-bottom-color:var(--white); }
@@ -291,11 +291,10 @@
     .s-donors { background:var(--white); display:flex; flex-direction:column; padding:clamp(36px,3.5vh,64px) clamp(48px,5vw,100px); overflow-y:auto; }
     .donors-h { font-size:clamp(20px,2.2vw,38px); font-weight:700; color:var(--teal); margin-bottom:clamp(2px,0.4vh,6px); flex-shrink:0; }
     .donors-sub { font-size:clamp(12px,1.1vw,16px); font-weight:300; color:var(--body); margin-bottom:clamp(14px,2vh,28px); flex-shrink:0; }
-    .donors-list { list-style:none; columns:clamp(180px,15vw,240px); column-gap:clamp(24px,3vw,52px); }
-    .donors-section-h { column-span:all; font-size:clamp(11px,0.9vw,14px); font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--orange); margin-top:clamp(28px,3.5vh,48px); margin-bottom:clamp(10px,1.4vh,18px); padding-bottom:6px; border-bottom:1px solid rgba(26,96,122,.15); }
+    .donors-section-h { font-size:clamp(11px,0.9vw,14px); font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--orange); margin-top:clamp(28px,3.5vh,48px); margin-bottom:clamp(10px,1.4vh,18px); padding-bottom:6px; border-bottom:1px solid rgba(26,96,122,.15); }
     .donors-section-h:first-child { margin-top:0; }
-    .donors-list li { font-size:clamp(16px,1.6vw,20px); font-weight:300; color:var(--body); line-height:1.6; padding:3px 0; break-inside:avoid; }
-    .donors-list li strong { font-weight:700; color:var(--teal); }
+    .donors-text { font-size:clamp(32px,3.2vw,40px); font-weight:300; color:var(--body); line-height:1.7; text-align:justify; }
+    .donors-text:last-child { padding-bottom:32vh; }
 
     /* ── STAT CARDS ── */
     .stats-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:clamp(18px,2.5vw,40px); margin-top:clamp(16px,2vh,32px); }
@@ -939,9 +938,12 @@
       <div class="bg-circ" style="width:380px;height:380px;left:-100px;bottom:-140px"></div>
       <h2 class="chart-h">igniting change, one child at-a-time</h2>
       <p class="chart-sub">Bright Promises Foundation 2024/25 Demographics</p>
-      <div class="chart-wrap">
+      <div class="tabs" style="position:relative;z-index:1;margin-bottom:clamp(14px,2vh,28px)">
+        <button class="tab active" onclick="switchChartTab(this,'c28-demo')">Demographics</button>
+        <button class="tab" onclick="switchChartTab(this,'c28-age')">Age</button>
+      </div>
+      <div class="chart-wrap" id="c28-demo">
         <div>
-          <div class="tabs"><button class="tab active">Demographics</button><button class="tab">Age</button></div>
           <div class="filters"><button class="filt active">HLC</button><span class="filt-div">|</span><button class="filt">EQUIP</button><span class="filt-div">|</span><button class="filt">FAIR</button></div>
           <div class="legend">
             <div class="leg-item"><div class="leg-dot" style="background:#F5A623"></div><div class="leg-txt">black : <strong>35%</strong></div></div>
@@ -953,8 +955,8 @@
             <div class="leg-item"><div class="leg-dot" style="background:#E87FA3"></div><div class="leg-txt">other : <strong>0%</strong></div></div>
           </div>
         </div>
-        <div class="donut-wrap" style="height:320px;width:320px">
-          <svg viewBox="0 0 200 200" width="300" height="300">
+        <div class="donut-wrap" style="height:400px;width:400px">
+          <svg viewBox="0 0 200 200" width="380" height="380">
             <circle cx="100" cy="100" r="70" fill="none" stroke="#1E9AAB" stroke-width="32"/>
             <circle cx="100" cy="100" r="70" fill="none" stroke="#F0C820" stroke-width="32" stroke-dasharray="180 260" stroke-dashoffset="110" transform="rotate(-90 100 100)"/>
             <circle cx="100" cy="100" r="70" fill="none" stroke="#F5A623" stroke-width="32" stroke-dasharray="154 286" stroke-dashoffset="-72" transform="rotate(-90 100 100)"/>
@@ -967,6 +969,27 @@
           <div class="donut-center"><div class="donut-num">11,800</div><div class="donut-lbl">served</div></div>
         </div>
       </div>
+      <div class="chart-wrap" id="c28-age" style="display:none">
+        <div>
+          <div class="legend">
+            <div class="leg-item"><div class="leg-dot" style="background:#F5A623"></div><div class="leg-txt">under 5 : <strong>18%</strong></div></div>
+            <div class="leg-item"><div class="leg-dot" style="background:#F0C820"></div><div class="leg-txt">5–11 : <strong>32%</strong></div></div>
+            <div class="leg-item"><div class="leg-dot" style="background:#1A607A"></div><div class="leg-txt">12–17 : <strong>35%</strong></div></div>
+            <div class="leg-item"><div class="leg-dot" style="background:#3BC8D8"></div><div class="leg-txt">18–24 : <strong>15%</strong></div></div>
+          </div>
+        </div>
+        <div class="donut-wrap" style="height:400px;width:400px">
+          <svg viewBox="0 0 200 200" width="380" height="380">
+            <circle cx="100" cy="100" r="70" fill="none" stroke="#1E9AAB" stroke-width="32"/>
+            <circle cx="100" cy="100" r="70" fill="none" stroke="#F5A623" stroke-width="32" stroke-dasharray="79 361" stroke-dashoffset="110" transform="rotate(-90 100 100)"/>
+            <circle cx="100" cy="100" r="70" fill="none" stroke="#F0C820" stroke-width="32" stroke-dasharray="141 299" stroke-dashoffset="31" transform="rotate(-90 100 100)"/>
+            <circle cx="100" cy="100" r="70" fill="none" stroke="#1A607A" stroke-width="32" stroke-dasharray="154 286" stroke-dashoffset="-110" transform="rotate(-90 100 100)"/>
+            <circle cx="100" cy="100" r="70" fill="none" stroke="#3BC8D8" stroke-width="32" stroke-dasharray="66 374" stroke-dashoffset="-264" transform="rotate(-90 100 100)"/>
+            <circle cx="100" cy="100" r="54" fill="#1E9AAB"/>
+          </svg>
+          <div class="donut-center"><div class="donut-num">11,800</div><div class="donut-lbl">served</div></div>
+        </div>
+      </div>
     </section>
 
     <!-- 29: REVENUE -->
@@ -974,9 +997,12 @@
       <div class="bg-circ" style="width:580px;height:580px;right:-180px;top:-120px"></div>
       <h2 class="chart-h">igniting change, one dollar at-a-time</h2>
       <p class="chart-sub">Bright Promises Foundation 2024/25 Financials</p>
-      <div class="chart-wrap">
+      <div class="tabs" style="position:relative;z-index:1;margin-bottom:clamp(14px,2vh,28px)">
+        <button class="tab" onclick="switchChartTab(this,'c29-exp')">Expenses</button>
+        <button class="tab active" onclick="switchChartTab(this,'c29-rev')">Revenue</button>
+      </div>
+      <div class="chart-wrap" id="c29-rev">
         <div>
-          <div class="tabs"><button class="tab">Expenses</button><button class="tab active">Revenue</button></div>
           <p style="font-size:15px;font-weight:700;color:var(--white);margin-bottom:14px">contributions</p>
           <div class="legend">
             <div class="leg-item"><div class="leg-dot" style="background:#F5A623"></div><div class="leg-txt">corporations : <strong>$6,564</strong></div></div>
@@ -987,8 +1013,8 @@
           </div>
           <div style="margin-top:20px"><a href="#" style="display:block;font-size:14px;color:rgba(255,255,255,.75);text-decoration:none;font-style:italic;margin-bottom:5px">&#xBB; 2024 audit</a><a href="#" style="display:block;font-size:14px;color:rgba(255,255,255,.75);text-decoration:none;font-style:italic">&#xBB; Form 990</a></div>
         </div>
-        <div class="donut-wrap" style="height:320px;width:320px">
-          <svg viewBox="0 0 200 200" width="300" height="300">
+        <div class="donut-wrap" style="height:400px;width:400px">
+          <svg viewBox="0 0 200 200" width="380" height="380">
             <circle cx="100" cy="100" r="70" fill="none" stroke="#1E9AAB" stroke-width="32"/>
             <circle cx="100" cy="100" r="70" fill="none" stroke="#F0C820" stroke-width="32" stroke-dasharray="185 255" stroke-dashoffset="110" transform="rotate(-90 100 100)"/>
             <circle cx="100" cy="100" r="70" fill="none" stroke="#3BC8D8" stroke-width="32" stroke-dasharray="88 352" stroke-dashoffset="-77" transform="rotate(-90 100 100)"/>
@@ -1000,22 +1026,38 @@
           <div class="donut-center"><div class="donut-num">$582,626</div><div class="donut-lbl">Total Revenue</div></div>
         </div>
       </div>
+      <div class="chart-wrap" id="c29-exp" style="display:none">
+        <div>
+          <div class="legend">
+            <div class="leg-item"><div class="leg-dot" style="background:#F0C820"></div><div class="leg-txt">programs : <strong>72% &mdash; $419,491</strong></div></div>
+            <div class="leg-item"><div class="leg-dot" style="background:#F5A623"></div><div class="leg-txt">administration : <strong>16% &mdash; $93,220</strong></div></div>
+            <div class="leg-item"><div class="leg-dot" style="background:#3BC8D8"></div><div class="leg-txt">fundraising : <strong>12% &mdash; $69,915</strong></div></div>
+          </div>
+          <div style="margin-top:20px"><a href="#" style="display:block;font-size:14px;color:rgba(255,255,255,.75);text-decoration:none;font-style:italic;margin-bottom:5px">&#xBB; 2024 audit</a><a href="#" style="display:block;font-size:14px;color:rgba(255,255,255,.75);text-decoration:none;font-style:italic">&#xBB; Form 990</a></div>
+        </div>
+        <div class="donut-wrap" style="height:400px;width:400px">
+          <svg viewBox="0 0 200 200" width="380" height="380">
+            <circle cx="100" cy="100" r="70" fill="none" stroke="#1E9AAB" stroke-width="32"/>
+            <circle cx="100" cy="100" r="70" fill="none" stroke="#F0C820" stroke-width="32" stroke-dasharray="317 123" stroke-dashoffset="110" transform="rotate(-90 100 100)"/>
+            <circle cx="100" cy="100" r="70" fill="none" stroke="#F5A623" stroke-width="32" stroke-dasharray="70 370" stroke-dashoffset="-207" transform="rotate(-90 100 100)"/>
+            <circle cx="100" cy="100" r="70" fill="none" stroke="#3BC8D8" stroke-width="32" stroke-dasharray="53 387" stroke-dashoffset="-277" transform="rotate(-90 100 100)"/>
+            <circle cx="100" cy="100" r="54" fill="#1E9AAB"/>
+          </svg>
+          <div class="donut-center"><div class="donut-num">$582,626</div><div class="donut-lbl">Total Expenses</div></div>
+        </div>
+      </div>
     </section>
 
     <!-- 30: DONOR HONOR ROLL -->
     <section class="slide s-donors" data-i="30" data-sec="donors">
       <div class="donors-h">2025 Donor Honor Roll</div>
       <p class="donors-sub">Our donors and partners are an essential part of the ecosystem that makes this work possible.</p>
-      <ul class="donors-list">
-        <li class="donors-section-h">Individuals</li>
-        <li>Abraham Salinas</li><li>Aimee Hilado</li><li>Alana Gunn</li><li>Alexa Berg</li><li>Alexandra Padrul</li><li>Alice Martin</li><li>Amanda Vallejo</li><li>Amy Dragland-Johnson</li><li>Andreason Brown</li><li>Angela Fontes</li><li>Anna Musci</li><li>Anne Finn</li><li>Anonymous</li><li>Anthony Richards</li><li>Arielle Lentz</li><li>Ayanna Brown</li><li>Baronica Roberson</li><li>Bela Mote</li><li>Bethel Kifle</li><li>Bethel Kifleo</li><li>Bill and Patty Moss</li><li>Brad Berliner</li><li>Brian Korey</li><li>Britton Videbeck</li><li>Bryan Stokes</li><li>Camille Moore</li><li>Candace Moore</li><li>Carlos Perez</li><li>Carmelita Colbert</li><li>Carmen Velasquez, in memory of Jim Zander</li><li>C&eacute;sar Torruella</li><li>Cheryl Goldstein</li><li>Cheryl Wisniewski</li><li>Chris Kinnear</li><li>Christina Navarro</li><li>Christine Calderon</li><li>Chun Lung Lee</li><li>Clive Walcott</li><li>Craig Englert</li><li>Craig Llorens</li><li>Cyd Archer</li><li>Cynthia Hunt</li><li>Daniel Casara</li><li>Daniel Fumagalli</li><li>Darlene Murphy Jue</li><li>David and Susan Kreisman</li><li>David Beerman</li><li>David Chappell</li><li>David Hardy</li><li>David Rubenstein</li><li>Dean Benson</li><li>Deborah Frisch</li><li>Debra Schlies</li><li>Deepak Gaur</li><li>Deirdre Harrison</li><li>Diane Knoepke</li><li>Don Quincy Lamb Jr</li><li>Dorri McWhorter</li><li>Doug Moss</li><li>Elizabeth Tager</li><li>Emilio Araujo</li>
-        <li>Emily Fishman</li><li>Eric Zoberman</li><li>Gaylord and William Gieseke</li><li>Grace Araya</li><li>Harry and Lily Zoberman</li><li>Heather Kistner</li><li>Heather Parish</li><li>Helen J. Kessler</li><li>Helene Fishman</li><li>Ilene Korey</li><li>Iris Krieg</li><li>Jacki Davidoff</li><li>James P. Lynch</li><li>Jamie Klobuchar</li><li>Jamie Metcalf</li><li>Jason Kay</li><li>Jason Nierman</li><li>Jeff and Jamie Kost</li><li>Jeffrey Izenman</li><li>Jennifer Booth, in honor of Tara Leja</li><li>Jennifer Lyons</li><li>Jesseca Rhymes</li><li>Jill Katz</li><li>Jill Scott</li><li>Jim Hirsch</li><li>Julia Gilman</li><li>Julia Luscombe</li><li>Julia Waggoner</li><li>Julie Shaw</li><li>Julie Weinberg</li><li>Karla Davis</li><li>Karyn Watkins</li><li>Katherine Dreher</li><li>Kellie Martial</li><li>Kelly Kirkman</li><li>Kenneth Bartman</li><li>Kevin Conlon</li><li>Kimberly Van Horn</li><li>Kimbra Bell</li><li>Krishnaiah Revuluri</li><li>Krystle Bradley</li><li>Larry Joe and Kelley O&rsquo;Hern, in memory of Jim Zander</li><li>Larry Nierman</li><li>Lauren Gaither</li><li>Lauren Krieg</li><li>Lawrence Kuhn</li><li>Lee Menn</li><li>Lena Cohn</li><li>Linda Weinstein</li><li>Lionell Hill</li><li>Lisa Raju</li><li>Loester Lewis</li><li>Louise K. Smith</li><li>Luke Easterday</li><li>Lynda Wallis</li><li>M Steven Sager</li><li>Mallory Moreno</li><li>Marcella Oglesby</li><li>Margaret Anderson</li><li>Maria Allen</li><li>Maria Ghani and Emaad Rahman</li>
-        <li>Mark and Joni Croll</li><li>Mark McKinley</li><li>Matthew Colton</li><li>Matthew McGary</li><li>Matthew Somerman</li><li>Megan Rhyme</li><li>Melinda Hardy</li><li>Michele and Joel Shoolin, in honor of Katherine Korey</li><li>Michelle O&rsquo; Sullivan</li><li>Mitch Sparber</li><li>Myla Weinstein</li><li>Nancy Schimmel</li><li>Nancy Snyder</li><li>Nancy Stermer</li><li>Nannette Zander</li><li>Neelamjit Dhaliwal</li><li>Nicholas Kennedy</li><li>Nina Wong</li><li>Patricio Cadena</li><li>Patrick Grady</li><li>Paul and Peggy Bodine</li><li>Paul Fyle</li><li>Paul Hilder</li><li>Paula Frey</li><li>Randall Hardy</li><li>Rebecca Nierman</li><li>Rhonda Fried</li><li>Richard Sieracki</li><li>Robert and Barbara Finley</li><li>Robert Footlik</li><li>Ron and Queta Bauer</li><li>Roy Walker</li><li>Russell Brown</li><li>Ryan Biller</li><li>Ryan Emmer</li><li>Salina Barih</li><li>Sam Coady</li><li>Sam Spencer</li><li>Sanford Peck</li><li>Sarah Klebo</li><li>Scott and Emily Bishop</li><li>Scott Gendell</li><li>Sendhil Revuluri and Venu Gupta</li><li>Shari Runner</li><li>Shel and Renee Goldstein, in honor of Jason Nierman</li><li>Simone Weil</li><li>Sophie Padula</li><li>Stephanie Sorlien</li><li>Steven M Koch</li><li>Susan Gohl</li><li>Susan Irion</li><li>Tae Kim</li><li>Tanner Zelman</li><li>Tara Leja</li><li>Ted Cappas</li><li>Tenisha Phillips</li><li>Thomas Penning</li><li>Tiffany Scaparotti</li><li>Una Lewis</li><li>Valerie Coffman</li><li>Vickie and Irv Korey, in honor of Katherine Korey</li><li>William Enright</li><li>William O&rsquo;Hara</li>
-        <li class="donors-section-h">Corporations</li>
-        <li>AbbVie Inc.</li><li>Allstate</li><li>Azteca Foods Inc</li><li>Carole Robertson Learning Center</li><li>Comcast NBC Universal</li><li>Concordia Place</li><li>Constellation</li><li>Discover</li><li>Hearst</li><li>RSM US</li><li>West Monroe</li><li>Wintrust</li>
-        <li class="donors-section-h">Foundations</li>
-        <li>Clark-Halladay Memorial Foundation</li><li>Cigna Foundation</li><li>Comer Family Fund at the Chicago Community Trust</li><li>Field Foundation of Illinois</li><li>Francis Beidler III and Prudence R. Beidler Foundation</li><li>Gaylord and Dorothy Donnelley Foundation</li><li>Henry Crown &amp; Company</li><li>Hirsch Family Fund, in honor of Julie &amp; Mark Nufer and Scott Bishop</li><li>National Philanthropic Trust</li><li>Pledging Foundation</li><li>Robert M. McCormick Foundation</li><li>Spencer Foundation</li>
-      </ul>
+      <div class="donors-section-h">Individuals</div>
+      <p class="donors-text">Abraham Salinas, Aimee Hilado, Alana Gunn, Alexa Berg, Alexandra Padrul, Alice Martin, Amanda Vallejo, Amy Dragland-Johnson, Andreason Brown, Angela Fontes, Anna Musci, Anne Finn, Anonymous, Anthony Richards, Arielle Lentz, Ayanna Brown, Baronica Roberson, Bela Mote, Bethel Kifle, Bethel Kifleo, Bill and Patty Moss, Brad Berliner, Brian Korey, Britton Videbeck, Bryan Stokes, Camille Moore, Candace Moore, Carlos Perez, Carmelita Colbert, Carmen Velasquez in memory of Jim Zander, C&eacute;sar Torruella, Cheryl Goldstein, Cheryl Wisniewski, Chris Kinnear, Christina Navarro, Christine Calderon, Chun Lung Lee, Clive Walcott, Craig Englert, Craig Llorens, Cyd Archer, Cynthia Hunt, Daniel Casara, Daniel Fumagalli, Darlene Murphy Jue, David and Susan Kreisman, David Beerman, David Chappell, David Hardy, David Rubenstein, Dean Benson, Deborah Frisch, Debra Schlies, Deepak Gaur, Deirdre Harrison, Diane Knoepke, Don Quincy Lamb Jr, Dorri McWhorter, Doug Moss, Elizabeth Tager, Emilio Araujo, Emily Fishman, Eric Zoberman, Gaylord and William Gieseke, Grace Araya, Harry and Lily Zoberman, Heather Kistner, Heather Parish, Helen J. Kessler, Helene Fishman, Ilene Korey, Iris Krieg, Jacki Davidoff, James P. Lynch, Jamie Klobuchar, Jamie Metcalf, Jason Kay, Jason Nierman, Jeff and Jamie Kost, Jeffrey Izenman, Jennifer Booth in honor of Tara Leja, Jennifer Lyons, Jesseca Rhymes, Jill Katz, Jill Scott, Jim Hirsch, Julia Gilman, Julia Luscombe, Julia Waggoner, Julie Shaw, Julie Weinberg, Karla Davis, Karyn Watkins, Katherine Dreher, Kellie Martial, Kelly Kirkman, Kenneth Bartman, Kevin Conlon, Kimberly Van Horn, Kimbra Bell, Krishnaiah Revuluri, Krystle Bradley, Larry Joe and Kelley O&rsquo;Hern in memory of Jim Zander, Larry Nierman, Lauren Gaither, Lauren Krieg, Lawrence Kuhn, Lee Menn, Lena Cohn, Linda Weinstein, Lionell Hill, Lisa Raju, Loester Lewis, Louise K. Smith, Luke Easterday, Lynda Wallis, M Steven Sager, Mallory Moreno, Marcella Oglesby, Margaret Anderson, Maria Allen, Maria Ghani and Emaad Rahman, Mark and Joni Croll, Mark McKinley, Matthew Colton, Matthew McGary, Matthew Somerman, Megan Rhyme, Melinda Hardy, Michele and Joel Shoolin in honor of Katherine Korey, Michelle O&rsquo;Sullivan, Mitch Sparber, Myla Weinstein, Nancy Schimmel, Nancy Snyder, Nancy Stermer, Nannette Zander, Neelamjit Dhaliwal, Nicholas Kennedy, Nina Wong, Patricio Cadena, Patrick Grady, Paul and Peggy Bodine, Paul Fyle, Paul Hilder, Paula Frey, Randall Hardy, Rebecca Nierman, Rhonda Fried, Richard Sieracki, Robert and Barbara Finley, Robert Footlik, Ron and Queta Bauer, Roy Walker, Russell Brown, Ryan Biller, Ryan Emmer, Salina Barih, Sam Coady, Sam Spencer, Sanford Peck, Sarah Klebo, Scott and Emily Bishop, Scott Gendell, Sendhil Revuluri and Venu Gupta, Shari Runner, Shel and Renee Goldstein in honor of Jason Nierman, Simone Weil, Sophie Padula, Stephanie Sorlien, Steven M Koch, Susan Gohl, Susan Irion, Tae Kim, Tanner Zelman, Tara Leja, Ted Cappas, Tenisha Phillips, Thomas Penning, Tiffany Scaparotti, Una Lewis, Valerie Coffman, Vickie and Irv Korey in honor of Katherine Korey, William Enright, William O&rsquo;Hara</p>
+      <div class="donors-section-h">Corporations</div>
+      <p class="donors-text">AbbVie Inc., Allstate, Azteca Foods Inc., Carole Robertson Learning Center, Comcast NBC Universal, Concordia Place, Constellation, Discover, Hearst, RSM US, West Monroe, Wintrust</p>
+      <div class="donors-section-h">Foundations</div>
+      <p class="donors-text">Clark-Halladay Memorial Foundation, Cigna Foundation, Comer Family Fund at the Chicago Community Trust, Field Foundation of Illinois, Francis Beidler III and Prudence R. Beidler Foundation, Gaylord and Dorothy Donnelley Foundation, Henry Crown &amp; Company, Hirsch Family Fund in honor of Julie &amp; Mark Nufer and Scott Bishop, National Philanthropic Trust, Pledging Foundation, Robert M. McCormick Foundation, Spencer Foundation</p>
     </section>
 
     <!-- 31: WEST MONROE HERO -->
@@ -1224,7 +1266,7 @@
     donorsSlide.addEventListener('scroll', function() {
       if (!donorsAdvanced && this.scrollTop + this.clientHeight >= this.scrollHeight - 4) {
         donorsAdvanced = true;
-        nav(1);
+        setTimeout(() => nav(1), 700);
       }
     });
 
@@ -1305,6 +1347,14 @@
     function toggleMobile() {
       const m = document.getElementById('mobile-menu');
       m.classList.contains('open') ? closeMobile() : openMobile();
+    }
+
+    function switchChartTab(btn, panelId) {
+      const slide = btn.closest('.s-chart');
+      slide.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+      btn.classList.add('active');
+      slide.querySelectorAll('.chart-wrap').forEach(p => { p.style.display = 'none'; });
+      document.getElementById(panelId).style.display = 'grid';
     }
 
     function toggleAcc(id) {
