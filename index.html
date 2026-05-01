@@ -125,8 +125,8 @@
     .s-hero .sh { color:var(--white); max-width:min(720px,60vw); }
     .s-hero .sb { color:rgba(255,255,255,.8); max-width:min(640px,52vw); margin-top:clamp(14px,1.6vh,24px); }
     .s-hero .sb strong { color:var(--white); }
-    .s-hero .eyebrow { color:var(--yellow); }
-    .hero-sub { font-size:clamp(18px,2vw,32px); font-weight:700; color:var(--white); line-height:1.3; max-width:min(560px,45vw); }
+    .s-hero .eyebrow { color:var(--orange); font-weight:800; font-size:clamp(11px,1.05vw,15px); letter-spacing:.10em; }
+    .hero-sub { font-size:clamp(18px,2vw,32px); font-weight:700; color:var(--white); line-height:1.3; max-width:17em; }
     .hero-logo { position:absolute; bottom:clamp(56px,7vh,120px); left:clamp(56px,5vw,120px); height:clamp(44px,4vw,72px); z-index:2; }
 
     /* ── SPLIT SLIDES ── */
@@ -139,7 +139,7 @@
     .photo .pbg { position:absolute; inset:0; background-size:cover; background-position:center; }
     .photo-credit { position:absolute; bottom:10px; right:12px; font-size:10px; color:rgba(255,255,255,.55); letter-spacing:.04em; z-index:1; }
 
-    .eyebrow { font-size:clamp(10px,0.9vw,13px); font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--orange); margin-bottom:clamp(12px,1.2vh,20px); }
+    .eyebrow { font-size:clamp(11px,0.95vw,14px); font-weight:800; letter-spacing:.12em; text-transform:uppercase; color:var(--orange); margin-bottom:clamp(12px,1.2vh,20px); }
     .sh { font-size:clamp(22px,2.8vw,52px); font-weight:700; color:var(--teal); line-height:1.12; margin-bottom:clamp(16px,1.6vh,28px); }
     .sb { font-size:clamp(15px,1.4vw,22px); font-weight:300; color:var(--body); line-height:1.75; }
     .sb p+p { margin-top:1em; }
@@ -215,6 +215,7 @@
     .bg-circ { position:absolute; border-radius:50%; background:rgba(255,255,255,.05); pointer-events:none; }
     .chart-h { font-size:clamp(26px,3.2vw,54px); font-weight:700; color:var(--white); line-height:1.12; margin-bottom:clamp(16px,2vh,28px); position:relative; z-index:1; }
     .chart-sub { display:none; }
+    .cop-grid { width:100%; display:grid; grid-template-columns:2fr 3fr; gap:clamp(32px,4vw,72px); align-items:start; }
     .chart-view { display:grid; grid-template-columns:1fr 1fr; gap:clamp(48px,6vw,96px); flex:1; align-items:center; position:relative; z-index:1; min-height:0; }
     .chart-left { display:flex; flex-direction:column; justify-content:center; }
     .chart-right { display:flex; align-items:center; justify-content:center; }
@@ -238,13 +239,13 @@
     /* ── HLC STATS ── */
     .s-hlc { background:var(--teal); display:flex; flex-direction:column; align-items:center; justify-content:center; padding:clamp(40px,5vh,80px) clamp(56px,6vw,120px); position:relative; overflow:hidden; }
     .s-hlc::before { content:''; position:absolute; inset:0; background:repeating-linear-gradient(-45deg,transparent,transparent 80px,rgba(255,255,255,.03) 80px,rgba(255,255,255,.03) 81px); }
-    .hlc-h { font-size:clamp(16px,1.6vw,26px); font-weight:900; color:var(--yellow); text-align:center; letter-spacing:.02em; margin-bottom:clamp(24px,3.5vh,52px); position:relative; z-index:1; text-transform:uppercase; }
+    .hlc-h { font-size:clamp(17px,1.75vw,28px); font-weight:900; color:var(--orange); text-align:center; letter-spacing:.01em; margin-bottom:clamp(24px,3.5vh,52px); position:relative; z-index:1; text-transform:uppercase; }
     .hlc-grid { display:flex; flex-direction:column; gap:0; width:100%; max-width:min(1440px,90vw); position:relative; z-index:1; }
     .hlc-card { display:grid; grid-template-columns:clamp(200px,22vw,340px) 1fr; gap:clamp(28px,4vw,72px); align-items:center; border-top:1px solid rgba(255,255,255,.15); padding:clamp(14px,2.2vh,28px) 0; }
     .hlc-card:first-child { border-top:none; padding-top:0; }
     .hlc-left { border-left:4px solid var(--orange); padding-left:clamp(16px,1.8vw,32px); }
     .hlc-num { font-size:clamp(40px,5.5vw,88px); font-weight:900; color:var(--white); line-height:1; margin-bottom:clamp(4px,0.6vh,10px); }
-    .hlc-title { font-size:clamp(14px,1.4vw,22px); font-weight:700; color:var(--yellow); margin-bottom:clamp(6px,0.8vh,12px); }
+    .hlc-title { font-size:clamp(15px,1.5vw,24px); font-weight:800; color:var(--orange); letter-spacing:-.005em; margin-bottom:clamp(6px,0.8vh,12px); }
     .hlc-body { font-size:clamp(13px,1.2vw,18px); font-weight:300; color:rgba(255,255,255,.8); line-height:1.65; }
     .hlc-body strong { font-weight:700; color:var(--white); }
 
@@ -256,7 +257,21 @@
     .mvv-lbl { font-size:clamp(16px,1.6vw,26px); font-weight:900; color:var(--white); text-transform:lowercase; margin-bottom:clamp(4px,0.6vh,10px); }
     .mvv-txt { font-size:clamp(14px,1.4vw,20px); font-weight:300; color:rgba(255,255,255,.85); line-height:1.65; }
     .mvv-txt strong { font-weight:700; color:var(--white); text-transform:uppercase; }
-    .mvv-link { position:relative; z-index:1; font-size:clamp(16px,1.6vw,24px); font-weight:700; color:var(--yellow); text-decoration:none; margin-top:clamp(12px,1.5vh,24px); }
+    .mvv-link { position:relative; z-index:1; font-size:clamp(17px,1.7vw,26px); font-weight:800; color:var(--orange); text-decoration:none; margin-top:clamp(12px,1.5vh,24px); letter-spacing:-.005em; }
+    .s-closing-thanks { padding:0; display:block; }
+    .close-grid { display:flex; flex-direction:column; justify-content:space-between; gap:clamp(28px,4vh,52px); width:100%; height:100%; padding:clamp(40px,5vh,72px) clamp(56px,6vw,120px); position:relative; z-index:1; box-sizing:border-box; }
+    .close-top { max-width:min(1200px,92%); }
+    .close-thanks { border-top:1px solid rgba(255,255,255,0.16); padding-top:clamp(20px,2.8vh,32px); }
+    .thanks-h { font-size:clamp(11px,0.95vw,14px); font-weight:800; letter-spacing:.14em; text-transform:uppercase; color:var(--orange); margin-bottom:clamp(14px,2vh,22px); }
+    .thanks-grid { display:grid; grid-template-columns:repeat(3, 1fr); gap:clamp(24px,3vw,52px); align-items:start; }
+    .thanks-col { color:rgba(255,255,255,0.86); }
+    .thanks-lbl { font-size:clamp(13px,1.15vw,17px); font-weight:800; color:#fff; letter-spacing:.01em; margin-bottom:clamp(8px,1vh,14px); border-bottom:2px solid var(--orange); padding-bottom:6px; display:inline-block; }
+    .thanks-body { font-size:clamp(11px,0.92vw,14px); font-weight:300; line-height:1.55; color:rgba(255,255,255,0.78); margin-bottom:7px; }
+    .thanks-body strong { font-weight:700; color:#fff; }
+    @media (max-width:900px) {
+      .thanks-grid { grid-template-columns:1fr; gap:18px; }
+      .close-grid { padding:32px 24px; }
+    }
 
     /* ── QUOTE ── */
     .s-quote { background:var(--bg-light); display:flex; align-items:center; padding:clamp(48px,5vw,100px) clamp(72px,8vw,160px); }
@@ -265,17 +280,33 @@
     .q-txt { font-size:clamp(22px,2.8vw,48px); font-weight:700; color:var(--teal); line-height:1.38; margin-bottom:clamp(18px,2.5vh,36px); font-style:italic; }
     .q-attr { font-size:clamp(14px,1.2vw,18px); font-weight:300; color:var(--body); }
     .q-attr strong { font-weight:700; color:var(--teal); display:block; }
+    .q-context { margin-top:clamp(20px,3vh,36px); max-width:min(900px,72%); font-size:clamp(13px,1.05vw,16px); font-weight:300; line-height:1.65; color:var(--body); border-top:1px solid rgba(26,96,122,0.18); padding-top:clamp(14px,2vh,22px); }
+    .q-context strong { font-weight:700; color:var(--teal); }
+    .footnote-ref { color:var(--orange); text-decoration:none; font-weight:700; margin-left:1px; }
+    .footnote-ref:hover { text-decoration:underline; }
+    .footnote-ref sup { font-size:0.72em; }
+    .inline-link { color:var(--orange); text-decoration:underline; text-underline-offset:3px; text-decoration-thickness:1px; }
+    .inline-link:hover { color:var(--teal); }
+    .eyebrow-link { color:inherit; text-decoration:none; }
+    .eyebrow-link:hover { text-decoration:underline; }
 
     /* ── FLOWER ── */
     .s-flower { display:grid; grid-template-columns:1fr 1fr; background:var(--bg-light); }
     .flower-l { padding:clamp(48px,5vw,100px) clamp(40px,4vw,80px) clamp(48px,5vw,100px) clamp(56px,5vw,100px); display:flex; flex-direction:column; justify-content:center; border-right:1px solid rgba(26,96,122,.12); position:relative; z-index:1; }
     .flower-r { padding:clamp(48px,5vw,100px) clamp(56px,5vw,100px) clamp(48px,5vw,100px) clamp(40px,4vw,80px); display:flex; flex-direction:column; justify-content:center; background:var(--white); position:relative; z-index:1; }
-    .flower-svg { width:clamp(140px,13vw,220px); height:clamp(140px,13vw,220px); margin:0 auto clamp(16px,1.8vh,28px); }
-    .flower-lbl { font-size:clamp(11px,0.9vw,14px); font-weight:700; color:var(--teal); text-transform:uppercase; letter-spacing:.1em; margin-bottom:clamp(10px,1.2vh,20px); }
-    .flower-list { list-style:none; }
-    .flower-list li { display:flex; gap:10px; margin-bottom:clamp(7px,1vh,14px); font-size:clamp(14px,1.4vw,20px); font-weight:300; color:var(--body); line-height:1.5; }
-    .flower-list li::before { content:'·'; color:var(--orange); font-size:20px; line-height:1.2; flex-shrink:0; margin-top:-1px; }
-    .flower-list strong { font-weight:700; color:var(--teal); }
+    .flower-lbl { font-size:clamp(11px,0.9vw,14px); font-weight:700; color:var(--teal); text-transform:uppercase; letter-spacing:.1em; margin-bottom:clamp(14px,1.6vh,24px); text-align:center; }
+    .flower { position:relative; width:min(560px,94%); aspect-ratio:1; margin:0 auto; }
+    .petal { position:absolute; top:50%; left:50%; width:46%; aspect-ratio:1; border-radius:50%; transform:translate(-50%,-50%) rotate(var(--rot)) translateY(-66%) rotate(calc(-1 * var(--rot))); display:flex; align-items:center; justify-content:center; }
+    .petal-inner { text-align:center; padding:0 16%; line-height:1.25; }
+    .petal-inner strong { display:block; font-size:clamp(13px,1.35vw,19px); font-weight:800; color:var(--teal); margin-bottom:3px; letter-spacing:-.005em; }
+    .petal-inner span { font-size:clamp(10px,0.95vw,13px); font-weight:300; color:var(--body); line-height:1.3; display:block; }
+    .flower-center { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:31%; aspect-ratio:1; border-radius:50%; background:var(--teal); color:#fff; display:flex; align-items:center; justify-content:center; text-align:center; font-weight:800; font-size:clamp(12px,1.15vw,16px); line-height:1.15; letter-spacing:.01em; box-shadow:0 6px 18px rgba(26,96,122,0.18); }
+    .petal.p1 { background:rgba(245,166,35,.18); border:1.5px solid var(--orange); }
+    .petal.p2 { background:rgba(240,200,32,.20); border:1.5px solid var(--yellow); }
+    .petal.p3 { background:rgba(40,185,204,.18); border:1.5px solid var(--cyan); }
+    .petal.p4 { background:rgba(245,166,35,.18); border:1.5px solid var(--orange); }
+    .petal.p5 { background:rgba(240,200,32,.20); border:1.5px solid var(--yellow); }
+    .petal.p6 { background:rgba(40,185,204,.18); border:1.5px solid var(--cyan); }
 
     /* ── CLOSING ── */
     .s-closing { display:grid; grid-template-columns:1fr 1fr; background:var(--white); }
@@ -301,6 +332,9 @@
 
     /* ── STAT CARDS ── */
     .stats-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:clamp(18px,2.5vw,40px); margin-top:clamp(16px,2vh,32px); }
+    .stats-grid.cols-4 { grid-template-columns:repeat(4,1fr); }
+    .split-2 { width:100%; display:grid; grid-template-columns:1fr 1fr; align-items:center; gap:clamp(40px,5vw,100px); }
+    .split-3 { display:grid; grid-template-columns:repeat(3,1fr); gap:clamp(20px,3vw,52px); }
     .stat-card { border-left:3px solid var(--orange); padding-left:clamp(14px,1.4vw,24px); }
     .stat-num { font-size:clamp(28px,3.5vw,60px); font-weight:900; color:var(--teal); line-height:1; margin-bottom:clamp(4px,0.6vh,8px); }
     .stat-lbl { font-size:clamp(12px,1vw,16px); font-weight:700; color:var(--body); line-height:1.4; }
@@ -378,9 +412,70 @@
       .s-accordion { padding:40px 20px; }
       .letter-grid { grid-template-columns:1fr; gap:18px; }
       .stats-grid { grid-template-columns:1fr 1fr; }
+      .stats-grid.cols-4 { grid-template-columns:1fr 1fr; }
+      .split-2 { grid-template-columns:1fr; gap:24px; }
+      .split-3 { grid-template-columns:1fr; gap:24px; }
       .chart-wrap { grid-template-columns:1fr; }
       .donors-grid { grid-template-columns:1fr; }
       .s-flower { grid-template-columns:1fr; }
+      .s-chart { padding:32px 24px; gap:14px; }
+      .chart-view { grid-template-columns:1fr; gap:24px; }
+      .chart-left { order:2; }
+      .chart-right { order:1; }
+      .donut-wrap { width:min(72vw,320px) !important; height:min(72vw,320px) !important; }
+      .donut-num { font-size:clamp(28px,8vw,40px); }
+      .donut-lbl { font-size:clamp(11px,3vw,14px); }
+      .legend { flex-direction:column; gap:8px; }
+      .leg-item { font-size:14px; }
+      .filters { flex-wrap:wrap; }
+      .chart-h { font-size:clamp(22px,6.6vw,32px); }
+      .cop-grid { grid-template-columns:1fr; gap:24px; }
+      .cop-orgs { grid-template-columns:1fr 1fr; }
+      .hlc-card { grid-template-columns:1fr; gap:8px; padding:18px 0; }
+      .hlc-left { border-left:none; border-top:4px solid var(--orange); padding-left:0; padding-top:14px; }
+      .hlc-num { font-size:clamp(36px,11vw,52px); }
+      .hlc-h { font-size:clamp(15px,4.6vw,20px); margin-bottom:20px; }
+      .hero-h1 { font-size:clamp(40px,12vw,64px); max-width:92vw; }
+      .hero-sub { font-size:clamp(16px,4.6vw,22px); max-width:92vw; }
+      /* Allow content to scroll inside slide instead of clipping; start from top */
+      .s-content, .s-flower .flower-l, .s-letter, .s-toc, .s-accordion, .s-mvv, .s-hlc, .s-chart { align-items:flex-start; overflow-y:auto; -webkit-overflow-scrolling:touch; }
+      .s-content { display:block; padding-top:56px; padding-bottom:48px; }
+      .s-content > * { max-width:none; }
+      /* Right padding so eyebrow / headlines don't run under hamburger */
+      .s-content .eyebrow, .s-chart .eyebrow, .s-content .sh, .s-chart .chart-h { padding-right:48px; }
+      /* Bigger tap targets for chevron buttons */
+      #right-nav { width:52px; padding:14px 0 18px; }
+      .arr { padding:8px; }
+      .arr svg { width:36px; height:36px; }
+    }
+    /* Landscape phones (short height, wide) — let hero photos breathe */
+    @media (max-height:500px) and (orientation:landscape) {
+      .s-hero { padding-bottom:24px; }
+      .hero-h1 { font-size:clamp(28px,5vw,44px); margin-bottom:8px; }
+      .hero-sub { font-size:clamp(13px,2vw,16px); }
+      .eyebrow-pill { padding:3px 10px; margin-bottom:10px; }
+      .s-hero .sh { font-size:clamp(18px,2.6vw,28px); }
+      .s-hero .sb { font-size:clamp(12px,1.4vw,15px); margin-top:8px; }
+      .cover-logo { width:60px; }
+      .s-content, .s-flower, .s-letter, .s-toc, .s-accordion, .s-mvv, .s-hlc, .s-chart { padding:18px 24px !important; }
+      .letter-grid { gap:14px; }
+      .flower { max-width:540px; margin:0 auto; }
+    }
+    /* Reduced motion — keep transitions minimal beyond the slide JS handler */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        transition-duration:0.01ms !important;
+        animation-duration:0.01ms !important;
+        animation-iteration-count:1 !important;
+      }
+      .slide { transition:opacity 0.01ms !important; }
+      .flower-l { border-right:none; padding-bottom:24px; }
+      .flower { aspect-ratio:auto; width:100%; display:flex; flex-direction:column; gap:10px; max-width:none; }
+      .petal { position:static; width:100%; aspect-ratio:auto; border-radius:14px; padding:16px 20px; transform:none !important; display:block; min-height:0; }
+      .petal-inner { padding:0; text-align:left; line-height:1.4; }
+      .petal-inner strong { display:inline; font-size:clamp(16px,4.6vw,20px); margin-right:8px; }
+      .petal-inner span { display:inline; font-size:clamp(13px,3.6vw,15px); line-height:1.4; }
+      .flower-center { position:relative; top:auto; left:auto; transform:none; width:auto; aspect-ratio:auto; border-radius:8px; padding:10px 18px; font-size:13px; letter-spacing:.12em; text-transform:uppercase; align-self:flex-start; margin-bottom:6px; box-shadow:none; order:-1; }
       .s-closing { grid-template-columns:1fr; }
       .close-txt { padding:40px 28px; }
       .s-mvv { padding:40px 28px; }
@@ -433,7 +528,7 @@
   <div id="mobile-menu">
     <div class="menu-label">Table of Contents</div>
     <nav class="menu-nav">
-      <a href="#" class="menu-item" onclick="goTo(1);closeMobile()">
+      <a href="#" class="menu-item" onclick="goTo(2);closeMobile()">
         <span class="menu-arr"><svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg"><path class="btn-circle" d="M17 1C25.8366 1 33 8.16345 33 17C33 25.8365 25.8366 33 17 33C8.16345 33 1 25.8366 1 17C1 8.16345 8.16345 1 17 1Z" stroke="#FFD855" stroke-width="2"/><path class="btn-arrow" d="M12.7183 17.6064C12.4064 17.2946 12.4064 16.7884 12.7183 16.4766L16.731 12.4648L16.9077 12.2881L21.0962 16.4766C21.4081 16.7884 21.4081 17.2946 21.0962 17.6064C20.7845 17.918 20.2792 17.9178 19.9673 17.6064L17.7075 15.3506V20.8916C17.7074 21.3332 17.3493 21.6912 16.9077 21.6914C16.466 21.6914 16.107 21.3333 16.1069 20.8916V15.3506L13.8472 17.6064C13.5352 17.9178 13.0299 17.9181 12.7183 17.6064Z" fill="url(#menu-arr-grad)" stroke="#33A3BD" stroke-width="0.5"/><defs><linearGradient id="menu-arr-grad" x1="12.5073" y1="17.0414" x2="21.3073" y2="17.0414" gradientUnits="userSpaceOnUse"><stop stop-color="#008CAC"/><stop offset="1" stop-color="#33A3BD"/></linearGradient></defs></svg></span>
         <span class="menu-text"><span class="menu-eyebrow">The Power of Promise in 2026</span><span class="menu-item-text">A Letter from Our Executive Director</span></span>
       </a>
@@ -476,33 +571,17 @@
       <div class="content">
         <div class="eyebrow-pill" style="margin-bottom:28px">2025 Impact Report</div>
         <h1 class="hero-h1">the power<br>of promise</h1>
-        <p class="hero-sub">inflection points for<br>Illinois children &amp; youth</p>
+        <p class="hero-sub">inflection points for Chicagoland children and youth</p>
         <img src="img/logo-white.svg" alt="Bright Promises Foundation" class="cover-logo">
       </div>
     </section>
 
-    <!-- 1: ED LETTER -->
-    <section class="slide s-letter" data-i="1" data-sec="ed-letter">
-      <div class="letter-grid">
-        <h2 class="letter-h">The Power of Promise in 2026</h2>
-        <div class="letter-col">
-          <p>The last year has laid bare how inequity continues to shape the environments where Chicagoland children grow up. These realities show up every day&mdash;in classrooms, in communities, and in futures constrained too early. And still, our young people remain hopeful. They have not given up on their futures, and neither can we.</p>
-          <p>This moment calls for leadership that acts early, invests wisely, and listens closely to community voice&mdash;because the conditions shaping young people&rsquo;s lives today determine the outcomes we see tomorrow. Together with our cohort of 22 community-based organizations and a diverse network of partners and experts, Bright Promises continues to evolve to respond to urgent needs while building toward long-term change.</p>
-        </div>
-        <div class="letter-col">
-          <p>In the pages that follow, <em>The Power of Promise</em> explores the critical space between environments and outcomes&mdash;the &ldquo;missing middle&rdquo; where development happens. This report shows what becomes possible when communities, partners, and donors come together to build the conditions young people need to thrive.</p>
-          <p><strong>As you read, we invite you to see how acting early&mdash;together&mdash;protects opportunity and builds the future our children deserve.</strong></p>
-          <div class="letter-sig">In Solidarity,<strong>Katherine Korey</strong>Executive Director<br>Bright Promises Foundation</div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 2: TABLE OF CONTENTS -->
-    <section class="slide s-toc" data-i="2" data-sec="toc">
+    <!-- 1: TABLE OF CONTENTS -->
+    <section class="slide s-toc" data-i="1" data-sec="toc">
       <div>
         <div class="toc-label">Table of Contents</div>
         <ul class="toc-list">
-          <li class="toc-item" onclick="goTo(1)">
+          <li class="toc-item" onclick="goTo(2)">
             <span class="toc-arr"><svg viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M17 1C25.8366 1 33 8.16345 33 17C33 25.8365 25.8366 33 17 33C8.16345 33 1 25.8366 1 17C1 8.16345 8.16345 1 17 1Z" stroke="#FFD855" stroke-width="2"/><path d="M12.811 16.7671C12.4992 17.079 12.4992 17.5851 12.811 17.897L16.8237 21.9087L17.0005 22.0854L21.189 17.897C21.5008 17.5851 21.5008 17.079 21.189 16.7671C20.8773 16.4556 20.372 16.4557 20.0601 16.7671L17.8003 19.0229V13.4819C17.8002 13.0403 17.4421 12.6823 17.0005 12.6821C16.5587 12.6821 16.1998 13.0402 16.1997 13.4819V19.0229L13.9399 16.7671C13.628 16.4557 13.1227 16.4555 12.811 16.7671Z" fill="#008CAC" stroke="#33A3BD" stroke-width="0.5"/></svg></span>
             <span class="toc-text">
               <span class="toc-eyebrow">The Power of Promise in 2026</span>
@@ -560,6 +639,22 @@
       </div>
     </section>
 
+    <!-- 2: ED LETTER -->
+    <section class="slide s-letter" data-i="2" data-sec="ed-letter">
+      <div class="letter-grid">
+        <h2 class="letter-h">The Power of Promise in 2026</h2>
+        <div class="letter-col">
+          <p>The last year has laid bare how inequity continues to shape the environments where Chicagoland children grow up. These realities show up every day&mdash;in classrooms, in communities, and in futures constrained too early. And still, our young people remain hopeful. They have not given up on their futures, and neither can we.</p>
+          <p>This moment calls for leadership that acts early, invests wisely, and listens closely to community voice&mdash;because the conditions shaping young people&rsquo;s lives today determine the outcomes we see tomorrow. Together with our cohort of 22 community-based organizations and a diverse network of partners and experts, Bright Promises continues to evolve to respond to urgent needs while building toward long-term change.</p>
+        </div>
+        <div class="letter-col">
+          <p>In the pages that follow, <em>The Power of Promise</em> explores the critical space between environments and outcomes&mdash;the &ldquo;missing middle&rdquo; where development happens. This report shows what becomes possible when communities, partners, and donors come together to build the conditions young people need to thrive.</p>
+          <p><strong>As you read, we invite you to see how acting early&mdash;together&mdash;protects opportunity and builds the future our children deserve.</strong></p>
+          <div class="letter-sig">In Solidarity,<strong>Katherine Korey</strong>Executive Director<br>Bright Promises Foundation</div>
+        </div>
+      </div>
+    </section>
+
     <!-- 3: KI1 A -->
     <section class="slide s-hero" data-i="3" data-sec="ki1">
       <div class="bg" style="background-image:url('img/keyinsight_1.jpg')"></div>
@@ -574,7 +669,7 @@
     <section class="slide s-split" data-i="4" data-sec="ki1">
       <div class="txt">
         <div class="sb">
-          <p><strong>As the opportunity gap widens across Chicagoland,</strong> the organizations closest to the communities that need them most are being asked to do more with dramatically less. Rising stress, trauma, and fractured systems have increased demand for their services&mdash;just as funding has become more volatile and uncertain.</p>
+          <p><strong>As the opportunity gap widens across Chicagoland,</strong><a class="footnote-ref" href="https://edworkingpapers.com/sites/default/files/ai26-1378.pdf" target="_blank" rel="noopener" aria-label="Source"><sup>1</sup></a> the organizations closest to the communities that need them most are being asked to do more with dramatically less. Rising stress, trauma, and fractured systems have increased demand for their services&mdash;just as funding has become more volatile and uncertain.</p>
           <p><strong>Our community-based partners are deeply trusted.</strong> Especially by young people and their families, they are often the first place families turn, the most responsive in moments of crisis, and the most agile in adapting to changing community needs.</p>
           <p>For donors, this means your investment stabilizes trusted community anchors&mdash;so they can keep showing up when families need them most.</p>
         </div>
@@ -585,23 +680,15 @@
     <!-- 5: KI1 C — Flower Graphic -->
     <section class="slide s-flower" data-i="5" data-sec="ki1">
       <div class="flower-l">
-        <p class="flower-lbl">Bright Promises:</p>
-        <svg class="flower-svg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="100" cy="68"  r="46" fill="rgba(245,166,35,.14)"  stroke="#F5A623" stroke-width="1.5"/>
-          <circle cx="62"  cy="132" r="46" fill="rgba(40,185,204,.14)"  stroke="#28B9CC" stroke-width="1.5"/>
-          <circle cx="138" cy="132" r="46" fill="rgba(240,200,32,.14)"  stroke="#F0C820" stroke-width="1.5"/>
-          <circle cx="100" cy="105" r="26" fill="rgba(26,96,122,.12)"   stroke="#1A607A" stroke-width="1.5"/>
-          <text x="100" y="101" text-anchor="middle" font-family="B1816,sans-serif" font-size="8" font-weight="700" fill="#1A607A">bright</text>
-          <text x="100" y="112" text-anchor="middle" font-family="B1816,sans-serif" font-size="8" font-weight="700" fill="#1A607A">promises</text>
-        </svg>
-        <ul class="flower-list">
-          <li><strong>Anticipates</strong> emerging needs early</li>
-          <li><strong>Invests</strong> where larger institutions can&rsquo;t or won&rsquo;t</li>
-          <li><strong>Builds</strong> capacity from the inside out</li>
-          <li><strong>Creates</strong> cross-sector alignment where silos normally exist</li>
-          <li><strong>Elevates</strong> community leadership</li>
-          <li><strong>Influences</strong> public systems and policy</li>
-        </ul>
+        <div class="flower">
+          <div class="petal p1" style="--rot:0deg"><div class="petal-inner"><strong>Anticipates</strong><span>emerging needs early</span></div></div>
+          <div class="petal p2" style="--rot:60deg"><div class="petal-inner"><strong>Invests</strong><span>where larger institutions can&rsquo;t or won&rsquo;t</span></div></div>
+          <div class="petal p3" style="--rot:120deg"><div class="petal-inner"><strong>Builds</strong><span>capacity from the inside out</span></div></div>
+          <div class="petal p4" style="--rot:180deg"><div class="petal-inner"><strong>Creates</strong><span>cross-sector alignment where silos exist</span></div></div>
+          <div class="petal p5" style="--rot:240deg"><div class="petal-inner"><strong>Elevates</strong><span>community leadership</span></div></div>
+          <div class="petal p6" style="--rot:300deg"><div class="petal-inner"><strong>Influences</strong><span>public systems and policy</span></div></div>
+          <div class="flower-center">bright<br>promises</div>
+        </div>
       </div>
       <div class="flower-r">
         <p class="sb"><strong>Bright Promises ensures these trusted partners can continue to lead.</strong> Through multi-year investment, capacity-building, and leadership development, we help stabilize the organizations that anchor opportunity&mdash;so communities can keep showing up for children when it matters most.</p>
@@ -610,7 +697,7 @@
 
     <!-- 6: COMMUNITY OF PARTNERS -->
     <section class="slide s-content" data-i="6" data-sec="cop">
-      <div style="width:100%;display:grid;grid-template-columns:2fr 3fr;gap:clamp(32px,4vw,72px);align-items:start">
+      <div class="cop-grid">
         <div>
           <div class="eyebrow">Community of Partners</div>
           <h2 class="sh" style="font-size:clamp(24px,2.8vw,44px);margin-bottom:clamp(14px,1.6vh,22px)">Change doesn&rsquo;t happen in isolation.</h2>
@@ -624,22 +711,21 @@
           </video>
           <div style="font-size:clamp(10px,0.85vw,13px);font-weight:900;letter-spacing:.18em;text-transform:uppercase;color:var(--orange);margin-bottom:clamp(8px,1vh,14px)">2025&ndash;26 Grantee Organizations</div>
           <div class="cop-orgs">
-            <div class="cop-org">AAAN</div>
+            <div class="cop-org">A Long Walk Home</div>
+            <div class="cop-org">Arab American Action Network</div>
             <div class="cop-org">Alliance of the Southeast</div>
             <div class="cop-org">Alternatives</div>
-            <div class="cop-org">BUILD</div>
+            <div class="cop-org">Build Inc</div>
             <div class="cop-org">Chicago Commons</div>
             <div class="cop-org">Chicago Freedom School</div>
             <div class="cop-org">Chicago Youth Centers</div>
             <div class="cop-org">Chicago Youth Programs</div>
             <div class="cop-org">Communities United</div>
-            <div class="cop-org">Gads Hill Center</div>
-            <div class="cop-org">IASN</div>
-            <div class="cop-org">KumbaLynx</div>
-            <div class="cop-org">Long Walk Home</div>
+            <div class="cop-org">Illinois Afterschool Network</div>
+            <div class="cop-org">Kuumba Lynx</div>
             <div class="cop-org">New Community Outreach</div>
             <div class="cop-org">Northwest Center</div>
-            <div class="cop-org">Onward House</div>
+            <div class="cop-org">Onward Neighborhood House</div>
             <div class="cop-org">Palenque LSNA</div>
             <div class="cop-org">Project Vision</div>
             <div class="cop-org">Southside Together</div>
@@ -694,7 +780,7 @@
 
     <!-- 10: HLC INTRO -->
     <section class="slide s-content" data-i="10" data-sec="hlc">
-      <div style="width:100%;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:clamp(40px,5vw,100px)">
+      <div class="split-2">
         <div>
           <div class="eyebrow">Impact Spotlight</div>
           <h2 class="sh" style="font-size:clamp(26px,3.2vw,48px);margin-bottom:24px">Healing Youth Racial Trauma</h2>
@@ -782,7 +868,7 @@
     <section class="slide s-quote" data-i="15" data-sec="ase">
       <div class="q-inner">
         <span class="q-mark">&ldquo;</span>
-        <blockquote class="q-txt">Bright Promises&rsquo; support has not only helped ASE sustain our work, but truly grow by trusting us as experts and intentionally creating space for connection. Their approach uplifts and expands our work, rather than limiting it through traditional models, while also centering, encouraging, and investing in the leadership of our youth.</blockquote>
+        <blockquote class="q-txt">Bright Promises&rsquo; support has not only helped ASE sustain our work, but truly grow by trusting us as experts and intentionally creating space for connection. Their approach uplifts and expands our work, rather than limiting it through traditional models, while also centering, encouraging, and investing in the leadership of our youth.&rdquo;</blockquote>
         <div class="q-attr"><strong>Isis Bazaldua</strong>Youth Organizing Director, Alliance for the Southeast</div>
       </div>
     </section>
@@ -816,7 +902,7 @@
       <div style="max-width:1060px;position:relative;z-index:1">
         <div class="eyebrow">Impact Spotlight: Strengthening Learning Environments for Young Children</div>
         <h2 class="sh" style="margin-bottom:16px">Bright Promises is proud to launch the WellEQUIPD Initiative, a multi-year effort designed to strengthen the early childhood workforce.</h2>
-        <p class="sb">Drawing on a decade of learning, WellEQUIPD helps providers improve the environments children experience every day. We are bringing diverse leaders together to co-create solutions through a <strong>Community of Practice</strong> and investing <strong>over $1 million</strong> to create more stable classrooms, more confident educators, and a stronger early childhood system across Chicagoland and Illinois.</p>
+        <p class="sb"><a class="inline-link" href="https://cdn.prod.website-files.com/5710272db1eee97476da5897/67f675641e5840942fdeef3f_FINAL_EQUIP%20Assessment%202014-2023.pdf" target="_blank" rel="noopener">Drawing on a decade of learning</a>, WellEQUIPD helps providers improve the environments children experience every day. We are bringing diverse leaders together to co-create solutions through a <strong>Community of Practice</strong> and investing <strong>over $1 million</strong> to create more stable classrooms, more confident educators, and a stronger early childhood system across Chicagoland and Illinois.</p>
         <p style="font-size:12px;font-weight:700;color:var(--teal);text-transform:uppercase;letter-spacing:.1em;margin-top:24px;margin-bottom:8px">WellEQUIPD Inaugural Cohort</p>
         <div class="org-tags"><span class="org-tag">Chicago Commons</span><span class="org-tag">Chicago Youth Centers</span><span class="org-tag">Christopher House</span><span class="org-tag">Concordia Place</span><span class="org-tag">Gads Hill Center</span><span class="org-tag">Onward Neighborhood House</span></div>
         <div class="stats-grid" style="margin-top:28px">
@@ -831,7 +917,7 @@
     <section class="slide s-hero" data-i="19" data-sec="ki4">
       <div class="bg" style="background-image:url('img/keyinsight_4.jpg')"></div>
       <div class="content">
-        <div class="eyebrow">Early Investment. Stronger Systems. Lasting Impact.</div>
+        <div class="eyebrow">Upstream Impact for Lasting Opportunity</div>
         <h2 class="sh"><strong>Key Insight 4:</strong> Effective solutions start early.</h2>
         <div class="sb"><p>Bright Promises&rsquo; model proves that early intervention and coordination lead to better outcomes at lower cost. By strengthening organizations, aligning systems, and addressing challenges before they escalate into crisis, Bright Promises turns early action into lasting impact for children, families, and communities.</p></div>
       </div>
@@ -840,11 +926,18 @@
     <!-- 20: KI4 B -->
     <section class="slide s-split" data-i="20" data-sec="ki4">
       <div class="txt">
-        <div class="eyebrow">Early investment. Stronger systems. Lasting impact.</div>
-        <h2 class="sh">Effective solutions start early.</h2>
+        <div class="eyebrow">Key Insight 4</div>
+        <h2 class="sh">Early investment. Stronger systems. Lasting impact.</h2>
         <div class="sb">
-          <p>Bright Promises&rsquo; model proves that early intervention and coordination lead to better outcomes at lower cost. By strengthening organizations, aligning systems, and addressing challenges before they escalate into crisis, Bright Promises turns early action into lasting impact for children, families, and communities.</p>
-          <p><strong>What Bright Promises Upstream Initiatives Produce:</strong> Proven practices coordinated across systems; durable change beyond the life of a grant; replication across organizations and sectors; reduced reliance on costly downstream interventions.</p>
+          <p>Bright Promises exists to spark what&rsquo;s possible&mdash;bringing people together, testing bold ideas, and helping what works spread.</p>
+          <p>Bright Promises drives results by acting early&mdash;before needs escalate and costs multiply. Our upstream initiatives targeting early childhood education, youth mental health, and youth leadership and civic engagement move effective ideas out of silos and into practice, shaping how systems respond to children and families over time.</p>
+          <p style="margin-top:1.1em"><strong>What Bright Promises Upstream Initiatives Produce:</strong></p>
+          <ul class="acc-list" style="margin-top:6px">
+            <li>Proven practices coordinated across systems, not just piloted in individual programs.</li>
+            <li>Durable change that continues beyond the life of a grant.</li>
+            <li>Replication across organizations and sectors, expanding reach without increasing cost.</li>
+            <li>Reduced reliance on costly downstream interventions by preventing crisis before it occurs.</li>
+          </ul>
         </div>
       </div>
       <div class="photo"><div class="pbg" style="background-image:url('img/convening-3.jpg');background-position:center 30%"></div></div>
@@ -865,11 +958,15 @@
       <div class="txt">
         <div class="eyebrow">Building Youth Power Through Civic Leadership</div>
         <h2 class="sh">With Bright Promises&rsquo; support, Communities United is building durable youth power.</h2>
-        <div class="sb"><p>Equipping young people to lead, advocate, and transform the systems that shape their lives through expanded leadership pipelines, peer-to-peer facilitation, and advocacy that connects personal growth to collective impact.</p></div>
-        <div class="stats-grid" style="grid-template-columns:1fr 1fr 1fr;margin-top:20px">
-          <div class="stat-card"><div class="stat-num">300+</div><div class="stat-lbl">young people engaged through Healing Through Justice</div></div>
-          <div class="stat-card"><div class="stat-num">50</div><div class="stat-lbl">youth facilitators trained to lead peers &amp; advance advocacy</div></div>
-          <div class="stat-card"><div class="stat-num">1,000</div><div class="stat-lbl">students reached through Know Your Rights campaigns</div></div>
+        <div class="sb">
+          <p>As part of Bright Promises&rsquo; commitment to advancing youth leadership and civic engagement, Communities United is equipping young people to lead, advocate, and transform the systems that shape their lives.</p>
+          <p>Communities United expanded leadership pipelines, peer-to-peer facilitation, and advocacy efforts that connect personal growth to collective impact. This partnership reflects what we believe at Bright Promises: <strong>when young people are trusted, whole communities rise.</strong></p>
+        </div>
+        <div style="font-size:clamp(11px,0.95vw,14px);font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--orange);margin-top:clamp(14px,2vh,22px)">This partnership delivered results</div>
+        <div class="stats-grid" style="margin-top:10px">
+          <div class="stat-card"><div class="stat-num">300+</div><div class="stat-lbl">young people engaged through the Healing Through Justice (HTJ) leadership model</div></div>
+          <div class="stat-card"><div class="stat-num">50</div><div class="stat-lbl">youth facilitators trained to lead peers, design workshops, and advance youth-led advocacy</div></div>
+          <div class="stat-card"><div class="stat-num">1,000</div><div class="stat-lbl">students and adult allies reached through Know Your Rights campaigns</div></div>
         </div>
       </div>
     </section>
@@ -878,8 +975,9 @@
     <section class="slide s-quote" data-i="23" data-sec="cu">
       <div class="q-inner">
         <span class="q-mark">&ldquo;</span>
-        <blockquote class="q-txt">This format is different. Bright Promises&rsquo; support has allowed me to grow as a leader, but the youth too feel that investment. Investing in one young person is investing in everyone they have an interaction with.</blockquote>
+        <blockquote class="q-txt">This format is different. Bright Promises&rsquo; support has allowed me to grow as a leader, but the youth too feel that investment. Investing in one young person is investing in everyone they have an interaction with.&rdquo;</blockquote>
         <div class="q-attr"><strong>Maria Paula Gareza Degillo</strong>Director of Strategic Narratives, Communities United<br><em style="font-size:13px;color:var(--orange)">2025 Elevating Youth Voices Honoree</em></div>
+        <p class="q-context">This work is brought to life by leaders like 2025 Elevating Youth Voices Honoree Maria Paula Gareza Degillo, whose <strong>$5,000 Bright Promises honorarium</strong>&mdash;provided in addition to Communities United&rsquo;s grant support&mdash;is strengthening her leadership and expanding the reach of Communities United&rsquo;s impact. This investment reflects Bright Promises&rsquo; belief that supporting individual leaders amplifies power far beyond a single organization.</p>
       </div>
     </section>
 
@@ -889,7 +987,7 @@
       <div class="overlay" style="background:var(--teal-dk);opacity:.72"></div>
       <div class="content">
         <div class="eyebrow">Scaling What Works</div>
-        <h2 class="sh"><strong>Key Insight 5:</strong> Scaling what works through trust, partnership, and community leadership creates lasting opportunity for children.</h2>
+        <h2 class="sh"><strong>Key Insight 5:</strong> Looking Ahead&mdash;Stabilizing Today, Building What&rsquo;s Next.</h2>
         <div class="sb"><p>Lasting systems change doesn&rsquo;t come from top-down replication alone. It happens when proven ideas are grown from the ground up&mdash;rooted in community trust, strengthened through shared learning, and supported by flexible, multi-year investment.</p></div>
       </div>
     </section>
@@ -899,9 +997,8 @@
       <div class="photo"><div class="pbg" style="background-image:url('img/convening-4.jpg')"></div></div>
       <div class="txt">
         <div class="eyebrow">Key Insight 5</div>
-        <h2 class="sh">Scaling what works through trust, partnership, and community leadership creates lasting opportunity for children.</h2>
+        <h2 class="sh">Looking Ahead: Stabilizing Today, Building What&rsquo;s Next.</h2>
         <div class="sb">
-          <p><strong>Lasting systems change doesn&rsquo;t come from top-down replication alone.</strong> It happens when proven ideas are grown from the ground up&mdash;rooted in community trust, strengthened through shared learning, and supported by flexible, multi-year investment.</p>
           <p>By combining the risk-tolerance of venture philanthropy with the relationship-building and movement power of grassroots organizing, Bright Promises helps community-based organizations scale what works while staying responsive to the people they serve.</p>
           <p><strong>The result</strong> is a stronger, more coordinated ecosystem where effective practices spread, organizations grow together, and children benefit from opportunity that lasts.</p>
         </div>
@@ -913,7 +1010,7 @@
       <div style="max-width:min(1440px,92vw);position:relative;z-index:1">
         <div class="eyebrow">Our Goals</div>
         <h2 class="sh" style="font-size:clamp(28px,3.6vw,60px);margin-bottom:clamp(24px,3.5vh,52px)">These commitments reflect what our community has told us matters most&mdash;now and for the future.</h2>
-        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(20px,3vw,52px)">
+        <div class="split-3">
           <div style="border-top:3px solid var(--orange);padding-top:clamp(16px,2vh,28px)"><h3 style="font-size:clamp(16px,1.6vw,24px);font-weight:700;color:var(--teal);margin-bottom:12px">Embed trauma-informed and SEL practices</h3><p class="sb" style="font-size:clamp(14px,1.3vw,20px)">Into organizational policy, leadership, and daily practice across community-based organizations throughout Chicagoland&mdash;so care, safety, and belonging are built into the systems children experience every day.</p></div>
           <div style="border-top:3px solid var(--cyan);padding-top:clamp(16px,2vh,28px)"><h3 style="font-size:clamp(16px,1.6vw,24px);font-weight:700;color:var(--teal);margin-bottom:12px">Strengthen workforce stability and resilience</h3><p class="sb" style="font-size:clamp(14px,1.3vw,20px)">By reducing burnout, supporting retention, and investing in the people who carry this work forward, even under extraordinary strain.</p></div>
           <div style="border-top:3px solid var(--yellow);padding-top:clamp(16px,2vh,28px)"><h3 style="font-size:clamp(16px,1.6vw,24px);font-weight:700;color:var(--teal);margin-bottom:12px">Build shared infrastructure for scale and influence</h3><p class="sb" style="font-size:clamp(14px,1.3vw,20px)">Enabling tools, learning, and promising practices to spread beyond individual grantees and drive broader systems uptake.</p></div>
@@ -926,7 +1023,7 @@
     <section class="slide s-hero" data-i="27" data-sec="financials" style="background:var(--teal-dk)">
       <div class="content">
         <div class="eyebrow">Financials &amp; Stewardship</div>
-        <h2 class="sh" style="font-size:clamp(48px,6.5vw,104px);line-height:1.04;margin-bottom:clamp(28px,3.5vh,56px)">Stewarding Community<br>Resources with Care</h2>
+        <h2 class="sh" style="font-size:clamp(40px,5.2vw,84px);line-height:1.04;margin-bottom:clamp(24px,3vh,44px)">Stewarding Community Resources with Care</h2>
         <div class="sb" style="font-size:clamp(15px,1.4vw,22px);max-width:min(800px,62vw)">
           <p><strong>We treat every dollar as a vote of trust&mdash;from our community and for our community.</strong></p>
           <p>This is why <strong>100% of every dollar donated by the public supports programs for children and families in need</strong> across Chicagoland. When you give to Bright Promises, you don&rsquo;t just help one program&mdash;you strengthen the systems children and families rely on.</p>
@@ -1090,7 +1187,7 @@
         <div class="eyebrow">Corporate Partner: West Monroe</div>
         <h2 class="sh">West Monroe&rsquo;s long-standing partnership with Bright Promises goes beyond volunteerism.</h2>
         <div class="sb">
-          <p>In the communities we serve, increased ICE activity has intensified fear and uncertainty&mdash;causing anxiety, trauma, and chronic stress. <strong>Mental health kits assembled by West Monroe volunteers</strong> are a critical part of Bright Promises&rsquo; response. Distributed through trusted community partners, these kits connect families to free, trauma-informed SEL resources through the SEL Access Exchange.</p>
+          <p>In the communities we serve, increased ICE activity has intensified fear and uncertainty&mdash;causing anxiety, trauma, and chronic stress. <strong>Mental health kits assembled by West Monroe volunteers</strong> are a critical part of Bright Promises&rsquo; response. Distributed through trusted community partners, these kits connect families to free, trauma-informed SEL resources through the <a class="inline-link" href="https://www.brightpromises.org/sel-resources" target="_blank" rel="noopener">SEL Access Exchange</a>.</p>
           <p>With demand far exceeding staff capacity, partnerships like this are essential&mdash;enabling Bright Promises to <strong>meet urgent need</strong> and <strong>respond with care</strong> during moments of crisis.</p>
         </div>
       </div>
@@ -1100,9 +1197,9 @@
     <!-- 33: WM C — SEL Stats -->
     <section class="slide s-content" data-i="33" data-sec="wm">
       <div style="max-width:1060px;position:relative;z-index:1">
-        <div class="eyebrow">SEL Access Exchange</div>
+        <div class="eyebrow"><a class="inline-link eyebrow-link" href="https://www.brightpromises.org/sel-resources" target="_blank" rel="noopener">SEL Access Exchange &rarr;</a></div>
         <h2 class="sh" style="margin-bottom:28px">Reaching families with free, trauma-informed SEL resources.</h2>
-        <div class="stats-grid" style="grid-template-columns:repeat(4,1fr)">
+        <div class="stats-grid cols-4">
           <div class="stat-card"><div class="stat-num">70+</div><div class="stat-lbl">free culturally responsive resources available</div></div>
           <div class="stat-card"><div class="stat-num">2,367</div><div class="stat-lbl">families reached through SEL Access Exchange</div></div>
           <div class="stat-card"><div class="stat-num">1,000+</div><div class="stat-lbl">mental health kits distributed</div></div>
@@ -1115,19 +1212,40 @@
     <section class="slide s-quote" data-i="34" data-sec="wm">
       <div class="q-inner">
         <span class="q-mark">&ldquo;</span>
-        <blockquote class="q-txt">West Monroe is proud to partner with Bright Promises, as our commitment to Building the Next Generation of Leaders and investing in the future go hand in hand. Our employees see firsthand the impact Bright Promises brings to the Chicago community and are honored to volunteer their time in support of that mission.</blockquote>
+        <blockquote class="q-txt">West Monroe is proud to partner with Bright Promises, as our commitment to Building the Next Generation of Leaders and investing in the future go hand in hand. Our employees see firsthand the impact Bright Promises brings to the Chicago community and are honored to volunteer their time in support of that mission.&rdquo;</blockquote>
         <div class="q-attr"><strong>Lauren Dern</strong>CSR Lead, West Monroe</div>
       </div>
     </section>
 
     <!-- 35: CLOSING -->
-    <section class="slide s-hero" data-i="35" data-sec="closing" style="background:var(--teal-dk)">
-      <div class="content">
-        <div class="eyebrow">Keeping Our Promise, Together</div>
-        <h2 class="sh" style="font-size:clamp(38px,5.2vw,86px);line-height:1.04;margin-bottom:clamp(24px,3.5vh,52px)">Bright Promises Foundation is of the community and for the community.</h2>
-        <div class="sb" style="font-size:clamp(15px,1.4vw,22px);max-width:min(800px,62vw)">
-          <p>We are the only public foundation serving the State of Illinois solely focused on the needs of children and youth. Thank you to the partners, supporters, and advocates who are building this future with us.</p>
-          <p><strong>Together, we are proving what&rsquo;s possible when we invest early, act collectively, and trust what communities know works. This is how we keep our promise&mdash;to children today and to the future we share.</strong></p>
+    <section class="slide s-hero s-closing-thanks" data-i="35" data-sec="closing" style="background:var(--teal-dk)">
+      <div class="close-grid">
+        <div class="close-top">
+          <div class="eyebrow">Keeping Our Promise, Together</div>
+          <h2 class="sh" style="font-size:clamp(28px,3.2vw,52px);line-height:1.08;margin-bottom:clamp(14px,1.8vh,24px);color:#fff">Bright Promises Foundation is of the community and for the community.</h2>
+          <div class="sb" style="font-size:clamp(13px,1.05vw,17px);max-width:min(820px,82%);color:rgba(255,255,255,0.78)">
+            <p><strong style="color:#fff">Together, we are proving what&rsquo;s possible when we invest early, act collectively, and trust what communities know works.</strong> This is how we keep our promise&mdash;to children today and to the future we share.</p>
+          </div>
+        </div>
+        <div class="close-thanks">
+          <div class="thanks-h">Special Thanks</div>
+          <div class="thanks-grid">
+            <div class="thanks-col">
+              <div class="thanks-lbl">Lifetime Trustees</div>
+              <p class="thanks-body">Jon N. Will &middot; Paul Bodine &middot; Shari Runner &middot; Gaylord Gieseke</p>
+            </div>
+            <div class="thanks-col">
+              <div class="thanks-lbl">Legacy Council</div>
+              <p class="thanks-body">Prudence Beidler &middot; Marjorie Craig Benton &middot; Peggy Bodine &middot; Dr. Barbara Bowman &middot; Vern Broders &middot; Robert Finley &middot; Elizabeth Foster &middot; Francia Harrington &middot; Iris Krieg &middot; Rodger Owen &middot; Janet Owen &middot; Neil Peck &middot; Gigi Pritzker Pucker &middot; Judith Walker Kendrick &middot; Bernice Weissbourd <em style="opacity:0.7">(1923&ndash;2022)</em></p>
+            </div>
+            <div class="thanks-col">
+              <div class="thanks-lbl">Partners</div>
+              <p class="thanks-body"><strong>Evaluation Partners</strong> &middot; Dr. E. Chico &middot; Ceily Moore</p>
+              <p class="thanks-body"><strong>Facilitation Partners</strong> &middot; Dr. Tonya Bibbs &middot; Dr. Jenn Moore</p>
+              <p class="thanks-body"><strong>SEL Experts in Residence</strong> &middot; Ashley V. Perkins &middot; Jess Vann &middot; Cynthia Townsend &middot; Kam Green &middot; Dr. Sonia M. Toledo</p>
+              <p class="thanks-body"><strong>Creative Design</strong> &middot; Tyler Dunn &amp; The Main Sequence</p>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -1233,6 +1351,7 @@
     }
 
     const EASE = 'cubic-bezier(.4,0,.2,1)';
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
     let animating = false;
 
     function goTo(next) {
@@ -1241,6 +1360,7 @@
       const dir = next > cur ? 1 : -1;
       const crossSection = getSec(next) !== getSec(cur);
       const tt = getTType(next, crossSection);
+      const dur = reducedMotion.matches ? 1 : tt.dur;
       animating = true;
 
       const prevEl = SLIDES[cur];
@@ -1253,7 +1373,7 @@
       nextEl.offsetHeight; // force reflow
 
       // animate both
-      const tr = `opacity ${tt.dur}ms ${EASE}, transform ${tt.dur}ms ${EASE}`;
+      const tr = `opacity ${dur}ms ${EASE}, transform ${dur}ms ${EASE}`;
       prevEl.style.transition = tr;
       nextEl.style.transition = tr;
 
@@ -1271,7 +1391,7 @@
         prevEl.style.transform = '';
         nextEl.style.transition = '';
         animating = false;
-      }, tt.dur + 40);
+      }, dur + 40);
     }
 
     function nav(d) { goTo(cur + d); }
@@ -1323,10 +1443,32 @@
 
     // ── INPUT: TOUCH ──────────────────────────────────────────────────
     let touchY = 0;
-    window.addEventListener('touchstart', e => { touchY = e.touches[0].clientY; }, { passive:true });
+    let touchScrollEl = null;
+    let touchScrollTop = 0;
+    function findScrollableAncestor(el) {
+      while (el && el !== document.body) {
+        const oy = getComputedStyle(el).overflowY;
+        if ((oy === 'auto' || oy === 'scroll') && el.scrollHeight > el.clientHeight) return el;
+        el = el.parentElement;
+      }
+      return null;
+    }
+    window.addEventListener('touchstart', e => {
+      touchY = e.touches[0].clientY;
+      touchScrollEl = findScrollableAncestor(e.target);
+      touchScrollTop = touchScrollEl ? touchScrollEl.scrollTop : 0;
+    }, { passive:true });
     window.addEventListener('touchend', e => {
       const delta = touchY - e.changedTouches[0].clientY;
-      if (Math.abs(delta) > 50) nav(delta > 0 ? 1 : -1);
+      // If the user actually scrolled inside a scroll container, don't navigate
+      if (touchScrollEl && touchScrollEl.scrollTop !== touchScrollTop) return;
+      // If the container could still scroll in the swipe direction, let it
+      if (touchScrollEl) {
+        const max = touchScrollEl.scrollHeight - touchScrollEl.clientHeight;
+        if (delta > 0 && touchScrollEl.scrollTop < max) return; // swipe up but more content below
+        if (delta < 0 && touchScrollEl.scrollTop > 0) return;   // swipe down but content above
+      }
+      if (Math.abs(delta) > 80) nav(delta > 0 ? 1 : -1);
     }, { passive:true });
 
     // ── INPUT: KEYBOARD ───────────────────────────────────────────────
