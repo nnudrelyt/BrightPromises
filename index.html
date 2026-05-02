@@ -324,11 +324,11 @@
     .eyebrow-link:hover { text-decoration:underline; }
 
     /* ── FLOWER ── */
-    .s-flower { display:grid; grid-template-columns:5fr 2fr; background:var(--white); }
-    .flower-l { padding:clamp(32px,3vw,56px) clamp(20px,2vw,40px) clamp(80px,8vh,140px) clamp(40px,4vw,72px); display:flex; flex-direction:column; justify-content:center; position:relative; z-index:1; }
-    .flower-r { padding:clamp(48px,5vw,100px) clamp(40px,4vw,72px) clamp(48px,5vw,100px) clamp(16px,1.5vw,32px); display:flex; flex-direction:column; justify-content:center; max-width:min(360px,100%); position:relative; z-index:1; }
+    .s-flower { display:grid; grid-template-columns:2fr 5fr; background:var(--white); }
+    .flower-l { grid-column:2; grid-row:1; padding:clamp(32px,3vw,56px) clamp(40px,4vw,72px) clamp(80px,8vh,140px) clamp(20px,2vw,40px); display:flex; flex-direction:column; justify-content:center; position:relative; z-index:1; }
+    .flower-r { grid-column:1; grid-row:1; padding:clamp(48px,5vw,100px) clamp(16px,1.5vw,32px) clamp(48px,5vw,100px) clamp(40px,4vw,72px); display:flex; flex-direction:column; justify-content:center; max-width:min(360px,100%); justify-self:end; position:relative; z-index:1; }
     .flower-lbl { font-size:clamp(11px,0.9vw,14px); font-weight:700; color:var(--teal); text-transform:uppercase; letter-spacing:.1em; margin-bottom:clamp(14px,1.6vh,24px); text-align:center; }
-    .flower { position:relative; width:min(630px,86%); aspect-ratio:1; margin:0 auto; }
+    .flower { position:relative; width:min(756px,90%); aspect-ratio:1; margin:0 auto; }
     .petal { position:absolute; top:50%; left:50%; width:46%; aspect-ratio:1; border-radius:50%; transform:translate(-50%,-50%) rotate(var(--rot)) translateY(-66%) rotate(calc(-1 * var(--rot))); display:flex; align-items:center; justify-content:center; }
     .petal-inner { text-align:center; padding:0 14%; line-height:1.25; transform:translate(calc(sin(var(--rot)) * 36px), calc(-1 * cos(var(--rot)) * 36px)); }
     .petal-inner strong { display:block; font-size:clamp(13px,1.35vw,19px); font-weight:800; color:var(--teal); margin-bottom:3px; letter-spacing:-.005em; }
