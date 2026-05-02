@@ -136,7 +136,11 @@
     .s-split .txt { background:var(--white); }
     .s-split-l .txt { background:var(--white); }
     .photo { position:relative; overflow:hidden; }
-    .photo .pbg { position:absolute; inset:0; background-size:cover; background-position:center; }
+    .photo .pbg { position:absolute; inset:0; background-size:cover; background-position:center; transform-origin:center; }
+    @keyframes kenburns { 0% { transform:scale(1.18) translate(-3%,-3%); } 100% { transform:scale(1) translate(0,0); } }
+    .slide.is-active .photo .pbg,
+    .slide.is-active .hlc-bg .pbg { animation:kenburns 14s ease-out forwards; }
+    .slide.is-active .hlc-bg .pbg { animation-duration:55s; }
     .photo-credit { position:absolute; bottom:10px; right:12px; font-size:10px; color:rgba(255,255,255,.55); letter-spacing:.04em; z-index:1; }
 
     .eyebrow { font-size:clamp(11px,0.95vw,14px); font-weight:800; letter-spacing:.12em; text-transform:uppercase; color:var(--orange); margin-bottom:clamp(12px,1.2vh,20px); }
@@ -216,6 +220,18 @@
     .chart-h { font-size:clamp(26px,3.2vw,54px); font-weight:700; color:var(--white); line-height:1.12; margin-bottom:clamp(16px,2vh,28px); position:relative; z-index:1; }
     .chart-sub { display:none; }
     .cop-grid { width:100%; display:grid; grid-template-columns:2fr 3fr; gap:clamp(32px,4vw,72px); align-items:start; }
+    /* Community of Partners — editorial three-row stack (Layout C) */
+    .s-cop { align-items:flex-start; padding:clamp(40px,5vh,80px) clamp(56px,6vw,120px) clamp(60px,7vh,100px) clamp(56px,6vw,120px); overflow-y:auto; }
+    .cop-c-wrap { width:100%; max-width:1100px; margin:0 auto; display:flex; flex-direction:column; gap:clamp(20px,2.6vh,36px); }
+    .cop-c-top { text-align:center; max-width:1000px; margin:0 auto; }
+    .cop-c-top .eyebrow { margin-bottom:14px; }
+    .cop-c-h { font-size:clamp(28px,3.4vw,52px); font-weight:700; color:var(--teal); line-height:1.08; margin-bottom:14px; white-space:nowrap; }
+    .cop-c-p { font-size:clamp(14px,1.2vw,18px); font-weight:300; color:var(--body); line-height:1.7; max-width:1000px; margin:0 auto; }
+    .cop-c-video { width:100%; max-width:608px; margin:0 auto; aspect-ratio:16/9; border-radius:14px; overflow:hidden; box-shadow:0 12px 40px rgba(26,96,122,0.18); position:relative; background:#000; }
+    .cop-c-video video { width:100%; height:100%; object-fit:cover; display:block; }
+    .cop-c-orgs-h { font-size:clamp(10px,0.9vw,13px); font-weight:800; letter-spacing:.14em; text-transform:uppercase; color:var(--orange); margin-bottom:10px; text-align:center; }
+    .cop-c-orgs-line { font-size:clamp(13px,1.15vw,17px); font-weight:500; color:var(--teal); line-height:1.55; text-align:center; max-width:1000px; margin:0 auto; }
+    .cop-c-tag { font-size:clamp(13px,1.1vw,16px); font-weight:700; color:var(--orange); text-align:center; letter-spacing:.04em; margin-top:6px; }
     .chart-view { display:grid; grid-template-columns:1fr 1fr; gap:clamp(48px,6vw,96px); flex:1; align-items:center; position:relative; z-index:1; min-height:0; }
     .chart-left { display:flex; flex-direction:column; justify-content:center; }
     .chart-right { display:flex; align-items:center; justify-content:center; }
@@ -238,6 +254,10 @@
 
     /* ── HLC STATS ── */
     .s-hlc { background:var(--teal); display:flex; flex-direction:column; align-items:center; justify-content:center; padding:clamp(40px,5vh,80px) clamp(56px,6vw,120px); position:relative; overflow:hidden; }
+    .hlc-bg { position:absolute; inset:0; z-index:0; overflow:hidden; }
+    .hlc-bg .pbg { position:absolute; inset:0; background-size:cover; background-position:center; transform-origin:center; }
+    .hlc-bg-overlay { position:absolute; inset:0; background:linear-gradient(180deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.78) 60%, rgba(0,0,0,0.92) 100%); }
+    .hlc-credit { color:rgba(255,255,255,0.6); }
     .s-hlc::before { content:''; position:absolute; inset:0; background:repeating-linear-gradient(-45deg,transparent,transparent 80px,rgba(255,255,255,.03) 80px,rgba(255,255,255,.03) 81px); }
     .hlc-h { font-size:clamp(17px,1.75vw,28px); font-weight:900; color:var(--orange); text-align:center; letter-spacing:.01em; margin-bottom:clamp(24px,3.5vh,52px); position:relative; z-index:1; text-transform:uppercase; }
     .hlc-grid { display:flex; flex-direction:column; gap:0; width:100%; max-width:min(1440px,90vw); position:relative; z-index:1; }
@@ -434,6 +454,8 @@
       .chart-h { font-size:clamp(22px,6.6vw,32px); }
       .cop-grid { grid-template-columns:1fr; gap:24px; }
       .cop-orgs { grid-template-columns:1fr 1fr; }
+      .cop-c-h { white-space:normal; }
+      .s-cop { padding:32px 24px 48px; }
       .hlc-card { grid-template-columns:1fr; gap:8px; padding:18px 0; }
       .hlc-left { border-left:none; border-top:4px solid var(--orange); padding-left:0; padding-top:14px; }
       .hlc-num { font-size:clamp(36px,11vw,52px); }
@@ -677,7 +699,7 @@
           <p>For donors, this means your investment stabilizes trusted community anchors&mdash;so they can keep showing up when families need them most.</p>
         </div>
       </div>
-      <div class="photo"><div class="pbg" style="background-image:url('img/convening-1.jpg')"></div></div>
+      <div class="photo"><div class="pbg" style="background-image:url('img/ki4-illuminate.jpg')"></div><span class="photo-credit">Image courtesy [Photographer Name]</span></div>
     </section>
 
     <!-- 5: KI1 C — Flower Graphic -->
@@ -699,41 +721,20 @@
     </section>
 
     <!-- 6: COMMUNITY OF PARTNERS -->
-    <section class="slide s-content" data-i="6" data-sec="cop">
-      <div class="cop-grid">
-        <div>
+    <section class="slide s-content s-cop" data-i="6" data-sec="cop">
+      <div class="cop-c-wrap">
+        <div class="cop-c-top">
           <div class="eyebrow">Community of Partners</div>
-          <h2 class="sh" style="font-size:clamp(24px,2.8vw,44px);margin-bottom:clamp(14px,1.6vh,22px)">Change doesn&rsquo;t happen in isolation.</h2>
-          <p class="sb">It happens when leaders come together with shared purpose. Bright Promises is proud to partner with these organizations&mdash;innovators and changemakers working alongside families and communities most impacted by inequity.</p>
-          <p class="sb" style="margin-top:1em"><strong>Together, these organizations represent more than $167 million in annual operating resources across Chicagoland</strong>&mdash;reflecting the scale, reach, and collective capacity of this network.</p>
-          <p class="sb" style="margin-top:1em">Through multi-year communities of practice, our partners learn from one another, share data and insight, and coordinate action across systems that too often work in silos.</p>
+          <h2 class="cop-c-h">Change doesn&rsquo;t happen in isolation.</h2>
+          <p class="cop-c-p">It happens when leaders come together with shared purpose. Bright Promises is proud to partner with these organizations&mdash;innovators and changemakers working alongside families and communities most impacted by inequity.</p>
+        </div>
+        <div class="cop-c-video">
+          <video autoplay muted loop playsinline><source src="video/grantee-reveal.mp4" type="video/mp4"></video>
         </div>
         <div>
-          <video class="cop-video" controls playsinline>
-            <source src="video/grantee-reveal.mp4" type="video/mp4">
-          </video>
-          <div style="font-size:clamp(10px,0.85vw,13px);font-weight:900;letter-spacing:.18em;text-transform:uppercase;color:var(--orange);margin-bottom:clamp(8px,1vh,14px)">2025&ndash;26 Grantee Organizations</div>
-          <div class="cop-orgs">
-            <div class="cop-org">A Long Walk Home</div>
-            <div class="cop-org">Arab American Action Network</div>
-            <div class="cop-org">Alliance of the Southeast</div>
-            <div class="cop-org">Alternatives</div>
-            <div class="cop-org">Build Inc</div>
-            <div class="cop-org">Chicago Commons</div>
-            <div class="cop-org">Chicago Freedom School</div>
-            <div class="cop-org">Chicago Youth Centers</div>
-            <div class="cop-org">Chicago Youth Programs</div>
-            <div class="cop-org">Communities United</div>
-            <div class="cop-org">Illinois Afterschool Network</div>
-            <div class="cop-org">Kuumba Lynx</div>
-            <div class="cop-org">New Community Outreach</div>
-            <div class="cop-org">Northwest Center</div>
-            <div class="cop-org">Onward Neighborhood House</div>
-            <div class="cop-org">Palenque LSNA</div>
-            <div class="cop-org">Project Vision</div>
-            <div class="cop-org">Southside Together</div>
-            <div class="cop-org">UCAN</div>
-          </div>
+          <div class="cop-c-orgs-h">2025&ndash;26 Grantee Organizations</div>
+          <p class="cop-c-orgs-line">A Long Walk Home &middot; Arab American Action Network &middot; Alliance of the Southeast &middot; Alternatives &middot; Build Inc &middot; Chicago Commons &middot; Chicago Freedom School &middot; Chicago Youth Centers &middot; Chicago Youth Programs &middot; Communities United &middot; Illinois Afterschool Network &middot; Kuumba Lynx &middot; New Community Outreach &middot; Northwest Center &middot; Onward Neighborhood House &middot; Palenque LSNA &middot; Project Vision &middot; Southside Together &middot; UCAN</p>
+          <div class="cop-c-tag">$167M annual operating resources &middot; 19 organizations</div>
         </div>
       </div>
     </section>
@@ -756,7 +757,7 @@
           <p>Through Bright Promises, donors help pilot and scale solutions that deliver measurable near- and long-term outcomes for <strong>over 11,000 youth and families</strong> each year. Since 2016, Bright Promises has invested <strong>over $5.6 million in 100 community-based organizations</strong> serving low-income children and families across Chicagoland and Illinois.</p>
         </div>
       </div>
-      <div class="photo"><div class="pbg" style="background-image:url('img/community-4.jpg');background-position:center top"></div></div>
+      <div class="photo"><div class="pbg" style="background-image:url('img/ki2-cultural-family.jpg');background-position:center top"></div><span class="photo-credit">Image courtesy [Photographer Name]</span></div>
     </section>
 
     <!-- 9: KI2 C — Accordion -->
@@ -798,6 +799,8 @@
 
     <!-- 11: HLC STATS -->
     <section class="slide s-hlc" data-i="11" data-sec="hlc">
+      <div class="hlc-bg"><div class="pbg" style="background-image:url('img/hlc-ase.png')"></div><div class="hlc-bg-overlay"></div></div>
+      <span class="photo-credit hlc-credit">Image courtesy [Photographer Name]</span>
       <h2 class="hlc-h">Healing, Leading, Changing: What Donor Partnership Makes Possible</h2>
       <div class="hlc-grid">
         <div class="hlc-card">
@@ -957,7 +960,7 @@
 
     <!-- 22: CU B -->
     <section class="slide s-split-l" data-i="22" data-sec="cu">
-      <div class="photo"><div class="pbg" style="background-image:url('img/awards-2.jpg')"></div><span class="photo-credit">Image courtesy Stephen Serio Photography</span></div>
+      <div class="photo"><div class="pbg" style="background-image:url('img/cu-spotlight.jpg')"></div><span class="photo-credit">Image courtesy [Photographer Name]</span></div>
       <div class="txt">
         <div class="eyebrow">Building Youth Power Through Civic Leadership</div>
         <h2 class="sh">With Bright Promises&rsquo; support, Communities United is building durable youth power.</h2>
