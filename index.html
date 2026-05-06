@@ -302,7 +302,7 @@
     .mvv-logo { height:clamp(56px,5vw,96px); margin-bottom:clamp(20px,2.5vh,40px); position:relative; z-index:1; }
     .mvv-sec { margin-bottom:clamp(16px,2vh,32px); position:relative; z-index:1; max-width:min(1100px,80vw); text-align:center; }
     .mvv-lbl { font-size:clamp(16px,1.6vw,26px); font-weight:900; color:var(--white); text-transform:lowercase; margin-bottom:clamp(4px,0.6vh,10px); }
-    .mvv-txt { font-size:clamp(14px,1.4vw,20px); font-weight:300; color:rgba(255,255,255,.85); line-height:1.65; }
+    .mvv-txt { font-size:clamp(14px,1.4vw,20px); font-weight:400; color:rgba(255,255,255,.95); line-height:1.65; }
     .mvv-txt strong { font-weight:700; color:var(--white); text-transform:uppercase; }
     .mvv-link { position:relative; z-index:1; font-size:clamp(17px,1.7vw,26px); font-weight:800; color:var(--orange); text-decoration:none; margin-top:clamp(12px,1.5vh,24px); letter-spacing:-.005em; }
     .s-closing-thanks { padding:0; display:block; }
@@ -360,12 +360,12 @@
 
     /* ── CLOSING ── */
     .s-closing { display:grid; grid-template-columns:1fr 1fr; background:var(--white); }
-    .close-txt { display:flex; flex-direction:column; justify-content:center; padding:clamp(48px,5vw,100px) clamp(40px,4vw,80px) clamp(48px,5vw,100px) clamp(56px,5vw,100px); }
+    .close-txt { display:flex; flex-direction:column; justify-content:center; padding:clamp(48px,5vw,100px) clamp(48px,5vw,100px) clamp(48px,5vw,100px) clamp(80px,7vw,140px); }
     .close-h { font-size:clamp(24px,2.8vw,52px); font-weight:700; color:var(--teal); margin-bottom:clamp(20px,2.5vh,40px); }
     .close-stat { display:flex; gap:clamp(14px,1.6vw,26px); align-items:flex-start; margin-bottom:clamp(16px,2vh,28px); }
     .close-bar { width:4px; min-height:clamp(40px,5vh,64px); background:var(--yellow); border-radius:2px; flex-shrink:0; margin-top:4px; }
-    .close-stat-txt strong { display:block; font-size:clamp(15px,1.5vw,22px); font-weight:700; color:var(--teal); margin-bottom:4px; }
-    .close-stat-txt span { font-size:clamp(13px,1.3vw,18px); font-weight:300; color:var(--body); line-height:1.5; }
+    .close-stat-txt strong { display:block; font-size:clamp(16px,1.6vw,24px); font-weight:700; color:var(--teal); margin-bottom:6px; }
+    .close-stat-txt span { font-size:clamp(15px,1.3vw,18px); font-weight:400; color:var(--body); line-height:1.65; }
     .close-photo { position:relative; overflow:hidden; display:flex; align-items:center; justify-content:center; }
     .close-photo-bg { position:absolute; inset:0; background-size:cover; background-position:center top; }
     .photo-circle { position:absolute; width:58%; aspect-ratio:1; border-radius:50%; z-index:1; }
@@ -377,7 +377,7 @@
     .donors-sub { font-size:clamp(16px,1.4vw,20px); font-weight:400; color:var(--body); line-height:1.75; margin-bottom:clamp(32px,4vh,56px); }
     .donors-section-h { font-size:clamp(10px,0.9vw,13px); font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--orange); margin-top:clamp(40px,5vh,64px); margin-bottom:clamp(12px,1.6vh,20px); padding-bottom:8px; border-bottom:1px solid rgba(0,91,112,.15); }
     .donors-section-h:first-child { margin-top:0; }
-    .donors-text { font-size:clamp(32px,3.2vw,40px); font-weight:300; color:var(--body); line-height:1.7; text-align:justify; }
+    .donors-text { font-size:clamp(32px,3.2vw,40px); font-weight:400; color:var(--body); line-height:1.7; text-align:justify; }
     .donors-fade { position:absolute; bottom:0; left:0; right:0; height:clamp(140px,20vh,260px); background:linear-gradient(to bottom, rgba(255,255,255,0), var(--white)); pointer-events:none; z-index:5; }
 
     /* ── STAT CARDS ── */
@@ -467,9 +467,13 @@
       /* chart-view: stack to single column but preserve tab-driven display:none */
       .chart-view { grid-template-columns:1fr !important; gap:18px !important; }
       /* Photo-above-text on every split slide. Use flex column so order works. */
-      .s-split, .s-split-l { display:flex !important; flex-direction:column; }
-      .s-split .photo, .s-split-l .photo { order:-1; height:48vw; max-height:380px; margin-bottom:24px; }
-      .s-split .txt, .s-split-l .txt { order:0; }
+      .s-split, .s-split-l { display:flex !important; flex-direction:column; padding:0 !important; }
+      .s-split .photo, .s-split-l .photo { order:-1; height:48vw; max-height:380px; margin-bottom:0; }
+      .s-split .txt, .s-split-l .txt { order:0; padding:32px 24px !important; }
+      /* s-closing follows the same stack model so ASE results page reads well */
+      .s-closing { padding:0 !important; }
+      .s-closing .close-txt { padding:32px 24px !important; }
+      .s-closing .close-photo { height:48vw; max-height:380px; order:-1; }
       /* Hero slides: bg image fills, content overlays (looks like cover) */
       .s-hero { display:flex; align-items:flex-end; min-height:60vh !important; padding:48px 28px !important; }
       .s-hero .bg, .s-hero .overlay { position:absolute; inset:0; }
@@ -479,13 +483,21 @@
       /* Letter / TOC / content slides */
       .s-letter, .s-toc, .s-content, .s-quote, .s-mvv { padding:48px 28px !important; }
       .letter-grid { gap:18px; }
-      /* Accordion: relax padding */
-      .s-accordion { padding:48px 24px !important; }
+      /* Accordion: tighten padding so items feel proportional */
+      .s-accordion { padding:48px 20px !important; }
       .acc-inner { max-width:100% !important; }
+      .acc-toggle { padding:18px 16px 20px !important; gap:14px !important; }
+      .acc-icon { width:34px !important; height:34px !important; border-width:2.5px !important; }
+      .acc-icon::before { width:12px !important; height:2.5px !important; }
+      .acc-icon::after { width:2.5px !important; height:12px !important; }
+      .acc-body { padding:0 16px !important; }
+      .acc-item.open .acc-body { padding-bottom:18px !important; }
+      .acc-list li { padding:6px 0 6px 24px !important; }
+      .acc-list li::before { left:6px !important; }
       /* Flower: stack as vertical pill rows (not the round flower diagram) */
-      .s-flower { padding:48px 24px !important; }
-      .flower-l { grid-column:auto; grid-row:auto; padding:0 !important; border-right:none; }
-      .flower-r { grid-column:auto; grid-row:auto; padding:24px 0 0; max-width:100%; justify-self:auto; }
+      .s-flower { padding:48px 24px !important; display:flex !important; flex-direction:column; }
+      .flower-l { grid-column:auto; grid-row:auto; padding:0 !important; border-right:none; order:1; }
+      .flower-r { grid-column:auto; grid-row:auto; padding:0 0 24px 0; max-width:100%; justify-self:auto; order:0; }
       .flower { aspect-ratio:auto !important; width:100% !important; max-width:none !important; display:flex !important; flex-direction:column; gap:10px; }
       .petal { position:static !important; width:100% !important; aspect-ratio:auto !important; border-radius:14px; padding:16px 20px !important; transform:none !important; display:block !important; min-height:0; }
       .petal-inner { padding:0 !important; text-align:left !important; line-height:1.4 !important; transform:none !important; white-space:nowrap; overflow:hidden; }
@@ -919,8 +931,8 @@
     <!-- 14: ASE C — Results -->
     <section class="slide s-closing" data-i="14" data-sec="ase">
       <div class="close-txt">
-        <div class="eyebrow">This partnership delivered results:</div>
-        <h2 class="close-h">Building Youth Power in South Chicago</h2>
+        <div class="eyebrow">Alliance of the Southeast</div>
+        <h2 class="close-h">This Partnership Delivered Results</h2>
         <div class="close-stat"><div class="close-bar"></div><div class="close-stat-txt"><strong>Youth shaped community vision</strong><span>Embedding their leadership in local planning by co-creating the South Chicago Quality of Life Plan alongside community partners and positioning young people as architects of neighborhood priorities.</span></div></div>
         <div class="close-stat"><div class="close-bar"></div><div class="close-stat-txt"><strong>Youth led public action with civic reach</strong><span>Organizing a National Day Without Hate event that brought together more than 100 community members and secured Aldermanic co-sponsorship for a Youth Peace March.</span></div></div>
         <div class="close-stat"><div class="close-bar"></div><div class="close-stat-txt"><strong>Youth mobilized mutual aid and civic engagement</strong><span>Coordinating community action that provided school supplies to more than 150 local teens.</span></div></div>
@@ -1302,7 +1314,7 @@
         <div class="close-top">
           <div class="eyebrow">Keeping Our Promise, Together</div>
           <h2 class="sh" style="font-size:clamp(28px,3.2vw,52px);line-height:1.08;margin-bottom:clamp(14px,1.8vh,24px);color:#fff">Bright Promises Foundation is of the community and for the community.</h2>
-          <div class="sb" style="font-size:clamp(13px,1.05vw,17px);max-width:min(820px,82%);color:rgba(255,255,255,0.78)">
+          <div class="sb" style="max-width:min(820px,82%);color:rgba(255,255,255,0.92)">
             <p><strong style="color:#fff">Together, we are proving what&rsquo;s possible when we invest early, act collectively, and trust what communities know works.</strong> This is how we keep our promise&mdash;to children today and to the future we share.</p>
           </div>
         </div>
