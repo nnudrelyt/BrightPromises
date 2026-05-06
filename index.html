@@ -436,6 +436,8 @@
       #slides { position:static !important; inset:auto !important; overflow:visible !important; height:auto !important; }
       .slide { position:relative !important; inset:auto !important; height:auto !important; min-height:auto !important; opacity:1 !important; pointer-events:auto !important; transform:none !important; transition:none !important; overflow:visible !important; will-change:auto !important; }
       .slide *, .slide *::before, .slide *::after { transform:none !important; animation:none !important; }
+      /* Accordion +/- bars need their centering transform — re-enable */
+      .acc-icon::before, .acc-icon::after { transform:translate(-50%,-50%) !important; }
       /* Hide deck nav arrows + dots; keep hamburger for jump-to-section */
       #nav-arrows, #dot-nav { display:none !important; }
       #right-nav { width:auto; padding:10px 14px 10px 0; pointer-events:none; }
