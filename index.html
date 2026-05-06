@@ -235,6 +235,9 @@
     .acc-list { list-style:none; padding:0; }
     .acc-list li { padding:7px 0 7px 36px; position:relative; font-family:'B1816','Helvetica Neue',Helvetica,sans-serif; font-size:clamp(16px,1.4vw,20px); font-weight:400; color:var(--body); line-height:1.75; }
     .acc-list li::before { content:''; position:absolute; left:10px; top:50%; margin-top:-3.5px; width:7px; height:7px; border-radius:50%; background:#33A3BD; }
+    .acc-list.orange-bars li { padding:6px 0 6px clamp(14px,1.4vw,20px); border-left:3px solid var(--orange); margin-bottom:10px; }
+    .acc-list.orange-bars li:last-child { margin-bottom:0; }
+    .acc-list.orange-bars li::before { display:none; }
 
     /* ── CHART SLIDES ── */
     .s-chart { background:var(--cyan); display:flex; align-items:stretch; padding:clamp(48px,5vh,80px) clamp(56px,6vw,120px); overflow:hidden; }
@@ -1013,7 +1016,7 @@
           <p>Bright Promises exists to spark what&rsquo;s possible&mdash;bringing people together, testing bold ideas, and helping what works spread.</p>
           <p>Bright Promises drives results by acting early&mdash;before needs escalate and costs multiply. Our upstream initiatives targeting early childhood education, youth mental health, and youth leadership and civic engagement move effective ideas out of silos and into practice, shaping how systems respond to children and families over time.</p>
           <p style="margin-top:1.1em"><strong>What Bright Promises Upstream Initiatives Produce:</strong></p>
-          <ul class="acc-list" style="margin-top:6px">
+          <ul class="acc-list orange-bars" style="margin-top:6px">
             <li>Proven practices coordinated across systems, not just piloted in individual programs.</li>
             <li>Durable change that continues beyond the life of a grant.</li>
             <li>Replication across organizations and sectors, expanding reach without increasing cost.</li>
