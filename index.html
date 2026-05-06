@@ -473,6 +473,12 @@
       .chart-view { grid-template-columns:1fr !important; gap:18px !important; }
       /* stats-grid: add vertical spacing between stacked cards on mobile */
       .stats-grid .stat-card + .stat-card { margin-top:18px; }
+      /* KI5 Goals: convert top borders to left rules so they read like .stat-cards */
+      .split-3 > div { border-top:none !important; padding-top:0 !important; padding-left:16px; border-left:3px solid; }
+      .split-3 > div:nth-child(1) { border-left-color:var(--orange); }
+      .split-3 > div:nth-child(2) { border-left-color:var(--cyan); }
+      .split-3 > div:nth-child(3) { border-left-color:var(--yellow); }
+      .split-3 > div + div { margin-top:18px; }
       /* Photo-above-text on every split slide. Use flex column so order works. */
       .s-split, .s-split-l { display:flex !important; flex-direction:column; }
       .s-split .photo, .s-split-l .photo { order:-1; height:48vw; max-height:380px; margin-bottom:0; }
