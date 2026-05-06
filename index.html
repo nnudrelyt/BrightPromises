@@ -427,55 +427,92 @@
 
     /* ── RESPONSIVE ── */
     @media (max-width:900px) {
-      .s-cover { grid-template-columns:1fr; }
-      .s-cover .cover-panel:last-child { display:none; }
-      .cover-text { padding:40px 28px 56px; }
-      .s-split, .s-split-l { grid-template-columns:1fr; }
-      .s-split .photo, .s-split-l .photo { height:40vh; order:-1; }
-      .s-split .txt, .s-split-l .txt { padding:36px 28px; }
-      .s-hero { padding:0 28px 56px; }
-      .hero-logo { left:28px; }
-      .s-toc, .s-letter, .s-content, .s-flower, .s-donors, .s-quote { padding:40px 28px; }
-      .s-accordion { padding:40px 20px; }
-      .letter-grid { grid-template-columns:1fr; gap:18px; }
-      .stats-grid { grid-template-columns:1fr 1fr; }
-      .stats-grid.cols-4 { grid-template-columns:1fr 1fr; }
-      .split-2 { grid-template-columns:1fr; gap:24px; }
-      .split-3 { grid-template-columns:1fr; gap:24px; }
-      .chart-wrap { grid-template-columns:1fr; }
-      .donors-grid { grid-template-columns:1fr; }
-      .s-flower { grid-template-columns:1fr; }
-      .s-chart { padding:32px 24px; gap:14px; }
-      .chart-view { grid-template-columns:1fr; gap:24px; }
-      .chart-left { order:2; }
-      .chart-right { order:1; }
-      .donut-wrap { width:min(72vw,320px) !important; height:min(72vw,320px) !important; }
+      /* ─── LONG-SCROLL MODE ──────────────────────────────────────────
+         On mobile, abandon slide-deck mode. Slides become a vertical
+         stack of sections that scroll naturally. Deck nav controls hide,
+         transitions disabled, opacity/transform overrides nullify any
+         JS-applied state. Hamburger menu still works (smooth-scrolls). */
+      html, body { overflow-y:auto !important; height:auto !important; }
+      #slides { position:static !important; inset:auto !important; overflow:visible !important; height:auto !important; }
+      .slide { position:relative !important; inset:auto !important; height:auto !important; min-height:auto !important; opacity:1 !important; pointer-events:auto !important; transform:none !important; transition:none !important; overflow:visible !important; will-change:auto !important; }
+      .slide *, .slide *::before, .slide *::after { transform:none !important; animation:none !important; }
+      /* Hide deck nav arrows + dots; keep hamburger for jump-to-section */
+      #nav-arrows, #dot-nav { display:none !important; }
+      #right-nav { width:52px; padding:10px 0; pointer-events:none; }
+      #right-nav > * { pointer-events:auto; }
+      /* Each slide gets natural section padding + a subtle separator */
+      .slide { padding:48px 28px !important; }
+      .slide + .slide { border-top:1px solid rgba(0,91,112,0.08); }
+
+      /* ── CONTENT LAYOUT — single column everywhere ── */
+      .s-cover, .s-split, .s-split-l, .s-flower, .s-closing, .letter-grid,
+      .cop-grid, .split-2, .split-3, .stats-grid, .stats-grid.cols-4,
+      .hlc-grid, .donors-grid, .chart-wrap, .close-grid, .thanks-grid {
+        display:block !important; grid-template-columns:1fr !important;
+      }
+      /* chart-view: stack to single column but preserve tab-driven display:none */
+      .chart-view { grid-template-columns:1fr !important; gap:18px !important; }
+      /* Photo-on-top for split slides (text below) */
+      .s-split .photo, .s-split-l .photo { height:48vw; max-height:380px; margin-bottom:24px; }
+      .s-split .photo, .s-split-l .photo, .flower-r { order:initial; }
+      /* Hero slides: bg image fills, content overlays (looks like cover) */
+      .s-hero { display:flex; align-items:flex-end; min-height:60vh !important; padding:48px 28px !important; }
+      .s-hero .bg, .s-hero .overlay { position:absolute; inset:0; }
+      .hero-h1 { font-size:clamp(40px,11vw,64px); max-width:100%; }
+      .hero-sub { font-size:clamp(15px,4.4vw,20px); max-width:100%; }
+      /* Letter / TOC / content slides */
+      .s-letter, .s-toc, .s-content, .s-quote, .s-mvv { padding:48px 28px !important; }
+      .letter-grid { gap:18px; }
+      /* Accordion: relax padding */
+      .s-accordion { padding:48px 24px !important; }
+      .acc-inner { max-width:100% !important; }
+      /* Flower: stack as vertical pill rows (not the round flower diagram) */
+      .s-flower { padding:48px 24px !important; }
+      .flower-l { grid-column:auto; grid-row:auto; padding:0 !important; border-right:none; }
+      .flower-r { grid-column:auto; grid-row:auto; padding:24px 0 0; max-width:100%; justify-self:auto; }
+      .flower { aspect-ratio:auto !important; width:100% !important; max-width:none !important; display:flex !important; flex-direction:column; gap:10px; }
+      .petal { position:static !important; width:100% !important; aspect-ratio:auto !important; border-radius:14px; padding:16px 20px !important; transform:none !important; display:block !important; min-height:0; }
+      .petal-inner { padding:0 !important; text-align:left !important; line-height:1.4 !important; transform:none !important; }
+      .petal-inner strong { display:inline; font-size:clamp(16px,4.6vw,20px); margin-right:8px; }
+      .petal-inner span { display:inline; font-size:clamp(13px,3.6vw,15px); line-height:1.4; }
+      /* BR remains as natural line break in the pill */
+      .flower-center { position:relative !important; top:auto !important; left:auto !important; transform:none !important; width:auto !important; aspect-ratio:auto !important; border-radius:8px; padding:10px 18px !important; align-self:flex-start; margin-bottom:6px; box-shadow:none !important; order:-1; }
+      .flower-center img { width:120px !important; max-height:none !important; }
+      /* Chart slides: text first, donut below */
+      .s-chart { padding:48px 24px !important; gap:18px; background:var(--cyan); display:block !important; }
+      .chart-left { order:1; gap:14px; }
+      .chart-right { order:2; margin-top:24px; display:flex !important; justify-content:center; }
+      .donut-wrap { width:min(78vw,360px) !important; height:min(78vw,360px) !important; }
       .donut-num { font-size:clamp(28px,8vw,40px); }
       .donut-lbl { font-size:clamp(11px,3vw,14px); }
       .legend { flex-direction:column; gap:8px; }
       .leg-item { font-size:14px; }
       .filters { flex-wrap:wrap; }
       .chart-h { font-size:clamp(22px,6.6vw,32px); }
-      .cop-grid { grid-template-columns:1fr; gap:24px; }
+      /* CoP three-row stack */
+      .s-cop { padding:48px 24px !important; }
+      .cop-c-h { white-space:normal !important; font-size:clamp(26px,7vw,36px); }
+      .cop-c-video { max-width:100%; }
       .cop-orgs { grid-template-columns:1fr 1fr; }
-      .cop-c-h { white-space:normal; }
-      .s-cop { padding:32px 24px 48px; }
-      .hlc-card { grid-template-columns:1fr; gap:8px; padding:18px 0; }
-      .hlc-left { border-left:none; border-top:4px solid var(--orange); padding-left:0; padding-top:14px; }
+      /* HLC stats */
+      .s-hlc { padding:48px 24px !important; }
+      .hlc-card { display:block !important; padding:18px 0; }
+      .hlc-left { border-left:none; border-top:4px solid var(--orange); padding-left:0; padding-top:14px; margin-bottom:10px; }
       .hlc-num { font-size:clamp(36px,11vw,52px); }
-      .hlc-h { font-size:clamp(15px,4.6vw,20px); margin-bottom:20px; }
-      .hero-h1 { font-size:clamp(40px,12vw,64px); max-width:92vw; }
-      .hero-sub { font-size:clamp(16px,4.6vw,22px); max-width:92vw; }
-      /* Allow content to scroll inside slide instead of clipping; start from top */
-      .s-content, .s-flower .flower-l, .s-letter, .s-toc, .s-accordion, .s-mvv, .s-hlc, .s-chart { align-items:flex-start; overflow-y:auto; -webkit-overflow-scrolling:touch; }
-      .s-content { display:block; padding-top:56px; padding-bottom:48px; }
-      .s-content > * { max-width:none; }
-      /* Right padding so eyebrow / headlines don't run under hamburger */
-      .s-content .eyebrow, .s-chart .eyebrow, .s-content .sh, .s-chart .chart-h { padding-right:48px; }
-      /* Bigger tap targets for chevron buttons */
-      #right-nav { width:52px; padding:14px 0 18px; }
-      .arr { padding:8px; }
-      .arr svg { width:36px; height:36px; }
+      .hlc-h { font-size:clamp(16px,4.6vw,22px); margin-bottom:20px; }
+      /* Donor slide — let it flow as part of page, no nested scroll */
+      .s-donors { padding:48px 24px !important; }
+      .donors-scroll { overflow:visible !important; max-height:none !important; height:auto !important; padding:0 !important; }
+      .donors-fade { display:none !important; }
+      .donors-h, .donors-section-h, .donors-text { font-size:clamp(15px,4vw,20px) !important; }
+      .donors-text { font-size:clamp(13px,3.6vw,16px) !important; line-height:1.5; }
+      /* Closing slide */
+      .s-closing-thanks { padding:48px 24px !important; }
+      .close-grid { padding:0 !important; gap:32px; }
+      .thanks-grid { display:block !important; }
+      .thanks-col { margin-bottom:24px; }
+      /* Right padding so eyebrows / headlines clear the hamburger area */
+      .s-content .eyebrow, .s-chart .eyebrow, .s-content .sh, .s-chart .chart-h, .acc-h2, .cop-c-top { padding-right:48px; }
     }
     /* Landscape phones (short height, wide) — let hero photos breathe */
     @media (max-height:500px) and (orientation:landscape) {
@@ -1379,6 +1416,11 @@
 
     function goTo(next) {
       next = Math.max(0, Math.min(TOTAL-1, next));
+      if (window.matchMedia('(max-width: 900px)').matches) {
+        SLIDES[next].scrollIntoView({ behavior:'smooth', block:'start' });
+        cur = next;
+        return;
+      }
       if (next === cur || animating) return;
       const dir = next > cur ? 1 : -1;
       const crossSection = getSec(next) !== getSec(cur);
@@ -1444,9 +1486,13 @@
       document.getElementById('next-btn').disabled = i === TOTAL-1;
     }
 
+    // ── MOBILE / LONG-SCROLL DETECTION ────────────────────────────────
+    const isMobile = () => window.matchMedia('(max-width: 900px)').matches;
+
     // ── INPUT: WHEEL ──────────────────────────────────────────────────
     let wheelLocked = false;
     window.addEventListener('wheel', e => {
+      if (isMobile()) return; // long-scroll on mobile — let native scroll handle it
       if (cur === 30) {
         // Let donors slide scroll naturally; only intercept scroll-up at top (go back)
         if (donorsScroll.scrollTop === 0 && e.deltaY < 0) {
@@ -1477,11 +1523,13 @@
       return null;
     }
     window.addEventListener('touchstart', e => {
+      if (isMobile()) return; // long-scroll on mobile
       touchY = e.touches[0].clientY;
       touchScrollEl = findScrollableAncestor(e.target);
       touchScrollTop = touchScrollEl ? touchScrollEl.scrollTop : 0;
     }, { passive:true });
     window.addEventListener('touchend', e => {
+      if (isMobile()) return;
       const delta = touchY - e.changedTouches[0].clientY;
       // If the user actually scrolled inside a scroll container, don't navigate
       if (touchScrollEl && touchScrollEl.scrollTop !== touchScrollTop) return;
