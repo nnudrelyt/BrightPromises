@@ -160,6 +160,11 @@
     .s-split-l .txt { background:var(--white); }
     .photo { position:relative; overflow:hidden; }
     .photo .pbg { position:absolute; inset:0; background-size:cover; background-position:center; transform-origin:center; }
+    /* TEMPORARY: slide number indicator for design review. Remove with
+       its updateUI() call + the <div id="slide-num"> when finished. */
+    #slide-num { position:fixed; bottom:16px; left:16px; z-index:300; padding:6px 10px; border-radius:6px; background:rgba(0,0,0,0.55); color:#fff; font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:11px; letter-spacing:.04em; pointer-events:none; opacity:.85; }
+    @media (max-width:900px) { #slide-num { display:none; } }
+
     /* ── Torn-paper edge ───────────────────────────────────────────────
        Pseudo-element overlay between the white text card and the photo,
        carrying the editorial feel of last year's impact report. The
@@ -731,6 +736,11 @@
       </a>
     </nav>
   </div>
+
+  <!-- TEMPORARY: slide-number indicator for review/iteration. Remove
+       this <div> + the #slide-num CSS + the slideNum updates in
+       updateUI() when no longer needed. -->
+  <div id="slide-num" aria-hidden="true">0 / 35</div>
 
   <main id="slides">
 
@@ -1601,6 +1611,12 @@
       rn.classList.toggle('nav-dark', dark);
       document.getElementById('prev-btn').disabled = i === 0;
       document.getElementById('next-btn').disabled = i === TOTAL-1;
+      // TEMPORARY: slide-num indicator for review
+      const sn = document.getElementById('slide-num');
+      if (sn) {
+        const sec = SLIDES[i].getAttribute('data-sec') || '';
+        sn.textContent = `${i} / ${TOTAL-1} · ${sec}`;
+      }
     }
 
     // ── MOBILE / LONG-SCROLL DETECTION ────────────────────────────────
