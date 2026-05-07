@@ -41,7 +41,7 @@
     /* ── RIGHT NAV RAIL ── */
     #right-nav { position:fixed; right:0; top:0; bottom:0; width:80px; z-index:200; display:flex; flex-direction:column; align-items:center; padding:20px 0 24px; }
     #rn-top { display:flex; flex-direction:row; align-items:center; gap:8px; padding:0 10px; }
-    .nav-logo { width:26px; height:26px; object-fit:contain; flex-shrink:0; transition:filter .3s ease; }
+    .nav-logo { width:34px; height:34px; object-fit:contain; flex-shrink:0; transition:filter .3s ease; }
     .nav-hamburger { display:flex; align-items:center; justify-content:center; cursor:pointer; background:none; border:none; padding:4px; color:var(--white); transition:color .2s; outline:none; }
     .nav-hamburger.dark { color:var(--teal); }
     .nav-hamburger svg { width:18px; height:18px; }
@@ -59,27 +59,28 @@
     #right-nav.nav-warm .arr:hover .btn-arrow { fill:white; stroke:white; }
 
     #dot-nav { margin-top:auto; margin-bottom:auto; display:flex; flex-direction:column; gap:9px; align-items:center; }
-    .dot { width:7px; height:7px; border-radius:50%; background:rgba(255,255,255,.3); border:1.5px solid rgba(255,255,255,.55); cursor:pointer; transition:background .2s,transform .2s; padding:0; }
+    .dot { width:7px; height:7px; border-radius:50%; background:rgba(255,255,255,.3); border:1.5px solid rgba(255,255,255,.55); cursor:pointer; transition:background .2s,border-color .2s,transform .2s; padding:0; }
     .dot.active { background:var(--orange); border-color:var(--orange); transform:scale(1.3); }
-    .dot.dk { background:rgba(0,91,112,.25); border-color:rgba(0,91,112,.5); }
-    .dot.dk.active { background:var(--orange); border-color:var(--orange); }
+    /* Light-bg dots: cyan inactive, dark teal active. */
+    .dot.dk { background:transparent; border-color:var(--cyan); }
+    .dot.dk.active { background:var(--teal); border-color:var(--teal); }
 
     #nav-arrows { display:flex; flex-direction:column; gap:8px; }
     .arr { background:none; border:none; cursor:pointer; padding:0; display:flex; align-items:center; justify-content:center; }
     .arr:disabled { opacity:.3; cursor:default; pointer-events:none; }
-    /* Default state — light backgrounds. Cyan stroke + teal arrow. */
-    .btn-circle { fill:transparent; stroke:rgba(51,163,189,0.55); transition:fill .25s ease, stroke .25s ease; }
-    .btn-arrow { fill:var(--teal); stroke:var(--teal); transition:fill .25s ease, stroke .25s ease, transform .25s cubic-bezier(.4,0,.2,1); transform-origin:50% 50%; }
-    .arr:hover .btn-circle { fill:transparent; stroke:var(--teal); }
-    .arr:hover .btn-arrow { fill:var(--teal); stroke:var(--teal); }
+    /* Default state — light backgrounds. Cyan circle + cyan arrow.
+       Only the arrow shifts to dark teal on hover; the circle holds. */
+    .btn-circle { fill:transparent; stroke:var(--cyan); transition:stroke .25s ease; }
+    .btn-arrow { fill:var(--cyan); stroke:var(--cyan); transition:fill .25s ease, stroke .25s ease, transform .25s cubic-bezier(.4,0,.2,1); transform-origin:50% 50%; }
+    .arr:hover:not(:disabled) .btn-arrow { fill:var(--teal); stroke:var(--teal); }
     /* Slight bump animation on hover — arrows nudge in their direction */
     #prev-btn:hover:not(:disabled) .btn-arrow { transform:translateY(-2px); }
     #next-btn:hover:not(:disabled) .btn-arrow { transform:translateY(2px); }
-    /* Dark backgrounds — flip to white for contrast. */
+    /* Dark backgrounds — flip to white for contrast.
+       Same pattern: only the arrow brightens on hover. */
     #right-nav.nav-dark .btn-circle { stroke:rgba(255,255,255,.7); }
-    #right-nav.nav-dark .btn-arrow { fill:rgba(255,255,255,.9); stroke:rgba(255,255,255,.9); }
-    #right-nav.nav-dark .arr:hover .btn-circle { fill:transparent; stroke:white; }
-    #right-nav.nav-dark .arr:hover .btn-arrow { fill:white; stroke:white; }
+    #right-nav.nav-dark .btn-arrow { fill:rgba(255,255,255,.85); stroke:rgba(255,255,255,.85); }
+    #right-nav.nav-dark .arr:hover:not(:disabled) .btn-arrow { fill:white; stroke:white; }
 
     @keyframes menuItemUp {
       from { opacity:0; transform:translateY(26px); }
