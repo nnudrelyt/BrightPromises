@@ -10,6 +10,18 @@
 // Running SSR per-request lets the worker serve both
 // /2025-impact-report and /2025-impact-report/ without redirecting.
 import html from "../html/index.html?raw";
+
+// Inject <base href> so the deck's relative asset paths
+// (img/foo.jpg, fonts/...) resolve correctly regardless of
+// trailing slash. Webflow's edge strips the trailing slash,
+// which would otherwise make `img/foo.jpg` resolve to
+// /img/foo.jpg instead of /2025-impact-report/img/foo.jpg.
+const base = import.meta.env.BASE_URL || "/";
+const normalizedBase = base.endsWith("/") ? base : `${base}/`;
+const htmlWithBase = html.replace(
+  /<head([^>]*)>/i,
+  `<head$1>\n<base href="${normalizedBase}">`
+);
 ---
 
-<Fragment set:html={html} />
+<Fragment set:html={htmlWithBase} />
