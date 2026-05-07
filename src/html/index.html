@@ -160,6 +160,23 @@
     .s-split-l .txt { background:var(--white); }
     .photo { position:relative; overflow:hidden; }
     .photo .pbg { position:absolute; inset:0; background-size:cover; background-position:center; transform-origin:center; }
+    /* ── Torn-paper edge ───────────────────────────────────────────────
+       Pseudo-element overlay between the white text card and the photo,
+       carrying the editorial feel of last year's impact report. The
+       edge.svg is rendered as white paper with a torn right edge — for
+       s-split-l (photo on the left) we mirror it via scaleX(-1).
+       Hidden on mobile where the layout stacks photo over copy. */
+    .s-split .photo::before,
+    .s-closing .close-photo::before {
+      content:''; position:absolute; left:-1px; top:0; bottom:0; width:62px;
+      background:url('img/edge.svg') no-repeat center / 100% 100%;
+      z-index:2; pointer-events:none;
+    }
+    .s-split-l .photo::before {
+      content:''; position:absolute; right:-1px; top:0; bottom:0; width:62px;
+      background:url('img/edge.svg') no-repeat center / 100% 100%;
+      transform:scaleX(-1); z-index:2; pointer-events:none;
+    }
     @keyframes kenburns { 0% { transform:scale(1.18) translate(-3%,-3%); } 100% { transform:scale(1) translate(0,0); } }
     .slide.is-active .photo .pbg,
     .slide.is-active .hlc-bg .pbg { animation:kenburns 14s ease-out forwards; }
@@ -509,6 +526,8 @@
       /* Photo-above-text on every split slide. Use flex column so order works. */
       .s-split, .s-split-l { display:flex !important; flex-direction:column; }
       .s-split .photo, .s-split-l .photo { order:-1; height:48vw; max-height:380px; margin-bottom:0; }
+      /* Torn edge is desktop-only; stacked mobile layout doesn't need it. */
+      .s-split .photo::before, .s-split-l .photo::before, .s-closing .close-photo::before { display:none !important; }
       .s-split .txt, .s-split-l .txt { order:0; padding:32px 24px !important; }
       /* s-closing (ASE results) — text card flows above photo on mobile */
       .s-closing .close-txt { padding:32px 24px !important; }
