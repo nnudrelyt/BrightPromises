@@ -1,0 +1,10 @@
+---
+// Pure-static deck. Pass our existing index.html through Astro
+// without letting the bundler touch the inline <style>/<script>
+// blocks. set:html on a Fragment renders the string verbatim.
+import html from "../html/index.html?raw";
+
+export const prerender = true;
+---
+
+<Fragment set:html={html} />

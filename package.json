@@ -1,9 +1,20 @@
 {
   "name": "bright-promises-impact-report",
+  "type": "module",
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "build": "echo 'static site — no build needed'",
-    "start": "echo 'served as static files'"
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/cloudflare": "^12.6.6",
+    "astro": "^5.7.0"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20250415.0",
+    "wrangler": "^4.11.1"
   }
 }
