@@ -2,9 +2,14 @@
 // Pure-static deck. Pass our existing index.html through Astro
 // without letting the bundler touch the inline <style>/<script>
 // blocks. set:html on a Fragment renders the string verbatim.
+//
+// NOTE: prerender is intentionally left off. With prerender = true
+// the page becomes a static file at /2025-impact-report/index.html,
+// which forces a trailing-slash redirect that conflicts with
+// Webflow Cloud's edge stripping the slash and creates a loop.
+// Running SSR per-request lets the worker serve both
+// /2025-impact-report and /2025-impact-report/ without redirecting.
 import html from "../html/index.html?raw";
-
-export const prerender = true;
 ---
 
 <Fragment set:html={html} />
