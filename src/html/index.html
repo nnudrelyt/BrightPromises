@@ -64,8 +64,11 @@
     /* Dots are content-aware, matching the arrow + logo logic:
          - On dark backgrounds (default): white inactive, white active.
          - On light backgrounds (.dk): cyan inactive, dark teal active.
-       Inactive vs active is differentiated by opacity + scale. */
-    .dot { width:7px; height:7px; border-radius:50%; background:rgba(255,255,255,0.45); border:none; cursor:pointer; transition:background .2s,transform .2s; padding:0; }
+       Inactive vs active is differentiated by opacity + scale.
+       NOTE: dots only render for sections with 2+ slides — see
+       renderDots(). Single-slide sections (cover, TOC, ED letter,
+       COP, donor honor roll, closing thanks, MVV) emit no dots. */
+    .dot { width:6px; height:6px; border-radius:50%; background:rgba(255,255,255,0.45); border:none; cursor:pointer; transition:background .2s,transform .2s; padding:0; }
     .dot.active { background:#fff; transform:scale(1.3); }
     .dot.dk { background:rgba(51,163,189,0.45); }
     .dot.dk.active { background:var(--teal); }
