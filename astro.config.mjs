@@ -5,6 +5,7 @@ import cloudflare from "@astrojs/cloudflare";
 export default defineConfig({
   base: "/2025-impact-report",
   output: "server",
+  trailingSlash: "never",
   adapter: cloudflare({
     platformProxy: {
       enabled: true,
