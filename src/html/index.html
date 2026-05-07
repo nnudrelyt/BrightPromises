@@ -55,7 +55,7 @@
     #right-nav.nav-warm:not(:has(.nav-hamburger.open)) .nav-logo { filter:brightness(0) invert(1); }
     #right-nav.nav-warm .btn-circle { stroke:rgba(255,255,255,.7); }
     #right-nav.nav-warm .btn-arrow { fill:rgba(255,255,255,.85); stroke:rgba(255,255,255,.85); }
-    #right-nav.nav-warm .arr:hover .btn-circle { fill:rgba(255,255,255,.2); stroke:white; }
+    #right-nav.nav-warm .arr:hover .btn-circle { fill:transparent; stroke:white; }
     #right-nav.nav-warm .arr:hover .btn-arrow { fill:white; stroke:white; }
 
     #dot-nav { margin-top:auto; margin-bottom:auto; display:flex; flex-direction:column; gap:9px; align-items:center; }
@@ -67,10 +67,19 @@
     #nav-arrows { display:flex; flex-direction:column; gap:8px; }
     .arr { background:none; border:none; cursor:pointer; padding:0; display:flex; align-items:center; justify-content:center; }
     .arr:disabled { opacity:.3; cursor:default; pointer-events:none; }
+    /* Default state — light backgrounds. Cyan stroke + teal arrow. */
     .btn-circle { fill:transparent; stroke:rgba(51,163,189,0.55); transition:fill .25s ease, stroke .25s ease; }
-    .btn-arrow { transition:fill .25s ease, stroke .25s ease; }
-    .arr:hover .btn-circle { fill:var(--teal); }
-    .arr:hover .btn-arrow { fill:var(--yellow); stroke:var(--yellow); }
+    .btn-arrow { fill:var(--teal); stroke:var(--teal); transition:fill .25s ease, stroke .25s ease, transform .25s cubic-bezier(.4,0,.2,1); transform-origin:50% 50%; }
+    .arr:hover .btn-circle { fill:transparent; stroke:var(--teal); }
+    .arr:hover .btn-arrow { fill:var(--teal); stroke:var(--teal); }
+    /* Slight bump animation on hover — arrows nudge in their direction */
+    #prev-btn:hover:not(:disabled) .btn-arrow { transform:translateY(-2px); }
+    #next-btn:hover:not(:disabled) .btn-arrow { transform:translateY(2px); }
+    /* Dark backgrounds — flip to white for contrast. */
+    #right-nav.nav-dark .btn-circle { stroke:rgba(255,255,255,.7); }
+    #right-nav.nav-dark .btn-arrow { fill:rgba(255,255,255,.9); stroke:rgba(255,255,255,.9); }
+    #right-nav.nav-dark .arr:hover .btn-circle { fill:transparent; stroke:white; }
+    #right-nav.nav-dark .arr:hover .btn-arrow { fill:white; stroke:white; }
 
     @keyframes menuItemUp {
       from { opacity:0; transform:translateY(26px); }
@@ -1398,7 +1407,10 @@
 
     function isDark(i) {
       const cl = SLIDES[i].classList;
-      return cl.contains('s-hero') || cl.contains('s-chart') || cl.contains('s-mvv') || cl.contains('s-hlc') || cl.contains('s-cover');
+      // s-split has photo on the right (where right-nav sits) so arrows
+      // need the dark-bg treatment. s-split-l has photo on the LEFT and
+      // a white text card on the right, so it stays in the light-bg branch.
+      return cl.contains('s-hero') || cl.contains('s-chart') || cl.contains('s-mvv') || cl.contains('s-hlc') || cl.contains('s-cover') || cl.contains('s-split');
     }
 
     const dotNav = document.getElementById('dot-nav');
@@ -1539,7 +1551,9 @@
       const dark = isDark(i);
       const burger = document.getElementById('hamburger');
       burger.classList.toggle('dark', !dark);
-      document.getElementById('right-nav').classList.toggle('nav-warm', isWarm(i));
+      const rn = document.getElementById('right-nav');
+      rn.classList.toggle('nav-warm', isWarm(i));
+      rn.classList.toggle('nav-dark', dark);
       document.getElementById('prev-btn').disabled = i === 0;
       document.getElementById('next-btn').disabled = i === TOTAL-1;
     }
