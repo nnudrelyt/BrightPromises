@@ -39,8 +39,10 @@
 
     /* ── FIXED UI ── */
     /* ── RIGHT NAV RAIL ── */
-    #right-nav { position:fixed; right:0; top:0; bottom:0; width:80px; z-index:200; display:flex; flex-direction:column; align-items:center; padding:20px 0 24px; }
-    #rn-top { display:flex; flex-direction:row; align-items:center; gap:8px; padding:0 10px; }
+    #right-nav { position:fixed; right:0; top:0; bottom:0; width:96px; z-index:200; display:flex; flex-direction:column; align-items:center; padding:20px 0 24px; }
+    /* Align rn-top's right edge with the arrows below — arrows sit 31px
+       from the viewport edge (centered 34px svg in a 96px nav). */
+    #rn-top { display:flex; flex-direction:row; align-items:center; gap:8px; padding:0; align-self:flex-end; margin-right:31px; }
     .nav-logo { width:34px; height:34px; object-fit:contain; flex-shrink:0; transition:filter .3s ease; }
     .nav-hamburger { display:flex; align-items:center; justify-content:center; cursor:pointer; background:none; border:none; padding:4px; color:var(--white); transition:color .2s; outline:none; }
     .nav-hamburger.dark { color:var(--teal); }
@@ -59,11 +61,11 @@
     #right-nav.nav-warm .arr:hover .btn-arrow { fill:white; stroke:white; }
 
     #dot-nav { margin-top:auto; margin-bottom:auto; display:flex; flex-direction:column; gap:9px; align-items:center; }
-    .dot { width:7px; height:7px; border-radius:50%; background:rgba(51,163,189,0.45); border:1.5px solid rgba(51,163,189,0.65); cursor:pointer; transition:background .2s,border-color .2s,transform .2s; padding:0; }
-    .dot.active { background:var(--orange); border-color:var(--orange); transform:scale(1.3); }
+    .dot { width:9px; height:9px; border-radius:50%; background:rgba(51,163,189,0.45); border:none; cursor:pointer; transition:background .2s,transform .2s; padding:0; }
+    .dot.active { background:var(--orange); transform:scale(1.35); }
     /* Light-bg dots: solid cyan inactive at 45% opacity, dark teal active. */
-    .dot.dk { background:rgba(51,163,189,0.45); border-color:var(--cyan); }
-    .dot.dk.active { background:var(--teal); border-color:var(--teal); }
+    .dot.dk { background:rgba(51,163,189,0.45); }
+    .dot.dk.active { background:var(--teal); }
 
     #nav-arrows { display:flex; flex-direction:column; gap:8px; }
     .arr { background:none; border:none; cursor:pointer; padding:0; display:flex; align-items:center; justify-content:center; }
