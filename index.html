@@ -1467,6 +1467,7 @@
       if (window.matchMedia('(max-width: 900px)').matches) {
         SLIDES[next].scrollIntoView({ behavior:'smooth', block:'start' });
         cur = next;
+        updateUI(next);
         return;
       }
       if (next === cur || animating) return;
@@ -1497,14 +1498,23 @@
       if (next === 29) { donorsAdvanced = false; donorsScroll.scrollTop = 0; }
       updateUI(next);
 
-      setTimeout(() => {
+      const cleanup = () => {
         prevEl.classList.remove('is-active');
         prevEl.style.transition = '';
         prevEl.style.opacity = '';
         prevEl.style.transform = '';
         nextEl.style.transition = '';
         animating = false;
-      }, dur + 40);
+      };
+      setTimeout(cleanup, dur + 40);
+      // Safety net: if the timeout above is throttled (background tab,
+      // browser stall, etc.) and `animating` gets stuck true, the next
+      // visibility change or window focus forces the cleanup to run so
+      // navigation doesn't dead-lock.
+      const safetyEvents = ['visibilitychange', 'focus', 'pageshow'];
+      const safety = () => { if (animating) cleanup(); safetyEvents.forEach(e => removeEventListener(e, safety)); };
+      safetyEvents.forEach(e => addEventListener(e, safety, { once:false }));
+      setTimeout(() => safetyEvents.forEach(e => removeEventListener(e, safety)), dur + 2000);
     }
 
     function nav(d) { goTo(cur + d); }
