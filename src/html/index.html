@@ -482,6 +482,9 @@
       #nav-arrows, #dot-nav { display:none !important; }
       #right-nav { width:auto; padding:10px 14px 10px 0; pointer-events:none; }
       #right-nav > * { pointer-events:auto; }
+      /* Reset desktop right-alignment offset — mobile right-nav already
+         pads from the edge via the rule above. */
+      #rn-top { margin-right:0; align-self:auto; }
       /* Each slide gets natural section padding (no rule between) */
       .slide { padding:48px 28px !important; }
       /* Cover slide: pin to ~60% viewport height */
