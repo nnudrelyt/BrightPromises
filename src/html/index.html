@@ -185,7 +185,14 @@
     .slide.is-active .photo .pbg,
     .slide.is-active .hlc-bg .pbg { animation:kenburns 14s ease-out forwards; }
     .slide.is-active .hlc-bg .pbg { animation-duration:55s; }
-    .photo-credit { position:absolute; bottom:10px; right:12px; font-size:clamp(10px,0.85vw,12px); font-weight:400; color:rgba(255,255,255,.55); line-height:1.5; letter-spacing:.04em; z-index:1; }
+    /* Desktop: bottom-left of the photo so the credit doesn't compete
+       with the right-rail nav arrows. Mobile (in @media below) keeps the
+       original bottom-right placement since the nav arrows are hidden. */
+    .photo-credit { position:absolute; bottom:10px; left:12px; right:auto; font-size:clamp(10px,0.85vw,12px); font-weight:400; color:rgba(255,255,255,.55); line-height:1.5; letter-spacing:.04em; z-index:3; }
+    /* s-split slides have a 62px torn-paper overlay along the photo's
+       left edge; shift the credit past it so the text isn't lost on
+       the white tear. */
+    .s-split .photo-credit { left:74px; }
 
     .eyebrow { font-size:clamp(11px,0.95vw,14px); font-weight:800; letter-spacing:.12em; text-transform:uppercase; color:var(--orange); margin-bottom:clamp(12px,1.2vh,20px); }
     .sh { font-size:clamp(22px,2.8vw,52px); font-weight:700; color:var(--teal); line-height:1.12; margin-bottom:clamp(16px,1.6vh,28px); }
@@ -506,6 +513,9 @@
       /* Reset desktop right-alignment offset — mobile right-nav already
          pads from the edge via the rule above. */
       #rn-top { margin-right:0; align-self:auto; }
+      /* Mobile keeps the original bottom-right photo credit position;
+         no nav arrows visible so no conflict. */
+      .photo-credit, .s-split .photo-credit { left:auto; right:12px; }
       /* Each slide gets natural section padding (no rule between) */
       .slide { padding:48px 28px !important; }
       /* Cover slide: pin to ~60% viewport height */
@@ -727,6 +737,7 @@
     <!-- 0: COVER -->
     <section class="slide s-hero" data-i="0" data-sec="cover">
       <div class="bg" style="background-image:url('img/Cover.jpg')"></div>
+      <span class="photo-credit">Image courtesy [Photographer Name]</span>
       <div class="content">
         <div class="eyebrow-pill" style="margin-bottom:28px">2025 Impact Report</div>
         <h1 class="hero-h1">the power<br>of promise</h1>
@@ -817,6 +828,7 @@
     <!-- 3: KI1 A -->
     <section class="slide s-hero" data-i="3" data-sec="ki1">
       <div class="bg" style="background-image:url('img/keyinsight_1.jpg')"></div>
+      <span class="photo-credit">Image courtesy [Photographer Name]</span>
       <div class="content">
         <div class="eyebrow">The Inflection Point</div>
         <h2 class="sh"><strong>Key Insight 1:</strong> Not all children start with the same opportunities&mdash;and the gap is widening.</h2>
@@ -876,6 +888,7 @@
     <!-- 7: KI2 A -->
     <section class="slide s-hero" data-i="7" data-sec="ki2">
       <div class="bg" style="background-image:url('img/keyinsight_2.jpg')"></div>
+      <span class="photo-credit">Image courtesy [Photographer Name]</span>
       <div class="content">
         <div class="eyebrow">Momentum, Not Miracles</div>
         <h2 class="sh"><strong>Key Insight 2:</strong> When young people have safe spaces, trusted relationships, and opportunities to lead, they don&rsquo;t just cope&mdash;they thrive.</h2>
@@ -971,6 +984,7 @@
     <!-- 12: ASE HERO -->
     <section class="slide s-hero" data-i="12" data-sec="ase">
       <div class="bg" style="background-image:url('img/Title_ASE.jpg')"></div>
+      <span class="photo-credit">Image courtesy [Photographer Name]</span>
       <div class="content">
         <div class="eyebrow-pill">Grantee Partner Spotlight</div>
         <h1 class="hero-h1">Alliance<br>of the<br>Southeast</h1>
@@ -1017,6 +1031,7 @@
     <!-- 16: KI3 A -->
     <section class="slide s-hero" data-i="15" data-sec="ki3">
       <div class="bg" style="background-image:url('img/keyinsight_3.jpg')"></div>
+      <span class="photo-credit">Image courtesy [Photographer Name]</span>
       <div class="content">
         <div class="eyebrow">We Invest in the People and Places Children Rely On</div>
         <h2 class="sh"><strong>Key Insight 3:</strong> Strong outcomes for children start with supported adults and organizations.</h2>
@@ -1062,6 +1077,7 @@
     <!-- 19: KI4 HERO -->
     <section class="slide s-hero" data-i="18" data-sec="ki4">
       <div class="bg" style="background-image:url('img/keyinsight_4.jpg')"></div>
+      <span class="photo-credit">Image courtesy [Photographer Name]</span>
       <div class="content">
         <div class="eyebrow">Upstream Impact for Lasting Opportunity</div>
         <h2 class="sh"><strong>Key Insight 4:</strong> Effective solutions start early.</h2>
@@ -1092,6 +1108,7 @@
     <!-- 21: COMMUNITIES UNITED HERO -->
     <section class="slide s-hero" data-i="20" data-sec="cu">
       <div class="bg" style="background-image:url('img/Title_CommunitiesUnited.jpg')"></div>
+      <span class="photo-credit">Image courtesy [Photographer Name]</span>
       <div class="content">
         <div class="eyebrow-pill">Grantee Partner Spotlight</div>
         <h1 class="hero-h1">Communities<br>United</h1>
@@ -1130,6 +1147,7 @@
     <!-- 24: KI5 HERO -->
     <section class="slide s-hero" data-i="23" data-sec="ki5">
       <div class="bg" style="background-image:url('img/keyinsight_5.jpg')"></div>
+      <span class="photo-credit">Image courtesy [Photographer Name]</span>
       <div class="overlay" style="background:var(--teal-dk);opacity:.72"></div>
       <div class="content">
         <div class="eyebrow">Scaling What Works</div>
@@ -1334,6 +1352,7 @@
     <!-- 31: WEST MONROE HERO -->
     <section class="slide s-hero" data-i="30" data-sec="wm">
       <div class="bg" style="background-image:url('img/Title_WestMonroe.jpg')"></div>
+      <span class="photo-credit">Image courtesy [Photographer Name]</span>
       <div class="content">
         <div class="eyebrow-pill">Corporate Partner Spotlight</div>
         <h1 class="hero-h1">West<br>Monroe</h1>
