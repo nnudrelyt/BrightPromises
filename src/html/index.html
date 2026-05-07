@@ -169,12 +169,16 @@
     .s-split .photo::before,
     .s-closing .close-photo::before {
       content:''; position:absolute; left:-1px; top:0; bottom:0; width:62px;
-      background:url('img/edge.svg') no-repeat center / 100% 100%;
+      background:#fff;
+      -webkit-mask:url('img/edge.svg') no-repeat center / 100% 100%;
+              mask:url('img/edge.svg') no-repeat center / 100% 100%;
       transform:scaleX(-1); z-index:2; pointer-events:none;
     }
     .s-split-l .photo::before {
       content:''; position:absolute; right:-1px; top:0; bottom:0; width:62px;
-      background:url('img/edge.svg') no-repeat center / 100% 100%;
+      background:#fff;
+      -webkit-mask:url('img/edge.svg') no-repeat center / 100% 100%;
+              mask:url('img/edge.svg') no-repeat center / 100% 100%;
       z-index:2; pointer-events:none;
     }
     @keyframes kenburns { 0% { transform:scale(1.18) translate(-3%,-3%); } 100% { transform:scale(1) translate(0,0); } }
