@@ -1494,7 +1494,7 @@
       tt.runIn(nextEl);
 
       cur = next;
-      if (next === 30) { donorsAdvanced = false; donorsScroll.scrollTop = 0; }
+      if (next === 29) { donorsAdvanced = false; donorsScroll.scrollTop = 0; }
       updateUI(next);
 
       setTimeout(() => {
@@ -1541,7 +1541,7 @@
     let wheelLocked = false;
     window.addEventListener('wheel', e => {
       if (isMobile()) return; // long-scroll on mobile — let native scroll handle it
-      if (cur === 30) {
+      if (cur === 29) {
         // Let donors slide scroll naturally; only intercept scroll-up at top (go back)
         if (donorsScroll.scrollTop === 0 && e.deltaY < 0) {
           e.preventDefault();
