@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" role="img" aria-label="Bright Promises ecosystem: six overlapping petals representing Anticipates, Invests, Builds, Creates, Elevates, Influences">
+  <style>
+    .pt { font-family: 'B1816','Helvetica Neue',Helvetica,Arial,sans-serif; font-weight: 800; font-size: 16px; fill: #005B70; letter-spacing: -0.005em; }
+    .ct { font-family: 'B1816','Helvetica Neue',Helvetica,Arial,sans-serif; font-weight: 700; font-size: 13px; fill: #ffffff; letter-spacing: -0.005em; }
+  </style>
+  <!-- Petals — 6 overlapping circles at 60deg intervals -->
+  <circle cx="200"   cy="78.6"  r="92" fill="#74AA50" fill-opacity="0.22"/>
+  <circle cx="305.2" cy="139.3" r="92" fill="#33A3BD" fill-opacity="0.22"/>
+  <circle cx="305.2" cy="260.7" r="92" fill="#A46AFF" fill-opacity="0.20"/>
+  <circle cx="200"   cy="321.4" r="92" fill="#F1C400" fill-opacity="0.24"/>
+  <circle cx="94.8"  cy="260.7" r="92" fill="#E861B3" fill-opacity="0.20"/>
+  <circle cx="94.8"  cy="139.3" r="92" fill="#33A3BD" fill-opacity="0.22"/>
+  <!-- Center -->
+  <circle cx="200" cy="200" r="62" fill="#EE9134"/>
+  <text class="ct" x="200" y="196" text-anchor="middle">Bright</text>
+  <text class="ct" x="200" y="212" text-anchor="middle">Promises:</text>
+  <!-- Petal titles, positioned toward outer edge of each petal -->
+  <text class="pt" x="200"   y="64"  text-anchor="middle" dominant-baseline="middle">Anticipates</text>
+  <text class="pt" x="321.7" y="129.8" text-anchor="middle" dominant-baseline="middle">Invests</text>
+  <text class="pt" x="321.7" y="270.2" text-anchor="middle" dominant-baseline="middle">Builds</text>
+  <text class="pt" x="200"   y="336" text-anchor="middle" dominant-baseline="middle">Creates</text>
+  <text class="pt" x="78.3"  y="270.2" text-anchor="middle" dominant-baseline="middle">Elevates</text>
+  <text class="pt" x="78.3"  y="129.8" text-anchor="middle" dominant-baseline="middle">Influences</text>
+</svg>

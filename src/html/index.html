@@ -78,7 +78,7 @@
     .arr:disabled { opacity:.3; cursor:default; pointer-events:none; }
     /* Default state — light backgrounds. Cyan circle + cyan arrow.
        Only the arrow shifts to dark teal on hover; the circle holds. */
-    .btn-circle { fill:transparent; stroke:var(--cyan); transition:stroke .25s ease; }
+    .btn-circle { fill:transparent; stroke:var(--yellow); transition:stroke .25s ease; }
     .btn-arrow { fill:var(--cyan); stroke:var(--cyan); transition:fill .25s ease, stroke .25s ease, transform .25s cubic-bezier(.4,0,.2,1); transform-origin:50% 50%; }
     .arr:hover:not(:disabled) .btn-arrow { fill:var(--teal); stroke:var(--teal); }
     /* Slight bump animation on hover — arrows nudge in their direction */
@@ -148,8 +148,8 @@
     .s-hero[data-sec="ki2"] .eyebrow,
     .s-hero[data-sec="ki3"] .eyebrow,
     .s-hero[data-sec="ki4"] .eyebrow,
-    .s-hero[data-sec="ki5"] .eyebrow { color:var(--white); }
-    .hero-sub { font-size:clamp(18px,2vw,32px); font-weight:700; color:var(--white); line-height:1.3; max-width:17em; }
+    .s-hero[data-sec="ki5"] .eyebrow { color:var(--yellow); }
+    .hero-sub { font-size:clamp(18px,2vw,32px); font-weight:700; color:var(--white); line-height:1.3; max-width:22em; }
     .hero-logo { position:absolute; bottom:clamp(56px,7vh,120px); left:clamp(56px,5vw,120px); height:clamp(44px,4vw,72px); z-index:2; }
 
     /* ── SPLIT SLIDES ── */
@@ -173,14 +173,14 @@
        Hidden on mobile where the layout stacks photo over copy. */
     .s-split .photo::before,
     .s-closing .close-photo::before {
-      content:''; position:absolute; left:-1px; top:0; bottom:0; width:62px;
+      content:''; position:absolute; left:0; top:0; bottom:0; width:62px;
       background:#fff;
       -webkit-mask:url('img/edge.svg') no-repeat center / 100% 100%;
               mask:url('img/edge.svg') no-repeat center / 100% 100%;
       transform:scaleX(-1); z-index:2; pointer-events:none;
     }
     .s-split-l .photo::before {
-      content:''; position:absolute; right:-1px; top:0; bottom:0; width:62px;
+      content:''; position:absolute; right:0; top:0; bottom:0; width:62px;
       background:#fff;
       -webkit-mask:url('img/edge.svg') no-repeat center / 100% 100%;
               mask:url('img/edge.svg') no-repeat center / 100% 100%;
@@ -265,29 +265,34 @@
     /* ── ACCORDION ── */
     .s-accordion { background:var(--white); display:flex; align-items:center; justify-content:center; padding:clamp(36px,4vh,72px) clamp(56px,7vw,140px); }
     .acc-inner { width:100%; max-width:min(1200px,92vw); }
+    /* Accordion in a split layout (slide 9): vertically centered, sized for narrow column */
+    .s-acc-split .txt { justify-content:center; }
+    .s-acc-split .acc-inner { max-width:100%; }
+    .s-acc-split .acc-title { font-size:clamp(15px,1.35vw,21px); }
+    .s-acc-split .acc-list li { font-size:clamp(14px,1.2vw,17px); }
     .acc-intro { font-size:clamp(16px,1.4vw,20px); font-weight:400; color:var(--body); line-height:1.75; margin-bottom:clamp(18px,2.2vh,34px); }
     .acc-intro p+p { margin-top:.75em; }
     .acc-intro strong { font-weight:700; color:var(--teal); }
     .acc-h2 { font-size:clamp(28px,3.4vw,52px); font-weight:700; color:var(--teal); line-height:1.08; margin-bottom:clamp(16px,2vh,28px); letter-spacing:-.005em; }
-    .acc-item { border:2.5px solid rgba(51,163,189,0.32); border-radius:14px; margin-bottom:clamp(14px,1.85vh,23px); overflow:hidden; background:transparent; transition:border-color .25s, transform .25s, box-shadow .25s; }
+    .acc-item { border:2px solid rgba(51,163,189,0.32); border-radius:12px; margin-bottom:clamp(10px,1.4vh,16px); overflow:hidden; background:transparent; transition:border-color .25s, transform .25s, box-shadow .25s; }
     .acc-item:hover { transform:translateY(-2px); box-shadow:0 8px 22px rgba(0,91,112,0.08); border-color:rgba(51,163,189,0.55); }
     .acc-item.open { box-shadow:0 4px 14px rgba(0,91,112,0.06); border-color:#33A3BD; }
     button { font-family:inherit; }
-    .acc-toggle { width:100%; display:flex; align-items:center; gap:clamp(16px,1.6vw,26px); padding:clamp(24px,2.7vh,33px) clamp(22px,2.4vw,36px) clamp(28px,3.1vh,38px); background:none; border:none; cursor:pointer; text-align:left; transition:background .2s; }
-    .acc-item.open .acc-toggle { padding-bottom:clamp(12px,1.5vh,18px); }
+    .acc-toggle { width:100%; display:flex; align-items:center; gap:clamp(14px,1.4vw,22px); padding:clamp(16px,1.9vh,24px) clamp(18px,2vw,28px) clamp(18px,2.1vh,26px); background:none; border:none; cursor:pointer; text-align:left; transition:background .2s; }
+    .acc-item.open .acc-toggle { padding-bottom:clamp(10px,1.2vh,14px); }
     .acc-toggle:hover { background:transparent; }
-    .acc-icon { width:48px; height:48px; border-radius:50%; border:3px solid rgba(241,196,0,0.85); color:#33A3BD; flex-shrink:0; position:relative; padding:0; transition:border-color .25s, color .25s; }
+    .acc-icon { width:36px; height:36px; border-radius:50%; border:2.5px solid rgba(241,196,0,0.85); color:#33A3BD; flex-shrink:0; position:relative; padding:0; transition:border-color .25s, color .25s; }
     .acc-icon::before, .acc-icon::after { content:''; position:absolute; top:50%; left:50%; background:currentColor; border-radius:1px; transform:translate(-50%,-50%); }
-    .acc-icon::before { width:16px; height:3px; }
-    .acc-icon::after { width:3px; height:16px; transition:opacity .25s; }
+    .acc-icon::before { width:13px; height:2.5px; }
+    .acc-icon::after { width:2.5px; height:13px; transition:opacity .25s; }
     .acc-item.open .acc-icon { border-color:#33A3BD; color:#33A3BD; }
     .acc-item.open .acc-icon::before, .acc-item.open .acc-icon::after { background:var(--teal); }
     .acc-item.open .acc-icon::after { opacity:0; }
-    .acc-title { font-size:clamp(18px,1.95vw,30px); font-weight:700; color:var(--teal); line-height:1.2; transition:color .25s; }
+    .acc-title { font-size:clamp(16px,1.5vw,24px); font-weight:700; color:var(--teal); line-height:1.25; transition:color .25s; }
     .acc-item:not(.open):hover .acc-title { color:#33A3BD; }
     .acc-item.open .acc-title { color:#33A3BD; }
-    .acc-body { padding:0 clamp(20px,2vw,32px) 0 clamp(60px,5.6vw,90px); max-height:0; overflow:hidden; transition:max-height .4s ease,padding-bottom .4s ease; }
-    .acc-item.open .acc-body { max-height:500px; padding-bottom:clamp(22px,2.5vh,34px); }
+    .acc-body { padding:0 clamp(20px,2vw,32px) 0 clamp(50px,4.6vw,72px); max-height:0; overflow:hidden; transition:max-height .4s ease,padding-bottom .4s ease; }
+    .acc-item.open .acc-body { max-height:500px; padding-bottom:clamp(18px,2vh,28px); }
     .acc-list { list-style:none; padding:0; }
     .acc-list li { padding:7px 0 7px 36px; position:relative; font-family:'B1816','Helvetica Neue',Helvetica,sans-serif; font-size:clamp(16px,1.4vw,20px); font-weight:400; color:var(--body); line-height:1.75; }
     .acc-list li::before { content:''; position:absolute; left:10px; top:50%; margin-top:-3.5px; width:7px; height:7px; border-radius:50%; background:#33A3BD; }
@@ -297,24 +302,25 @@
 
     /* ── CHART SLIDES ── */
     .s-chart { background:var(--cyan); display:flex; align-items:stretch; padding:clamp(48px,5vh,80px) clamp(56px,6vw,120px); overflow:hidden; }
-    .s-chart::before { content:''; position:absolute; inset:0; background:repeating-linear-gradient(-45deg,transparent,transparent 80px,rgba(255,255,255,.04) 80px,rgba(255,255,255,.04) 81px); }
     .bg-circ { position:absolute; border-radius:50%; background:rgba(255,255,255,.05); pointer-events:none; }
     .chart-h { font-size:clamp(26px,3.2vw,54px); font-weight:700; color:var(--white); line-height:1.12; margin-bottom:clamp(16px,2vh,28px); position:relative; z-index:1; }
     .chart-sub { display:none; }
     .cop-grid { width:100%; display:grid; grid-template-columns:2fr 3fr; gap:clamp(32px,4vw,72px); align-items:start; }
-    /* Community of Partners — editorial three-row stack (Layout C) */
-    .s-cop { align-items:flex-start; padding:clamp(40px,5vh,80px) clamp(56px,6vw,120px) clamp(60px,7vh,100px) clamp(56px,6vw,120px); overflow-y:auto; }
-    .cop-c-wrap { width:100%; max-width:1100px; margin:0 auto; display:flex; flex-direction:column; gap:clamp(20px,2.6vh,36px); }
+    /* Community of Partners — editorial three-row stack (Layout C) on deep-teal bg */
+    .s-cop { background:var(--teal-dk); align-items:flex-start; padding:clamp(40px,5vh,80px) clamp(56px,6vw,120px) clamp(60px,7vh,100px) clamp(56px,6vw,120px); overflow-y:auto; }
+    .s-cop .eyebrow { color:var(--orange); }
+    .cop-c-wrap { width:100%; max-width:1100px; margin:0 auto; display:flex; flex-direction:column; gap:clamp(20px,2.6vh,36px); position:relative; z-index:1; }
     .cop-c-top { text-align:center; max-width:1000px; margin:0 auto; }
-    .cop-c-top .eyebrow { margin-bottom:14px; }
-    .cop-c-h { font-size:clamp(28px,3.4vw,52px); font-weight:700; color:var(--teal); line-height:1.08; margin-bottom:14px; white-space:nowrap; }
-    .cop-c-p { font-size:clamp(16px,1.4vw,20px); font-weight:400; color:var(--body); line-height:1.75; max-width:1000px; margin:0 auto; }
-    .cop-c-p strong { font-weight:700; color:var(--teal); }
-    .cop-c-video { width:100%; max-width:608px; margin:0 auto; aspect-ratio:16/9; border-radius:14px; overflow:hidden; box-shadow:0 12px 40px rgba(26,96,122,0.18); position:relative; background:#000; }
+    /* Compensate for trailing letter-spacing so the eyebrow optically centers */
+    .cop-c-top .eyebrow { margin-bottom:14px; padding-left:.12em; }
+    .cop-c-h { font-size:clamp(28px,3.4vw,52px); font-weight:700; color:#fff; line-height:1.08; margin-bottom:14px; white-space:nowrap; }
+    .cop-c-p { font-size:clamp(16px,1.4vw,20px); font-weight:400; color:rgba(255,255,255,.95); line-height:1.75; max-width:1000px; margin:0 auto; }
+    .cop-c-p strong { font-weight:700; color:#fff; }
+    .cop-c-video { width:100%; max-width:608px; margin:0 auto; aspect-ratio:16/9; border-radius:14px; overflow:hidden; box-shadow:0 14px 44px rgba(0,0,0,0.22); position:relative; background:#000; }
     .cop-c-video video { width:100%; height:100%; object-fit:cover; display:block; }
-    .cop-c-orgs-h { font-size:clamp(10px,0.9vw,13px); font-weight:800; letter-spacing:.14em; text-transform:uppercase; color:var(--orange); margin-bottom:10px; text-align:center; }
-    .cop-c-orgs-line { font-size:clamp(14px,1.25vw,17px); font-weight:500; color:var(--teal); line-height:1.55; text-align:center; max-width:1000px; margin:0 auto; }
-    .cop-c-tag { font-size:clamp(13px,1.1vw,16px); font-weight:700; color:var(--orange); text-align:center; letter-spacing:.04em; margin-top:6px; }
+    .cop-c-orgs-h { font-size:clamp(10px,0.9vw,13px); font-weight:800; letter-spacing:.14em; text-transform:uppercase; color:var(--orange); margin-bottom:10px; text-align:center; padding-bottom:8px; border-bottom:1px solid rgba(255,255,255,.55); display:inline-block; }
+    .cop-c-orgs-line { font-size:clamp(14px,1.25vw,17px); font-weight:500; color:rgba(255,255,255,.95); line-height:1.55; text-align:center; max-width:1000px; margin:0 auto; }
+    .cop-c-tag { font-size:clamp(13px,1.1vw,16px); font-weight:700; color:#fff; text-align:center; letter-spacing:.04em; margin-top:6px; }
     .chart-view { display:grid; grid-template-columns:1fr 1fr; gap:clamp(48px,6vw,96px); flex:1; align-items:center; width:100%; position:relative; z-index:1; min-height:0; }
     .chart-left { display:flex; flex-direction:column; justify-content:center; gap:clamp(10px,1.4vh,18px); }
     .chart-left .eyebrow { margin-bottom:0; }
@@ -339,12 +345,10 @@
     .donut-lbl { font-size:clamp(13px,1.1vw,17px); font-weight:300; color:rgba(255,255,255,.8); margin-top:4px; }
 
     /* ── HLC STATS ── */
-    .s-hlc { background:var(--teal); display:flex; flex-direction:column; align-items:center; justify-content:center; padding:clamp(40px,5vh,80px) clamp(56px,6vw,120px); overflow:hidden; }
+    .s-hlc { background:#000; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:clamp(40px,5vh,80px) clamp(56px,6vw,120px); overflow:hidden; }
     .hlc-bg { position:absolute; inset:0; z-index:0; overflow:hidden; }
-    .hlc-bg .pbg { position:absolute; inset:0; background-size:cover; background-position:center; transform-origin:center; }
-    .hlc-bg-overlay { position:absolute; inset:0; background:linear-gradient(180deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.78) 60%, rgba(0,0,0,0.92) 100%); }
+    .hlc-bg .pbg { position:absolute; inset:0; background-size:cover; background-position:center; transform-origin:center; opacity:0.55; }
     .hlc-credit { color:rgba(255,255,255,0.6); }
-    .s-hlc::before { content:''; position:absolute; inset:0; background:repeating-linear-gradient(-45deg,transparent,transparent 80px,rgba(255,255,255,.03) 80px,rgba(255,255,255,.03) 81px); }
     .hlc-h { font-size:clamp(17px,1.75vw,28px); font-weight:900; color:var(--orange); text-align:center; letter-spacing:.01em; margin-bottom:clamp(24px,3.5vh,52px); position:relative; z-index:1; text-transform:uppercase; }
     .hlc-grid { display:flex; flex-direction:column; gap:0; width:100%; max-width:min(1440px,90vw); position:relative; z-index:1; }
     .hlc-card { display:grid; grid-template-columns:clamp(200px,22vw,340px) 1fr; gap:clamp(28px,4vw,72px); align-items:center; border-top:1px solid rgba(255,255,255,.15); padding:clamp(14px,2.2vh,28px) 0; }
@@ -356,14 +360,16 @@
     .hlc-body strong { font-weight:700; color:var(--white); }
 
     /* ── MVV ── */
-    .s-mvv { background:var(--orange); display:flex; flex-direction:column; align-items:center; justify-content:center; padding:clamp(40px,5vh,80px) clamp(56px,7vw,140px); overflow:hidden; }
-    .s-mvv::before { content:''; position:absolute; inset:0; background:repeating-linear-gradient(-45deg,transparent,transparent 80px,rgba(255,255,255,.05) 80px,rgba(255,255,255,.05) 81px); }
-    .mvv-logo { height:clamp(56px,5vw,96px); margin-bottom:clamp(20px,2.5vh,40px); position:relative; z-index:1; }
-    .mvv-sec { margin-bottom:clamp(16px,2vh,32px); position:relative; z-index:1; max-width:min(1100px,80vw); text-align:center; }
-    .mvv-lbl { font-size:clamp(16px,1.6vw,26px); font-weight:900; color:var(--white); text-transform:lowercase; margin-bottom:clamp(4px,0.6vh,10px); }
-    .mvv-txt { font-size:clamp(14px,1.4vw,20px); font-weight:400; color:rgba(255,255,255,.95); line-height:1.65; }
-    .mvv-txt strong { font-weight:700; color:var(--white); text-transform:uppercase; }
-    .mvv-link { position:relative; z-index:1; font-size:clamp(17px,1.7vw,26px); font-weight:800; color:var(--orange); text-decoration:none; margin-top:clamp(12px,1.5vh,24px); letter-spacing:-.005em; }
+    .s-mvv { background:var(--orange); display:flex; flex-direction:column; align-items:stretch; justify-content:center; padding:clamp(40px,5vh,80px) clamp(56px,6vw,120px); overflow:hidden; }
+    .mvv-grid { display:grid; grid-template-columns:1fr; gap:clamp(20px,2.4vh,36px); position:relative; z-index:1; align-items:start; max-width:min(1100px,90%); }
+    .mvv-sec { margin-bottom:0; position:relative; z-index:1; max-width:none; text-align:left; }
+    .mvv-lbl { font-size:clamp(13px,1.15vw,18px); font-weight:900; color:var(--white); text-transform:uppercase; letter-spacing:.12em; margin-bottom:clamp(6px,0.8vh,10px); padding-bottom:6px; border-bottom:2px solid rgba(255,255,255,.55); display:inline-block; }
+    .mvv-txt { font-size:clamp(14px,1.15vw,18px); font-weight:400; color:rgba(255,255,255,.95); line-height:1.65; }
+    .mvv-txt strong { font-weight:800; color:var(--white); text-transform:uppercase; letter-spacing:.04em; }
+    .mvv-foot { display:flex; flex-direction:column; align-items:flex-start; gap:clamp(14px,1.8vh,24px); margin-top:clamp(32px,4.5vh,64px); position:relative; z-index:1; }
+    .mvv-logo { height:clamp(72px,6.5vw,112px); margin:0; position:static; }
+    .mvv-link { font-size:clamp(15px,1.4vw,22px); font-weight:800; color:#fff; text-decoration:none; letter-spacing:-.005em; border-bottom:2px solid var(--yellow); padding-bottom:3px; }
+    .mvv-link:hover { color:#fff; border-bottom-color:#fff; }
     .s-closing-thanks { padding:0; display:block; }
     .close-grid { display:flex; flex-direction:column; justify-content:space-between; gap:clamp(28px,4vh,52px); width:100%; height:100%; padding:clamp(40px,5vh,72px) clamp(56px,6vw,120px); position:relative; z-index:1; box-sizing:border-box; }
     .close-top { max-width:min(1200px,92%); }
@@ -388,9 +394,9 @@
     .q-attr strong { font-weight:700; color:var(--teal); display:block; }
     .q-context { margin-top:clamp(20px,3vh,36px); max-width:min(900px,72%); font-size:clamp(13px,1.05vw,15px); font-weight:400; line-height:1.6; color:var(--body); border-top:1px solid rgba(0,91,112,0.18); padding-top:clamp(14px,2vh,22px); }
     .q-context strong { font-weight:700; color:var(--teal); }
-    .footnote-ref { color:var(--orange); text-decoration:none; font-weight:700; margin-left:1px; }
+    .footnote-ref { color:var(--orange); text-decoration:none; font-weight:700; margin-left:2px; vertical-align:baseline; }
     .footnote-ref:hover { text-decoration:underline; }
-    .footnote-ref sup { font-size:0.72em; }
+    .footnote-ref sup { font-size:0.42em; vertical-align:super; line-height:0; position:relative; top:-0.05em; }
     .inline-link { color:var(--orange); text-decoration:underline; text-underline-offset:3px; text-decoration-thickness:1px; }
     .inline-link:hover { color:var(--teal); }
     .eyebrow-link { color:inherit; text-decoration:none; }
@@ -399,14 +405,16 @@
     /* ── FLOWER ── */
     .s-flower { display:grid; grid-template-columns:2fr 5fr; background:var(--white); }
     .flower-l { grid-column:2; grid-row:1; padding:clamp(32px,3vw,56px) clamp(40px,4vw,72px) clamp(80px,8vh,140px) clamp(20px,2vw,40px); display:flex; flex-direction:column; justify-content:center; position:relative; z-index:1; }
-    .flower-r { grid-column:1; grid-row:1; padding:clamp(48px,5vw,100px) clamp(16px,1.5vw,32px) clamp(48px,5vw,100px) clamp(40px,4vw,72px); display:flex; flex-direction:column; justify-content:center; max-width:min(360px,100%); justify-self:end; position:relative; z-index:1; }
+    .flower-r { grid-column:1; grid-row:1; padding:clamp(48px,5vw,100px) clamp(16px,1.5vw,32px) clamp(48px,5vw,100px) clamp(40px,4vw,72px); display:flex; flex-direction:column; justify-content:center; max-width:min(440px,100%); justify-self:end; position:relative; z-index:1; }
+    .flower-r .eyebrow { color:var(--orange); font-weight:800; font-size:clamp(11px,1.05vw,15px); letter-spacing:.10em; text-transform:uppercase; margin-bottom:clamp(10px,1.4vh,18px); }
+    .flower-r .sh { font-size:clamp(22px,2.4vw,38px); margin-bottom:clamp(12px,1.4vh,20px); }
     .flower-lbl { font-size:clamp(11px,0.9vw,14px); font-weight:700; color:var(--teal); text-transform:uppercase; letter-spacing:.1em; margin-bottom:clamp(14px,1.6vh,24px); text-align:center; }
     .flower { position:relative; width:min(756px,90%); aspect-ratio:1; margin:0 auto; }
     .petal { position:absolute; top:50%; left:50%; width:46%; aspect-ratio:1; border-radius:50%; transform:translate(-50%,-50%) rotate(var(--rot)) translateY(-66%) rotate(calc(-1 * var(--rot))); display:flex; align-items:center; justify-content:center; }
     .petal-inner { text-align:center; padding:0 14%; line-height:1.25; transform:translate(calc(sin(var(--rot)) * 36px), calc(-1 * cos(var(--rot)) * 36px)); }
     .petal-inner strong { display:block; font-size:clamp(13px,1.35vw,19px); font-weight:800; color:var(--teal); margin-bottom:3px; letter-spacing:-.005em; }
     .petal-inner span { font-size:clamp(10px,0.95vw,13px); font-weight:500; color:var(--teal); line-height:1.3; display:block; }
-    .flower-center { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:31%; aspect-ratio:1; border-radius:50%; background:#EE9134; display:flex; align-items:center; justify-content:center; box-shadow:0 6px 18px rgba(238,145,52,0.28); }
+    .flower-center { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:31%; aspect-ratio:1; border-radius:50%; background:var(--orange); display:flex; align-items:center; justify-content:center; box-shadow:0 6px 18px rgba(238,145,52,0.28); }
     .flower-center img { width:72%; height:auto; max-height:72%; object-fit:contain; display:block; }
     .flower-center-text { display:none; }
     /* Petal colors sourced from brightpromises.org brand CSS + supplied accents */
@@ -437,7 +445,7 @@
     .donors-sub { font-size:clamp(16px,1.4vw,20px); font-weight:400; color:var(--body); line-height:1.75; margin-bottom:clamp(32px,4vh,56px); }
     .donors-section-h { font-size:clamp(10px,0.9vw,13px); font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--orange); margin-top:clamp(40px,5vh,64px); margin-bottom:clamp(12px,1.6vh,20px); padding-bottom:8px; border-bottom:1px solid rgba(0,91,112,.15); }
     .donors-section-h:first-child { margin-top:0; }
-    .donors-text { font-size:clamp(32px,3.2vw,40px); font-weight:400; color:var(--body); line-height:1.7; text-align:justify; }
+    .donors-text { font-size:clamp(26px,2.7vw,34px); font-weight:400; color:var(--body); line-height:1.7; text-align:justify; }
     .donors-fade { position:absolute; bottom:0; left:0; right:0; height:clamp(140px,20vh,260px); background:linear-gradient(to bottom, rgba(255,255,255,0), var(--white)); pointer-events:none; z-index:5; }
 
     /* ── STAT CARDS ── */
@@ -454,6 +462,16 @@
     /* ── ORG TAGS ── */
     .org-tags { display:flex; flex-wrap:wrap; gap:clamp(6px,0.7vw,12px); margin-top:clamp(12px,1.4vh,22px); }
     .org-tag { background:rgba(0,91,112,.08); border:1px solid rgba(0,91,112,.2); color:var(--teal); font-size:clamp(12px,1vw,16px); font-weight:700; padding:clamp(5px,0.6vh,9px) clamp(12px,1.2vw,20px); border-radius:20px; }
+    /* ── Spotlight slide layout (used by slide 10 HLC + slide 17 WellEQUIPD) ── */
+    .s-content .spot-layout { width:100%; max-width:min(1640px,94vw); position:relative; z-index:1; }
+    .spot-top { display:grid; grid-template-columns:1.3fr 1fr; gap:clamp(40px,4.5vw,80px); align-items:center; }
+    .spot-txt { min-width:0; }
+    .spot-img { display:flex; align-items:center; justify-content:center; }
+    .spot-img .img-placeholder { aspect-ratio:1/1; border-radius:50%; width:100%; max-width:none; max-height:78vh; border:none; }
+    .ki3-cohort-h { font-size:clamp(11px,0.95vw,14px); font-weight:800; color:var(--teal); text-transform:uppercase; letter-spacing:.14em; margin-top:clamp(20px,2.6vh,36px); margin-bottom:clamp(12px,1.6vh,20px); padding-top:clamp(16px,2vh,24px); border-top:1px solid rgba(0,91,112,.18); }
+    /* ── ORG LOGO GRID — 3 cols × 2 rows on desktop, scoped within text column ── */
+    .org-logos { display:grid; grid-template-columns:repeat(3,1fr); gap:clamp(18px,2.2vh,32px) clamp(24px,2.6vw,48px); align-items:center; justify-items:start; }
+    .org-logos img { display:block; width:auto; height:clamp(40px,4vw,64px); max-width:100%; object-fit:contain; }
 
     /* ── BULLET LIST ── */
     .bullet-list { list-style:none; margin-top:clamp(12px,1.4vh,22px); }
@@ -477,6 +495,9 @@
     .toc-item:nth-child(4) .toc-arr { border-color:var(--ki3-c); color:var(--ki3-c); }
     .toc-item:nth-child(5) .toc-arr { border-color:var(--ki4-c); color:var(--ki4-c); }
     .toc-item:nth-child(6) .toc-arr { border-color:var(--ki5-c); color:var(--ki5-c); }
+    /* Yellow eyebrow on chart (financials) and closing slides */
+    .s-chart .eyebrow,
+    [data-sec="closing"] .eyebrow { color:var(--yellow); }
 
     /* ── COMMUNITY OF PARTNERS ── */
     .cop-video { width:100%; border-radius:clamp(6px,0.8vw,12px); display:block; margin-bottom:clamp(12px,1.6vh,20px); }
@@ -486,6 +507,19 @@
     /* ── IMAGE PLACEHOLDER ── */
     .img-placeholder { width:100%; aspect-ratio:3/4; max-height:62vh; border-radius:clamp(8px,1.2vw,20px); background:rgba(241,196,0,.28); border:2px dashed rgba(0,91,112,.22); display:flex; align-items:center; justify-content:center; }
     .img-placeholder::after { content:'Image'; font-family:var(--font); font-size:13px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:rgba(0,91,112,.35); }
+    .img-placeholder.circle { aspect-ratio:1/1; border-radius:50%; max-height:none; width:clamp(96px,9vw,140px); margin-bottom:clamp(16px,2vh,24px); border:none; }
+    .img-placeholder.circle::after { font-size:11px; }
+    /* Spotlight stats — simple bold-title + body pattern, matching the copy doc */
+    .spot-stats { margin-top:1.2em; }
+    .spot-stats-h { font-size:clamp(11px,0.95vw,14px); font-weight:800; color:var(--orange); text-transform:uppercase; letter-spacing:.14em; margin-bottom:clamp(12px,1.5vh,18px); }
+    .spot-stats-grid > .spot-stat + .spot-stat { margin-top:1em; }
+    .spot-stat { border-left:3px solid var(--orange); padding-left:clamp(14px,1.4vw,24px); }
+    .spot-stat-title { font-size:clamp(14px,1.25vw,17px); font-weight:700; color:var(--teal); line-height:1.4; margin-bottom:.1em; }
+    .spot-stat-body { font-size:clamp(14px,1.25vw,17px); font-weight:400; color:var(--body); line-height:1.55; margin:0; }
+    .spot-stat-body strong { font-weight:700; color:var(--teal); }
+    /* Mini flower SVG — desktop hidden, mobile-only context graphic */
+    .flower-mini { display:none; }
+    .flower-mini .pt { font-family:'B1816','Helvetica Neue',Helvetica,Arial,sans-serif; font-weight:800; font-size:18px; fill:var(--teal); letter-spacing:-.005em; }
 
     /* ── CHAPTER INDICATORS ── */
     .hero-chapter { font-size:clamp(72px,9vw,140px); font-weight:900; color:rgba(255,255,255,.12); position:absolute; top:clamp(24px,4vh,56px); right:clamp(40px,4vw,80px); letter-spacing:-.02em; line-height:1; z-index:3; pointer-events:none; }
@@ -523,8 +557,10 @@
       .photo-credit, .s-split .photo-credit { left:auto; right:12px; }
       /* Each slide gets natural section padding (no rule between) */
       .slide { padding:48px 28px !important; }
-      /* Cover slide: pin to ~60% viewport height */
-      .slide[data-sec="cover"] { min-height:60vh !important; max-height:60vh !important; padding:0 28px 32px !important; }
+      /* Cover slide: taller on mobile so hero copy clears the youth's face */
+      .slide[data-sec="cover"] { min-height:84vh !important; max-height:none !important; padding:0 28px 36px !important; }
+      .slide[data-sec="cover"] .bg { background-position:center 22% !important; }
+      .slide[data-sec="cover"] .cover-logo { display:none !important; }
 
       /* ── CONTENT LAYOUT — single column everywhere ── */
       .s-cover, .s-split, .s-split-l, .s-flower, .s-closing, .letter-grid,
@@ -532,16 +568,21 @@
       .hlc-grid, .donors-grid, .chart-wrap, .close-grid, .thanks-grid {
         display:block !important; grid-template-columns:1fr !important;
       }
+      /* Spotlight slides on mobile: image stacks above text */
+      .spot-top { display:flex !important; flex-direction:column; grid-template-columns:1fr !important; align-items:stretch !important; }
+      .spot-top .spot-img { order:-1; margin-bottom:24px; width:100%; }
+      .spot-img .img-placeholder { max-height:60vh; width:min(460px,84%); margin:0 auto; }
+      .org-logos { grid-template-columns:repeat(2,1fr) !important; gap:24px 28px !important; }
+      .org-logos img { height:clamp(44px,11vw,64px) !important; }
       /* chart-view: stack to single column but preserve tab-driven display:none */
       .chart-view { grid-template-columns:1fr !important; gap:18px !important; }
       /* stats-grid: add vertical spacing between stacked cards on mobile */
       .stats-grid .stat-card + .stat-card { margin-top:18px; }
-      /* KI5 Goals: convert top borders to left rules so they read like .stat-cards */
-      .split-3 > div { border-top:none !important; padding-top:0 !important; padding-left:16px; border-left:3px solid; }
-      .split-3 > div:nth-child(1) { border-left-color:var(--orange); }
-      .split-3 > div:nth-child(2) { border-left-color:var(--cyan); }
-      .split-3 > div:nth-child(3) { border-left-color:var(--yellow); }
-      .split-3 > div + div { margin-top:18px; }
+      /* KI5 Goals: vertical orange rule next to text on mobile */
+      .split-3 > div { border-top:none !important; padding-top:0 !important; padding-left:0; border-left:none; }
+      .split-3 > div + div { margin-top:24px; }
+      .goal-col { display:block; }
+      .goal-content { padding-top:0 !important; padding-left:16px !important; border-top:none !important; border-left:3px solid var(--orange) !important; }
       /* Photo-above-text on every split slide. Use flex column so order works. */
       .s-split, .s-split-l { display:flex !important; flex-direction:column; }
       .s-split .photo, .s-split-l .photo { order:-1; height:48vw; max-height:380px; margin-bottom:0; }
@@ -558,6 +599,8 @@
       .s-hero .sh, .s-hero .sb { max-width:100% !important; }
       /* Letter / TOC / content slides */
       .s-letter, .s-toc, .s-content, .s-quote, .s-mvv { padding:48px 28px !important; }
+      .mvv-grid { display:flex !important; flex-direction:column; gap:24px !important; }
+      .mvv-foot { gap:12px !important; margin-top:28px !important; padding-top:20px !important; }
       .letter-grid { gap:18px; }
       /* Accordion: tighten padding so items feel proportional */
       .s-accordion { padding:48px 20px !important; }
@@ -584,6 +627,8 @@
       .flower-center { position:relative !important; top:auto !important; left:auto !important; transform:none !important; width:auto !important; aspect-ratio:auto !important; border-radius:0 !important; padding:0 !important; align-self:flex-start; margin-bottom:14px !important; box-shadow:none !important; background:transparent !important; order:-1; }
       .flower-center img { display:none !important; }
       .flower-center-text { display:block; font-size:clamp(20px,5.5vw,28px); font-weight:700; color:var(--teal); letter-spacing:-.005em; line-height:1.2; }
+      /* Context: show the actual flower diagram after the Influences pill */
+      .flower-mini { display:block !important; width:min(320px,82%); height:auto; margin:24px auto 0; order:99; }
       /* Chart slides: text first, donut below */
       .s-chart { padding:48px 24px !important; gap:18px; background:var(--cyan); display:block !important; }
       .chart-left { order:1; gap:14px; }
@@ -714,23 +759,23 @@
         <span class="menu-arr"><svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg"><path class="btn-circle" d="M17 1C25.8366 1 33 8.16345 33 17C33 25.8365 25.8366 33 17 33C8.16345 33 1 25.8366 1 17C1 8.16345 8.16345 1 17 1Z" stroke="#FFD855" stroke-width="2"/><path class="btn-arrow" d="M12.7183 17.6064C12.4064 17.2946 12.4064 16.7884 12.7183 16.4766L16.731 12.4648L16.9077 12.2881L21.0962 16.4766C21.4081 16.7884 21.4081 17.2946 21.0962 17.6064C20.7845 17.918 20.2792 17.9178 19.9673 17.6064L17.7075 15.3506V20.8916C17.7074 21.3332 17.3493 21.6912 16.9077 21.6914C16.466 21.6914 16.107 21.3333 16.1069 20.8916V15.3506L13.8472 17.6064C13.5352 17.9178 13.0299 17.9181 12.7183 17.6064Z" fill="url(#menu-arr-grad)" stroke="#33A3BD" stroke-width="0.5"/></svg></span>
         <span class="menu-text"><span class="menu-eyebrow">Key Insight 2</span><span class="menu-item-text">Building the Conditions Youth Need to Succeed</span></span>
       </a>
-      <a href="#" class="menu-item" onclick="event.preventDefault();goTo(15);closeMobile()">
+      <a href="#" class="menu-item" onclick="event.preventDefault();goTo(14);closeMobile()">
         <span class="menu-arr"><svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg"><path class="btn-circle" d="M17 1C25.8366 1 33 8.16345 33 17C33 25.8365 25.8366 33 17 33C8.16345 33 1 25.8366 1 17C1 8.16345 8.16345 1 17 1Z" stroke="#FFD855" stroke-width="2"/><path class="btn-arrow" d="M12.7183 17.6064C12.4064 17.2946 12.4064 16.7884 12.7183 16.4766L16.731 12.4648L16.9077 12.2881L21.0962 16.4766C21.4081 16.7884 21.4081 17.2946 21.0962 17.6064C20.7845 17.918 20.2792 17.9178 19.9673 17.6064L17.7075 15.3506V20.8916C17.7074 21.3332 17.3493 21.6912 16.9077 21.6914C16.466 21.6914 16.107 21.3333 16.1069 20.8916V15.3506L13.8472 17.6064C13.5352 17.9178 13.0299 17.9181 12.7183 17.6064Z" fill="url(#menu-arr-grad)" stroke="#33A3BD" stroke-width="0.5"/></svg></span>
         <span class="menu-text"><span class="menu-eyebrow">Key Insight 3</span><span class="menu-item-text">Children Thrive When Adults Are Supported</span></span>
       </a>
-      <a href="#" class="menu-item" onclick="event.preventDefault();goTo(18);closeMobile()">
+      <a href="#" class="menu-item" onclick="event.preventDefault();goTo(17);closeMobile()">
         <span class="menu-arr"><svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg"><path class="btn-circle" d="M17 1C25.8366 1 33 8.16345 33 17C33 25.8365 25.8366 33 17 33C8.16345 33 1 25.8366 1 17C1 8.16345 8.16345 1 17 1Z" stroke="#FFD855" stroke-width="2"/><path class="btn-arrow" d="M12.7183 17.6064C12.4064 17.2946 12.4064 16.7884 12.7183 16.4766L16.731 12.4648L16.9077 12.2881L21.0962 16.4766C21.4081 16.7884 21.4081 17.2946 21.0962 17.6064C20.7845 17.918 20.2792 17.9178 19.9673 17.6064L17.7075 15.3506V20.8916C17.7074 21.3332 17.3493 21.6912 16.9077 21.6914C16.466 21.6914 16.107 21.3333 16.1069 20.8916V15.3506L13.8472 17.6064C13.5352 17.9178 13.0299 17.9181 12.7183 17.6064Z" fill="url(#menu-arr-grad)" stroke="#33A3BD" stroke-width="0.5"/></svg></span>
         <span class="menu-text"><span class="menu-eyebrow">Key Insight 4</span><span class="menu-item-text">Effective Solutions Start Early</span></span>
       </a>
-      <a href="#" class="menu-item" onclick="event.preventDefault();goTo(23);closeMobile()">
+      <a href="#" class="menu-item" onclick="event.preventDefault();goTo(22);closeMobile()">
         <span class="menu-arr"><svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg"><path class="btn-circle" d="M17 1C25.8366 1 33 8.16345 33 17C33 25.8365 25.8366 33 17 33C8.16345 33 1 25.8366 1 17C1 8.16345 8.16345 1 17 1Z" stroke="#FFD855" stroke-width="2"/><path class="btn-arrow" d="M12.7183 17.6064C12.4064 17.2946 12.4064 16.7884 12.7183 16.4766L16.731 12.4648L16.9077 12.2881L21.0962 16.4766C21.4081 16.7884 21.4081 17.2946 21.0962 17.6064C20.7845 17.918 20.2792 17.9178 19.9673 17.6064L17.7075 15.3506V20.8916C17.7074 21.3332 17.3493 21.6912 16.9077 21.6914C16.466 21.6914 16.107 21.3333 16.1069 20.8916V15.3506L13.8472 17.6064C13.5352 17.9178 13.0299 17.9181 12.7183 17.6064Z" fill="url(#menu-arr-grad)" stroke="#33A3BD" stroke-width="0.5"/></svg></span>
         <span class="menu-text"><span class="menu-eyebrow">Key Insight 5</span><span class="menu-item-text">Scaling Community-Proven Solutions</span></span>
       </a>
-      <a href="#" class="menu-item" onclick="event.preventDefault();goTo(26);closeMobile()">
+      <a href="#" class="menu-item" onclick="event.preventDefault();goTo(25);closeMobile()">
         <span class="menu-arr"><svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg"><path class="btn-circle" d="M17 1C25.8366 1 33 8.16345 33 17C33 25.8365 25.8366 33 17 33C8.16345 33 1 25.8366 1 17C1 8.16345 8.16345 1 17 1Z" stroke="#FFD855" stroke-width="2"/><path class="btn-arrow" d="M12.7183 17.6064C12.4064 17.2946 12.4064 16.7884 12.7183 16.4766L16.731 12.4648L16.9077 12.2881L21.0962 16.4766C21.4081 16.7884 21.4081 17.2946 21.0962 17.6064C20.7845 17.918 20.2792 17.9178 19.9673 17.6064L17.7075 15.3506V20.8916C17.7074 21.3332 17.3493 21.6912 16.9077 21.6914C16.466 21.6914 16.107 21.3333 16.1069 20.8916V15.3506L13.8472 17.6064C13.5352 17.9178 13.0299 17.9181 12.7183 17.6064Z" fill="url(#menu-arr-grad)" stroke="#33A3BD" stroke-width="0.5"/></svg></span>
         <span class="menu-text"><span class="menu-item-text">Financials &amp; Stewardship</span></span>
       </a>
-      <a href="#" class="menu-item" onclick="event.preventDefault();goTo(33);closeMobile()">
+      <a href="#" class="menu-item" onclick="event.preventDefault();goTo(32);closeMobile()">
         <span class="menu-arr"><svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg"><path class="btn-circle" d="M17 1C25.8366 1 33 8.16345 33 17C33 25.8365 25.8366 33 17 33C8.16345 33 1 25.8366 1 17C1 8.16345 8.16345 1 17 1Z" stroke="#FFD855" stroke-width="2"/><path class="btn-arrow" d="M12.7183 17.6064C12.4064 17.2946 12.4064 16.7884 12.7183 16.4766L16.731 12.4648L16.9077 12.2881L21.0962 16.4766C21.4081 16.7884 21.4081 17.2946 21.0962 17.6064C20.7845 17.918 20.2792 17.9178 19.9673 17.6064L17.7075 15.3506V20.8916C17.7074 21.3332 17.3493 21.6912 16.9077 21.6914C16.466 21.6914 16.107 21.3333 16.1069 20.8916V15.3506L13.8472 17.6064C13.5352 17.9178 13.0299 17.9181 12.7183 17.6064Z" fill="url(#menu-arr-grad)" stroke="#33A3BD" stroke-width="0.5"/></svg></span>
         <span class="menu-text"><span class="menu-item-text">Closing &amp; Special Thanks</span></span>
       </a>
@@ -746,11 +791,11 @@
 
     <!-- 0: COVER -->
     <section class="slide s-hero" data-i="0" data-sec="cover">
-      <div class="bg" style="background-image:url('img/Cover.jpg')"></div>
+      <div class="bg" style="background-image:url('img/Cover.webp')"></div>
       <div class="content">
         <div class="eyebrow-pill" style="margin-bottom:28px">2025 Impact Report</div>
         <h1 class="hero-h1">the power<br>of promise</h1>
-        <p class="hero-sub">inflection points for Chicagoland children and youth</p>
+        <p class="hero-sub">inflection points for Chicagoland &amp; Illinois children and youth</p>
         <img src="img/logo-white.svg" alt="Bright Promises Foundation" class="cover-logo">
       </div>
     </section>
@@ -781,34 +826,34 @@
               <span class="toc-main">Building the Conditions Youth Need to Succeed</span>
             </span>
           </li>
-          <li class="toc-item" onclick="goTo(15)">
+          <li class="toc-item" onclick="goTo(14)">
             <span class="toc-arr"><svg viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M17 1C25.8366 1 33 8.16345 33 17C33 25.8365 25.8366 33 17 33C8.16345 33 1 25.8366 1 17C1 8.16345 8.16345 1 17 1Z" stroke="#FFD855" stroke-width="2"/><path d="M12.811 16.7671C12.4992 17.079 12.4992 17.5851 12.811 17.897L16.8237 21.9087L17.0005 22.0854L21.189 17.897C21.5008 17.5851 21.5008 17.079 21.189 16.7671C20.8773 16.4556 20.372 16.4557 20.0601 16.7671L17.8003 19.0229V13.4819C17.8002 13.0403 17.4421 12.6823 17.0005 12.6821C16.5587 12.6821 16.1998 13.0402 16.1997 13.4819V19.0229L13.9399 16.7671C13.628 16.4557 13.1227 16.4555 12.811 16.7671Z" fill="#008CAC" stroke="#33A3BD" stroke-width="0.5"/></svg></span>
             <span class="toc-text">
               <span class="toc-eyebrow">Key Insight 3</span>
               <span class="toc-main">Children Thrive When Adults Are Supported</span>
             </span>
           </li>
-          <li class="toc-item" onclick="goTo(18)">
+          <li class="toc-item" onclick="goTo(17)">
             <span class="toc-arr"><svg viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M17 1C25.8366 1 33 8.16345 33 17C33 25.8365 25.8366 33 17 33C8.16345 33 1 25.8366 1 17C1 8.16345 8.16345 1 17 1Z" stroke="#FFD855" stroke-width="2"/><path d="M12.811 16.7671C12.4992 17.079 12.4992 17.5851 12.811 17.897L16.8237 21.9087L17.0005 22.0854L21.189 17.897C21.5008 17.5851 21.5008 17.079 21.189 16.7671C20.8773 16.4556 20.372 16.4557 20.0601 16.7671L17.8003 19.0229V13.4819C17.8002 13.0403 17.4421 12.6823 17.0005 12.6821C16.5587 12.6821 16.1998 13.0402 16.1997 13.4819V19.0229L13.9399 16.7671C13.628 16.4557 13.1227 16.4555 12.811 16.7671Z" fill="#008CAC" stroke="#33A3BD" stroke-width="0.5"/></svg></span>
             <span class="toc-text">
               <span class="toc-eyebrow">Key Insight 4</span>
               <span class="toc-main">Effective Solutions Start Early</span>
             </span>
           </li>
-          <li class="toc-item" onclick="goTo(23)">
+          <li class="toc-item" onclick="goTo(22)">
             <span class="toc-arr"><svg viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M17 1C25.8366 1 33 8.16345 33 17C33 25.8365 25.8366 33 17 33C8.16345 33 1 25.8366 1 17C1 8.16345 8.16345 1 17 1Z" stroke="#FFD855" stroke-width="2"/><path d="M12.811 16.7671C12.4992 17.079 12.4992 17.5851 12.811 17.897L16.8237 21.9087L17.0005 22.0854L21.189 17.897C21.5008 17.5851 21.5008 17.079 21.189 16.7671C20.8773 16.4556 20.372 16.4557 20.0601 16.7671L17.8003 19.0229V13.4819C17.8002 13.0403 17.4421 12.6823 17.0005 12.6821C16.5587 12.6821 16.1998 13.0402 16.1997 13.4819V19.0229L13.9399 16.7671C13.628 16.4557 13.1227 16.4555 12.811 16.7671Z" fill="#008CAC" stroke="#33A3BD" stroke-width="0.5"/></svg></span>
             <span class="toc-text">
               <span class="toc-eyebrow">Key Insight 5</span>
               <span class="toc-main">Scaling Community-Proven Solutions</span>
             </span>
           </li>
-          <li class="toc-item" onclick="goTo(26)">
+          <li class="toc-item" onclick="goTo(25)">
             <span class="toc-arr"><svg viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M17 1C25.8366 1 33 8.16345 33 17C33 25.8365 25.8366 33 17 33C8.16345 33 1 25.8366 1 17C1 8.16345 8.16345 1 17 1Z" stroke="#FFD855" stroke-width="2"/><path d="M12.811 16.7671C12.4992 17.079 12.4992 17.5851 12.811 17.897L16.8237 21.9087L17.0005 22.0854L21.189 17.897C21.5008 17.5851 21.5008 17.079 21.189 16.7671C20.8773 16.4556 20.372 16.4557 20.0601 16.7671L17.8003 19.0229V13.4819C17.8002 13.0403 17.4421 12.6823 17.0005 12.6821C16.5587 12.6821 16.1998 13.0402 16.1997 13.4819V19.0229L13.9399 16.7671C13.628 16.4557 13.1227 16.4555 12.811 16.7671Z" fill="#008CAC" stroke="#33A3BD" stroke-width="0.5"/></svg></span>
             <span class="toc-text">
               <span class="toc-main">Financials &amp; Stewardship</span>
             </span>
           </li>
-          <li class="toc-item" onclick="goTo(33)">
+          <li class="toc-item" onclick="goTo(32)">
             <span class="toc-arr"><svg viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M17 1C25.8366 1 33 8.16345 33 17C33 25.8365 25.8366 33 17 33C8.16345 33 1 25.8366 1 17C1 8.16345 8.16345 1 17 1Z" stroke="#FFD855" stroke-width="2"/><path d="M12.811 16.7671C12.4992 17.079 12.4992 17.5851 12.811 17.897L16.8237 21.9087L17.0005 22.0854L21.189 17.897C21.5008 17.5851 21.5008 17.079 21.189 16.7671C20.8773 16.4556 20.372 16.4557 20.0601 16.7671L17.8003 19.0229V13.4819C17.8002 13.0403 17.4421 12.6823 17.0005 12.6821C16.5587 12.6821 16.1998 13.0402 16.1997 13.4819V19.0229L13.9399 16.7671C13.628 16.4557 13.1227 16.4555 12.811 16.7671Z" fill="#008CAC" stroke="#33A3BD" stroke-width="0.5"/></svg></span>
             <span class="toc-text">
               <span class="toc-main">Closing &amp; Special Thanks</span>
@@ -836,7 +881,7 @@
 
     <!-- 3: KI1 A -->
     <section class="slide s-hero" data-i="3" data-sec="ki1">
-      <div class="bg" style="background-image:url('img/keyinsight_1.jpg')"></div>
+      <div class="bg" style="background-image:url('img/keyinsight_1.webp')"></div>
       <div class="content">
         <div class="eyebrow">The Inflection Point</div>
         <h2 class="sh"><strong>Key Insight 1:</strong> Not all children start with the same opportunities&mdash;and the gap is widening.</h2>
@@ -855,7 +900,7 @@
           <p>For donors, this means your investment stabilizes trusted community anchors&mdash;so they can keep showing up when families need them most.</p>
         </div>
       </div>
-      <div class="photo"><div class="pbg" style="background-image:url('img/ki4-illuminate.jpg')"></div><span class="photo-credit">Image courtesy [Photographer Name]</span></div>
+      <div class="photo"><div class="pbg" style="background-image:url('img/ki4-illuminate.webp')"></div><span class="photo-credit">Image courtesy [Photographer Name]</span></div>
     </section>
 
     <!-- 5: KI1 C — Flower Graphic -->
@@ -868,11 +913,31 @@
           <div class="petal p4" style="--rot:180deg"><div class="petal-inner"><strong>Creates</strong><span>cross-sector alignment where silos exist</span></div></div>
           <div class="petal p5" style="--rot:240deg"><div class="petal-inner"><strong>Elevates</strong><span>community leadership</span></div></div>
           <div class="petal p6" style="--rot:300deg"><div class="petal-inner"><strong>Influences</strong><span>public systems and policy</span></div></div>
-          <div class="flower-center"><img src="img/BrightPromises_Logo_VarC_Wht.png" alt="Bright Promises Foundation"><span class="flower-center-text">Bright Promises:</span></div>
+          <svg class="flower-mini" viewBox="-22 -22 444 444" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Bright Promises ecosystem: six overlapping petals representing Anticipates, Invests, Builds, Creates, Elevates, Influences">
+            <circle cx="200"   cy="78.6"  r="92" fill="#74AA50" fill-opacity="0.22"/>
+            <circle cx="305.2" cy="139.3" r="92" fill="#33A3BD" fill-opacity="0.22"/>
+            <circle cx="305.2" cy="260.7" r="92" fill="#A46AFF" fill-opacity="0.20"/>
+            <circle cx="200"   cy="321.4" r="92" fill="#F1C400" fill-opacity="0.24"/>
+            <circle cx="94.8"  cy="260.7" r="92" fill="#E861B3" fill-opacity="0.20"/>
+            <circle cx="94.8"  cy="139.3" r="92" fill="#33A3BD" fill-opacity="0.22"/>
+            <circle cx="200" cy="200" r="62" fill="#EE9134"/>
+            <image href="img/BrightPromises_Logo_VarC_Wht.webp" x="155" y="155" width="90" height="90" preserveAspectRatio="xMidYMid meet"/>
+            <text class="pt" x="200"   y="64"    text-anchor="middle" dominant-baseline="middle">Anticipates</text>
+            <text class="pt" x="321.7" y="129.8" text-anchor="middle" dominant-baseline="middle">Invests</text>
+            <text class="pt" x="321.7" y="270.2" text-anchor="middle" dominant-baseline="middle">Builds</text>
+            <text class="pt" x="200"   y="336"   text-anchor="middle" dominant-baseline="middle">Creates</text>
+            <text class="pt" x="78.3"  y="270.2" text-anchor="middle" dominant-baseline="middle">Elevates</text>
+            <text class="pt" x="78.3"  y="129.8" text-anchor="middle" dominant-baseline="middle">Influences</text>
+          </svg>
+          <div class="flower-center"><img src="img/BrightPromises_Logo_VarC_Wht.webp" alt="Bright Promises Foundation"><span class="flower-center-text">Bright Promises:</span></div>
         </div>
       </div>
       <div class="flower-r">
-        <p class="sb"><strong>Bright Promises ensures these trusted partners can continue to lead.</strong> Through multi-year investment, capacity-building, and leadership development, we help stabilize the organizations that anchor opportunity&mdash;so communities can keep showing up for children when it matters most.</p>
+        <div class="eyebrow">The Inflection Point</div>
+        <h2 class="sh">Bright Promises ensures these trusted partners can continue to lead.</h2>
+        <div class="sb">
+          <p>Through multi-year investment, capacity-building, and leadership development, we help stabilize the organizations that anchor opportunity&mdash;so communities can keep showing up for children when it matters most.</p>
+        </div>
       </div>
     </section>
 
@@ -889,7 +954,7 @@
           <video autoplay muted loop playsinline><source src="video/grantee-reveal.mp4" type="video/mp4"></video>
         </div>
         <div>
-          <div class="cop-c-orgs-h">2025&ndash;26 Grantee Organizations</div>
+          <div style="text-align:center"><div class="cop-c-orgs-h">2025&ndash;26 Grantee Organizations</div></div>
           <p class="cop-c-orgs-line">A Long Walk Home &middot; Arab American Action Network &middot; Alliance of the Southeast &middot; Alternatives &middot; Build Inc &middot; Chicago Commons &middot; Chicago Freedom School &middot; Chicago Youth Centers &middot; Chicago Youth Programs &middot; Communities United &middot; Illinois Afterschool Network &middot; Kuumba Lynx &middot; New Community Outreach &middot; Northwest Center &middot; Onward Neighborhood House &middot; Palenque LSNA &middot; Project Vision &middot; Southside Together &middot; UCAN</p>
         </div>
       </div>
@@ -897,7 +962,7 @@
 
     <!-- 7: KI2 A -->
     <section class="slide s-hero" data-i="7" data-sec="ki2">
-      <div class="bg" style="background-image:url('img/keyinsight_2.jpg')"></div>
+      <div class="bg" style="background-image:url('img/keyinsight_2.webp')"></div>
       <div class="content">
         <div class="eyebrow">Momentum, Not Miracles</div>
         <h2 class="sh"><strong>Key Insight 2:</strong> When young people have safe spaces, trusted relationships, and opportunities to lead, they don&rsquo;t just cope&mdash;they thrive.</h2>
@@ -915,18 +980,20 @@
           <p>Through Bright Promises, donors help pilot and scale solutions that deliver measurable near- and long-term outcomes for <strong>over 11,000 youth and families</strong> each year. Since 2016, Bright Promises has invested <strong>over $5.6 million in 100 community-based organizations</strong> serving low-income children and families across Chicagoland and Illinois.</p>
         </div>
       </div>
-      <div class="photo"><div class="pbg" style="background-image:url('img/IMG_0483-topaz-upscale-2x-face.jpeg');background-position:center"></div><span class="photo-credit">Image courtesy [Photographer Name]</span></div>
+      <div class="photo"><div class="pbg" style="background-image:url('img/IMG_0483-topaz-upscale-2x-face.webp');background-position:center"></div><span class="photo-credit">Image courtesy [Photographer Name]</span></div>
     </section>
 
     <!-- 9: KI2 C — Accordion -->
-    <section class="slide s-accordion" data-i="9" data-sec="ki2">
-      <div class="acc-inner">
+    <section class="slide s-split s-acc-split" data-i="9" data-sec="ki2">
+      <div class="txt">
+        <div class="acc-inner">
           <div class="acc-intro">
-            <h2 class="acc-h2">Our investments translate into real results for kids.</h2>
+            <div class="eyebrow">Momentum, Not Miracles</div>
+            <h2 class="sh">Our investments translate into real results for kids.</h2>
             <p>Increased confidence and agency, stronger relationships, improved wellbeing, and reduced risky behaviors. By strengthening the conditions young people need to succeed, Bright Promises and our partners <strong>reduce the need for more costly downstream responses</strong>&mdash;such as emergency intervention or lost educational and economic opportunity.</p>
             <p>We&rsquo;ve learned that when communities are trusted and supported, these changes are not only possible&mdash;they&rsquo;re repeatable.</p>
           </div>
-          <div class="acc-item open" id="acc-1">
+          <div class="acc-item" id="acc-1">
             <button class="acc-toggle" onclick="toggleAcc('acc-1')"><span class="acc-icon"></span><span class="acc-title">within 12&ndash;24 months: Stabilizing the Conditions for Youth to Thrive</span></button>
             <div class="acc-body"><ul class="acc-list"><li>Youth experience increased safety, belonging, confidence, and agency</li><li>Frontline organizations adopt lasting trauma-informed and SEL policies</li><li>Improved staff retention and reduced burnout</li><li>Strengthened relationships across sector</li></ul></div>
           </div>
@@ -938,63 +1005,50 @@
             <button class="acc-toggle" onclick="toggleAcc('acc-3')"><span class="acc-icon"></span><span class="acc-title">within 5&ndash;10+ years: Building Equitable Systems and Thriving Communities</span></button>
             <div class="acc-body"><ul class="acc-list"><li>More equitable, trauma-informed, stable public systems</li><li>Scaled statewide practices</li><li>Reduced violence, improved mental health, stronger workforce pipelines</li><li>Thriving, resilient communities where youth shape the future</li></ul></div>
           </div>
+        </div>
       </div>
+      <div class="photo"><div class="pbg" style="background-image:url('img/voyce6.webp');background-position:center"></div><span class="photo-credit">Image courtesy [Photographer Name]</span></div>
     </section>
 
     <!-- 10: HLC INTRO -->
     <section class="slide s-content" data-i="10" data-sec="hlc">
-      <div class="split-2">
-        <div>
-          <div class="eyebrow">Impact Spotlight</div>
-          <h2 class="sh" style="font-size:clamp(26px,3.2vw,48px);margin-bottom:24px">Healing Youth Racial Trauma</h2>
-          <p class="sb">Since launching the <strong>Healing, Leading, Changing</strong> initiative in 2021, Bright Promises has invested more than <strong>$2 million</strong> to create and scale programs that confront racial trauma and build youth leadership across Chicagoland.</p>
-          <p class="sb" style="margin-top:16px">Healing racial trauma and developing youth leadership are essential&mdash;not optional&mdash;for academic success, economic mobility, and participatory democracy. This initiative supports young people in building confidence, agency, identity, and leadership skills, laying the groundwork for long-term success in school, work, and life.</p>
-        </div>
-        <div style="display:flex;align-items:center;justify-content:center">
-          <div class="img-placeholder"></div>
+      <div class="spot-layout">
+        <div class="spot-top">
+          <div class="spot-txt">
+            <div class="eyebrow">Impact Spotlight</div>
+            <h2 class="sh" style="margin-bottom:18px">Healing Youth Racial Trauma</h2>
+            <p class="sb">Since launching the <strong>Healing, Leading, Changing</strong> initiative in 2021, Bright Promises has invested more than <strong>$2 million</strong> to create and scale programs that confront racial trauma and build youth leadership across Chicagoland.</p>
+            <p class="sb" style="margin-top:16px">Healing racial trauma and developing youth leadership are essential&mdash;not optional&mdash;for academic success, economic mobility, and participatory democracy. This initiative supports young people in building confidence, agency, identity, and leadership skills, laying the groundwork for long-term success in school, work, and life.</p>
+            <div class="spot-stats">
+              <div class="spot-stats-h">Healing, Leading, Changing: What Donor Partnership Makes Possible</div>
+              <div class="spot-stats-grid">
+                <div class="spot-stat">
+                  <div class="spot-stat-title">5,294 Youth Reached</div>
+                  <p class="spot-stat-body">Young people participated in healing-centered programs that nurture safety, belonging, and self-advocacy.</p>
+                </div>
+                <div class="spot-stat">
+                  <div class="spot-stat-title">91% Expanded Access</div>
+                  <p class="spot-stat-body">Organizations deepened and expanded strategies like healing circles, youth-led workshops, and staff trainings.</p>
+                </div>
+                <div class="spot-stat">
+                  <div class="spot-stat-title">15 Community-Based Organizations</div>
+                  <p class="spot-stat-body">Growing community capacity by building lasting, trauma-informed, healing-centered cultures.</p>
+                </div>
+                <div class="spot-stat">
+                  <div class="spot-stat-title">Youth Leading Change</div>
+                  <p class="spot-stat-body">Young people are organizing campaigns, meeting with decision-makers, and using storytelling to shift narratives, supporting individual and community healing.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="spot-img"><div class="img-placeholder"></div></div>
         </div>
       </div>
     </section>
 
-    <!-- 11: HLC STATS -->
-    <section class="slide s-hlc" data-i="11" data-sec="hlc">
-      <div class="hlc-bg"><div class="pbg" style="background-image:url('img/hlc-ase.jpg')"></div><div class="hlc-bg-overlay"></div></div>
-      <span class="photo-credit hlc-credit">Image courtesy [Photographer Name]</span>
-      <h2 class="hlc-h">Healing, Leading, Changing: What Donor Partnership Makes Possible</h2>
-      <div class="hlc-grid">
-        <div class="hlc-card">
-          <div class="hlc-left">
-            <div class="hlc-num">5,294</div>
-            <div class="hlc-title">youth reached</div>
-          </div>
-          <div class="hlc-body">Young people participated in healing-centered programs that nurture safety, belonging, and self-advocacy.</div>
-        </div>
-        <div class="hlc-card">
-          <div class="hlc-left">
-            <div class="hlc-num">91%</div>
-            <div class="hlc-title">Expanded Access</div>
-          </div>
-          <div class="hlc-body">Organizations deepened and expanded strategies like healing circles, youth-led workshops, and staff trainings.</div>
-        </div>
-        <div class="hlc-card">
-          <div class="hlc-left">
-            <div class="hlc-num">15</div>
-            <div class="hlc-title">Growing Community Capacity</div>
-          </div>
-          <div class="hlc-body"><strong>Community-based organizations</strong> are building lasting, trauma-informed, healing-centered cultures.</div>
-        </div>
-        <div class="hlc-card">
-          <div class="hlc-left">
-            <div class="hlc-title" style="font-size:clamp(20px,2.2vw,34px);margin-bottom:0">Youth Leading Change</div>
-          </div>
-          <div class="hlc-body">Young people are organizing campaigns, meeting with decision-makers, and using storytelling to shift narratives&mdash;supporting individual and community healing.</div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 12: ASE HERO -->
-    <section class="slide s-hero" data-i="12" data-sec="ase">
-      <div class="bg" style="background-image:url('img/Title_ASE.jpg')"></div>
+    <!-- 11: ASE HERO -->
+    <section class="slide s-hero" data-i="11" data-sec="ase">
+      <div class="bg" style="background-image:url('img/Title_ASE.webp')"></div>
       <div class="content">
         <div class="eyebrow-pill">Grantee Partner Spotlight</div>
         <h1 class="hero-h1">Alliance<br>of the<br>Southeast</h1>
@@ -1002,7 +1056,7 @@
     </section>
 
     <!-- 13: ASE B -->
-    <section class="slide s-split" data-i="13" data-sec="ase">
+    <section class="slide s-split" data-i="12" data-sec="ase">
       <div class="txt">
         <div class="eyebrow">Alliance of the Southeast</div>
         <h2 class="sh">At ASE, young people are not just participants&mdash;they are leaders shaping the future of South Chicago.</h2>
@@ -1026,11 +1080,11 @@
           </div>
         </div>
       </div>
-      <div class="photo"><div class="pbg" style="background-image:url('img/ase-nonprofit-fair.jpg');background-position:center bottom"></div><span class="photo-credit">Image courtesy Stephen Serio Photography</span></div>
+      <div class="photo"><div class="pbg" style="background-image:url('img/ase-nonprofit-fair.webp');background-position:center bottom"></div><span class="photo-credit">Image courtesy Stephen Serio Photography</span></div>
     </section>
 
     <!-- 14: ASE D — Quote -->
-    <section class="slide s-quote" data-i="14" data-sec="ase">
+    <section class="slide s-quote" data-i="13" data-sec="ase">
       <div class="q-inner">
         <span class="q-mark">&ldquo;</span>
         <blockquote class="q-txt">Bright Promises&rsquo; support has not only helped ASE sustain our work, but truly grow by trusting us as experts and intentionally creating space for connection. Their approach uplifts and expands our work, rather than limiting it through traditional models, while also centering, encouraging, and investing in the leadership of our youth.&rdquo;</blockquote>
@@ -1039,8 +1093,8 @@
     </section>
 
     <!-- 16: KI3 A -->
-    <section class="slide s-hero" data-i="15" data-sec="ki3">
-      <div class="bg" style="background-image:url('img/keyinsight_3.jpg')"></div>
+    <section class="slide s-hero" data-i="14" data-sec="ki3">
+      <div class="bg" style="background-image:url('img/keyinsight_3.webp')"></div>
       <div class="content">
         <div class="eyebrow">We Invest in the People and Places Children Rely On</div>
         <h2 class="sh"><strong>Key Insight 3:</strong> Strong outcomes for children start with supported adults and organizations.</h2>
@@ -1049,7 +1103,7 @@
     </section>
 
     <!-- 17: KI3 B — Quality Care -->
-    <section class="slide s-split" data-i="16" data-sec="ki3">
+    <section class="slide s-split" data-i="15" data-sec="ki3">
       <div class="txt">
         <div class="eyebrow">Quality Care and Learning Starts with Quality Jobs</div>
         <h2 class="sh" style="margin-bottom:20px">Bright Promises helps build the strong, skilled workforce that children and families rely on every day.</h2>
@@ -1069,23 +1123,35 @@
         </div>
         <p class="sb" style="margin-top:24px"><strong>The result:</strong> more stable teams, stronger programs, and better coordinated support for kids and families across Chicagoland.</p>
       </div>
-      <div class="photo"><div class="pbg" style="background-image:url('img/ki3-homework.jpg')"></div><span class="photo-credit">Image courtesy [Photographer Name]</span></div>
+      <div class="photo"><div class="pbg" style="background-image:url('img/ki3-homework.webp')"></div><span class="photo-credit">Image courtesy [Photographer Name]</span></div>
     </section>
 
     <!-- 18: WELLEQUIPD -->
-    <section class="slide s-content" data-i="17" data-sec="ki3">
-      <div style="max-width:1060px;position:relative;z-index:1">
-        <div class="eyebrow">Impact Spotlight: Strengthening Learning Environments for Young Children</div>
-        <h2 class="sh" style="margin-bottom:16px">Bright Promises is proud to launch the WellEQUIPD Initiative, a multi-year effort designed to strengthen the early childhood workforce.</h2>
-        <p class="sb"><a class="inline-link" href="https://cdn.prod.website-files.com/5710272db1eee97476da5897/67f675641e5840942fdeef3f_FINAL_EQUIP%20Assessment%202014-2023.pdf" target="_blank" rel="noopener">Drawing on a decade of learning</a>, WellEQUIPD helps providers improve the environments children experience every day. We are bringing diverse leaders together to co-create solutions through a <strong>Community of Practice</strong> and investing <strong>over $1 million</strong> to create more stable classrooms, more confident educators, and a stronger early childhood system across Chicagoland and Illinois.</p>
-        <p style="font-size:12px;font-weight:700;color:var(--teal);text-transform:uppercase;letter-spacing:.1em;margin-top:24px;margin-bottom:8px">WellEQUIPD Inaugural Cohort</p>
-        <div class="org-tags"><span class="org-tag">Chicago Commons</span><span class="org-tag">Chicago Youth Centers</span><span class="org-tag">Christopher House</span><span class="org-tag">Concordia Place</span><span class="org-tag">Gads Hill Center</span><span class="org-tag">Onward Neighborhood House</span></div>
+    <section class="slide s-content" data-i="16" data-sec="ki3">
+      <div class="spot-layout">
+        <div class="spot-top">
+          <div class="spot-txt">
+            <div class="eyebrow">Strengthening Learning Environments for Young Children</div>
+            <h2 class="sh" style="margin-bottom:18px">Bright Promises is proud to launch the WellEQUIPD Initiative, a multi-year effort designed to strengthen the early childhood workforce.</h2>
+            <p class="sb"><a class="inline-link" href="https://cdn.prod.website-files.com/5710272db1eee97476da5897/67f675641e5840942fdeef3f_FINAL_EQUIP%20Assessment%202014-2023.pdf" target="_blank" rel="noopener">Drawing on a decade of learning</a>, WellEQUIPD helps providers improve the environments children experience every day. We are bringing diverse leaders together to co-create solutions through a <strong>Community of Practice</strong> and investing <strong>over $1 million</strong> to create more stable classrooms, more confident educators, and a stronger early childhood system across Chicagoland and Illinois.</p>
+            <p class="ki3-cohort-h">WellEQUIPD Inaugural Cohort</p>
+            <div class="org-logos">
+              <img src="img/logos/chicago-commons.svg" alt="Chicago Commons">
+              <img src="img/logos/chicago-youth-centers.webp" alt="Chicago Youth Centers">
+              <img src="img/logos/ChristopherHouse.webp" alt="Christopher House">
+              <img src="img/logos/concordia-place-logo.webp" alt="Concordia Place">
+              <img src="img/logos/gads-hill.webp" alt="Gads Hill Center">
+              <img src="img/logos/onward-house.webp" alt="Onward Neighborhood House">
+            </div>
+          </div>
+          <div class="spot-img"><div class="img-placeholder"></div></div>
+        </div>
       </div>
     </section>
 
     <!-- 19: KI4 HERO -->
-    <section class="slide s-hero" data-i="18" data-sec="ki4">
-      <div class="bg" style="background-image:url('img/keyinsight_4.jpg')"></div>
+    <section class="slide s-hero" data-i="17" data-sec="ki4">
+      <div class="bg" style="background-image:url('img/keyinsight_4.webp')"></div>
       <div class="content">
         <div class="eyebrow">Upstream Impact for Lasting Opportunity</div>
         <h2 class="sh"><strong>Key Insight 4:</strong> Effective solutions start early.</h2>
@@ -1094,28 +1160,28 @@
     </section>
 
     <!-- 20: KI4 B -->
-    <section class="slide s-split" data-i="19" data-sec="ki4">
+    <section class="slide s-split" data-i="18" data-sec="ki4">
       <div class="txt">
-        <div class="eyebrow">Key Insight 4</div>
+        <div class="eyebrow">Upstream Impact for Lasting Opportunity</div>
         <h2 class="sh">Early investment. Stronger systems. Lasting impact.</h2>
         <div class="sb">
           <p>Bright Promises exists to spark what&rsquo;s possible&mdash;bringing people together, testing bold ideas, and helping what works spread.</p>
           <p>Bright Promises drives results by acting early&mdash;before needs escalate and costs multiply. Our upstream initiatives targeting early childhood education, youth mental health, and youth leadership and civic engagement move effective ideas out of silos and into practice, shaping how systems respond to children and families over time.</p>
           <p style="margin-top:1.1em"><strong>What Bright Promises Upstream Initiatives Produce:</strong></p>
           <ul class="acc-list orange-bars" style="margin-top:6px">
-            <li>Proven practices coordinated across systems, not just piloted in individual programs.</li>
-            <li>Durable change that continues beyond the life of a grant.</li>
-            <li>Replication across organizations and sectors, expanding reach without increasing cost.</li>
-            <li>Reduced reliance on costly downstream interventions by preventing crisis before it occurs.</li>
+            <li><strong>Proven practices coordinated across systems</strong>, not just piloted in individual programs.</li>
+            <li><strong>Durable change</strong> that continues beyond the life of a grant.</li>
+            <li><strong>Replication across organizations and sectors</strong>, expanding reach without increasing cost.</li>
+            <li><strong>Reduced reliance on costly downstream interventions</strong> by preventing crisis before it occurs.</li>
           </ul>
         </div>
       </div>
-      <div class="photo"><div class="pbg" style="background-image:url('img/vocel-eva.jpg');background-position:center"></div><span class="photo-credit">Image courtesy [Photographer Name]</span></div>
+      <div class="photo"><div class="pbg" style="background-image:url('img/vocel-eva.webp');background-position:center"></div><span class="photo-credit">Image courtesy [Photographer Name]</span></div>
     </section>
 
     <!-- 21: COMMUNITIES UNITED HERO -->
-    <section class="slide s-hero" data-i="20" data-sec="cu">
-      <div class="bg" style="background-image:url('img/Title_CommunitiesUnited.jpg')"></div>
+    <section class="slide s-hero" data-i="19" data-sec="cu">
+      <div class="bg" style="background-image:url('img/Title_CommunitiesUnited.webp')"></div>
       <div class="content">
         <div class="eyebrow-pill">Grantee Partner Spotlight</div>
         <h1 class="hero-h1">Communities<br>United</h1>
@@ -1123,14 +1189,14 @@
     </section>
 
     <!-- 22: CU B -->
-    <section class="slide s-split-l" data-i="21" data-sec="cu">
-      <div class="photo"><div class="pbg" style="background-image:url('img/cu-spotlight.jpg')"></div><span class="photo-credit">Image courtesy [Photographer Name]</span></div>
+    <section class="slide s-split-l" data-i="20" data-sec="cu">
+      <div class="photo"><div class="pbg" style="background-image:url('img/cu-spotlight.webp')"></div><span class="photo-credit">Image courtesy [Photographer Name]</span></div>
       <div class="txt">
         <div class="eyebrow">Building Youth Power Through Civic Leadership</div>
         <h2 class="sh">With Bright Promises&rsquo; support, Communities United is building durable youth power.</h2>
         <div class="sb">
-          <p>As part of Bright Promises&rsquo; commitment to advancing youth leadership and civic engagement, Communities United is equipping young people to lead, advocate, and transform the systems that shape their lives.</p>
-          <p>Communities United expanded leadership pipelines, peer-to-peer facilitation, and advocacy efforts that connect personal growth to collective impact. This partnership reflects what we believe at Bright Promises: <strong>when young people are trusted, whole communities rise.</strong></p>
+          <p>As part of Bright Promises&rsquo; commitment to <strong>advancing youth leadership and civic engagement, Communities United</strong> is equipping young people to lead, advocate, and transform the systems that shape their lives.</p>
+          <p><strong>Communities United</strong> expanded leadership pipelines, peer-to-peer facilitation, and advocacy efforts that connect personal growth to collective impact. This partnership reflects what we believe at Bright Promises: <strong>when young people are trusted, whole communities rise.</strong></p>
         </div>
         <div style="font-size:clamp(11px,0.95vw,14px);font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--orange);margin-top:clamp(14px,2vh,22px)">This partnership delivered results</div>
         <div class="stats-grid" style="margin-top:10px">
@@ -1142,55 +1208,55 @@
     </section>
 
     <!-- 23: CU C — Quote -->
-    <section class="slide s-quote" data-i="22" data-sec="cu">
+    <section class="slide s-quote" data-i="21" data-sec="cu">
       <div class="q-inner">
         <span class="q-mark">&ldquo;</span>
         <blockquote class="q-txt">This format is different. Bright Promises&rsquo; support has allowed me to grow as a leader, but the youth too feel that investment. Investing in one young person is investing in everyone they have an interaction with.&rdquo;</blockquote>
         <div class="q-attr"><strong>Maria Paula Gareza Degillo</strong>Director of Strategic Narratives, Communities United<br><em style="font-size:13px;color:var(--orange)">2025 Elevating Youth Voices Honoree</em></div>
-        <p class="q-context">This work is brought to life by leaders like 2025 Elevating Youth Voices Honoree Maria Paula Gareza Degillo, whose <strong>$5,000 Bright Promises honorarium</strong>&mdash;provided in addition to Communities United&rsquo;s grant support&mdash;is strengthening her leadership and expanding the reach of Communities United&rsquo;s impact. This investment reflects Bright Promises&rsquo; belief that supporting individual leaders amplifies power far beyond a single organization.</p>
+        <p class="q-context"><strong>This work is brought to life by leaders like 2025 Elevating Youth Voices Honoree Maria Paula Gareza Degillo</strong>, whose $5,000 Bright Promises honorarium&mdash;provided in addition to Communities United&rsquo;s grant support&mdash;is strengthening her leadership and expanding the reach of Communities United&rsquo;s impact. This investment reflects Bright Promises&rsquo; belief that supporting individual leaders amplifies power far beyond a single organization.</p>
       </div>
     </section>
 
     <!-- 24: KI5 HERO -->
-    <section class="slide s-hero" data-i="23" data-sec="ki5">
-      <div class="bg" style="background-image:url('img/keyinsight_5.jpg')"></div>
-      <div class="overlay" style="background:var(--teal-dk);opacity:.72"></div>
+    <section class="slide s-hero" data-i="22" data-sec="ki5">
+      <div class="bg" style="background-image:url('img/keyinsight_5.webp')"></div>
       <div class="content">
-        <div class="eyebrow">Scaling What Works</div>
-        <h2 class="sh"><strong>Key Insight 5:</strong> Looking Ahead&mdash;Stabilizing Today, Building What&rsquo;s Next.</h2>
+        <div class="eyebrow">Looking Ahead</div>
+        <h2 class="sh"><strong>Key Insight 5:</strong> Scaling what works through trust, partnership, and community leadership creates lasting opportunity for children.</h2>
         <div class="sb"><p>Lasting systems change doesn&rsquo;t come from top-down replication alone. It happens when proven ideas are grown from the ground up&mdash;rooted in community trust, strengthened through shared learning, and supported by flexible, multi-year investment.</p></div>
       </div>
     </section>
 
     <!-- 25: KI5 A -->
-    <section class="slide s-split-l" data-i="24" data-sec="ki5">
-      <div class="photo"><div class="pbg" style="background-image:url('img/concordia-meaningful-play.jpg');background-position:center"></div><span class="photo-credit">Image courtesy [Photographer Name]</span></div>
+    <section class="slide s-split-l" data-i="23" data-sec="ki5">
+      <div class="photo"><div class="pbg" style="background-image:url('img/concordia-meaningful-play.webp');background-position:center"></div><span class="photo-credit">Image courtesy [Photographer Name]</span></div>
       <div class="txt">
-        <div class="eyebrow">Key Insight 5</div>
-        <h2 class="sh">Looking Ahead: Stabilizing Today, Building What&rsquo;s Next.</h2>
+        <div class="eyebrow">Looking Ahead</div>
+        <h2 class="sh">By combining the risk-tolerance of venture philanthropy with the relationship-building and movement power of grassroots organizing,</h2>
         <div class="sb">
-          <p>By combining the risk-tolerance of venture philanthropy with the relationship-building and movement power of grassroots organizing, Bright Promises helps community-based organizations scale what works while staying responsive to the people they serve.</p>
+          <p>Bright Promises helps community-based organizations scale what works while staying responsive to the people they serve.</p>
           <p><strong>The result</strong> is a stronger, more coordinated ecosystem where effective practices spread, organizations grow together, and children benefit from opportunity that lasts.</p>
         </div>
       </div>
     </section>
 
     <!-- 26: KI5 B — Goals -->
-    <section class="slide s-content" data-i="25" data-sec="ki5">
-      <div style="max-width:min(1440px,92vw);position:relative;z-index:1">
+    <section class="slide s-content" data-i="24" data-sec="ki5">
+      <div style="max-width:min(1640px,96vw);position:relative;z-index:1">
         <div class="eyebrow">Our Goals</div>
         <h2 class="sh" style="font-size:clamp(28px,3.6vw,60px);margin-bottom:clamp(24px,3.5vh,52px)">These commitments reflect what our community has told us matters most&mdash;now and for the future.</h2>
         <div class="split-3">
-          <div style="border-top:3px solid var(--orange);padding-top:clamp(16px,2vh,28px)"><h3 style="font-size:clamp(16px,1.6vw,24px);font-weight:700;color:var(--teal);margin-bottom:12px">Embed trauma-informed and SEL practices</h3><p class="sb" style="font-size:clamp(14px,1.3vw,20px)">Into organizational policy, leadership, and daily practice across community-based organizations throughout Chicagoland&mdash;so care, safety, and belonging are built into the systems children experience every day.</p></div>
-          <div style="border-top:3px solid var(--cyan);padding-top:clamp(16px,2vh,28px)"><h3 style="font-size:clamp(16px,1.6vw,24px);font-weight:700;color:var(--teal);margin-bottom:12px">Strengthen workforce stability and resilience</h3><p class="sb" style="font-size:clamp(14px,1.3vw,20px)">By reducing burnout, supporting retention, and investing in the people who carry this work forward, even under extraordinary strain.</p></div>
-          <div style="border-top:3px solid var(--yellow);padding-top:clamp(16px,2vh,28px)"><h3 style="font-size:clamp(16px,1.6vw,24px);font-weight:700;color:var(--teal);margin-bottom:12px">Build shared infrastructure for scale and influence</h3><p class="sb" style="font-size:clamp(14px,1.3vw,20px)">Enabling tools, learning, and promising practices to spread beyond individual grantees and drive broader systems uptake.</p></div>
+          <div class="goal-col"><div class="goal-content" style="border-top:3px solid var(--orange);padding-top:clamp(16px,2vh,28px)"><h3 style="font-size:clamp(16px,1.6vw,24px);font-weight:700;color:var(--teal);margin-bottom:12px">Embed trauma-informed and SEL practices</h3><p class="sb" style="font-size:clamp(14px,1.3vw,20px)">Into organizational policy, leadership, and daily practice across community-based organizations throughout Chicagoland&mdash;so care, safety, and belonging are built into the systems children experience every day.</p></div></div>
+          <div class="goal-col"><div class="goal-content" style="border-top:3px solid var(--orange);padding-top:clamp(16px,2vh,28px)"><h3 style="font-size:clamp(16px,1.6vw,24px);font-weight:700;color:var(--teal);margin-bottom:12px">Strengthen workforce stability and resilience</h3><p class="sb" style="font-size:clamp(14px,1.3vw,20px)">By reducing burnout, supporting retention, and investing in the people who carry this work forward, even under extraordinary strain.</p></div></div>
+          <div class="goal-col"><div class="goal-content" style="border-top:3px solid var(--orange);padding-top:clamp(16px,2vh,28px)"><h3 style="font-size:clamp(16px,1.6vw,24px);font-weight:700;color:var(--teal);margin-bottom:12px">Build shared infrastructure for scale and influence</h3><p class="sb" style="font-size:clamp(14px,1.3vw,20px)">Enabling tools, learning, and promising practices to spread beyond individual grantees and drive broader systems uptake.</p></div></div>
         </div>
         <p class="sb" style="margin-top:clamp(20px,3vh,44px);font-size:clamp(15px,1.5vw,22px)"><strong>If you believe children deserve more&mdash;and that communities already hold the answers&mdash;we invite you to keep building this future with us.</strong></p>
       </div>
     </section>
 
     <!-- 27: FINANCIALS INTRO -->
-    <section class="slide s-hero" data-i="26" data-sec="financials" style="background:var(--teal-dk)">
+    <section class="slide s-hero" data-i="25" data-sec="financials" style="background:var(--teal-dk)">
+      <div class="bg" style="background-image:url('img/Title_Financials.webp')"></div>
       <div class="content">
         <div class="eyebrow">Financials &amp; Stewardship</div>
         <h2 class="sh" style="font-size:clamp(40px,5.2vw,84px);line-height:1.04;margin-bottom:clamp(24px,3vh,44px)">Stewarding Community Resources with Care</h2>
@@ -1203,7 +1269,7 @@
     </section>
 
     <!-- 28: DEMOGRAPHICS -->
-    <section class="slide s-chart" data-i="27" data-sec="financials">
+    <section class="slide s-chart" data-i="26" data-sec="financials">
       <div class="bg-circ" style="width:640px;height:640px;right:-200px;top:-160px"></div>
       <div class="bg-circ" style="width:420px;height:420px;left:-120px;bottom:-160px"></div>
       <div class="chart-view" id="c28-demo">
@@ -1216,7 +1282,7 @@
           </div>
           <div class="filters"><button class="filt active">HLC</button><span class="filt-div">|</span><button class="filt">EQUIP</button><span class="filt-div">|</span><button class="filt">FAIR</button></div>
           <div class="legend">
-            <div class="leg-item"><div class="leg-dot" style="background:#EE9134"></div><div class="leg-txt">black : <strong>35%</strong></div></div>
+            <div class="leg-item"><div class="leg-dot" style="background:var(--orange)"></div><div class="leg-txt">black : <strong>35%</strong></div></div>
             <div class="leg-item"><div class="leg-dot" style="background:#F1C400"></div><div class="leg-txt">latinx : <strong>41%</strong></div></div>
             <div class="leg-item"><div class="leg-dot" style="background:#7FD178"></div><div class="leg-txt">white / non-hispanic : <strong>1%</strong></div></div>
             <div class="leg-item"><div class="leg-dot" style="background:#3BC8D8"></div><div class="leg-txt">biracial / multiracial : <strong>2%</strong></div></div>
@@ -1230,7 +1296,7 @@
             <svg viewBox="0 0 200 200" style="width:100%;height:100%">
               <circle cx="100" cy="100" r="70" fill="none" stroke="#1E9AAB" stroke-width="30"/>
               <circle cx="100" cy="100" r="70" fill="none" stroke="#F1C400" stroke-width="30" stroke-dasharray="180 260" stroke-dashoffset="110" transform="rotate(-90 100 100)"/>
-              <circle cx="100" cy="100" r="70" fill="none" stroke="#EE9134" stroke-width="30" stroke-dasharray="154 286" stroke-dashoffset="-72" transform="rotate(-90 100 100)"/>
+              <circle cx="100" cy="100" r="70" fill="none" style="stroke:var(--orange)" stroke-width="30" stroke-dasharray="154 286" stroke-dashoffset="-72" transform="rotate(-90 100 100)"/>
               <circle cx="100" cy="100" r="70" fill="none" stroke="#9B6BBF" stroke-width="30" stroke-dasharray="70 370" stroke-dashoffset="-228" transform="rotate(-90 100 100)"/>
               <circle cx="100" cy="100" r="70" fill="none" stroke="#666" stroke-width="30" stroke-dasharray="22 418" stroke-dashoffset="-298" transform="rotate(-90 100 100)"/>
               <circle cx="100" cy="100" r="70" fill="none" stroke="#7FD178" stroke-width="30" stroke-dasharray="4 436" stroke-dashoffset="-320" transform="rotate(-90 100 100)"/>
@@ -1250,7 +1316,7 @@
             <button class="tab active" onclick="switchChartTab(this,'c28-age')">Age</button>
           </div>
           <div class="legend">
-            <div class="leg-item"><div class="leg-dot" style="background:#EE9134"></div><div class="leg-txt">under 5 : <strong>18%</strong></div></div>
+            <div class="leg-item"><div class="leg-dot" style="background:var(--orange)"></div><div class="leg-txt">under 5 : <strong>18%</strong></div></div>
             <div class="leg-item"><div class="leg-dot" style="background:#F1C400"></div><div class="leg-txt">5–11 : <strong>32%</strong></div></div>
             <div class="leg-item"><div class="leg-dot" style="background:#005B70"></div><div class="leg-txt">12–17 : <strong>35%</strong></div></div>
             <div class="leg-item"><div class="leg-dot" style="background:#3BC8D8"></div><div class="leg-txt">18–24 : <strong>15%</strong></div></div>
@@ -1260,7 +1326,7 @@
           <div class="donut-wrap" style="height:60vh;width:60vh">
             <svg viewBox="0 0 200 200" style="width:100%;height:100%">
               <circle cx="100" cy="100" r="70" fill="none" stroke="#1E9AAB" stroke-width="30"/>
-              <circle cx="100" cy="100" r="70" fill="none" stroke="#EE9134" stroke-width="30" stroke-dasharray="79 361" stroke-dashoffset="110" transform="rotate(-90 100 100)"/>
+              <circle cx="100" cy="100" r="70" fill="none" style="stroke:var(--orange)" stroke-width="30" stroke-dasharray="79 361" stroke-dashoffset="110" transform="rotate(-90 100 100)"/>
               <circle cx="100" cy="100" r="70" fill="none" stroke="#F1C400" stroke-width="30" stroke-dasharray="141 299" stroke-dashoffset="31" transform="rotate(-90 100 100)"/>
               <circle cx="100" cy="100" r="70" fill="none" stroke="#005B70" stroke-width="30" stroke-dasharray="154 286" stroke-dashoffset="-110" transform="rotate(-90 100 100)"/>
               <circle cx="100" cy="100" r="70" fill="none" stroke="#3BC8D8" stroke-width="30" stroke-dasharray="66 374" stroke-dashoffset="-264" transform="rotate(-90 100 100)"/>
@@ -1273,7 +1339,7 @@
     </section>
 
     <!-- 29: REVENUE -->
-    <section class="slide s-chart" data-i="28" data-sec="financials">
+    <section class="slide s-chart" data-i="27" data-sec="financials">
       <div class="bg-circ" style="width:640px;height:640px;right:-200px;top:-160px"></div>
       <div class="chart-view" id="c29-rev">
         <div class="chart-left">
@@ -1285,7 +1351,7 @@
           </div>
           <p style="font-size:clamp(11px,1vw,14px);font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.6);margin-bottom:clamp(14px,1.8vh,22px)">Contributions</p>
           <div class="legend">
-            <div class="leg-item"><div class="leg-dot" style="background:#EE9134"></div><div class="leg-txt">corporations : <strong>$6,564</strong></div></div>
+            <div class="leg-item"><div class="leg-dot" style="background:var(--orange)"></div><div class="leg-txt">corporations : <strong>$6,564</strong></div></div>
             <div class="leg-item"><div class="leg-dot" style="background:#F1C400"></div><div class="leg-txt">foundations : <strong>$245,850</strong></div></div>
             <div class="leg-item"><div class="leg-dot" style="background:#7FD178"></div><div class="leg-txt">individuals : <strong>$39,573</strong></div></div>
             <div class="leg-item"><div class="leg-dot" style="background:#3BC8D8"></div><div class="leg-txt">events : <strong>$115,402</strong></div></div>
@@ -1300,7 +1366,7 @@
               <circle cx="100" cy="100" r="70" fill="none" stroke="#F1C400" stroke-width="30" stroke-dasharray="194 246" stroke-dashoffset="110" transform="rotate(-90 100 100)"/>
               <circle cx="100" cy="100" r="70" fill="none" stroke="#3BC8D8" stroke-width="30" stroke-dasharray="91 349" stroke-dashoffset="-84" transform="rotate(-90 100 100)"/>
               <circle cx="100" cy="100" r="70" fill="none" stroke="#7FD178" stroke-width="30" stroke-dasharray="31 409" stroke-dashoffset="-175" transform="rotate(-90 100 100)"/>
-              <circle cx="100" cy="100" r="70" fill="none" stroke="#EE9134" stroke-width="30" stroke-dasharray="5 435" stroke-dashoffset="-206" transform="rotate(-90 100 100)"/>
+              <circle cx="100" cy="100" r="70" fill="none" style="stroke:var(--orange)" stroke-width="30" stroke-dasharray="5 435" stroke-dashoffset="-206" transform="rotate(-90 100 100)"/>
               <circle cx="100" cy="100" r="70" fill="none" stroke="#555" stroke-width="30" stroke-dasharray="5 435" stroke-dashoffset="-211" transform="rotate(-90 100 100)"/>
               <circle cx="100" cy="100" r="52" fill="#1E9AAB"/>
             </svg>
@@ -1318,7 +1384,7 @@
           </div>
           <div class="legend">
             <div class="leg-item"><div class="leg-dot" style="background:#F1C400"></div><div class="leg-txt">programs : <strong>$524,506</strong></div></div>
-            <div class="leg-item"><div class="leg-dot" style="background:#EE9134"></div><div class="leg-txt">administration : <strong>$83,239</strong></div></div>
+            <div class="leg-item"><div class="leg-dot" style="background:var(--orange)"></div><div class="leg-txt">administration : <strong>$83,239</strong></div></div>
             <div class="leg-item"><div class="leg-dot" style="background:#3BC8D8"></div><div class="leg-txt">fundraising : <strong>$112,213</strong></div></div>
           </div>
           <p style="font-size:clamp(11px,0.95vw,13px);color:rgba(255,255,255,.55);margin-top:clamp(14px,1.8vh,22px);font-style:italic">$5.69M in total assets as of Dec. 31, 2025</p>
@@ -1329,7 +1395,7 @@
             <svg viewBox="0 0 200 200" style="width:100%;height:100%">
               <circle cx="100" cy="100" r="70" fill="none" stroke="#1E9AAB" stroke-width="30"/>
               <circle cx="100" cy="100" r="70" fill="none" stroke="#F1C400" stroke-width="30" stroke-dasharray="263 177" stroke-dashoffset="110" transform="rotate(-90 100 100)"/>
-              <circle cx="100" cy="100" r="70" fill="none" stroke="#EE9134" stroke-width="30" stroke-dasharray="42 398" stroke-dashoffset="-153" transform="rotate(-90 100 100)"/>
+              <circle cx="100" cy="100" r="70" fill="none" style="stroke:var(--orange)" stroke-width="30" stroke-dasharray="42 398" stroke-dashoffset="-153" transform="rotate(-90 100 100)"/>
               <circle cx="100" cy="100" r="70" fill="none" stroke="#3BC8D8" stroke-width="30" stroke-dasharray="56 384" stroke-dashoffset="-195" transform="rotate(-90 100 100)"/>
               <circle cx="100" cy="100" r="52" fill="#1E9AAB"/>
             </svg>
@@ -1340,7 +1406,7 @@
     </section>
 
     <!-- 30: DONOR HONOR ROLL -->
-    <section class="slide s-donors" data-i="29" data-sec="donors">
+    <section class="slide s-donors" data-i="28" data-sec="donors">
       <div class="donors-scroll">
       <div class="eyebrow">Our Supporters</div>
       <div class="donors-h">2025 Donor Honor Roll</div>
@@ -1356,8 +1422,8 @@
     </section>
 
     <!-- 31: WEST MONROE HERO -->
-    <section class="slide s-hero" data-i="30" data-sec="wm">
-      <div class="bg" style="background-image:url('img/Title_WestMonroe.jpg')"></div>
+    <section class="slide s-hero" data-i="29" data-sec="wm">
+      <div class="bg" style="background-image:url('img/Title_WestMonroe.webp')"></div>
       <div class="content">
         <div class="eyebrow-pill">Corporate Partner Spotlight</div>
         <h1 class="hero-h1">West<br>Monroe</h1>
@@ -1365,9 +1431,9 @@
     </section>
 
     <!-- 32: WM B -->
-    <section class="slide s-split" data-i="31" data-sec="wm">
+    <section class="slide s-split" data-i="30" data-sec="wm">
       <div class="txt">
-        <div class="eyebrow">Corporate Partner: West Monroe</div>
+        <div class="eyebrow">Corporate Partner Spotlight</div>
         <h2 class="sh">West Monroe&rsquo;s long-standing partnership with Bright Promises goes beyond volunteerism.</h2>
         <div class="sb">
           <p>In the communities we serve, increased ICE activity has intensified fear and uncertainty&mdash;causing anxiety, trauma, and chronic stress. <strong>Mental health kits assembled by West Monroe volunteers</strong> are a critical part of Bright Promises&rsquo; response. Distributed through trusted community partners, these kits connect families to free, trauma-informed SEL resources through the <a class="inline-link" href="https://www.brightpromises.org/sel-resources" target="_blank" rel="noopener">SEL Access Exchange</a>.</p>
@@ -1376,16 +1442,16 @@
         <div style="font-size:clamp(11px,0.95vw,14px);font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--orange);margin-top:clamp(20px,2.6vh,32px)">SEL Access Exchange</div>
         <div class="stats-grid" style="margin-top:14px;grid-template-columns:1fr 1fr;gap:18px">
           <div class="stat-card"><div class="stat-num">70+</div><div class="stat-lbl">free culturally responsive resources available</div></div>
-          <div class="stat-card"><div class="stat-num">2,367</div><div class="stat-lbl">families reached through SEL Access Exchange</div></div>
+          <div class="stat-card"><div class="stat-num">2,367</div><div class="stat-lbl">families reached</div></div>
           <div class="stat-card"><div class="stat-num">1,000+</div><div class="stat-lbl">mental health kits distributed</div></div>
           <div class="stat-card"><div class="stat-num">210</div><div class="stat-lbl">hours of training and coaching for frontline staff</div></div>
         </div>
       </div>
-      <div class="photo"><div class="pbg" style="background-image:url('img/IMG_4883.jpg');background-position:center"></div><span class="photo-credit">Image courtesy Northwest Center</span></div>
+      <div class="photo"><div class="pbg" style="background-image:url('img/west-monroe-guys.webp');background-position:center"></div><span class="photo-credit">Image courtesy West Monroe</span></div>
     </section>
 
     <!-- 34: WM D — Quote -->
-    <section class="slide s-quote" data-i="32" data-sec="wm">
+    <section class="slide s-quote" data-i="31" data-sec="wm">
       <div class="q-inner">
         <span class="q-mark">&ldquo;</span>
         <blockquote class="q-txt">West Monroe is proud to partner with Bright Promises, as our commitment to Building the Next Generation of Leaders and investing in the future go hand in hand. Our employees see firsthand the impact Bright Promises brings to the Chicago community and are honored to volunteer their time in support of that mission.&rdquo;</blockquote>
@@ -1394,12 +1460,14 @@
     </section>
 
     <!-- 35: CLOSING -->
-    <section class="slide s-hero s-closing-thanks" data-i="33" data-sec="closing" style="background:var(--teal-dk)">
+    <section class="slide s-hero s-closing-thanks" data-i="32" data-sec="closing" style="background:var(--teal-dk)">
+      <div class="bg" style="background-image:url('img/Title_Closing.webp')"></div>
       <div class="close-grid">
         <div class="close-top">
           <div class="eyebrow">Keeping Our Promise, Together</div>
           <h2 class="sh" style="font-size:clamp(28px,3.2vw,52px);line-height:1.08;margin-bottom:clamp(14px,1.8vh,24px);color:#fff">Bright Promises Foundation is of the community and for the community.</h2>
           <div class="sb" style="max-width:min(820px,82%);color:rgba(255,255,255,0.92)">
+            <p>We are the only public foundation serving the State of Illinois solely focused on the needs of children and youth. Thank you to the partners, supporters, and advocates who are building this future with us.</p>
             <p><strong style="color:#fff">Together, we are proving what&rsquo;s possible when we invest early, act collectively, and trust what communities know works.</strong> This is how we keep our promise&mdash;to children today and to the future we share.</p>
           </div>
         </div>
@@ -1407,7 +1475,9 @@
           <div class="thanks-h">Special Thanks</div>
           <div class="thanks-grid">
             <div class="thanks-col">
-              <div class="thanks-lbl">Lifetime Trustees</div>
+              <div class="thanks-lbl">Board of Directors</div>
+              <p class="thanks-body">Nancy Snyder, <em style="opacity:0.75">President</em> &middot; Nanette Velasquez Zander, <em style="opacity:0.75">Vice President</em> &middot; Baronica Roberson, <em style="opacity:0.75">Treasurer</em> &middot; Nick Bruce, <em style="opacity:0.75">Secretary</em> &middot; Dean A. Benson &middot; Ryan A. Biller &middot; Scott Bishop &middot; Christine Calderon &middot; Neelamjit Kaur Dhaliwal &middot; Deepak Gaur &middot; Craig Guti&eacute;rrez, Ed.D. &middot; Randall D. Hardy &middot; Aimee Hilado, Ph.D., LCSW &middot; Tara Leja &middot; Jason Nierman &middot; Maricar Ramos &middot; Julia Waggoner &middot; Erik Wilkerson</p>
+              <div class="thanks-lbl" style="margin-top:clamp(14px,2vh,22px)">Lifetime Trustees</div>
               <p class="thanks-body">Jon N. Will &middot; Paul Bodine &middot; Shari Runner &middot; Gaylord Gieseke</p>
             </div>
             <div class="thanks-col">
@@ -1427,12 +1497,16 @@
     </section>
 
     <!-- 36: MVV -->
-    <section class="slide s-mvv" data-i="34" data-sec="mvv">
-      <img class="mvv-logo" src="img/logo-white.svg" alt="Bright Promises Foundation">
-      <div class="mvv-sec"><div class="mvv-lbl">our mission</div><p class="mvv-txt">Bright Promises Foundation&rsquo;s mission is to identify, fund, and share solutions to underrecognized needs of children and youth most adversely impacted by inequity.</p></div>
-      <div class="mvv-sec"><div class="mvv-lbl">our vision</div><p class="mvv-txt">Our vision is for a Chicagoland where all children and youth reach their full promise and potential.</p></div>
-      <div class="mvv-sec"><div class="mvv-lbl">our values</div><p class="mvv-txt"><strong>INNOVATION</strong> Embrace complexity. Be proactive and adaptive. <strong>COLLABORATION</strong> Co-create. Center relationships. We believe in collective work and collective wisdom. <strong>EQUITY</strong> Treat everyone fairly and with respect. <strong>ACCOUNTABILITY</strong> Lead with trust, respect, and humility. <strong>KNOWLEDGE SHARING</strong> Embrace learning. Be curious. Capture and disseminate knowledge to scale impact.</p></div>
-      <a href="https://brightpromises.org" class="mvv-link" target="_blank" rel="noopener">brightpromises.org</a>
+    <section class="slide s-mvv" data-i="33" data-sec="mvv">
+      <div class="mvv-grid">
+        <div class="mvv-sec"><div class="mvv-lbl">Our Mission</div><p class="mvv-txt">Bright Promises Foundation&rsquo;s mission is to identify, fund, and share solutions to underrecognized needs of children and youth most adversely impacted by inequity.</p></div>
+        <div class="mvv-sec"><div class="mvv-lbl">Our Vision</div><p class="mvv-txt">Our vision is for a Chicagoland where all children and youth reach their full promise and potential.</p></div>
+        <div class="mvv-sec"><div class="mvv-lbl">Our Values</div><p class="mvv-txt"><strong>Innovation</strong> Embrace complexity. Be proactive and adaptive. <strong>Collaboration</strong> Co-create. Center relationships. We believe in collective work and collective wisdom. <strong>Equity</strong> Treat everyone fairly and with respect. <strong>Accountability</strong> Lead with trust, respect, and humility. <strong>Knowledge Sharing</strong> Embrace learning. Be curious. Capture and disseminate knowledge to scale impact.</p></div>
+      </div>
+      <div class="mvv-foot">
+        <img class="mvv-logo" src="img/logo-white.svg" alt="Bright Promises Foundation">
+        <a href="https://brightpromises.org" class="mvv-link" target="_blank" rel="noopener">brightpromises.org</a>
+      </div>
     </section>
 
   </main>
@@ -1449,17 +1523,17 @@
       { slides:[3,4,5] },
       { slides:[6] },
       { slides:[7,8,9] },
-      { slides:[10,11] },
-      { slides:[12,13,14] },
-      { slides:[15,16,17] },
-      { slides:[18,19] },
-      { slides:[20,21,22] },
-      { slides:[23,24,25] },
-      { slides:[26,27,28] },
-      { slides:[29] },
-      { slides:[30,31,32] },
-      { slides:[33] },
-      { slides:[34] }
+      { slides:[10] },
+      { slides:[11,12,13] },
+      { slides:[14,15,16] },
+      { slides:[17,18] },
+      { slides:[19,20,21] },
+      { slides:[22,23,24] },
+      { slides:[25,26,27] },
+      { slides:[28] },
+      { slides:[29,30,31] },
+      { slides:[32] },
+      { slides:[33] }
     ];
 
     function getSec(i) { return SECS.find(s => s.slides.includes(i)); }
@@ -1469,7 +1543,7 @@
       // s-split has photo on the right (where right-nav sits) so arrows
       // need the dark-bg treatment. s-split-l has photo on the LEFT and
       // a white text card on the right, so it stays in the light-bg branch.
-      return cl.contains('s-hero') || cl.contains('s-chart') || cl.contains('s-mvv') || cl.contains('s-hlc') || cl.contains('s-cover') || cl.contains('s-split');
+      return cl.contains('s-hero') || cl.contains('s-chart') || cl.contains('s-mvv') || cl.contains('s-hlc') || cl.contains('s-cover') || cl.contains('s-split') || cl.contains('s-cop');
     }
 
     const dotNav = document.getElementById('dot-nav');
