@@ -34,7 +34,10 @@
 
     /* ── STAGE ── */
     #slides { position:fixed; inset:0; overflow:hidden; }
-    .slide { position:absolute; inset:0; width:100%; height:100%; overflow:hidden; opacity:0; pointer-events:none; will-change:opacity,transform; }
+    .slide { position:absolute; inset:0; width:100%; height:100%; overflow-y:auto; overflow-x:hidden; opacity:0; pointer-events:none; will-change:opacity,transform; scrollbar-width:thin; scrollbar-color:rgba(0,0,0,0.22) transparent; }
+    .slide::-webkit-scrollbar { width:6px; }
+    .slide::-webkit-scrollbar-thumb { background:rgba(0,0,0,0.22); border-radius:3px; }
+    .slide::-webkit-scrollbar-track { background:transparent; }
     .slide.is-active { opacity:1; pointer-events:auto; }
 
     /* ── FIXED UI ── */
@@ -138,6 +141,16 @@
     .s-hero .bg { position:absolute; inset:0; background-size:cover; background-position:center; }
     .s-hero .overlay { position:absolute; inset:0; mix-blend-mode:multiply; }
     .s-hero .content { position:relative; z-index:2; }
+    /* Ken Burns pullout on s-layered hero (slide 3) — single combined image */
+    .s-layered.is-active .bg { animation:heroBgPullback 24s ease-in-out infinite alternate; transform-origin:center; }
+    @keyframes heroBgPullback {
+      from { transform:scale(1.08); }
+      to   { transform:scale(1);    }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .s-layered.is-active .bg,
+      .s-layered.is-active .fg { animation:none; }
+    }
     .eyebrow-pill { display:inline-block; background:var(--yellow); color:var(--teal-dk); font-size:clamp(10px,0.9vw,13px); font-weight:700; letter-spacing:.14em; text-transform:uppercase; padding:5px 14px; border-radius:2px; margin-bottom:clamp(16px,1.5vh,28px); }
     .hero-h1 { font-size:clamp(52px,7vw,120px); font-weight:900; color:var(--white); line-height:.95; letter-spacing:-.01em; max-width:min(800px,65vw); margin-bottom:clamp(14px,1.5vh,24px); }
     .s-hero .sh { color:var(--white); max-width:min(720px,60vw); }
@@ -360,24 +373,27 @@
     .hlc-body strong { font-weight:700; color:var(--white); }
 
     /* ── MVV ── */
-    .s-mvv { background:var(--orange); display:flex; flex-direction:column; align-items:stretch; justify-content:center; padding:clamp(40px,5vh,80px) clamp(56px,6vw,120px); overflow:hidden; }
-    .mvv-grid { display:grid; grid-template-columns:1fr; gap:clamp(20px,2.4vh,36px); position:relative; z-index:1; align-items:start; max-width:min(1100px,90%); }
+    .s-mvv { background:var(--orange); display:grid; grid-template-columns:1fr 1.8fr; grid-template-rows:1fr; align-items:stretch; gap:clamp(40px,5vw,96px); padding:clamp(40px,5vh,80px) clamp(56px,6vw,120px); overflow:hidden; }
+    .s-mvv .mvv-foot { grid-column:1; grid-row:1; display:flex; flex-direction:column; align-items:center; justify-content:center; }
+    .s-mvv .mvv-grid { grid-column:2; grid-row:1; display:flex; flex-direction:column; justify-content:center; align-items:stretch; gap:clamp(24px,3vh,44px); max-width:none; }
     .mvv-sec { margin-bottom:0; position:relative; z-index:1; max-width:none; text-align:left; }
-    .mvv-lbl { font-size:clamp(13px,1.15vw,18px); font-weight:900; color:var(--white); text-transform:uppercase; letter-spacing:.12em; margin-bottom:clamp(6px,0.8vh,10px); padding-bottom:6px; border-bottom:2px solid rgba(255,255,255,.55); display:inline-block; }
-    .mvv-txt { font-size:clamp(14px,1.15vw,18px); font-weight:400; color:rgba(255,255,255,.95); line-height:1.65; }
+    .mvv-lbl { font-size:clamp(14px,1.3vw,22px); font-weight:900; color:var(--white); text-transform:uppercase; letter-spacing:.12em; margin-bottom:clamp(8px,1vh,14px); padding-bottom:7px; border-bottom:2px solid rgba(255,255,255,.55); display:inline-block; }
+    .mvv-txt { font-size:clamp(15px,1.35vw,22px); font-weight:400; color:rgba(255,255,255,.95); line-height:1.6; }
     .mvv-txt strong { font-weight:800; color:var(--white); text-transform:uppercase; letter-spacing:.04em; }
-    .mvv-foot { display:flex; flex-direction:column; align-items:flex-start; gap:clamp(14px,1.8vh,24px); margin-top:clamp(32px,4.5vh,64px); position:relative; z-index:1; }
-    .mvv-logo { height:clamp(72px,6.5vw,112px); margin:0; position:static; }
-    .mvv-link { font-size:clamp(15px,1.4vw,22px); font-weight:800; color:#fff; text-decoration:none; letter-spacing:-.005em; border-bottom:2px solid var(--yellow); padding-bottom:3px; }
+    .mvv-foot { display:flex; flex-direction:column; align-items:flex-start; gap:clamp(22px,3vh,40px); margin-top:0; position:relative; z-index:1; }
+    .mvv-logo { height:auto; width:clamp(250px,25vw,450px); margin:0; position:static; }
+    .mvv-link { font-size:clamp(22px,2.2vw,38px); font-weight:800; color:#fff; text-decoration:none; letter-spacing:-.005em; border-bottom:3px solid var(--yellow); padding-bottom:4px; }
     .mvv-link:hover { color:#fff; border-bottom-color:#fff; }
     .s-closing-thanks { padding:0; display:block; }
-    .close-grid { display:flex; flex-direction:column; justify-content:space-between; gap:clamp(28px,4vh,52px); width:100%; height:100%; padding:clamp(40px,5vh,72px) clamp(56px,6vw,120px); position:relative; z-index:1; box-sizing:border-box; }
-    .close-top { max-width:min(1200px,92%); }
-    .close-thanks { padding-top:clamp(20px,2.8vh,32px); }
-    .thanks-h { font-size:clamp(12px,1.05vw,15px); font-weight:800; letter-spacing:.14em; text-transform:uppercase; color:var(--orange); margin-bottom:clamp(14px,2vh,22px); }
+    .close-grid { display:flex; flex-direction:column; justify-content:center; gap:clamp(20px,2.6vh,36px); width:100%; height:100%; padding:clamp(40px,5vh,72px) clamp(56px,6vw,120px); position:relative; z-index:1; box-sizing:border-box; }
+    .close-top { max-width:calc(66.67% - clamp(8px,1vw,17px)); }
+    .close-top .sb { max-width:none; }
+    .close-top .sh, .close-top .sb p { text-wrap:pretty; }
+    .close-thanks { padding-top:0; }
+    .thanks-h { font-size:clamp(12px,1.05vw,15px); font-weight:800; letter-spacing:.14em; text-transform:uppercase; color:var(--yellow); margin-bottom:clamp(14px,2vh,22px); }
     .thanks-grid { display:grid; grid-template-columns:repeat(3, 1fr); gap:clamp(24px,3vw,52px); align-items:start; }
     .thanks-col { color:rgba(255,255,255,0.92); }
-    .thanks-lbl { font-size:clamp(14px,1.25vw,18px); font-weight:800; color:#fff; letter-spacing:.01em; margin-bottom:clamp(8px,1vh,14px); border-bottom:2px solid var(--orange); padding-bottom:6px; display:inline-block; }
+    .thanks-lbl { font-size:clamp(14px,1.25vw,18px); font-weight:800; color:#fff; letter-spacing:.01em; margin-bottom:clamp(8px,1vh,14px); border-bottom:1px solid rgba(255,255,255,0.4); padding-bottom:6px; display:inline-block; }
     .thanks-body { font-size:clamp(14px,1.25vw,17px); font-weight:500; line-height:1.55; color:rgba(255,255,255,0.92); margin-bottom:7px; }
     .thanks-body strong { font-weight:700; color:#fff; }
     @media (max-width:900px) {
@@ -439,14 +455,14 @@
     .photo-circle { position:absolute; width:58%; aspect-ratio:1; border-radius:50%; z-index:1; }
 
     /* ── DONORS ── */
-    .s-donors { background:var(--white); display:flex; flex-direction:column; }
-    .donors-scroll { flex:1; overflow-y:auto; padding:min(600px,58vh) clamp(56px,6vw,120px) clamp(56px,6vh,100px); }
-    .donors-h { font-size:clamp(22px,2.8vw,52px); font-weight:700; color:var(--teal); line-height:1.12; margin-bottom:clamp(6px,0.8vh,12px); }
-    .donors-sub { font-size:clamp(16px,1.4vw,20px); font-weight:400; color:var(--body); line-height:1.75; margin-bottom:clamp(32px,4vh,56px); }
-    .donors-section-h { font-size:clamp(10px,0.9vw,13px); font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--orange); margin-top:clamp(40px,5vh,64px); margin-bottom:clamp(12px,1.6vh,20px); padding-bottom:8px; border-bottom:1px solid rgba(0,91,112,.15); }
-    .donors-section-h:first-child { margin-top:0; }
-    .donors-text { font-size:clamp(26px,2.7vw,34px); font-weight:400; color:var(--body); line-height:1.7; text-align:justify; }
-    .donors-fade { position:absolute; bottom:0; left:0; right:0; height:clamp(140px,20vh,260px); background:linear-gradient(to bottom, rgba(255,255,255,0), var(--white)); pointer-events:none; z-index:5; }
+    .s-donors { background:var(--white); display:flex; flex-direction:column; align-items:center; justify-content:center; padding:clamp(40px,5vh,80px) clamp(56px,6vw,120px); }
+    .donors-scroll { width:100%; max-width:min(1640px,94vw); }
+    .donors-h { font-size:clamp(24px,2.6vw,44px); font-weight:700; color:var(--teal); line-height:1.12; margin-bottom:clamp(4px,0.6vh,10px); }
+    .donors-sub { font-size:clamp(14px,1.2vw,18px); font-weight:400; color:var(--body); line-height:1.55; margin-bottom:clamp(20px,2.4vh,32px); max-width:min(820px,80%); }
+    .donors-section-h { font-size:clamp(11px,1.0vw,15px); font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--orange); margin-top:clamp(16px,2vh,24px); margin-bottom:clamp(6px,0.8vh,10px); padding-bottom:6px; border-bottom:1px solid rgba(0,91,112,.15); }
+    .donors-section-h:first-of-type { margin-top:0; }
+    .donors-text { font-size:clamp(13px,1.2vw,17px); font-weight:400; color:var(--body); line-height:1.55; text-align:left; column-count:3; column-gap:clamp(20px,2.4vw,40px); }
+    .donors-text.compact-2col { column-count:2; }
 
     /* ── STAT CARDS ── */
     .stats-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:clamp(18px,2.5vw,40px); margin-top:clamp(16px,2vh,32px); }
@@ -594,13 +610,21 @@
       /* Hero slides: bg image fills, content overlays (looks like cover) */
       .s-hero { display:flex; align-items:flex-end; min-height:60vh !important; padding:48px 28px !important; }
       .s-hero .bg, .s-hero .overlay { position:absolute; inset:0; }
+      /* Warm-tinted scrim on mobile hero photos so white text reads against busy imagery */
+      .s-hero:not([data-i="24"]) .bg::after { content:''; position:absolute; inset:0; background:linear-gradient(180deg, rgba(40,20,8,0.16) 0%, rgba(35,15,5,0.50) 100%); pointer-events:none; z-index:1; }
+      /* Slide 3 sits behind a busier layered photo — dial scrim back 5% so it doesn't get muddy */
+      .s-hero[data-i="3"] .bg::after { background:linear-gradient(180deg, rgba(40,20,8,0.152) 0%, rgba(35,15,5,0.475) 100%); }
+      /* Kill the Ken Burns pullout on mobile so the slide sits still under the darkening scrim */
+      .s-layered .bg { animation:none !important; transform:none !important; }
       .hero-h1 { font-size:clamp(40px,11vw,64px); max-width:100%; }
       .hero-sub { font-size:clamp(15px,4.4vw,20px); max-width:100%; }
       .s-hero .sh, .s-hero .sb { max-width:100% !important; }
       /* Letter / TOC / content slides */
       .s-letter, .s-toc, .s-content, .s-quote, .s-mvv { padding:48px 28px !important; }
-      .mvv-grid { display:flex !important; flex-direction:column; gap:24px !important; }
-      .mvv-foot { gap:12px !important; margin-top:28px !important; padding-top:20px !important; }
+      .s-mvv { display:flex !important; flex-direction:column; align-items:stretch !important; gap:0 !important; }
+      .mvv-grid { gap:24px !important; max-width:100% !important; }
+      .mvv-foot { gap:14px !important; margin-top:28px !important; }
+      .mvv-logo { width:clamp(160px,40vw,240px) !important; height:auto !important; }
       .letter-grid { gap:18px; }
       /* Accordion: tighten padding so items feel proportional */
       .s-accordion { padding:48px 20px !important; }
@@ -652,16 +676,16 @@
       .hlc-num { font-size:clamp(36px,11vw,52px); }
       .hlc-h { font-size:clamp(16px,4.6vw,22px); margin-bottom:20px; }
       /* Donor slide — let it flow as part of page, no nested scroll */
-      .s-donors { padding:48px 24px !important; }
-      .donors-scroll { overflow:visible !important; max-height:none !important; height:auto !important; padding:0 !important; }
-      .donors-fade { display:none !important; }
-      .donors-h, .donors-section-h, .donors-text { font-size:clamp(15px,4vw,20px) !important; }
-      .donors-text { font-size:clamp(13px,3.6vw,16px) !important; line-height:1.5; }
+      .s-donors { padding:48px 24px !important; align-items:flex-start !important; justify-content:flex-start !important; }
+      .donors-scroll { padding:0 !important; max-width:100% !important; }
+      .donors-text { font-size:clamp(12px,3.2vw,15px) !important; column-count:1 !important; line-height:1.5; }
       /* Quote context (Maria honorarium footnote) — full column width */
       .q-context { max-width:100% !important; }
       /* Closing slide */
       .s-closing-thanks { padding:48px 24px !important; }
-      .close-grid { padding:0 !important; gap:32px; }
+      .s-closing-thanks .bg { display:none !important; }
+      .close-grid { padding:0 !important; gap:32px; justify-content:flex-start !important; }
+      .close-top { max-width:100% !important; }
       .thanks-grid { display:block !important; }
       .thanks-col { margin-bottom:24px; }
       /* Right padding so eyebrows / headlines clear the hamburger area */
@@ -755,27 +779,27 @@
         <span class="menu-arr"><svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg"><path class="btn-circle" d="M17 1C25.8366 1 33 8.16345 33 17C33 25.8365 25.8366 33 17 33C8.16345 33 1 25.8366 1 17C1 8.16345 8.16345 1 17 1Z" stroke="#FFD855" stroke-width="2"/><path class="btn-arrow" d="M12.7183 17.6064C12.4064 17.2946 12.4064 16.7884 12.7183 16.4766L16.731 12.4648L16.9077 12.2881L21.0962 16.4766C21.4081 16.7884 21.4081 17.2946 21.0962 17.6064C20.7845 17.918 20.2792 17.9178 19.9673 17.6064L17.7075 15.3506V20.8916C17.7074 21.3332 17.3493 21.6912 16.9077 21.6914C16.466 21.6914 16.107 21.3333 16.1069 20.8916V15.3506L13.8472 17.6064C13.5352 17.9178 13.0299 17.9181 12.7183 17.6064Z" fill="url(#menu-arr-grad)" stroke="#33A3BD" stroke-width="0.5"/></svg></span>
         <span class="menu-text"><span class="menu-eyebrow">Key Insight 1</span><span class="menu-item-text">The Opportunity Gap is Widening</span></span>
       </a>
-      <a href="#" class="menu-item" onclick="event.preventDefault();goTo(7);closeMobile()">
+      <a href="#" class="menu-item" onclick="event.preventDefault();goTo(6);closeMobile()">
         <span class="menu-arr"><svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg"><path class="btn-circle" d="M17 1C25.8366 1 33 8.16345 33 17C33 25.8365 25.8366 33 17 33C8.16345 33 1 25.8366 1 17C1 8.16345 8.16345 1 17 1Z" stroke="#FFD855" stroke-width="2"/><path class="btn-arrow" d="M12.7183 17.6064C12.4064 17.2946 12.4064 16.7884 12.7183 16.4766L16.731 12.4648L16.9077 12.2881L21.0962 16.4766C21.4081 16.7884 21.4081 17.2946 21.0962 17.6064C20.7845 17.918 20.2792 17.9178 19.9673 17.6064L17.7075 15.3506V20.8916C17.7074 21.3332 17.3493 21.6912 16.9077 21.6914C16.466 21.6914 16.107 21.3333 16.1069 20.8916V15.3506L13.8472 17.6064C13.5352 17.9178 13.0299 17.9181 12.7183 17.6064Z" fill="url(#menu-arr-grad)" stroke="#33A3BD" stroke-width="0.5"/></svg></span>
         <span class="menu-text"><span class="menu-eyebrow">Key Insight 2</span><span class="menu-item-text">Building the Conditions Youth Need to Succeed</span></span>
       </a>
-      <a href="#" class="menu-item" onclick="event.preventDefault();goTo(14);closeMobile()">
+      <a href="#" class="menu-item" onclick="event.preventDefault();goTo(11);closeMobile()">
         <span class="menu-arr"><svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg"><path class="btn-circle" d="M17 1C25.8366 1 33 8.16345 33 17C33 25.8365 25.8366 33 17 33C8.16345 33 1 25.8366 1 17C1 8.16345 8.16345 1 17 1Z" stroke="#FFD855" stroke-width="2"/><path class="btn-arrow" d="M12.7183 17.6064C12.4064 17.2946 12.4064 16.7884 12.7183 16.4766L16.731 12.4648L16.9077 12.2881L21.0962 16.4766C21.4081 16.7884 21.4081 17.2946 21.0962 17.6064C20.7845 17.918 20.2792 17.9178 19.9673 17.6064L17.7075 15.3506V20.8916C17.7074 21.3332 17.3493 21.6912 16.9077 21.6914C16.466 21.6914 16.107 21.3333 16.1069 20.8916V15.3506L13.8472 17.6064C13.5352 17.9178 13.0299 17.9181 12.7183 17.6064Z" fill="url(#menu-arr-grad)" stroke="#33A3BD" stroke-width="0.5"/></svg></span>
         <span class="menu-text"><span class="menu-eyebrow">Key Insight 3</span><span class="menu-item-text">Children Thrive When Adults Are Supported</span></span>
       </a>
-      <a href="#" class="menu-item" onclick="event.preventDefault();goTo(17);closeMobile()">
+      <a href="#" class="menu-item" onclick="event.preventDefault();goTo(14);closeMobile()">
         <span class="menu-arr"><svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg"><path class="btn-circle" d="M17 1C25.8366 1 33 8.16345 33 17C33 25.8365 25.8366 33 17 33C8.16345 33 1 25.8366 1 17C1 8.16345 8.16345 1 17 1Z" stroke="#FFD855" stroke-width="2"/><path class="btn-arrow" d="M12.7183 17.6064C12.4064 17.2946 12.4064 16.7884 12.7183 16.4766L16.731 12.4648L16.9077 12.2881L21.0962 16.4766C21.4081 16.7884 21.4081 17.2946 21.0962 17.6064C20.7845 17.918 20.2792 17.9178 19.9673 17.6064L17.7075 15.3506V20.8916C17.7074 21.3332 17.3493 21.6912 16.9077 21.6914C16.466 21.6914 16.107 21.3333 16.1069 20.8916V15.3506L13.8472 17.6064C13.5352 17.9178 13.0299 17.9181 12.7183 17.6064Z" fill="url(#menu-arr-grad)" stroke="#33A3BD" stroke-width="0.5"/></svg></span>
         <span class="menu-text"><span class="menu-eyebrow">Key Insight 4</span><span class="menu-item-text">Effective Solutions Start Early</span></span>
       </a>
-      <a href="#" class="menu-item" onclick="event.preventDefault();goTo(22);closeMobile()">
+      <a href="#" class="menu-item" onclick="event.preventDefault();goTo(18);closeMobile()">
         <span class="menu-arr"><svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg"><path class="btn-circle" d="M17 1C25.8366 1 33 8.16345 33 17C33 25.8365 25.8366 33 17 33C8.16345 33 1 25.8366 1 17C1 8.16345 8.16345 1 17 1Z" stroke="#FFD855" stroke-width="2"/><path class="btn-arrow" d="M12.7183 17.6064C12.4064 17.2946 12.4064 16.7884 12.7183 16.4766L16.731 12.4648L16.9077 12.2881L21.0962 16.4766C21.4081 16.7884 21.4081 17.2946 21.0962 17.6064C20.7845 17.918 20.2792 17.9178 19.9673 17.6064L17.7075 15.3506V20.8916C17.7074 21.3332 17.3493 21.6912 16.9077 21.6914C16.466 21.6914 16.107 21.3333 16.1069 20.8916V15.3506L13.8472 17.6064C13.5352 17.9178 13.0299 17.9181 12.7183 17.6064Z" fill="url(#menu-arr-grad)" stroke="#33A3BD" stroke-width="0.5"/></svg></span>
         <span class="menu-text"><span class="menu-eyebrow">Key Insight 5</span><span class="menu-item-text">Scaling Community-Proven Solutions</span></span>
       </a>
-      <a href="#" class="menu-item" onclick="event.preventDefault();goTo(25);closeMobile()">
+      <a href="#" class="menu-item" onclick="event.preventDefault();goTo(21);closeMobile()">
         <span class="menu-arr"><svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg"><path class="btn-circle" d="M17 1C25.8366 1 33 8.16345 33 17C33 25.8365 25.8366 33 17 33C8.16345 33 1 25.8366 1 17C1 8.16345 8.16345 1 17 1Z" stroke="#FFD855" stroke-width="2"/><path class="btn-arrow" d="M12.7183 17.6064C12.4064 17.2946 12.4064 16.7884 12.7183 16.4766L16.731 12.4648L16.9077 12.2881L21.0962 16.4766C21.4081 16.7884 21.4081 17.2946 21.0962 17.6064C20.7845 17.918 20.2792 17.9178 19.9673 17.6064L17.7075 15.3506V20.8916C17.7074 21.3332 17.3493 21.6912 16.9077 21.6914C16.466 21.6914 16.107 21.3333 16.1069 20.8916V15.3506L13.8472 17.6064C13.5352 17.9178 13.0299 17.9181 12.7183 17.6064Z" fill="url(#menu-arr-grad)" stroke="#33A3BD" stroke-width="0.5"/></svg></span>
         <span class="menu-text"><span class="menu-item-text">Financials &amp; Stewardship</span></span>
       </a>
-      <a href="#" class="menu-item" onclick="event.preventDefault();goTo(32);closeMobile()">
+      <a href="#" class="menu-item" onclick="event.preventDefault();goTo(27);closeMobile()">
         <span class="menu-arr"><svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg"><path class="btn-circle" d="M17 1C25.8366 1 33 8.16345 33 17C33 25.8365 25.8366 33 17 33C8.16345 33 1 25.8366 1 17C1 8.16345 8.16345 1 17 1Z" stroke="#FFD855" stroke-width="2"/><path class="btn-arrow" d="M12.7183 17.6064C12.4064 17.2946 12.4064 16.7884 12.7183 16.4766L16.731 12.4648L16.9077 12.2881L21.0962 16.4766C21.4081 16.7884 21.4081 17.2946 21.0962 17.6064C20.7845 17.918 20.2792 17.9178 19.9673 17.6064L17.7075 15.3506V20.8916C17.7074 21.3332 17.3493 21.6912 16.9077 21.6914C16.466 21.6914 16.107 21.3333 16.1069 20.8916V15.3506L13.8472 17.6064C13.5352 17.9178 13.0299 17.9181 12.7183 17.6064Z" fill="url(#menu-arr-grad)" stroke="#33A3BD" stroke-width="0.5"/></svg></span>
         <span class="menu-text"><span class="menu-item-text">Closing &amp; Special Thanks</span></span>
       </a>
@@ -819,41 +843,41 @@
               <span class="toc-main">The Opportunity Gap is Widening</span>
             </span>
           </li>
-          <li class="toc-item" onclick="goTo(7)">
+          <li class="toc-item" onclick="goTo(6)">
             <span class="toc-arr"><svg viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M17 1C25.8366 1 33 8.16345 33 17C33 25.8365 25.8366 33 17 33C8.16345 33 1 25.8366 1 17C1 8.16345 8.16345 1 17 1Z" stroke="#FFD855" stroke-width="2"/><path d="M12.811 16.7671C12.4992 17.079 12.4992 17.5851 12.811 17.897L16.8237 21.9087L17.0005 22.0854L21.189 17.897C21.5008 17.5851 21.5008 17.079 21.189 16.7671C20.8773 16.4556 20.372 16.4557 20.0601 16.7671L17.8003 19.0229V13.4819C17.8002 13.0403 17.4421 12.6823 17.0005 12.6821C16.5587 12.6821 16.1998 13.0402 16.1997 13.4819V19.0229L13.9399 16.7671C13.628 16.4557 13.1227 16.4555 12.811 16.7671Z" fill="#008CAC" stroke="#33A3BD" stroke-width="0.5"/></svg></span>
             <span class="toc-text">
               <span class="toc-eyebrow">Key Insight 2</span>
               <span class="toc-main">Building the Conditions Youth Need to Succeed</span>
             </span>
           </li>
-          <li class="toc-item" onclick="goTo(14)">
+          <li class="toc-item" onclick="goTo(11)">
             <span class="toc-arr"><svg viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M17 1C25.8366 1 33 8.16345 33 17C33 25.8365 25.8366 33 17 33C8.16345 33 1 25.8366 1 17C1 8.16345 8.16345 1 17 1Z" stroke="#FFD855" stroke-width="2"/><path d="M12.811 16.7671C12.4992 17.079 12.4992 17.5851 12.811 17.897L16.8237 21.9087L17.0005 22.0854L21.189 17.897C21.5008 17.5851 21.5008 17.079 21.189 16.7671C20.8773 16.4556 20.372 16.4557 20.0601 16.7671L17.8003 19.0229V13.4819C17.8002 13.0403 17.4421 12.6823 17.0005 12.6821C16.5587 12.6821 16.1998 13.0402 16.1997 13.4819V19.0229L13.9399 16.7671C13.628 16.4557 13.1227 16.4555 12.811 16.7671Z" fill="#008CAC" stroke="#33A3BD" stroke-width="0.5"/></svg></span>
             <span class="toc-text">
               <span class="toc-eyebrow">Key Insight 3</span>
               <span class="toc-main">Children Thrive When Adults Are Supported</span>
             </span>
           </li>
-          <li class="toc-item" onclick="goTo(17)">
+          <li class="toc-item" onclick="goTo(14)">
             <span class="toc-arr"><svg viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M17 1C25.8366 1 33 8.16345 33 17C33 25.8365 25.8366 33 17 33C8.16345 33 1 25.8366 1 17C1 8.16345 8.16345 1 17 1Z" stroke="#FFD855" stroke-width="2"/><path d="M12.811 16.7671C12.4992 17.079 12.4992 17.5851 12.811 17.897L16.8237 21.9087L17.0005 22.0854L21.189 17.897C21.5008 17.5851 21.5008 17.079 21.189 16.7671C20.8773 16.4556 20.372 16.4557 20.0601 16.7671L17.8003 19.0229V13.4819C17.8002 13.0403 17.4421 12.6823 17.0005 12.6821C16.5587 12.6821 16.1998 13.0402 16.1997 13.4819V19.0229L13.9399 16.7671C13.628 16.4557 13.1227 16.4555 12.811 16.7671Z" fill="#008CAC" stroke="#33A3BD" stroke-width="0.5"/></svg></span>
             <span class="toc-text">
               <span class="toc-eyebrow">Key Insight 4</span>
               <span class="toc-main">Effective Solutions Start Early</span>
             </span>
           </li>
-          <li class="toc-item" onclick="goTo(22)">
+          <li class="toc-item" onclick="goTo(18)">
             <span class="toc-arr"><svg viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M17 1C25.8366 1 33 8.16345 33 17C33 25.8365 25.8366 33 17 33C8.16345 33 1 25.8366 1 17C1 8.16345 8.16345 1 17 1Z" stroke="#FFD855" stroke-width="2"/><path d="M12.811 16.7671C12.4992 17.079 12.4992 17.5851 12.811 17.897L16.8237 21.9087L17.0005 22.0854L21.189 17.897C21.5008 17.5851 21.5008 17.079 21.189 16.7671C20.8773 16.4556 20.372 16.4557 20.0601 16.7671L17.8003 19.0229V13.4819C17.8002 13.0403 17.4421 12.6823 17.0005 12.6821C16.5587 12.6821 16.1998 13.0402 16.1997 13.4819V19.0229L13.9399 16.7671C13.628 16.4557 13.1227 16.4555 12.811 16.7671Z" fill="#008CAC" stroke="#33A3BD" stroke-width="0.5"/></svg></span>
             <span class="toc-text">
               <span class="toc-eyebrow">Key Insight 5</span>
               <span class="toc-main">Scaling Community-Proven Solutions</span>
             </span>
           </li>
-          <li class="toc-item" onclick="goTo(25)">
+          <li class="toc-item" onclick="goTo(21)">
             <span class="toc-arr"><svg viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M17 1C25.8366 1 33 8.16345 33 17C33 25.8365 25.8366 33 17 33C8.16345 33 1 25.8366 1 17C1 8.16345 8.16345 1 17 1Z" stroke="#FFD855" stroke-width="2"/><path d="M12.811 16.7671C12.4992 17.079 12.4992 17.5851 12.811 17.897L16.8237 21.9087L17.0005 22.0854L21.189 17.897C21.5008 17.5851 21.5008 17.079 21.189 16.7671C20.8773 16.4556 20.372 16.4557 20.0601 16.7671L17.8003 19.0229V13.4819C17.8002 13.0403 17.4421 12.6823 17.0005 12.6821C16.5587 12.6821 16.1998 13.0402 16.1997 13.4819V19.0229L13.9399 16.7671C13.628 16.4557 13.1227 16.4555 12.811 16.7671Z" fill="#008CAC" stroke="#33A3BD" stroke-width="0.5"/></svg></span>
             <span class="toc-text">
               <span class="toc-main">Financials &amp; Stewardship</span>
             </span>
           </li>
-          <li class="toc-item" onclick="goTo(32)">
+          <li class="toc-item" onclick="goTo(27)">
             <span class="toc-arr"><svg viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M17 1C25.8366 1 33 8.16345 33 17C33 25.8365 25.8366 33 17 33C8.16345 33 1 25.8366 1 17C1 8.16345 8.16345 1 17 1Z" stroke="#FFD855" stroke-width="2"/><path d="M12.811 16.7671C12.4992 17.079 12.4992 17.5851 12.811 17.897L16.8237 21.9087L17.0005 22.0854L21.189 17.897C21.5008 17.5851 21.5008 17.079 21.189 16.7671C20.8773 16.4556 20.372 16.4557 20.0601 16.7671L17.8003 19.0229V13.4819C17.8002 13.0403 17.4421 12.6823 17.0005 12.6821C16.5587 12.6821 16.1998 13.0402 16.1997 13.4819V19.0229L13.9399 16.7671C13.628 16.4557 13.1227 16.4555 12.811 16.7671Z" fill="#008CAC" stroke="#33A3BD" stroke-width="0.5"/></svg></span>
             <span class="toc-text">
               <span class="toc-main">Closing &amp; Special Thanks</span>
@@ -880,7 +904,7 @@
     </section>
 
     <!-- 3: KI1 A -->
-    <section class="slide s-hero" data-i="3" data-sec="ki1">
+    <section class="slide s-hero s-layered" data-i="3" data-sec="ki1">
       <div class="bg" style="background-image:url('img/keyinsight_1.webp')"></div>
       <div class="content">
         <div class="eyebrow">The Inflection Point</div>
@@ -903,46 +927,8 @@
       <div class="photo"><div class="pbg" style="background-image:url('img/ki4-illuminate.webp')"></div><span class="photo-credit">Image courtesy [Photographer Name]</span></div>
     </section>
 
-    <!-- 5: KI1 C — Flower Graphic -->
-    <section class="slide s-flower" data-i="5" data-sec="ki1">
-      <div class="flower-l">
-        <div class="flower">
-          <div class="petal p1" style="--rot:0deg"><div class="petal-inner"><strong>Anticipates</strong><span>emerging needs early</span></div></div>
-          <div class="petal p2" style="--rot:60deg"><div class="petal-inner"><strong>Invests</strong><span>where larger institutions can&rsquo;t or won&rsquo;t</span></div></div>
-          <div class="petal p3" style="--rot:120deg"><div class="petal-inner"><strong>Builds</strong><span>capacity from the inside out</span></div></div>
-          <div class="petal p4" style="--rot:180deg"><div class="petal-inner"><strong>Creates</strong><span>cross-sector alignment where silos exist</span></div></div>
-          <div class="petal p5" style="--rot:240deg"><div class="petal-inner"><strong>Elevates</strong><span>community leadership</span></div></div>
-          <div class="petal p6" style="--rot:300deg"><div class="petal-inner"><strong>Influences</strong><span>public systems and policy</span></div></div>
-          <svg class="flower-mini" viewBox="-22 -22 444 444" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Bright Promises ecosystem: six overlapping petals representing Anticipates, Invests, Builds, Creates, Elevates, Influences">
-            <circle cx="200"   cy="78.6"  r="92" fill="#74AA50" fill-opacity="0.22"/>
-            <circle cx="305.2" cy="139.3" r="92" fill="#33A3BD" fill-opacity="0.22"/>
-            <circle cx="305.2" cy="260.7" r="92" fill="#A46AFF" fill-opacity="0.20"/>
-            <circle cx="200"   cy="321.4" r="92" fill="#F1C400" fill-opacity="0.24"/>
-            <circle cx="94.8"  cy="260.7" r="92" fill="#E861B3" fill-opacity="0.20"/>
-            <circle cx="94.8"  cy="139.3" r="92" fill="#33A3BD" fill-opacity="0.22"/>
-            <circle cx="200" cy="200" r="62" fill="#EE9134"/>
-            <image href="img/BrightPromises_Logo_VarC_Wht.webp" x="155" y="155" width="90" height="90" preserveAspectRatio="xMidYMid meet"/>
-            <text class="pt" x="200"   y="64"    text-anchor="middle" dominant-baseline="middle">Anticipates</text>
-            <text class="pt" x="321.7" y="129.8" text-anchor="middle" dominant-baseline="middle">Invests</text>
-            <text class="pt" x="321.7" y="270.2" text-anchor="middle" dominant-baseline="middle">Builds</text>
-            <text class="pt" x="200"   y="336"   text-anchor="middle" dominant-baseline="middle">Creates</text>
-            <text class="pt" x="78.3"  y="270.2" text-anchor="middle" dominant-baseline="middle">Elevates</text>
-            <text class="pt" x="78.3"  y="129.8" text-anchor="middle" dominant-baseline="middle">Influences</text>
-          </svg>
-          <div class="flower-center"><img src="img/BrightPromises_Logo_VarC_Wht.webp" alt="Bright Promises Foundation"><span class="flower-center-text">Bright Promises:</span></div>
-        </div>
-      </div>
-      <div class="flower-r">
-        <div class="eyebrow">The Inflection Point</div>
-        <h2 class="sh">Bright Promises ensures these trusted partners can continue to lead.</h2>
-        <div class="sb">
-          <p>Through multi-year investment, capacity-building, and leadership development, we help stabilize the organizations that anchor opportunity&mdash;so communities can keep showing up for children when it matters most.</p>
-        </div>
-      </div>
-    </section>
-
     <!-- 6: COMMUNITY OF PARTNERS -->
-    <section class="slide s-content s-cop" data-i="6" data-sec="cop">
+    <section class="slide s-content s-cop" data-i="5" data-sec="cop">
       <div class="cop-c-wrap">
         <div class="cop-c-top">
           <div class="eyebrow">Community of Partners</div>
@@ -961,7 +947,7 @@
     </section>
 
     <!-- 7: KI2 A -->
-    <section class="slide s-hero" data-i="7" data-sec="ki2">
+    <section class="slide s-hero" data-i="6" data-sec="ki2">
       <div class="bg" style="background-image:url('img/keyinsight_2.webp')"></div>
       <div class="content">
         <div class="eyebrow">Momentum, Not Miracles</div>
@@ -971,7 +957,7 @@
     </section>
 
     <!-- 8: KI2 B -->
-    <section class="slide s-split" data-i="8" data-sec="ki2">
+    <section class="slide s-split" data-i="7" data-sec="ki2">
       <div class="txt">
         <div class="eyebrow">Momentum, Not Miracles</div>
         <h2 class="sh">Our approach centers what systems too often underfund:</h2>
@@ -984,7 +970,7 @@
     </section>
 
     <!-- 9: KI2 C — Accordion -->
-    <section class="slide s-split s-acc-split" data-i="9" data-sec="ki2">
+    <section class="slide s-split s-acc-split" data-i="8" data-sec="ki2">
       <div class="txt">
         <div class="acc-inner">
           <div class="acc-intro">
@@ -1010,55 +996,10 @@
       <div class="photo"><div class="pbg" style="background-image:url('img/voyce6.webp');background-position:center"></div><span class="photo-credit">Image courtesy [Photographer Name]</span></div>
     </section>
 
-    <!-- 10: HLC INTRO -->
-    <section class="slide s-content" data-i="10" data-sec="hlc">
-      <div class="spot-layout">
-        <div class="spot-top">
-          <div class="spot-txt">
-            <div class="eyebrow">Impact Spotlight</div>
-            <h2 class="sh" style="margin-bottom:18px">Healing Youth Racial Trauma</h2>
-            <p class="sb">Since launching the <strong>Healing, Leading, Changing</strong> initiative in 2021, Bright Promises has invested more than <strong>$2 million</strong> to create and scale programs that confront racial trauma and build youth leadership across Chicagoland.</p>
-            <p class="sb" style="margin-top:16px">Healing racial trauma and developing youth leadership are essential&mdash;not optional&mdash;for academic success, economic mobility, and participatory democracy. This initiative supports young people in building confidence, agency, identity, and leadership skills, laying the groundwork for long-term success in school, work, and life.</p>
-            <div class="spot-stats">
-              <div class="spot-stats-h">Healing, Leading, Changing: What Donor Partnership Makes Possible</div>
-              <div class="spot-stats-grid">
-                <div class="spot-stat">
-                  <div class="spot-stat-title">5,294 Youth Reached</div>
-                  <p class="spot-stat-body">Young people participated in healing-centered programs that nurture safety, belonging, and self-advocacy.</p>
-                </div>
-                <div class="spot-stat">
-                  <div class="spot-stat-title">91% Expanded Access</div>
-                  <p class="spot-stat-body">Organizations deepened and expanded strategies like healing circles, youth-led workshops, and staff trainings.</p>
-                </div>
-                <div class="spot-stat">
-                  <div class="spot-stat-title">15 Community-Based Organizations</div>
-                  <p class="spot-stat-body">Growing community capacity by building lasting, trauma-informed, healing-centered cultures.</p>
-                </div>
-                <div class="spot-stat">
-                  <div class="spot-stat-title">Youth Leading Change</div>
-                  <p class="spot-stat-body">Young people are organizing campaigns, meeting with decision-makers, and using storytelling to shift narratives, supporting individual and community healing.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="spot-img"><div class="img-placeholder"></div></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 11: ASE HERO -->
-    <section class="slide s-hero" data-i="11" data-sec="ase">
-      <div class="bg" style="background-image:url('img/Title_ASE.webp')"></div>
-      <div class="content">
-        <div class="eyebrow-pill">Grantee Partner Spotlight</div>
-        <h1 class="hero-h1">Alliance<br>of the<br>Southeast</h1>
-      </div>
-    </section>
-
     <!-- 13: ASE B -->
-    <section class="slide s-split" data-i="12" data-sec="ase">
+    <section class="slide s-split" data-i="9" data-sec="ase">
       <div class="txt">
-        <div class="eyebrow">Alliance of the Southeast</div>
+        <div class="eyebrow">Grantee Partner Spotlight: Alliance of the Southeast</div>
         <h2 class="sh">At ASE, young people are not just participants&mdash;they are leaders shaping the future of South Chicago.</h2>
         <div class="sb">
           <p>As public speakers, facilitators, digital storytellers, and organizers, ASE youth are driving change in their communities.</p>
@@ -1084,7 +1025,7 @@
     </section>
 
     <!-- 14: ASE D — Quote -->
-    <section class="slide s-quote" data-i="13" data-sec="ase">
+    <section class="slide s-quote" data-i="10" data-sec="ase">
       <div class="q-inner">
         <span class="q-mark">&ldquo;</span>
         <blockquote class="q-txt">Bright Promises&rsquo; support has not only helped ASE sustain our work, but truly grow by trusting us as experts and intentionally creating space for connection. Their approach uplifts and expands our work, rather than limiting it through traditional models, while also centering, encouraging, and investing in the leadership of our youth.&rdquo;</blockquote>
@@ -1093,7 +1034,7 @@
     </section>
 
     <!-- 16: KI3 A -->
-    <section class="slide s-hero" data-i="14" data-sec="ki3">
+    <section class="slide s-hero" data-i="11" data-sec="ki3">
       <div class="bg" style="background-image:url('img/keyinsight_3.webp')"></div>
       <div class="content">
         <div class="eyebrow">We Invest in the People and Places Children Rely On</div>
@@ -1103,7 +1044,7 @@
     </section>
 
     <!-- 17: KI3 B — Quality Care -->
-    <section class="slide s-split" data-i="15" data-sec="ki3">
+    <section class="slide s-split" data-i="12" data-sec="ki3">
       <div class="txt">
         <div class="eyebrow">Quality Care and Learning Starts with Quality Jobs</div>
         <h2 class="sh" style="margin-bottom:20px">Bright Promises helps build the strong, skilled workforce that children and families rely on every day.</h2>
@@ -1127,7 +1068,7 @@
     </section>
 
     <!-- 18: WELLEQUIPD -->
-    <section class="slide s-content" data-i="16" data-sec="ki3">
+    <section class="slide s-content" data-i="13" data-sec="ki3">
       <div class="spot-layout">
         <div class="spot-top">
           <div class="spot-txt">
@@ -1150,7 +1091,7 @@
     </section>
 
     <!-- 19: KI4 HERO -->
-    <section class="slide s-hero" data-i="17" data-sec="ki4">
+    <section class="slide s-hero" data-i="14" data-sec="ki4">
       <div class="bg" style="background-image:url('img/keyinsight_4.webp')"></div>
       <div class="content">
         <div class="eyebrow">Upstream Impact for Lasting Opportunity</div>
@@ -1160,7 +1101,7 @@
     </section>
 
     <!-- 20: KI4 B -->
-    <section class="slide s-split" data-i="18" data-sec="ki4">
+    <section class="slide s-split" data-i="15" data-sec="ki4">
       <div class="txt">
         <div class="eyebrow">Upstream Impact for Lasting Opportunity</div>
         <h2 class="sh">Early investment. Stronger systems. Lasting impact.</h2>
@@ -1179,20 +1120,11 @@
       <div class="photo"><div class="pbg" style="background-image:url('img/vocel-eva.webp');background-position:center"></div><span class="photo-credit">Image courtesy [Photographer Name]</span></div>
     </section>
 
-    <!-- 21: COMMUNITIES UNITED HERO -->
-    <section class="slide s-hero" data-i="19" data-sec="cu">
-      <div class="bg" style="background-image:url('img/Title_CommunitiesUnited.webp')"></div>
-      <div class="content">
-        <div class="eyebrow-pill">Grantee Partner Spotlight</div>
-        <h1 class="hero-h1">Communities<br>United</h1>
-      </div>
-    </section>
-
     <!-- 22: CU B -->
-    <section class="slide s-split-l" data-i="20" data-sec="cu">
+    <section class="slide s-split-l" data-i="16" data-sec="cu">
       <div class="photo"><div class="pbg" style="background-image:url('img/cu-spotlight.webp')"></div><span class="photo-credit">Image courtesy [Photographer Name]</span></div>
       <div class="txt">
-        <div class="eyebrow">Building Youth Power Through Civic Leadership</div>
+        <div class="eyebrow">Grantee Partner Spotlight: Communities United</div>
         <h2 class="sh">With Bright Promises&rsquo; support, Communities United is building durable youth power.</h2>
         <div class="sb">
           <p>As part of Bright Promises&rsquo; commitment to <strong>advancing youth leadership and civic engagement, Communities United</strong> is equipping young people to lead, advocate, and transform the systems that shape their lives.</p>
@@ -1208,7 +1140,7 @@
     </section>
 
     <!-- 23: CU C — Quote -->
-    <section class="slide s-quote" data-i="21" data-sec="cu">
+    <section class="slide s-quote" data-i="17" data-sec="cu">
       <div class="q-inner">
         <span class="q-mark">&ldquo;</span>
         <blockquote class="q-txt">This format is different. Bright Promises&rsquo; support has allowed me to grow as a leader, but the youth too feel that investment. Investing in one young person is investing in everyone they have an interaction with.&rdquo;</blockquote>
@@ -1218,7 +1150,7 @@
     </section>
 
     <!-- 24: KI5 HERO -->
-    <section class="slide s-hero" data-i="22" data-sec="ki5">
+    <section class="slide s-hero" data-i="18" data-sec="ki5">
       <div class="bg" style="background-image:url('img/keyinsight_5.webp')"></div>
       <div class="content">
         <div class="eyebrow">Looking Ahead</div>
@@ -1228,7 +1160,7 @@
     </section>
 
     <!-- 25: KI5 A -->
-    <section class="slide s-split-l" data-i="23" data-sec="ki5">
+    <section class="slide s-split-l" data-i="19" data-sec="ki5">
       <div class="photo"><div class="pbg" style="background-image:url('img/concordia-meaningful-play.webp');background-position:center"></div><span class="photo-credit">Image courtesy [Photographer Name]</span></div>
       <div class="txt">
         <div class="eyebrow">Looking Ahead</div>
@@ -1241,7 +1173,7 @@
     </section>
 
     <!-- 26: KI5 B — Goals -->
-    <section class="slide s-content" data-i="24" data-sec="ki5">
+    <section class="slide s-content" data-i="20" data-sec="ki5">
       <div style="max-width:min(1640px,96vw);position:relative;z-index:1">
         <div class="eyebrow">Our Goals</div>
         <h2 class="sh" style="font-size:clamp(28px,3.6vw,60px);margin-bottom:clamp(24px,3.5vh,52px)">These commitments reflect what our community has told us matters most&mdash;now and for the future.</h2>
@@ -1255,7 +1187,7 @@
     </section>
 
     <!-- 27: FINANCIALS INTRO -->
-    <section class="slide s-hero" data-i="25" data-sec="financials" style="background:var(--teal-dk)">
+    <section class="slide s-hero" data-i="21" data-sec="financials" style="background:var(--teal-dk)">
       <div class="bg" style="background-image:url('img/Title_Financials.webp')"></div>
       <div class="content">
         <div class="eyebrow">Financials &amp; Stewardship</div>
@@ -1268,78 +1200,8 @@
       </div>
     </section>
 
-    <!-- 28: DEMOGRAPHICS -->
-    <section class="slide s-chart" data-i="26" data-sec="financials">
-      <div class="bg-circ" style="width:640px;height:640px;right:-200px;top:-160px"></div>
-      <div class="bg-circ" style="width:420px;height:420px;left:-120px;bottom:-160px"></div>
-      <div class="chart-view" id="c28-demo">
-        <div class="chart-left">
-          <div class="eyebrow">2024/25 Participants</div>
-          <h2 class="chart-h">igniting change,<br>one child at&#8209;a&#8209;time</h2>
-          <div class="tabs">
-            <button class="tab active" onclick="switchChartTab(this,'c28-demo')">Demographics</button>
-            <button class="tab" onclick="switchChartTab(this,'c28-age')">Age</button>
-          </div>
-          <div class="filters"><button class="filt active">HLC</button><span class="filt-div">|</span><button class="filt">EQUIP</button><span class="filt-div">|</span><button class="filt">FAIR</button></div>
-          <div class="legend">
-            <div class="leg-item"><div class="leg-dot" style="background:var(--orange)"></div><div class="leg-txt">black : <strong>35%</strong></div></div>
-            <div class="leg-item"><div class="leg-dot" style="background:#F1C400"></div><div class="leg-txt">latinx : <strong>41%</strong></div></div>
-            <div class="leg-item"><div class="leg-dot" style="background:#7FD178"></div><div class="leg-txt">white / non-hispanic : <strong>1%</strong></div></div>
-            <div class="leg-item"><div class="leg-dot" style="background:#3BC8D8"></div><div class="leg-txt">biracial / multiracial : <strong>2%</strong></div></div>
-            <div class="leg-item"><div class="leg-dot" style="background:#9B6BBF"></div><div class="leg-txt">arab : <strong>16%</strong></div></div>
-            <div class="leg-item"><div class="leg-dot" style="background:#666"></div><div class="leg-txt">asian : <strong>5%</strong></div></div>
-            <div class="leg-item"><div class="leg-dot" style="background:#E87FA3"></div><div class="leg-txt">other : <strong>0%</strong></div></div>
-          </div>
-        </div>
-        <div class="chart-right">
-          <div class="donut-wrap" style="height:60vh;width:60vh">
-            <svg viewBox="0 0 200 200" style="width:100%;height:100%">
-              <circle cx="100" cy="100" r="70" fill="none" stroke="#1E9AAB" stroke-width="30"/>
-              <circle cx="100" cy="100" r="70" fill="none" stroke="#F1C400" stroke-width="30" stroke-dasharray="180 260" stroke-dashoffset="110" transform="rotate(-90 100 100)"/>
-              <circle cx="100" cy="100" r="70" fill="none" style="stroke:var(--orange)" stroke-width="30" stroke-dasharray="154 286" stroke-dashoffset="-72" transform="rotate(-90 100 100)"/>
-              <circle cx="100" cy="100" r="70" fill="none" stroke="#9B6BBF" stroke-width="30" stroke-dasharray="70 370" stroke-dashoffset="-228" transform="rotate(-90 100 100)"/>
-              <circle cx="100" cy="100" r="70" fill="none" stroke="#666" stroke-width="30" stroke-dasharray="22 418" stroke-dashoffset="-298" transform="rotate(-90 100 100)"/>
-              <circle cx="100" cy="100" r="70" fill="none" stroke="#7FD178" stroke-width="30" stroke-dasharray="4 436" stroke-dashoffset="-320" transform="rotate(-90 100 100)"/>
-              <circle cx="100" cy="100" r="70" fill="none" stroke="#3BC8D8" stroke-width="30" stroke-dasharray="9 431" stroke-dashoffset="-324" transform="rotate(-90 100 100)"/>
-              <circle cx="100" cy="100" r="52" fill="#1E9AAB"/>
-            </svg>
-            <div class="donut-center"><div class="donut-num">11,800</div><div class="donut-lbl">served</div></div>
-          </div>
-        </div>
-      </div>
-      <div class="chart-view" id="c28-age" style="display:none">
-        <div class="chart-left">
-          <div class="eyebrow">2024/25 Participants</div>
-          <h2 class="chart-h">igniting change,<br>one child at&#8209;a&#8209;time</h2>
-          <div class="tabs">
-            <button class="tab" onclick="switchChartTab(this,'c28-demo')">Demographics</button>
-            <button class="tab active" onclick="switchChartTab(this,'c28-age')">Age</button>
-          </div>
-          <div class="legend">
-            <div class="leg-item"><div class="leg-dot" style="background:var(--orange)"></div><div class="leg-txt">under 5 : <strong>18%</strong></div></div>
-            <div class="leg-item"><div class="leg-dot" style="background:#F1C400"></div><div class="leg-txt">5–11 : <strong>32%</strong></div></div>
-            <div class="leg-item"><div class="leg-dot" style="background:#005B70"></div><div class="leg-txt">12–17 : <strong>35%</strong></div></div>
-            <div class="leg-item"><div class="leg-dot" style="background:#3BC8D8"></div><div class="leg-txt">18–24 : <strong>15%</strong></div></div>
-          </div>
-        </div>
-        <div class="chart-right">
-          <div class="donut-wrap" style="height:60vh;width:60vh">
-            <svg viewBox="0 0 200 200" style="width:100%;height:100%">
-              <circle cx="100" cy="100" r="70" fill="none" stroke="#1E9AAB" stroke-width="30"/>
-              <circle cx="100" cy="100" r="70" fill="none" style="stroke:var(--orange)" stroke-width="30" stroke-dasharray="79 361" stroke-dashoffset="110" transform="rotate(-90 100 100)"/>
-              <circle cx="100" cy="100" r="70" fill="none" stroke="#F1C400" stroke-width="30" stroke-dasharray="141 299" stroke-dashoffset="31" transform="rotate(-90 100 100)"/>
-              <circle cx="100" cy="100" r="70" fill="none" stroke="#005B70" stroke-width="30" stroke-dasharray="154 286" stroke-dashoffset="-110" transform="rotate(-90 100 100)"/>
-              <circle cx="100" cy="100" r="70" fill="none" stroke="#3BC8D8" stroke-width="30" stroke-dasharray="66 374" stroke-dashoffset="-264" transform="rotate(-90 100 100)"/>
-              <circle cx="100" cy="100" r="52" fill="#1E9AAB"/>
-            </svg>
-            <div class="donut-center"><div class="donut-num">11,800</div><div class="donut-lbl">served</div></div>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <!-- 29: REVENUE -->
-    <section class="slide s-chart" data-i="27" data-sec="financials">
+    <section class="slide s-chart" data-i="22" data-sec="financials">
       <div class="bg-circ" style="width:640px;height:640px;right:-200px;top:-160px"></div>
       <div class="chart-view" id="c29-rev">
         <div class="chart-left">
@@ -1351,11 +1213,11 @@
           </div>
           <p style="font-size:clamp(11px,1vw,14px);font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.6);margin-bottom:clamp(14px,1.8vh,22px)">Contributions</p>
           <div class="legend">
-            <div class="leg-item"><div class="leg-dot" style="background:var(--orange)"></div><div class="leg-txt">corporations : <strong>$6,564</strong></div></div>
             <div class="leg-item"><div class="leg-dot" style="background:#F1C400"></div><div class="leg-txt">foundations : <strong>$245,850</strong></div></div>
-            <div class="leg-item"><div class="leg-dot" style="background:#7FD178"></div><div class="leg-txt">individuals : <strong>$39,573</strong></div></div>
             <div class="leg-item"><div class="leg-dot" style="background:#3BC8D8"></div><div class="leg-txt">events : <strong>$115,402</strong></div></div>
-            <div class="leg-item"><div class="leg-dot" style="background:#555"></div><div class="leg-txt">other income : <strong>$5,849</strong></div></div>
+            <div class="leg-item"><div class="leg-dot" style="background:#7FD178"></div><div class="leg-txt">individuals : <strong>$39,573</strong></div></div>
+            <div class="leg-item"><div class="leg-dot" style="background:var(--orange)"></div><div class="leg-txt">corporations : <strong>$6,564</strong></div></div>
+            <div class="leg-item"><div class="leg-dot" style="background:#A46AFF"></div><div class="leg-txt">other income : <strong>$5,849</strong></div></div>
           </div>
           <div style="margin-top:clamp(18px,2.5vh,36px)"><a href="https://brightpromises.sharepoint.com/:b:/s/FinanceBudgets/IQAbUwLGBj3PQ5OKh7725BARAbQSM2cRIeHIcufAvY-Tl6Q?e=wcqTnP" target="_blank" rel="noopener" style="display:block;font-size:clamp(13px,1.1vw,16px);color:rgba(255,255,255,.75);text-decoration:none;font-style:italic;margin-bottom:6px">&#xBB; Most recent audit</a><a href="https://brightpromises.sharepoint.com/:b:/s/FinanceBudgets/IQAbUwLGBj3PQ5OKh7725BARAbQSM2cRIeHIcufAvY-Tl6Q?e=wcqTnP" target="_blank" rel="noopener" style="display:block;font-size:clamp(13px,1.1vw,16px);color:rgba(255,255,255,.75);text-decoration:none;font-style:italic">&#xBB; Form 990</a></div>
         </div>
@@ -1363,11 +1225,11 @@
           <div class="donut-wrap" style="height:60vh;width:60vh">
             <svg viewBox="0 0 200 200" style="width:100%;height:100%">
               <circle cx="100" cy="100" r="70" fill="none" stroke="#1E9AAB" stroke-width="30"/>
-              <circle cx="100" cy="100" r="70" fill="none" stroke="#F1C400" stroke-width="30" stroke-dasharray="194 246" stroke-dashoffset="110" transform="rotate(-90 100 100)"/>
-              <circle cx="100" cy="100" r="70" fill="none" stroke="#3BC8D8" stroke-width="30" stroke-dasharray="91 349" stroke-dashoffset="-84" transform="rotate(-90 100 100)"/>
-              <circle cx="100" cy="100" r="70" fill="none" stroke="#7FD178" stroke-width="30" stroke-dasharray="31 409" stroke-dashoffset="-175" transform="rotate(-90 100 100)"/>
-              <circle cx="100" cy="100" r="70" fill="none" style="stroke:var(--orange)" stroke-width="30" stroke-dasharray="5 435" stroke-dashoffset="-206" transform="rotate(-90 100 100)"/>
-              <circle cx="100" cy="100" r="70" fill="none" stroke="#555" stroke-width="30" stroke-dasharray="5 435" stroke-dashoffset="-211" transform="rotate(-90 100 100)"/>
+              <circle cx="100" cy="100" r="70" fill="none" stroke="#F1C400" stroke-width="30" stroke-dasharray="262 178" stroke-dashoffset="110" transform="rotate(-90 100 100)"/>
+              <circle cx="100" cy="100" r="70" fill="none" stroke="#3BC8D8" stroke-width="30" stroke-dasharray="123 317" stroke-dashoffset="-152" transform="rotate(-90 100 100)"/>
+              <circle cx="100" cy="100" r="70" fill="none" stroke="#7FD178" stroke-width="30" stroke-dasharray="42 398" stroke-dashoffset="-275" transform="rotate(-90 100 100)"/>
+              <circle cx="100" cy="100" r="70" fill="none" style="stroke:var(--orange)" stroke-width="30" stroke-dasharray="7 433" stroke-dashoffset="-317" transform="rotate(-90 100 100)"/>
+              <circle cx="100" cy="100" r="70" fill="none" stroke="#A46AFF" stroke-width="30" stroke-dasharray="6 434" stroke-dashoffset="-324" transform="rotate(-90 100 100)"/>
               <circle cx="100" cy="100" r="52" fill="#1E9AAB"/>
             </svg>
             <div class="donut-center"><div class="donut-num">$558,954</div><div class="donut-lbl">Total Revenue</div></div>
@@ -1384,8 +1246,8 @@
           </div>
           <div class="legend">
             <div class="leg-item"><div class="leg-dot" style="background:#F1C400"></div><div class="leg-txt">programs : <strong>$524,506</strong></div></div>
+            <div class="leg-item"><div class="leg-dot" style="background:#124155"></div><div class="leg-txt">fundraising : <strong>$112,213</strong></div></div>
             <div class="leg-item"><div class="leg-dot" style="background:var(--orange)"></div><div class="leg-txt">administration : <strong>$83,239</strong></div></div>
-            <div class="leg-item"><div class="leg-dot" style="background:#3BC8D8"></div><div class="leg-txt">fundraising : <strong>$112,213</strong></div></div>
           </div>
           <p style="font-size:clamp(11px,0.95vw,13px);color:rgba(255,255,255,.55);margin-top:clamp(14px,1.8vh,22px);font-style:italic">$5.69M in total assets as of Dec. 31, 2025</p>
           <div style="margin-top:clamp(14px,2vh,28px)"><a href="https://brightpromises.sharepoint.com/:b:/s/FinanceBudgets/IQAbUwLGBj3PQ5OKh7725BARAbQSM2cRIeHIcufAvY-Tl6Q?e=wcqTnP" target="_blank" rel="noopener" style="display:block;font-size:clamp(13px,1.1vw,16px);color:rgba(255,255,255,.75);text-decoration:none;font-style:italic;margin-bottom:6px">&#xBB; Most recent audit</a><a href="https://brightpromises.sharepoint.com/:b:/s/FinanceBudgets/IQAbUwLGBj3PQ5OKh7725BARAbQSM2cRIeHIcufAvY-Tl6Q?e=wcqTnP" target="_blank" rel="noopener" style="display:block;font-size:clamp(13px,1.1vw,16px);color:rgba(255,255,255,.75);text-decoration:none;font-style:italic">&#xBB; Form 990</a></div>
@@ -1394,9 +1256,9 @@
           <div class="donut-wrap" style="height:60vh;width:60vh">
             <svg viewBox="0 0 200 200" style="width:100%;height:100%">
               <circle cx="100" cy="100" r="70" fill="none" stroke="#1E9AAB" stroke-width="30"/>
-              <circle cx="100" cy="100" r="70" fill="none" stroke="#F1C400" stroke-width="30" stroke-dasharray="263 177" stroke-dashoffset="110" transform="rotate(-90 100 100)"/>
-              <circle cx="100" cy="100" r="70" fill="none" style="stroke:var(--orange)" stroke-width="30" stroke-dasharray="42 398" stroke-dashoffset="-153" transform="rotate(-90 100 100)"/>
-              <circle cx="100" cy="100" r="70" fill="none" stroke="#3BC8D8" stroke-width="30" stroke-dasharray="56 384" stroke-dashoffset="-195" transform="rotate(-90 100 100)"/>
+              <circle cx="100" cy="100" r="70" fill="none" stroke="#F1C400" stroke-width="30" stroke-dasharray="320 120" stroke-dashoffset="110" transform="rotate(-90 100 100)"/>
+              <circle cx="100" cy="100" r="70" fill="none" style="stroke:var(--orange)" stroke-width="30" stroke-dasharray="51 389" stroke-dashoffset="-210" transform="rotate(-90 100 100)"/>
+              <circle cx="100" cy="100" r="70" fill="none" stroke="#124155" stroke-width="30" stroke-dasharray="69 371" stroke-dashoffset="-261" transform="rotate(-90 100 100)"/>
               <circle cx="100" cy="100" r="52" fill="#1E9AAB"/>
             </svg>
             <div class="donut-center"><div class="donut-num">$877,148</div><div class="donut-lbl">Total Expenses</div></div>
@@ -1406,7 +1268,7 @@
     </section>
 
     <!-- 30: DONOR HONOR ROLL -->
-    <section class="slide s-donors" data-i="28" data-sec="donors">
+    <section class="slide s-donors" data-i="23" data-sec="donors">
       <div class="donors-scroll">
       <div class="eyebrow">Our Supporters</div>
       <div class="donors-h">2025 Donor Honor Roll</div>
@@ -1414,15 +1276,14 @@
       <div class="donors-section-h">Individuals</div>
       <p class="donors-text">Abraham Salinas, Aimee Hilado, Alana Gunn, Alexa Berg, Alexandra Padrul, Alice Martin, Amanda Vallejo, Amy Dragland-Johnson, Andreason Brown, Angela Fontes, Anna Musci, Anne Finn, Anonymous, Anthony Richards, Arielle Lentz, Ayanna Brown, Baronica Roberson, Bela Mote, Bethel Kifle, Bethel Kifleo, Bill and Patty Moss, Brad Berliner, Brian Korey, Britton Videbeck, Bryan Stokes, Camille Moore, Candace Moore, Carlos Perez, Carmelita Colbert, Carmen Velasquez in memory of Jim Zander, C&eacute;sar Torruella, Cheryl Goldstein, Cheryl Wisniewski, Chris Kinnear, Christina Navarro, Christine Calderon, Chun Lung Lee, Clive Walcott, Craig Englert, Craig Llorens, Cyd Archer, Cynthia Hunt, Daniel Casara, Daniel Fumagalli, Darlene Murphy Jue, David and Susan Kreisman, David Beerman, David Chappell, David Hardy, David Rubenstein, Dean Benson, Deborah Frisch, Debra Schlies, Deepak Gaur, Deirdre Harrison, Diane Knoepke, Don Quincy Lamb Jr, Dorri McWhorter, Doug Moss, Elizabeth Tager, Emilio Araujo, Emily Fishman, Eric Zoberman, Gaylord and William Gieseke, Grace Araya, Harry and Lily Zoberman, Heather Kistner, Heather Parish, Helen J. Kessler, Helene Fishman, Ilene Korey, Iris Krieg, Jacki Davidoff, James P. Lynch, Jamie Klobuchar, Jamie Metcalf, Jason Kay, Jason Nierman, Jeff and Jamie Kost, Jeffrey Izenman, Jennifer Booth in honor of Tara Leja, Jennifer Lyons, Jesseca Rhymes, Jill Katz, Jill Scott, Jim Hirsch, Julia Gilman, Julia Luscombe, Julia Waggoner, Julie Shaw, Julie Weinberg, Karla Davis, Karyn Watkins, Katherine Dreher, Kellie Martial, Kelly Kirkman, Kenneth Bartman, Kevin Conlon, Kimberly Van Horn, Kimbra Bell, Krishnaiah Revuluri, Krystle Bradley, Larry Joe and Kelley O&rsquo;Hern in memory of Jim Zander, Larry Nierman, Lauren Gaither, Lauren Krieg, Lawrence Kuhn, Lee Menn, Lena Cohn, Linda Weinstein, Lionell Hill, Lisa Raju, Loester Lewis, Louise K. Smith, Luke Easterday, Lynda Wallis, M Steven Sager, Mallory Moreno, Marcella Oglesby, Margaret Anderson, Maria Allen, Maria Ghani and Emaad Rahman, Mark and Joni Croll, Mark McKinley, Matthew Colton, Matthew McGary, Matthew Somerman, Megan Rhyme, Melinda Hardy, Michele and Joel Shoolin in honor of Katherine Korey, Michelle O&rsquo;Sullivan, Mitch Sparber, Myla Weinstein, Nancy Schimmel, Nancy Snyder, Nancy Stermer, Nannette Zander, Neelamjit Dhaliwal, Nicholas Kennedy, Nina Wong, Patricio Cadena, Patrick Grady, Paul and Peggy Bodine, Paul Fyle, Paul Hilder, Paula Frey, Randall Hardy, Rebecca Nierman, Rhonda Fried, Richard Sieracki, Robert and Barbara Finley, Robert Footlik, Ron and Queta Bauer, Roy Walker, Russell Brown, Ryan Biller, Ryan Emmer, Salina Barih, Sam Coady, Sam Spencer, Sanford Peck, Sarah Klebo, Scott and Emily Bishop, Scott Gendell, Sendhil Revuluri and Venu Gupta, Shari Runner, Shel and Renee Goldstein in honor of Jason Nierman, Simone Weil, Sophie Padula, Stephanie Sorlien, Steven M Koch, Susan Gohl, Susan Irion, Tae Kim, Tanner Zelman, Tara Leja, Ted Cappas, Tenisha Phillips, Thomas Penning, Tiffany Scaparotti, Una Lewis, Valerie Coffman, Vickie and Irv Korey in honor of Katherine Korey, William Enright, William O&rsquo;Hara</p>
       <div class="donors-section-h">Corporations</div>
-      <p class="donors-text">AbbVie Inc., Allstate, Azteca Foods Inc., Carole Robertson Learning Center, Comcast NBC Universal, Concordia Place, Constellation, Discover, Hearst, RSM US, West Monroe, Wintrust</p>
+      <p class="donors-text compact-2col">AbbVie Inc., Allstate, Azteca Foods Inc., Carole Robertson Learning Center, Comcast NBC Universal, Concordia Place, Constellation, Discover, Hearst, RSM US, West Monroe, Wintrust</p>
       <div class="donors-section-h">Foundations</div>
-      <p class="donors-text">Clark-Halladay Memorial Foundation, Cigna Foundation, Comer Family Fund at the Chicago Community Trust, Field Foundation of Illinois, Francis Beidler III and Prudence R. Beidler Foundation, Gaylord and Dorothy Donnelley Foundation, Henry Crown &amp; Company, Hirsch Family Fund in honor of Julie &amp; Mark Nufer and Scott Bishop, National Philanthropic Trust, Pledging Foundation, Robert M. McCormick Foundation, Spencer Foundation</p>
+      <p class="donors-text compact-2col">Clark-Halladay Memorial Foundation, Cigna Foundation, Comer Family Fund at the Chicago Community Trust, Field Foundation of Illinois, Francis Beidler III and Prudence R. Beidler Foundation, Gaylord and Dorothy Donnelley Foundation, Henry Crown &amp; Company, Hirsch Family Fund in honor of Julie &amp; Mark Nufer and Scott Bishop, National Philanthropic Trust, Pledging Foundation, Robert M. McCormick Foundation, Spencer Foundation</p>
       </div><!-- end .donors-scroll -->
-      <div class="donors-fade"></div>
     </section>
 
     <!-- 31: WEST MONROE HERO -->
-    <section class="slide s-hero" data-i="29" data-sec="wm">
+    <section class="slide s-hero" data-i="24" data-sec="wm">
       <div class="bg" style="background-image:url('img/Title_WestMonroe.webp')"></div>
       <div class="content">
         <div class="eyebrow-pill">Corporate Partner Spotlight</div>
@@ -1431,7 +1292,7 @@
     </section>
 
     <!-- 32: WM B -->
-    <section class="slide s-split" data-i="30" data-sec="wm">
+    <section class="slide s-split" data-i="25" data-sec="wm">
       <div class="txt">
         <div class="eyebrow">Corporate Partner Spotlight</div>
         <h2 class="sh">West Monroe&rsquo;s long-standing partnership with Bright Promises goes beyond volunteerism.</h2>
@@ -1451,7 +1312,7 @@
     </section>
 
     <!-- 34: WM D — Quote -->
-    <section class="slide s-quote" data-i="31" data-sec="wm">
+    <section class="slide s-quote" data-i="26" data-sec="wm">
       <div class="q-inner">
         <span class="q-mark">&ldquo;</span>
         <blockquote class="q-txt">West Monroe is proud to partner with Bright Promises, as our commitment to Building the Next Generation of Leaders and investing in the future go hand in hand. Our employees see firsthand the impact Bright Promises brings to the Chicago community and are honored to volunteer their time in support of that mission.&rdquo;</blockquote>
@@ -1460,13 +1321,13 @@
     </section>
 
     <!-- 35: CLOSING -->
-    <section class="slide s-hero s-closing-thanks" data-i="32" data-sec="closing" style="background:var(--teal-dk)">
+    <section class="slide s-hero s-closing-thanks" data-i="27" data-sec="closing" style="background:var(--teal-dk)">
       <div class="bg" style="background-image:url('img/Title_Closing.webp')"></div>
       <div class="close-grid">
         <div class="close-top">
           <div class="eyebrow">Keeping Our Promise, Together</div>
-          <h2 class="sh" style="font-size:clamp(28px,3.2vw,52px);line-height:1.08;margin-bottom:clamp(14px,1.8vh,24px);color:#fff">Bright Promises Foundation is of the community and for the community.</h2>
-          <div class="sb" style="max-width:min(820px,82%);color:rgba(255,255,255,0.92)">
+          <h2 class="sh" style="color:#fff;margin-bottom:clamp(16px,2vh,28px)">Bright Promises Foundation is of the community and for the community.</h2>
+          <div class="sb" style="color:rgba(255,255,255,0.92)">
             <p>We are the only public foundation serving the State of Illinois solely focused on the needs of children and youth. Thank you to the partners, supporters, and advocates who are building this future with us.</p>
             <p><strong style="color:#fff">Together, we are proving what&rsquo;s possible when we invest early, act collectively, and trust what communities know works.</strong> This is how we keep our promise&mdash;to children today and to the future we share.</p>
           </div>
@@ -1497,14 +1358,14 @@
     </section>
 
     <!-- 36: MVV -->
-    <section class="slide s-mvv" data-i="33" data-sec="mvv">
+    <section class="slide s-mvv" data-i="28" data-sec="mvv">
       <div class="mvv-grid">
         <div class="mvv-sec"><div class="mvv-lbl">Our Mission</div><p class="mvv-txt">Bright Promises Foundation&rsquo;s mission is to identify, fund, and share solutions to underrecognized needs of children and youth most adversely impacted by inequity.</p></div>
         <div class="mvv-sec"><div class="mvv-lbl">Our Vision</div><p class="mvv-txt">Our vision is for a Chicagoland where all children and youth reach their full promise and potential.</p></div>
         <div class="mvv-sec"><div class="mvv-lbl">Our Values</div><p class="mvv-txt"><strong>Innovation</strong> Embrace complexity. Be proactive and adaptive. <strong>Collaboration</strong> Co-create. Center relationships. We believe in collective work and collective wisdom. <strong>Equity</strong> Treat everyone fairly and with respect. <strong>Accountability</strong> Lead with trust, respect, and humility. <strong>Knowledge Sharing</strong> Embrace learning. Be curious. Capture and disseminate knowledge to scale impact.</p></div>
       </div>
       <div class="mvv-foot">
-        <img class="mvv-logo" src="img/logo-white.svg" alt="Bright Promises Foundation">
+        <img class="mvv-logo" src="img/BrightPromises_Logo_VarC_Wht.webp" alt="Bright Promises Foundation">
         <a href="https://brightpromises.org" class="mvv-link" target="_blank" rel="noopener">brightpromises.org</a>
       </div>
     </section>
@@ -1517,23 +1378,22 @@
     let cur = 0;
 
     const SECS = [
-      { slides:[0] },
-      { slides:[1] },
-      { slides:[2] },
-      { slides:[3,4,5] },
-      { slides:[6] },
-      { slides:[7,8,9] },
-      { slides:[10] },
-      { slides:[11,12,13] },
-      { slides:[14,15,16] },
-      { slides:[17,18] },
-      { slides:[19,20,21] },
-      { slides:[22,23,24] },
-      { slides:[25,26,27] },
-      { slides:[28] },
-      { slides:[29,30,31] },
-      { slides:[32] },
-      { slides:[33] }
+      { slides:[0] },              // cover
+      { slides:[1] },              // toc
+      { slides:[2] },              // letter
+      { slides:[3,4] },            // ki1
+      { slides:[5] },              // cop
+      { slides:[6,7,8] },          // ki2
+      { slides:[9,10] },           // ase
+      { slides:[11,12,13] },       // ki3
+      { slides:[14,15] },          // ki4
+      { slides:[16,17] },          // cu
+      { slides:[18,19,20] },       // ki5
+      { slides:[21,22] },          // financials
+      { slides:[23] },             // donors
+      { slides:[24,25,26] },       // wm
+      { slides:[27] },             // closing
+      { slides:[28] }              // mvv
     ];
 
     function getSec(i) { return SECS.find(s => s.slides.includes(i)); }
@@ -1593,7 +1453,7 @@
     };
 
     function getTType(idx, crossSection) {
-      if (idx === 30 && cur === 29) return T.dissolve;
+      if (idx === 24 && cur === 23) return T.dissolve;
       if (crossSection) return T.cinematic;
       const cl = SLIDES[idx].classList;
       if (cl.contains('s-quote'))                         return T.dissolve;
@@ -1640,7 +1500,7 @@
       tt.runIn(nextEl);
 
       cur = next;
-      if (next === 29) { donorsAdvanced = false; donorsScroll.scrollTop = 0; }
+      if (next === 23) { donorsAdvanced = false; donorsScroll.scrollTop = 0; }
       updateUI(next);
 
       const cleanup = () => {
@@ -1704,13 +1564,16 @@
     let wheelLocked = false;
     window.addEventListener('wheel', e => {
       if (isMobile()) return; // long-scroll on mobile — let native scroll handle it
-      if (cur === 29) {
-        // Let donors slide scroll naturally; only intercept scroll-up at top (go back)
-        if (donorsScroll.scrollTop === 0 && e.deltaY < 0) {
-          e.preventDefault();
-          if (!wheelLocked) { wheelLocked = true; nav(-1); setTimeout(() => { wheelLocked = false; }, 820); }
-        }
-        return;
+      // Generic overflow handling: if the active slide has internal scroll
+      // available in the direction the user is wheeling, let native scroll
+      // handle it. Only trigger slide navigation at the top/bottom edge.
+      const active = SLIDES[cur];
+      const overflows = active.scrollHeight > active.clientHeight + 1;
+      if (overflows) {
+        const atTop = active.scrollTop <= 0;
+        const atBottom = active.scrollTop + active.clientHeight >= active.scrollHeight - 1;
+        if (e.deltaY > 0 && !atBottom) return;
+        if (e.deltaY < 0 && !atTop) return;
       }
       e.preventDefault();
       if (wheelLocked) return;
@@ -1791,10 +1654,13 @@
 
     function switchChartTab(btn, panelId) {
       const slide = btn.closest('.s-chart');
-      slide.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-      btn.classList.add('active');
-      slide.querySelectorAll('.chart-view').forEach(p => { p.style.display = 'none'; });
-      document.getElementById(panelId).style.display = 'grid';
+      // Toggle which view is shown
+      slide.querySelectorAll('.chart-view').forEach(p => { p.style.display = (p.id === panelId) ? 'grid' : 'none'; });
+      // Within the newly visible view, mark the tab whose onclick targets this panel as active
+      const view = document.getElementById(panelId);
+      view.querySelectorAll('.tab').forEach(t => {
+        t.classList.toggle('active', t.getAttribute('onclick').includes(`'${panelId}'`));
+      });
     }
 
     function toggleAcc(id) {
