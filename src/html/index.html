@@ -175,8 +175,7 @@
     .photo .pbg { position:absolute; inset:0; background-size:cover; background-position:center; transform-origin:center; }
     /* TEMPORARY: slide number indicator for design review. Remove with
        its updateUI() call + the <div id="slide-num"> when finished. */
-    #slide-num { position:fixed; bottom:16px; left:16px; z-index:300; padding:6px 10px; border-radius:6px; background:rgba(0,0,0,0.55); color:#fff; font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:11px; letter-spacing:.04em; pointer-events:none; opacity:.85; }
-    @media (max-width:900px) { #slide-num { display:none; } }
+    #slide-num { display:none; position:fixed; bottom:16px; left:16px; z-index:300; padding:6px 10px; border-radius:6px; background:rgba(0,0,0,0.55); color:#fff; font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:11px; letter-spacing:.04em; pointer-events:none; opacity:.85; }
 
     /* ── Torn-paper edge ───────────────────────────────────────────────
        Pseudo-element overlay between the white text card and the photo,
@@ -461,8 +460,14 @@
     .donors-sub { font-size:clamp(14px,1.2vw,18px); font-weight:400; color:var(--body); line-height:1.55; margin-bottom:clamp(20px,2.4vh,32px); max-width:min(820px,80%); }
     .donors-section-h { font-size:clamp(11px,1.0vw,15px); font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--orange); margin-top:clamp(16px,2vh,24px); margin-bottom:clamp(6px,0.8vh,10px); padding-bottom:6px; border-bottom:1px solid rgba(0,91,112,.15); }
     .donors-section-h:first-of-type { margin-top:0; }
-    .donors-text { font-size:clamp(13px,1.2vw,17px); font-weight:400; color:var(--body); line-height:1.55; text-align:left; column-count:3; column-gap:clamp(20px,2.4vw,40px); }
+    /* Type scales with whichever viewport axis is more constrained, so the list
+       never outgrows the height budget no matter how wide/short the browser. */
+    .donors-text { font-size:clamp(13px,min(1.2vw,1.7vh),17px); font-weight:400; color:var(--body); line-height:1.55; text-align:left; column-count:3; column-gap:clamp(20px,2.4vw,40px); }
     .donors-text.compact-2col { column-count:2; }
+    /* On sub-1440 desktop viewports, drop the cap a point to 16px so the full list fits without scrolling */
+    @media (min-width:901px) and (max-width:1439px) {
+      .donors-text { font-size:clamp(13px,min(1.2vw,1.7vh),16px); }
+    }
 
     /* ── STAT CARDS ── */
     .stats-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:clamp(18px,2.5vw,40px); margin-top:clamp(16px,2vh,32px); }
