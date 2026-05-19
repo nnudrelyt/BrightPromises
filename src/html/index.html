@@ -388,6 +388,10 @@
     .mvv-logo { height:auto; width:clamp(250px,25vw,450px); margin:0; position:static; }
     .mvv-link { font-size:clamp(22px,2.2vw,38px); font-weight:800; color:#fff; text-decoration:none; letter-spacing:-.005em; border-bottom:3px solid var(--yellow); padding-bottom:4px; }
     .mvv-link:hover { color:#fff; border-bottom-color:#fff; }
+    .mvv-link-sub { font-size:clamp(18px,1.6vw,28px); font-weight:700; border-bottom-width:2px; margin-top:clamp(20px,2.4vh,32px); }
+    /* Logo on slide 28 → brightpromises.org */
+    .mvv-logo-link { display:inline-block; line-height:0; transition:opacity .2s ease; }
+    .mvv-logo-link:hover, .mvv-logo-link:focus-visible { opacity:.85; outline:none; }
     .s-closing-thanks { padding:0; display:block; }
     .close-grid { display:flex; flex-direction:column; justify-content:center; gap:clamp(20px,2.6vh,36px); width:100%; height:100%; padding:clamp(40px,5vh,72px) clamp(56px,6vw,120px); position:relative; z-index:1; box-sizing:border-box; }
     .close-top { max-width:calc(66.67% - clamp(8px,1vw,17px)); }
@@ -739,7 +743,61 @@
       #right-nav { width:44px; }
       #dot-nav { display:none; }
     }
+
+    /* ── PRINT / PDF MODE ───────────────────────────────────────────────
+       Activated by visiting ?print=1 (adds .print-mode to <html>).
+       Flattens the slide deck into stacked 16:9 pages so Chrome's
+       Cmd-P → Save as PDF produces a clean handout. Each slide becomes
+       one 1920×1080 page. Use the ?print=1 URL to preview in-browser,
+       then print. */
+    @page { size:1920px 1080px; margin:0; }
+
+    .print-mode #nav,
+    .print-mode #right-nav,
+    .print-mode #dot-nav,
+    .print-mode #nav-arrows,
+    .print-mode #mobile-menu,
+    .print-mode #slide-num { display:none !important; }
+
+    .print-mode, .print-mode body { overflow:visible !important; height:auto !important; }
+    .print-mode #slides { position:static !important; inset:auto !important; overflow:visible !important; height:auto !important; }
+
+    .print-mode .slide {
+      position:relative !important;
+      inset:auto !important;
+      width:1920px !important;
+      height:1080px !important;
+      opacity:1 !important;
+      pointer-events:auto !important;
+      overflow:hidden !important;
+      transform:none !important;
+      page-break-after:always;
+      break-after:page;
+      box-sizing:border-box;
+    }
+    .print-mode .slide:last-of-type { page-break-after:auto; break-after:auto; }
+
+    /* Halt all animations + transitions so each page captures cleanly */
+    .print-mode *, .print-mode *::before, .print-mode *::after {
+      animation:none !important;
+      transition:none !important;
+    }
+    .print-mode .s-layered .bg,
+    .print-mode .photo .pbg { transform:none !important; }
+
+    /* Auto-open accordion items so their bodies print fully */
+    .print-mode .acc-item .acc-body {
+      max-height:none !important;
+      padding:0 16px 18px !important;
+    }
   </style>
+  <script>
+    // Enable print/PDF layout when the URL includes ?print=1.
+    // Visit http://.../2025-impact-report?print=1 then Cmd-P → Save as PDF.
+    if (new URLSearchParams(location.search).has('print')) {
+      document.documentElement.classList.add('print-mode');
+    }
+  </script>
 </head>
 <body>
   <div id="veil"></div>
@@ -1375,8 +1433,10 @@
         <div class="mvv-sec"><div class="mvv-lbl">Our Values</div><p class="mvv-txt"><strong>Innovation</strong> Embrace complexity. Be proactive and adaptive. <strong>Collaboration</strong> Co-create. Center relationships. We believe in collective work and collective wisdom. <strong>Equity</strong> Treat everyone fairly and with respect. <strong>Accountability</strong> Lead with trust, respect, and humility. <strong>Knowledge Sharing</strong> Embrace learning. Be curious. Capture and disseminate knowledge to scale impact.</p></div>
       </div>
       <div class="mvv-foot">
-        <img class="mvv-logo" src="img/BrightPromises_Logo_VarC_Wht.webp" alt="Bright Promises Foundation">
-        <a href="https://brightpromises.org" class="mvv-link" target="_blank" rel="noopener">brightpromises.org</a>
+        <a class="mvv-logo-link" href="https://brightpromises.org" target="_blank" rel="noopener" aria-label="Visit brightpromises.org">
+          <img class="mvv-logo" src="img/BrightPromises_Logo_VarC_Wht.webp" alt="Bright Promises Foundation">
+        </a>
+        <a href="bp-2025-impact-report.pdf" class="mvv-link mvv-link-sub" target="_blank" rel="noopener">Download Impact Report (PDF)</a>
       </div>
     </section>
 
