@@ -46,7 +46,8 @@
     /* Align rn-top's right edge with the arrows below — arrows sit 21px
        from the viewport edge (centered 34px svg in a 76px nav). */
     #rn-top { display:flex; flex-direction:row; align-items:center; gap:8px; padding:0; align-self:flex-end; margin-right:21px; }
-    .nav-logo { width:34px; height:34px; object-fit:contain; flex-shrink:0; transition:filter .3s ease; }
+    .nav-logo { width:34px; height:34px; object-fit:contain; flex-shrink:0; cursor:pointer; transition:filter .3s ease, opacity .2s ease; }
+    .nav-logo:hover, .nav-logo:focus-visible { opacity:.7; outline:none; }
     .nav-hamburger { display:flex; align-items:center; justify-content:center; cursor:pointer; background:none; border:none; padding:4px; color:var(--white); transition:color .2s; outline:none; }
     .nav-hamburger.dark { color:var(--teal); }
     .nav-hamburger svg { width:18px; height:18px; }
@@ -161,7 +162,8 @@
     .s-hero[data-sec="ki2"] .eyebrow,
     .s-hero[data-sec="ki3"] .eyebrow,
     .s-hero[data-sec="ki4"] .eyebrow,
-    .s-hero[data-sec="ki5"] .eyebrow { color:var(--yellow); }
+    .s-hero[data-sec="ki5"] .eyebrow,
+    .s-hero[data-sec="financials"] .eyebrow { color:var(--yellow); }
     .hero-sub { font-size:clamp(18px,2vw,32px); font-weight:700; color:var(--white); line-height:1.3; max-width:22em; }
     .hero-logo { position:absolute; bottom:clamp(56px,7vh,120px); left:clamp(56px,5vw,120px); height:clamp(44px,4vw,72px); z-index:2; }
 
@@ -175,7 +177,8 @@
     .photo .pbg { position:absolute; inset:0; background-size:cover; background-position:center; transform-origin:center; }
     /* TEMPORARY: slide number indicator for design review. Remove with
        its updateUI() call + the <div id="slide-num"> when finished. */
-    #slide-num { display:none; position:fixed; bottom:16px; left:16px; z-index:300; padding:6px 10px; border-radius:6px; background:rgba(0,0,0,0.55); color:#fff; font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:11px; letter-spacing:.04em; pointer-events:none; opacity:.85; }
+    #slide-num { position:fixed; bottom:16px; left:16px; z-index:300; padding:6px 10px; border-radius:6px; background:rgba(0,0,0,0.55); color:#fff; font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:11px; letter-spacing:.04em; pointer-events:none; opacity:.85; }
+    @media (max-width:900px) { #slide-num { display:none; } }
 
     /* ── Torn-paper edge ───────────────────────────────────────────────
        Pseudo-element overlay between the white text card and the photo,
@@ -752,7 +755,7 @@
           </svg>
         </span>
       </button>
-      <img class="nav-logo" src="_Assets/symbol.svg" alt="Bright Promises" id="nav-logo">
+      <img class="nav-logo" src="_Assets/symbol.svg" alt="Bright Promises" id="nav-logo" role="button" tabindex="0" aria-label="Return to cover slide" onclick="goTo(0)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();goTo(0);}">
     </div>
     <div id="dot-nav"></div>
     <div id="nav-arrows">
@@ -929,7 +932,7 @@
           <p>For donors, this means your investment stabilizes trusted community anchors&mdash;so they can keep showing up when families need them most.</p>
         </div>
       </div>
-      <div class="photo"><div class="pbg" style="background-image:url('img/ki4-illuminate.webp')"></div><span class="photo-credit">Image courtesy [Photographer Name]</span></div>
+      <div class="photo"><div class="pbg" style="background-image:url('img/ki4-illuminate.webp')"></div><span class="photo-credit">Image courtesy of Brightpoint</span></div>
     </section>
 
     <!-- 6: COMMUNITY OF PARTNERS -->
@@ -952,7 +955,7 @@
     </section>
 
     <!-- 7: KI2 A -->
-    <section class="slide s-hero" data-i="6" data-sec="ki2">
+    <section class="slide s-hero s-layered" data-i="6" data-sec="ki2">
       <div class="bg" style="background-image:url('img/keyinsight_2.webp')"></div>
       <div class="content">
         <div class="eyebrow">Momentum, Not Miracles</div>
@@ -971,7 +974,7 @@
           <p>Through Bright Promises, donors help pilot and scale solutions that deliver measurable near- and long-term outcomes for <strong>over 11,000 youth and families</strong> each year. Since 2016, Bright Promises has invested <strong>over $5.6 million in 100 community-based organizations</strong> serving low-income children and families across Chicagoland and Illinois.</p>
         </div>
       </div>
-      <div class="photo"><div class="pbg" style="background-image:url('img/IMG_0483-topaz-upscale-2x-face.webp');background-position:center"></div><span class="photo-credit">Image courtesy [Photographer Name]</span></div>
+      <div class="photo"><div class="pbg" style="background-image:url('img/IMG_0483-topaz-upscale-2x-face.webp');background-position:center"></div><span class="photo-credit">Image courtesy of Communities United</span></div>
     </section>
 
     <!-- 9: KI2 C — Accordion -->
@@ -1026,7 +1029,7 @@
           </div>
         </div>
       </div>
-      <div class="photo"><div class="pbg" style="background-image:url('img/ase-nonprofit-fair.webp');background-position:center bottom"></div><span class="photo-credit">Image courtesy Stephen Serio Photography</span></div>
+      <div class="photo"><div class="pbg" style="background-image:url('img/ase-nonprofit-fair.webp');background-position:center bottom"></div><span class="photo-credit">Image courtesy of Stephen Serio Photography</span></div>
     </section>
 
     <!-- 14: ASE D — Quote -->
@@ -1039,7 +1042,7 @@
     </section>
 
     <!-- 16: KI3 A -->
-    <section class="slide s-hero" data-i="11" data-sec="ki3">
+    <section class="slide s-hero s-layered" data-i="11" data-sec="ki3">
       <div class="bg" style="background-image:url('img/keyinsight_3.webp')"></div>
       <div class="content">
         <div class="eyebrow">We Invest in the People and Places Children Rely On</div>
@@ -1096,7 +1099,7 @@
     </section>
 
     <!-- 19: KI4 HERO -->
-    <section class="slide s-hero" data-i="14" data-sec="ki4">
+    <section class="slide s-hero s-layered" data-i="14" data-sec="ki4">
       <div class="bg" style="background-image:url('img/keyinsight_4.webp')"></div>
       <div class="content">
         <div class="eyebrow">Upstream Impact for Lasting Opportunity</div>
@@ -1122,12 +1125,12 @@
           </ul>
         </div>
       </div>
-      <div class="photo"><div class="pbg" style="background-image:url('img/vocel-eva.webp');background-position:center"></div><span class="photo-credit">Image courtesy [Photographer Name]</span></div>
+      <div class="photo"><div class="pbg" style="background-image:url('img/vocel-eva.webp');background-position:center"></div><span class="photo-credit">Image courtesy of VOCEL</span></div>
     </section>
 
     <!-- 22: CU B -->
     <section class="slide s-split-l" data-i="16" data-sec="cu">
-      <div class="photo"><div class="pbg" style="background-image:url('img/cu-spotlight.webp')"></div><span class="photo-credit">Image courtesy [Photographer Name]</span></div>
+      <div class="photo"><div class="pbg" style="background-image:url('img/cu-spotlight.webp')"></div><span class="photo-credit">Images courtesy of Communities United</span></div>
       <div class="txt">
         <div class="eyebrow">Grantee Partner Spotlight: Communities United</div>
         <h2 class="sh">With Bright Promises&rsquo; support, Communities United is building durable youth power.</h2>
@@ -1155,7 +1158,7 @@
     </section>
 
     <!-- 24: KI5 HERO -->
-    <section class="slide s-hero" data-i="18" data-sec="ki5">
+    <section class="slide s-hero s-layered" data-i="18" data-sec="ki5">
       <div class="bg" style="background-image:url('img/keyinsight_5.webp')"></div>
       <div class="content">
         <div class="eyebrow">Looking Ahead</div>
@@ -1166,7 +1169,7 @@
 
     <!-- 25: KI5 A -->
     <section class="slide s-split-l" data-i="19" data-sec="ki5">
-      <div class="photo"><div class="pbg" style="background-image:url('img/concordia-meaningful-play.webp');background-position:center"></div><span class="photo-credit">Image courtesy [Photographer Name]</span></div>
+      <div class="photo"><div class="pbg" style="background-image:url('img/concordia-meaningful-play.webp');background-position:center"></div><span class="photo-credit">Image courtesy of Concordia Place</span></div>
       <div class="txt">
         <div class="eyebrow">Looking Ahead</div>
         <h2 class="sh">By combining the risk-tolerance of venture philanthropy with the relationship-building and movement power of grassroots organizing,</h2>
@@ -1192,12 +1195,12 @@
     </section>
 
     <!-- 27: FINANCIALS INTRO -->
-    <section class="slide s-hero" data-i="21" data-sec="financials" style="background:var(--teal-dk)">
+    <section class="slide s-hero s-layered" data-i="21" data-sec="financials" style="background:var(--teal-dk)">
       <div class="bg" style="background-image:url('img/Title_Financials.webp')"></div>
       <div class="content">
         <div class="eyebrow">Financials &amp; Stewardship</div>
-        <h2 class="sh" style="font-size:clamp(40px,5.2vw,84px);line-height:1.04;margin-bottom:clamp(24px,3vh,44px)">Stewarding Community Resources with Care</h2>
-        <div class="sb" style="font-size:clamp(15px,1.4vw,22px);max-width:min(800px,62vw)">
+        <h2 class="sh">Stewarding Community Resources with Care</h2>
+        <div class="sb">
           <p><strong>We treat every dollar as a vote of trust&mdash;from our community and for our community.</strong></p>
           <p>This is why <strong>100% of every dollar donated by the public supports programs for children and families in need</strong> across Chicagoland. When you give to Bright Promises, you don&rsquo;t just help one program&mdash;you strengthen the systems children and families rely on.</p>
           <p>Every dollar entrusted to Bright Promises is deployed to maximize long-term impact&mdash;by strengthening people, organizations, and communities.</p>
@@ -1326,7 +1329,7 @@
     </section>
 
     <!-- 35: CLOSING -->
-    <section class="slide s-hero s-closing-thanks" data-i="27" data-sec="closing" style="background:var(--teal-dk)">
+    <section class="slide s-hero s-closing-thanks s-layered" data-i="27" data-sec="closing" style="background:var(--teal-dk)">
       <div class="bg" style="background-image:url('img/Title_Closing.webp')"></div>
       <div class="close-grid">
         <div class="close-top">
