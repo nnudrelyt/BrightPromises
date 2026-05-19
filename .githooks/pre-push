@@ -1,0 +1,61 @@
+#!/bin/bash
+# Pre-push guard for deck deploy.
+#
+# Triggers automatically before `git push`. If the push target is the
+# production branch (main) and the slide-number indicator (#slide-num)
+# is visible in src/html/index.html, the push is aborted with a clear
+# error so we never accidentally ship the debug indicator to Webflow Cloud.
+#
+# Bypass (only if you really need to): `git push --no-verify`
+
+PROTECTED_BRANCH="main"
+FILE="src/html/index.html"
+
+# Read each ref being pushed from stdin.
+# Format: <local-ref> <local-sha> <remote-ref> <remote-sha>
+while read -r local_ref local_sha remote_ref remote_sha; do
+  # Only enforce on pushes that update the protected branch on the remote.
+  if [[ "$remote_ref" != "refs/heads/$PROTECTED_BRANCH" ]]; then
+    continue
+  fi
+
+  # Pull the file content at the commit being pushed (works even if local
+  # working tree has uncommitted changes — we check what's actually shipping).
+  if ! git cat-file -e "${local_sha}:${FILE}" 2>/dev/null; then
+    echo "pre-push: ${FILE} not found at ${local_sha}, skipping check"
+    continue
+  fi
+
+  # Find the FIRST line declaring the #slide-num rule (the base, declared
+  # before the @media override). If it lacks `display:none`, the indicator
+  # will render on production.
+  base_rule=$(git show "${local_sha}:${FILE}" | grep -m1 '#slide-num')
+
+  if [[ -z "$base_rule" ]]; then
+    # Indicator removed entirely — nothing to ship, allow push.
+    continue
+  fi
+
+  if ! echo "$base_rule" | grep -q 'display:[[:space:]]*none'; then
+    cat <<'EOF'
+
+❌ Push to main blocked: slide-number indicator is visible.
+
+The #slide-num element will render on production unless its base rule
+includes `display:none`. To fix:
+
+  1. Edit src/html/index.html and find the base rule:
+       #slide-num { position:fixed; ... }
+  2. Add display:none at the start:
+       #slide-num { display:none; position:fixed; ... }
+  3. Commit, then push again.
+
+If you genuinely intend to ship the indicator, bypass this hook with:
+  git push --no-verify
+
+EOF
+    exit 1
+  fi
+done
+
+exit 0
