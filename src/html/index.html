@@ -174,7 +174,10 @@
     .s-split .txt { background:var(--white); }
     .s-split-l .txt { background:var(--white); }
     .photo { position:relative; overflow:hidden; }
-    .photo .pbg { position:absolute; inset:0; background-size:cover; background-position:center; transform-origin:center; }
+    /* inset:-1px oversizes the photo slightly so sub-pixel rounding from the
+       Ken Burns transform can't leave a hairline gap at the column boundary.
+       .photo { overflow:hidden } clips the excess. */
+    .photo .pbg { position:absolute; inset:-1px; background-size:cover; background-position:center; transform-origin:center; }
     /* TEMPORARY: slide number indicator for design review. Remove with
        its updateUI() call + the <div id="slide-num"> when finished. */
     #slide-num { display:none; position:fixed; bottom:16px; left:16px; z-index:300; padding:6px 10px; border-radius:6px; background:rgba(0,0,0,0.55); color:#fff; font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:11px; letter-spacing:.04em; pointer-events:none; opacity:.85; }
@@ -388,7 +391,9 @@
     .s-closing-thanks { padding:0; display:block; }
     .close-grid { display:flex; flex-direction:column; justify-content:center; gap:clamp(20px,2.6vh,36px); width:100%; height:100%; padding:clamp(40px,5vh,72px) clamp(56px,6vw,120px); position:relative; z-index:1; box-sizing:border-box; }
     .close-top { max-width:calc(66.67% - clamp(8px,1vw,17px)); }
-    .close-top .sb { max-width:none; }
+    /* Narrow the support copy so it wraps before "This is" on wide breakpoints;
+       falls back to filling close-top on narrower viewports. */
+    .close-top .sb { max-width:min(900px, 100%); }
     .close-top .sh, .close-top .sb p { text-wrap:pretty; }
     .close-thanks { padding-top:0; }
     .thanks-h { font-size:clamp(12px,1.05vw,15px); font-weight:800; letter-spacing:.14em; text-transform:uppercase; color:var(--yellow); margin-bottom:clamp(14px,2vh,22px); }
@@ -1075,26 +1080,24 @@
     </section>
 
     <!-- 18: WELLEQUIPD -->
-    <section class="slide s-content" data-i="13" data-sec="ki3">
-      <div class="spot-layout">
-        <div class="spot-top">
-          <div class="spot-txt">
-            <div class="eyebrow">Strengthening Learning Environments for Young Children</div>
-            <h2 class="sh" style="margin-bottom:18px">Bright Promises is proud to launch the WellEQUIPD Initiative, a multi-year effort designed to strengthen the early childhood workforce.</h2>
-            <p class="sb"><a class="inline-link" href="https://cdn.prod.website-files.com/5710272db1eee97476da5897/67f675641e5840942fdeef3f_FINAL_EQUIP%20Assessment%202014-2023.pdf" target="_blank" rel="noopener">Drawing on a decade of learning</a>, WellEQUIPD helps providers improve the environments children experience every day. We are bringing diverse leaders together to co-create solutions through a <strong>Community of Practice</strong> and investing <strong>over $1 million</strong> to create more stable classrooms, more confident educators, and a stronger early childhood system across Chicagoland and Illinois.</p>
-            <p class="ki3-cohort-h">WellEQUIPD Inaugural Cohort</p>
-            <div class="org-logos">
-              <img src="img/logos/chicago-commons.svg" alt="Chicago Commons">
-              <img src="img/logos/chicago-youth-centers.webp" alt="Chicago Youth Centers">
-              <img src="img/logos/ChristopherHouse.webp" alt="Christopher House">
-              <img src="img/logos/concordia-place-logo.webp" alt="Concordia Place">
-              <img src="img/logos/gads-hill.webp" alt="Gads Hill Center">
-              <img src="img/logos/onward-house.webp" alt="Onward Neighborhood House">
-            </div>
-          </div>
-          <div class="spot-img"><div class="img-placeholder"></div></div>
+    <section class="slide s-split" data-i="13" data-sec="ki3">
+      <div class="txt">
+        <div class="eyebrow">Strengthening Learning Environments for Young Children</div>
+        <h2 class="sh">Bright Promises is proud to launch the WellEQUIPD Initiative, a multi-year effort designed to strengthen the early childhood workforce.</h2>
+        <div class="sb">
+          <p><a class="inline-link" href="https://cdn.prod.website-files.com/5710272db1eee97476da5897/67f675641e5840942fdeef3f_FINAL_EQUIP%20Assessment%202014-2023.pdf" target="_blank" rel="noopener">Drawing on a decade of learning</a>, WellEQUIPD helps providers improve the environments children experience every day. We are bringing diverse leaders together to co-create solutions through a <strong>Community of Practice</strong> and investing <strong>over $1 million</strong> to create more stable classrooms, more confident educators, and a stronger early childhood system across Chicagoland and Illinois.</p>
+        </div>
+        <p class="ki3-cohort-h">WellEQUIPD Inaugural Cohort</p>
+        <div class="org-logos">
+          <img src="img/logos/chicago-commons.svg" alt="Chicago Commons">
+          <img src="img/logos/chicago-youth-centers.webp" alt="Chicago Youth Centers">
+          <img src="img/logos/ChristopherHouse.webp" alt="Christopher House">
+          <img src="img/logos/concordia-place-logo.webp" alt="Concordia Place">
+          <img src="img/logos/gads-hill.webp" alt="Gads Hill Center">
+          <img src="img/logos/onward-house.webp" alt="Onward Neighborhood House">
         </div>
       </div>
+      <div class="photo"><div class="pbg" style="background-image:url('img/cyc-bright-promises-3.webp')"></div><span class="photo-credit">Image courtesy [Photographer Name]</span></div>
     </section>
 
     <!-- 19: KI4 HERO -->
