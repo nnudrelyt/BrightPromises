@@ -1,40 +1,43 @@
 #!/bin/bash
-# Pre-push guard for deck deploy.
+# Pre-push hook for deck deploy. Two responsibilities:
 #
-# Triggers automatically before `git push`. If the push target is the
-# production branch (main) and the slide-number indicator (#slide-num)
-# is visible in src/html/index.html, the push is aborted with a clear
-# error so we never accidentally ship the debug indicator to Webflow Cloud.
+# 1. Block pushes to main when the #slide-num debug indicator is visible
+#    in src/html/index.html (it should never ship to production).
+# 2. Forward stdin to `git lfs pre-push` so LFS-tracked files (like the
+#    deck PDF) upload to the remote alongside the regular git refs.
+#    `git lfs install` normally writes this hook itself; we replace it
+#    here, so we must call lfs explicitly.
 #
-# Bypass (only if you really need to): `git push --no-verify`
+# Bypass (use sparingly): git push --no-verify
 
 PROTECTED_BRANCH="main"
 FILE="src/html/index.html"
 
-# Read each ref being pushed from stdin.
-# Format: <local-ref> <local-sha> <remote-ref> <remote-sha>
-while read -r local_ref local_sha remote_ref remote_sha; do
+# Capture stdin once; we need it for both our guard and the LFS handoff.
+INPUT="$(cat)"
+
+# ── 1. Slide-num guard ──────────────────────────────────────────────────
+while IFS= read -r line; do
+  [[ -z "$line" ]] && continue
+  # shellcheck disable=SC2034
+  read -r local_ref local_sha remote_ref remote_sha <<< "$line"
+
   # Only enforce on pushes that update the protected branch on the remote.
   if [[ "$remote_ref" != "refs/heads/$PROTECTED_BRANCH" ]]; then
     continue
   fi
 
-  # Pull the file content at the commit being pushed (works even if local
-  # working tree has uncommitted changes — we check what's actually shipping).
+  # Pull the file content at the commit being pushed (works even if the
+  # local working tree has uncommitted changes — we check what's actually
+  # shipping).
   if ! git cat-file -e "${local_sha}:${FILE}" 2>/dev/null; then
-    echo "pre-push: ${FILE} not found at ${local_sha}, skipping check"
     continue
   fi
 
-  # Find the FIRST line declaring the #slide-num rule (the base, declared
-  # before the @media override). If it lacks `display:none`, the indicator
-  # will render on production.
+  # First match of #slide-num is the base rule (declared before the
+  # @media override). It must include `display:none` for prod.
   base_rule=$(git show "${local_sha}:${FILE}" | grep -m1 '#slide-num')
-
-  if [[ -z "$base_rule" ]]; then
-    # Indicator removed entirely — nothing to ship, allow push.
-    continue
-  fi
+  [[ -z "$base_rule" ]] && continue
 
   if ! echo "$base_rule" | grep -q 'display:[[:space:]]*none'; then
     cat <<'EOF'
@@ -56,6 +59,15 @@ If you genuinely intend to ship the indicator, bypass this hook with:
 EOF
     exit 1
   fi
-done
+done <<< "$INPUT"
+
+# ── 2. Git LFS handoff ──────────────────────────────────────────────────
+# Replays the captured refs to git-lfs so it can upload any new LFS objects
+# before the regular git push. Without this, LFS-tracked files (e.g. the
+# deck PDF) would only push their pointer files, leaving the binaries
+# missing on the remote.
+if command -v git-lfs >/dev/null 2>&1; then
+  echo "$INPUT" | git lfs pre-push "$@" || exit $?
+fi
 
 exit 0
