@@ -180,7 +180,8 @@
     .photo .pbg { position:absolute; inset:-1px; background-size:cover; background-position:center; transform-origin:center; }
     /* TEMPORARY: slide number indicator for design review. Remove with
        its updateUI() call + the <div id="slide-num"> when finished. */
-    #slide-num { display:none; position:fixed; bottom:16px; left:16px; z-index:300; padding:6px 10px; border-radius:6px; background:rgba(0,0,0,0.55); color:#fff; font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:11px; letter-spacing:.04em; pointer-events:none; opacity:.85; }
+    #slide-num { position:fixed; bottom:16px; left:16px; z-index:300; padding:6px 10px; border-radius:6px; background:rgba(0,0,0,0.55); color:#fff; font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:11px; letter-spacing:.04em; pointer-events:none; opacity:.85; }
+    @media (max-width:900px) { #slide-num { display:none; } }
 
     /* ── Torn-paper edge ───────────────────────────────────────────────
        Pseudo-element overlay between the white text card and the photo,
@@ -327,16 +328,16 @@
     .s-cop { background:var(--teal-dk); align-items:flex-start; padding:clamp(40px,5vh,80px) clamp(56px,6vw,120px) clamp(60px,7vh,100px) clamp(56px,6vw,120px); overflow-y:auto; }
     .s-cop .eyebrow { color:var(--orange); }
     .cop-c-wrap { width:100%; max-width:1100px; margin:0 auto; display:flex; flex-direction:column; gap:clamp(20px,2.6vh,36px); position:relative; z-index:1; }
-    .cop-c-top { text-align:center; max-width:1000px; margin:0 auto; }
+    .cop-c-top { text-align:left; max-width:none; margin:0; }
     /* Compensate for trailing letter-spacing so the eyebrow optically centers */
     .cop-c-top .eyebrow { margin-bottom:14px; padding-left:.12em; }
-    .cop-c-h { font-size:clamp(28px,3.4vw,52px); font-weight:700; color:#fff; line-height:1.08; margin-bottom:14px; white-space:nowrap; }
-    .cop-c-p { font-size:clamp(16px,1.4vw,20px); font-weight:400; color:rgba(255,255,255,.95); line-height:1.75; max-width:1000px; margin:0 auto; }
+    .cop-c-h { font-size:clamp(22px,2.8vw,52px); font-weight:700; color:#fff; line-height:1.12; margin-bottom:14px; }
+    .cop-c-p { font-size:clamp(16px,1.4vw,20px); font-weight:400; color:rgba(255,255,255,.95); line-height:1.75; max-width:none; margin:0; text-align:left; }
     .cop-c-p strong { font-weight:700; color:#fff; }
     .cop-c-video { width:100%; max-width:608px; margin:0 auto; aspect-ratio:16/9; border-radius:14px; overflow:hidden; box-shadow:0 14px 44px rgba(0,0,0,0.22); position:relative; background:#000; }
     .cop-c-video video { width:100%; height:100%; object-fit:cover; display:block; }
-    .cop-c-orgs-h { font-size:clamp(10px,0.9vw,13px); font-weight:800; letter-spacing:.14em; text-transform:uppercase; color:var(--orange); margin-bottom:10px; text-align:center; padding-bottom:8px; border-bottom:1px solid rgba(255,255,255,.55); display:inline-block; }
-    .cop-c-orgs-line { font-size:clamp(14px,1.25vw,17px); font-weight:500; color:rgba(255,255,255,.95); line-height:1.55; text-align:center; max-width:1000px; margin:0 auto; }
+    .cop-c-orgs-h { font-size:clamp(10px,0.9vw,13px); font-weight:800; letter-spacing:.14em; text-transform:uppercase; color:var(--orange); margin-bottom:10px; text-align:left; padding-bottom:8px; border-bottom:1px solid rgba(255,255,255,.55); display:inline-block; }
+    .cop-c-orgs-line { font-size:clamp(14px,1.25vw,17px); font-weight:500; color:rgba(255,255,255,.95); line-height:1.55; text-align:left; max-width:none; margin:0; }
     .cop-c-tag { font-size:clamp(13px,1.1vw,16px); font-weight:700; color:#fff; text-align:center; letter-spacing:.04em; margin-top:6px; }
     .chart-view { display:grid; grid-template-columns:1fr 1fr; gap:clamp(48px,6vw,96px); flex:1; align-items:center; width:100%; position:relative; z-index:1; min-height:0; }
     .chart-left { display:flex; flex-direction:column; justify-content:center; gap:clamp(10px,1.4vh,18px); }
@@ -489,7 +490,7 @@
     .stat-num { font-size:clamp(28px,3.5vw,60px); font-weight:900; color:var(--teal); line-height:1; margin-bottom:clamp(4px,0.6vh,8px); }
     .stat-head { display:block; font-size:clamp(15px,1.5vw,20px); font-weight:700; color:var(--teal); line-height:1.2; margin-bottom:clamp(4px,0.6vh,8px); }
     .stat-lbl { font-size:clamp(12px,1vw,16px); font-weight:700; color:var(--body); line-height:1.4; }
-    .stat-card.narrative .stat-lbl { font-weight:400; line-height:1.55; }
+    .stat-card.narrative .stat-lbl { font-weight:400; line-height:1.55; font-size:clamp(16px,1.4vw,20px); }
 
     /* ── ORG TAGS ── */
     .org-tags { display:flex; flex-wrap:wrap; gap:clamp(6px,0.7vw,12px); margin-top:clamp(12px,1.4vh,22px); }
@@ -501,6 +502,7 @@
     .spot-img { display:flex; align-items:center; justify-content:center; }
     .spot-img .img-placeholder { aspect-ratio:1/1; border-radius:50%; width:100%; max-width:none; max-height:78vh; border:none; }
     .ki3-cohort-h { font-size:clamp(11px,0.95vw,14px); font-weight:800; color:var(--teal); text-transform:uppercase; letter-spacing:.14em; margin-top:clamp(20px,2.6vh,36px); margin-bottom:clamp(12px,1.6vh,20px); padding-top:clamp(16px,2vh,24px); border-top:1px solid rgba(0,91,112,.18); }
+    .ki3-cohort-line { font-size:clamp(14px,1.25vw,17px); font-weight:500; color:var(--body); line-height:1.55; text-align:left; margin:0; }
     /* ── ORG LOGO GRID — 3 cols × 2 rows on desktop, scoped within text column ── */
     .org-logos { display:grid; grid-template-columns:repeat(3,1fr); gap:clamp(18px,2.2vh,32px) clamp(24px,2.6vw,48px); align-items:center; justify-items:start; }
     .org-logos img { display:block; width:auto; height:clamp(40px,4vw,64px); max-width:100%; object-fit:contain; }
@@ -627,9 +629,11 @@
       .s-hero { display:flex; align-items:flex-end; min-height:60vh !important; padding:48px 28px !important; }
       .s-hero .bg, .s-hero .overlay { position:absolute; inset:0; }
       /* Warm-tinted scrim on mobile hero photos so white text reads against busy imagery */
-      .s-hero:not([data-i="24"]) .bg::after { content:''; position:absolute; inset:0; background:linear-gradient(180deg, rgba(40,20,8,0.16) 0%, rgba(35,15,5,0.50) 100%); pointer-events:none; z-index:1; }
+      .s-hero:not([data-i="24"]) .bg::after { content:''; position:absolute; inset:0; background:linear-gradient(180deg, rgba(40,20,8,0.194) 0%, rgba(35,15,5,0.605) 100%); pointer-events:none; z-index:1; }
       /* Slide 3 sits behind a busier layered photo — dial scrim back 5% so it doesn't get muddy */
-      .s-hero[data-i="3"] .bg::after { background:linear-gradient(180deg, rgba(40,20,8,0.152) 0%, rgba(35,15,5,0.475) 100%); }
+      .s-hero[data-i="3"] .bg::after { background:linear-gradient(180deg, rgba(40,20,8,0.184) 0%, rgba(35,15,5,0.575) 100%); }
+      /* Slide 18 (KI5 hero) — darker scrim (+10%) for legibility against busier hero photo */
+      .s-hero[data-i="18"] .bg::after { background:linear-gradient(180deg, rgba(40,20,8,0.213) 0%, rgba(35,15,5,0.666) 100%); }
       /* Kill the Ken Burns pullout on mobile so the slide sits still under the darkening scrim */
       .s-layered .bg { animation:none !important; transform:none !important; }
       .hero-h1 { font-size:clamp(40px,11vw,64px); max-width:100%; }
@@ -700,6 +704,8 @@
       /* Closing slide */
       .s-closing-thanks { padding:48px 24px !important; }
       .s-closing-thanks .bg { display:none !important; }
+      /* Hide hero photo on the Financials intro on mobile — the section's teal-dk fallback shows through cleanly behind the type. */
+      .s-hero[data-sec="financials"] .bg { display:none !important; }
       .close-grid { padding:0 !important; gap:32px; justify-content:flex-start !important; }
       .close-top { max-width:100% !important; }
       .thanks-grid { display:block !important; }
@@ -960,10 +966,11 @@
     <!-- 2: ED LETTER -->
     <section class="slide s-letter" data-i="2" data-sec="ed-letter">
       <div class="letter-grid">
-        <h2 class="letter-h">The Power of Promise in 2026</h2>
+        <h2 class="letter-h">The 2025 Impact Report: Power of Promise</h2>
         <div class="letter-col">
+          <p>Dear Partners,</p>
           <p>The last year has laid bare how inequity continues to shape the environments where Chicagoland children grow up. These realities show up every day&mdash;in classrooms, in communities, and in futures constrained too early. And still, our young people remain hopeful. They have not given up on their futures, and neither can we.</p>
-          <p>This moment calls for leadership that acts early, invests wisely, and listens closely to community voice&mdash;because the conditions shaping young people&rsquo;s lives today determine the outcomes we see tomorrow. Together with our cohort of 22 community-based organizations and a diverse network of partners and experts, Bright Promises continues to evolve to respond to urgent needs while building toward long-term change.</p>
+          <p style="margin-bottom:1.6em">This moment calls for leadership that acts early, invests wisely, and listens closely to community voice&mdash;because the conditions shaping young people&rsquo;s lives today determine the outcomes we see tomorrow. Together with our cohort of community-based organizations and a diverse network of partners and experts, Bright Promises continues to evolve to respond to urgent needs while building toward long-term change.</p>
         </div>
         <div class="letter-col">
           <p>In the pages that follow, <em>The Power of Promise</em> explores the critical space between environments and outcomes&mdash;the &ldquo;missing middle&rdquo; where development happens. This report shows what becomes possible when communities, partners, and donors come together to build the conditions young people need to thrive.</p>
@@ -977,21 +984,21 @@
     <section class="slide s-hero s-layered" data-i="3" data-sec="ki1">
       <div class="bg" style="background-image:url('img/keyinsight_1.webp')"></div>
       <div class="content">
-        <div class="eyebrow">The Inflection Point</div>
-        <h2 class="sh"><strong>Key Insight 1:</strong> Not all children start with the same opportunities&mdash;and the gap is widening.</h2>
-        <div class="sb"><p>Across Chicagoland, children and families are navigating fractured supports and rising stress and trauma. In partnership with community-based organizations and donors, Bright Promises helps children get the resources, guidance, and skills they deserve to grow, learn, and thrive.</p></div>
+        <div class="eyebrow">Key Insight #1</div>
+        <h2 class="sh">Children&rsquo;s access to opportunity is increasingly shaped by forces beyond their control, and the opportunity gap is widening.</h2>
+        <div class="sb"><p>Economic uncertainty, policy shifts, attacks on equity-focused work, and growing stress on public and nonprofit systems are reshaping daily life for families across Chicagoland. These conditions are compounding and widening opportunity gaps for children.</p></div>
       </div>
     </section>
 
     <!-- 4: KI1 B -->
     <section class="slide s-split" data-i="4" data-sec="ki1">
       <div class="txt">
-        <div class="eyebrow">The Inflection Point</div>
-        <h2 class="sh">As the opportunity gap widens across Chicagoland,<a class="footnote-ref" href="https://edworkingpapers.com/sites/default/files/ai26-1378.pdf" target="_blank" rel="noopener" aria-label="Source"><sup>1</sup></a></h2>
+        <div class="eyebrow">Key Insight #1</div>
+        <h2 class="sh">The opportunity gap is widening across Chicagoland,<a class="footnote-ref" href="https://edworkingpapers.com/sites/default/files/ai26-1378.pdf" target="_blank" rel="noopener" aria-label="Source"><sup>1</sup></a></h2>
         <div class="sb">
-          <p>the organizations closest to the communities that need them most are being asked to do more with dramatically less. Rising stress, trauma, and fractured systems have increased demand for their services&mdash;just as funding has become more volatile and uncertain.</p>
-          <p><strong>Our community-based partners are deeply trusted.</strong> Especially by young people and their families, they are often the first place families turn, the most responsive in moments of crisis, and the most agile in adapting to changing community needs.</p>
-          <p>For donors, this means your investment stabilizes trusted community anchors&mdash;so they can keep showing up when families need them most.</p>
+          <p>Organizations are being asked to do more with dramatically less. Rising stress, trauma, and fractured systems have increased demand for their services&mdash;just as funding has become more volatile and uncertain.</p>
+          <p>Bright Promises is responding alongside our partners&mdash;building on trust, shared leadership, and local solutions&mdash;to ensure children and families have the support, tools, and relationships they need to navigate this moment and emerge stronger.</p>
+          <p>The collective giving of donors is helping to stabilize these trusted community anchors&mdash;so they can keep showing up when families need them most.</p>
         </div>
       </div>
       <div class="photo"><div class="pbg" style="background-image:url('img/ki4-illuminate.webp')"></div><span class="photo-credit">Image courtesy of Brightpoint</span></div>
@@ -1002,15 +1009,15 @@
       <div class="cop-c-wrap">
         <div class="cop-c-top">
           <div class="eyebrow">Community of Partners</div>
-          <h2 class="cop-c-h">Change doesn&rsquo;t happen in isolation.</h2>
-          <p class="cop-c-p">It happens when leaders come together with shared purpose. Bright Promises is proud to partner with these organizations&mdash;innovators and changemakers working alongside families and communities most impacted by inequity. <strong>Together, these organizations represent more than $167 million in annual operating resources across Chicagoland</strong>&mdash;reflecting the scale, reach, and collective capacity of this network.</p>
-          <p class="cop-c-orgs-line" style="margin-top:1em">Through multi-year communities of practice, our partners learn from one another, share data and insight, and coordinate action across systems that too often work in silos.</p>
+          <h2 class="cop-c-h">Change happens when leaders come together with shared purpose.</h2>
+          <p class="cop-c-p">Bright Promises is proud to partner with innovators and changemakers working alongside families and communities most impacted by inequity. <strong>Together, these organizations represent more than $167 million in annual operating resources across Chicagoland</strong>&mdash;reflecting the scale, reach, and collective capacity of this network.</p>
+          <p class="cop-c-p" style="margin-top:1em">Through multi-year communities of practice, our partners learn from one another, share data and insight, and coordinate action across systems that too often work in silos.</p>
         </div>
         <div class="cop-c-video">
           <video autoplay muted loop playsinline><source src="video/grantee-reveal.mp4" type="video/mp4"></video>
         </div>
         <div>
-          <div style="text-align:center"><div class="cop-c-orgs-h">2025&ndash;26 Grantee Organizations</div></div>
+          <div><div class="cop-c-orgs-h">2025&ndash;26 Grantee Organizations</div></div>
           <p class="cop-c-orgs-line">A Long Walk Home &middot; Arab American Action Network &middot; Alliance of the Southeast &middot; Alternatives &middot; Build Inc &middot; Chicago Commons &middot; Chicago Freedom School &middot; Chicago Youth Centers &middot; Chicago Youth Programs &middot; Communities United &middot; Illinois Afterschool Network &middot; Kuumba Lynx &middot; New Community Outreach &middot; Northwest Center &middot; Onward Neighborhood House &middot; Palenque LSNA &middot; Project Vision &middot; Southside Together &middot; UCAN</p>
         </div>
       </div>
@@ -1020,23 +1027,23 @@
     <section class="slide s-hero s-layered" data-i="6" data-sec="ki2">
       <div class="bg" style="background-image:url('img/keyinsight_2.webp')"></div>
       <div class="content">
-        <div class="eyebrow">Momentum, Not Miracles</div>
-        <h2 class="sh"><strong>Key Insight 2:</strong> When young people have safe spaces, trusted relationships, and opportunities to lead, they don&rsquo;t just cope&mdash;they thrive.</h2>
-        <div class="sb"><p>Bright Promises pilots initiatives that deliver measurable near and long-term outcomes for <strong>over 11,000 youth and families</strong> each year. From increased confidence and agency to reduced violence and improved wellbeing, these outcomes don&rsquo;t happen by chance&mdash;they happen through building the conditions young people need to succeed.</p></div>
+        <div class="eyebrow">Key Insight #2</div>
+        <h2 class="sh">Bright Promises pilot initiatives delivered measurable near and long-term outcomes for over 11,000 youth and families.</h2>
+        <div class="sb"><p>Increased <strong>confidence</strong> and <strong>agency</strong>, improved <strong>wellbeing</strong>, enhanced <strong>engagement</strong> &mdash; these outcomes don&rsquo;t happen by chance, they happen by intentionally building the conditions young people need to succeed.</p></div>
       </div>
     </section>
 
     <!-- 8: KI2 B -->
     <section class="slide s-split" data-i="7" data-sec="ki2">
       <div class="txt">
-        <div class="eyebrow">Momentum, Not Miracles</div>
-        <h2 class="sh">Our approach centers what systems too often underfund:</h2>
+        <div class="eyebrow">Key Insight #2</div>
+        <h2 class="sh">Our approach centers what systems too often underfund: safe spaces, trusted relationships, and meaningful opportunities for young people to lead.</h2>
         <div class="sb">
-          <p>safe spaces, trusted relationships, and meaningful opportunities for young people to lead.</p>
-          <p>Through Bright Promises, donors help pilot and scale solutions that deliver measurable near- and long-term outcomes for <strong>over 11,000 youth and families</strong> each year. Since 2016, Bright Promises has invested <strong>over $5.6 million in 100 community-based organizations</strong> serving low-income children and families across Chicagoland and Illinois.</p>
+          <p>Through Bright Promises, donors help pilot and scale solutions that deliver measurable near- and long-term outcomes for <strong>over 11,000 youth and families</strong> each year.</p>
+          <p>Since 2016, Bright Promises has invested <strong>over $5.6 million in 100 community-based organizations</strong> serving low-income children and families across Chicagoland and Illinois through initiatives focused on early childhood, social emotional learning, childhood trauma, and youth mental health.</p>
         </div>
       </div>
-      <div class="photo"><div class="pbg" style="background-image:url('img/IMG_0483-topaz-upscale-2x-face.webp');background-position:center"></div><span class="photo-credit">Image courtesy of Communities United</span></div>
+      <div class="photo"><div class="pbg" style="background-image:url('img/IMG_0483-topaz-upscale-2x-face.webp');background-position:center"></div><span class="photo-credit">Images courtesy of Communities United and VOYCE</span></div>
     </section>
 
     <!-- 9: KI2 C — Accordion -->
@@ -1044,10 +1051,10 @@
       <div class="txt">
         <div class="acc-inner">
           <div class="acc-intro">
-            <div class="eyebrow">Momentum, Not Miracles</div>
+            <div class="eyebrow">Key Insight #2</div>
             <h2 class="sh">Our investments translate into real results for kids.</h2>
-            <p>Increased confidence and agency, stronger relationships, improved wellbeing, and reduced risky behaviors. By strengthening the conditions young people need to succeed, Bright Promises and our partners <strong>reduce the need for more costly downstream responses</strong>&mdash;such as emergency intervention or lost educational and economic opportunity.</p>
-            <p>We&rsquo;ve learned that when communities are trusted and supported, these changes are not only possible&mdash;they&rsquo;re repeatable.</p>
+            <p>By strengthening the conditions young people need to succeed, Bright Promises and our partners <strong>reduce the need for more costly downstream responses</strong>&mdash;such as emergency intervention or lost educational and economic opportunity.</p>
+            <p>We&rsquo;ve learned that when communities are trusted and supported, these changes are not only possible&mdash;they&rsquo;re repeatable.<a class="footnote-ref" href="TODO-LONGITUDINAL-STUDY-URL" target="_blank" rel="noopener" aria-label="Source"><sup>2</sup></a><a class="footnote-ref" href="https://cdn.prod.website-files.com/5710272db1eee97476da5897/67f675641e5840942fdeef3f_FINAL_EQUIP%20Assessment%202014-2023.pdf" target="_blank" rel="noopener" aria-label="Source"><sup>3</sup></a></p>
           </div>
           <div class="acc-item" id="acc-1">
             <button class="acc-toggle" onclick="toggleAcc('acc-1')"><span class="acc-icon"></span><span class="acc-title">within 12&ndash;24 months: Stabilizing the Conditions for Youth to Thrive</span></button>
@@ -1063,20 +1070,19 @@
           </div>
         </div>
       </div>
-      <div class="photo"><div class="pbg" style="background-image:url('img/voyce6.webp');background-position:center"></div><span class="photo-credit">Image courtesy [Photographer Name]</span></div>
+      <div class="photo"><div class="pbg" style="background-image:url('img/voyce6.webp');background-position:center"></div><span class="photo-credit">Image courtesy of VOYCE</span></div>
     </section>
 
     <!-- 13: ASE B -->
     <section class="slide s-split" data-i="9" data-sec="ase">
       <div class="txt">
-        <div class="eyebrow">Grantee Partner Spotlight: Alliance of the Southeast</div>
+        <div class="eyebrow">Grantee Partner Spotlight: Alliance of the Southeast (ASE)</div>
         <h2 class="sh">At ASE, young people are not just participants&mdash;they are leaders shaping the future of South Chicago.</h2>
         <div class="sb">
-          <p>As public speakers, facilitators, digital storytellers, and organizers, ASE youth are driving change in their communities.</p>
-          <p>Watching young people step into leadership at ASE reminds us why this work matters&mdash;and why we believe so deeply in community-led change.</p>
+          <p>As public speakers, facilitators, digital storytellers, and organizers, ASE youth are driving change in their communities. Watching young people step into leadership at ASE reminds us why this work matters&mdash;and why we believe so deeply in community-led change.</p>
         </div>
         <div style="font-size:clamp(11px,0.95vw,14px);font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--orange);margin-top:clamp(20px,2.6vh,32px)">This Partnership Delivered Results</div>
-        <div class="stats-grid" style="margin-top:14px;grid-template-columns:1fr">
+        <div class="stats-grid" style="margin-top:14px;grid-template-columns:1fr;gap:clamp(10px,1.3vh,18px)">
           <div class="stat-card narrative">
             <span class="stat-head">Youth shaped community vision</span>
             <div class="stat-lbl">Embedding their leadership in local planning by co-creating the South Chicago Quality of Life Plan alongside community partners and positioning young people as architects of neighborhood priorities.</div>
@@ -1107,8 +1113,8 @@
     <section class="slide s-hero s-layered" data-i="11" data-sec="ki3">
       <div class="bg" style="background-image:url('img/keyinsight_3.webp')"></div>
       <div class="content">
-        <div class="eyebrow">We Invest in the People and Places Children Rely On</div>
-        <h2 class="sh"><strong>Key Insight 3:</strong> Strong outcomes for children start with supported adults and organizations.</h2>
+        <div class="eyebrow">Key Insight #3</div>
+        <h2 class="sh">Strong outcomes for children start with supported adults and organizations.</h2>
         <div class="sb"><p>When educators and caregivers have the resources, training, and stability they need, children experience more consistent care, stronger relationships, and healthier environments. With your support, Bright Promises helps youth-serving professionals build skills, reduce burnout, and stay in the field&mdash;leading to more stable classrooms and stronger programs.</p></div>
       </div>
     </section>
@@ -1116,8 +1122,9 @@
     <!-- 17: KI3 B — Quality Care -->
     <section class="slide s-split" data-i="12" data-sec="ki3">
       <div class="txt">
-        <div class="eyebrow">Quality Care and Learning Starts with Quality Jobs</div>
-        <h2 class="sh" style="margin-bottom:20px">Bright Promises helps build the strong, skilled workforce that children and families rely on every day.</h2>
+        <div class="eyebrow">Key Insight #3</div>
+        <h2 class="sh">Quality Care and Learning Starts with Quality Jobs</h2>
+        <p class="sb">Bright Promises helps build the strong, skilled workforce that children and families rely on every day.</p>
         <div class="stats-grid" style="margin-top:clamp(16px,2vh,28px);grid-template-columns:1fr;gap:14px">
           <div class="stat-card narrative">
             <span class="stat-head">2,200+ frontline professionals</span>
@@ -1134,36 +1141,29 @@
         </div>
         <p class="sb" style="margin-top:24px"><strong>The result:</strong> more stable teams, stronger programs, and better coordinated support for kids and families across Chicagoland.</p>
       </div>
-      <div class="photo"><div class="pbg" style="background-image:url('img/ki3-homework.webp')"></div><span class="photo-credit">Image courtesy [Photographer Name]</span></div>
+      <div class="photo"><div class="pbg" style="background-image:url('img/ki3-homework.webp')"></div><span class="photo-credit">Image courtesy of Chicago Youth Centers</span></div>
     </section>
 
     <!-- 18: WELLEQUIPD -->
     <section class="slide s-split" data-i="13" data-sec="ki3">
       <div class="txt">
-        <div class="eyebrow">Strengthening Learning Environments for Young Children</div>
-        <h2 class="sh">Bright Promises is proud to launch the WellEQUIPD Initiative, a multi-year effort designed to strengthen the early childhood workforce.</h2>
+        <div class="eyebrow">Grantee Partner Spotlight: WellEQUIPD Leaders</div>
+        <h2 class="sh">The WellEQUIPD pilot initiative is a multi-year effort to strengthen the early childhood workforce in Chicagoland.</h2>
         <div class="sb">
-          <p><a class="inline-link" href="https://cdn.prod.website-files.com/5710272db1eee97476da5897/67f675641e5840942fdeef3f_FINAL_EQUIP%20Assessment%202014-2023.pdf" target="_blank" rel="noopener">Drawing on a decade of learning</a>, WellEQUIPD helps providers improve the environments children experience every day. We are bringing diverse leaders together to co-create solutions through a <strong>Community of Practice</strong> and investing <strong>over $1 million</strong> to create more stable classrooms, more confident educators, and a stronger early childhood system across Chicagoland and Illinois.</p>
+          <p>Drawing on a decade of learning<a class="footnote-ref" href="https://cdn.prod.website-files.com/5710272db1eee97476da5897/67f675641e5840942fdeef3f_FINAL_EQUIP%20Assessment%202014-2023.pdf" target="_blank" rel="noopener" aria-label="Source"><sup>4</sup></a>, WellEQUIPD helps providers improve the environments children experience every day. We are bringing diverse leaders together to co-create solutions through a <strong>Community of Practice</strong> and investing <strong>over $1 million</strong> to create more stable classrooms, more confident educators, and a stronger early childhood system across Chicagoland and Illinois.</p>
         </div>
         <p class="ki3-cohort-h">WellEQUIPD Inaugural Cohort</p>
-        <div class="org-logos">
-          <img src="img/logos/chicago-commons.svg" alt="Chicago Commons">
-          <img src="img/logos/chicago-youth-centers.webp" alt="Chicago Youth Centers">
-          <img src="img/logos/ChristopherHouse.webp" alt="Christopher House">
-          <img src="img/logos/concordia-place-logo.webp" alt="Concordia Place">
-          <img src="img/logos/gads-hill.webp" alt="Gads Hill Center">
-          <img src="img/logos/onward-house.webp" alt="Onward Neighborhood House">
-        </div>
+        <p class="ki3-cohort-line">Chicago Commons &middot; Chicago Youth Centers &middot; Christopher House &middot; Concordia Place &middot; Gads Hill Center &middot; Onward Neighborhood House</p>
       </div>
-      <div class="photo"><div class="pbg" style="background-image:url('img/cyc-bright-promises-3.webp')"></div><span class="photo-credit">Image courtesy [Photographer Name]</span></div>
+      <div class="photo"><div class="pbg" style="background-image:url('img/cyc-bright-promises-3.webp')"></div><span class="photo-credit">Image courtesy of Chicago Youth Centers</span></div>
     </section>
 
     <!-- 19: KI4 HERO -->
     <section class="slide s-hero s-layered" data-i="14" data-sec="ki4">
       <div class="bg" style="background-image:url('img/keyinsight_4.webp')"></div>
       <div class="content">
-        <div class="eyebrow">Upstream Impact for Lasting Opportunity</div>
-        <h2 class="sh"><strong>Key Insight 4:</strong> Effective solutions start early.</h2>
+        <div class="eyebrow">Key Insight #4</div>
+        <h2 class="sh">Effective solutions start early.</h2>
         <div class="sb"><p>Bright Promises&rsquo; model proves that early intervention and coordination lead to better outcomes at lower cost. By strengthening organizations, aligning systems, and addressing challenges before they escalate into crisis, Bright Promises turns early action into lasting impact for children, families, and communities.</p></div>
       </div>
     </section>
@@ -1171,10 +1171,9 @@
     <!-- 20: KI4 B -->
     <section class="slide s-split" data-i="15" data-sec="ki4">
       <div class="txt">
-        <div class="eyebrow">Upstream Impact for Lasting Opportunity</div>
+        <div class="eyebrow">Key Insight #4</div>
         <h2 class="sh">Early investment. Stronger systems. Lasting impact.</h2>
         <div class="sb">
-          <p>Bright Promises exists to spark what&rsquo;s possible&mdash;bringing people together, testing bold ideas, and helping what works spread.</p>
           <p>Bright Promises drives results by acting early&mdash;before needs escalate and costs multiply. Our upstream initiatives targeting early childhood education, youth mental health, and youth leadership and civic engagement move effective ideas out of silos and into practice, shaping how systems respond to children and families over time.</p>
           <p style="margin-top:1.1em"><strong>What Bright Promises Upstream Initiatives Produce:</strong></p>
           <ul class="acc-list orange-bars" style="margin-top:6px">
@@ -1193,10 +1192,10 @@
       <div class="photo"><div class="pbg" style="background-image:url('img/cu-spotlight.webp')"></div><span class="photo-credit">Images courtesy of Communities United</span></div>
       <div class="txt">
         <div class="eyebrow">Grantee Partner Spotlight: Communities United</div>
-        <h2 class="sh">With Bright Promises&rsquo; support, Communities United is building durable youth power.</h2>
+        <h2 class="sh">Communities United is building durable youth power.</h2>
         <div class="sb">
-          <p>As part of Bright Promises&rsquo; commitment to <strong>advancing youth leadership and civic engagement, Communities United</strong> is equipping young people to lead, advocate, and transform the systems that shape their lives.</p>
-          <p><strong>Communities United</strong> expanded leadership pipelines, peer-to-peer facilitation, and advocacy efforts that connect personal growth to collective impact. This partnership reflects what we believe at Bright Promises: <strong>when young people are trusted, whole communities rise.</strong></p>
+          <p>As part of Bright Promises&rsquo; commitment to <strong>advancing youth leadership and civic engagement</strong>, we are proud to partner with <strong>Communities United</strong> to equip young people to lead, advocate, and transform the systems that shape their lives.</p>
+          <p>Communities United expanded leadership pipelines, peer-to-peer facilitation, and advocacy efforts that connect personal growth to collective impact. This partnership reflects what we believe at Bright Promises: <strong>when young people are trusted, whole communities rise.</strong></p>
         </div>
         <div style="font-size:clamp(11px,0.95vw,14px);font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--orange);margin-top:clamp(14px,2vh,22px)">This partnership delivered results</div>
         <div class="stats-grid" style="margin-top:10px">
@@ -1213,7 +1212,6 @@
         <span class="q-mark">&ldquo;</span>
         <blockquote class="q-txt">This format is different. Bright Promises&rsquo; support has allowed me to grow as a leader, but the youth too feel that investment. Investing in one young person is investing in everyone they have an interaction with.&rdquo;</blockquote>
         <div class="q-attr"><strong>Maria Paula Gareza Degillo</strong>Director of Strategic Narratives, Communities United<br><em style="font-size:13px;color:var(--orange)">2025 Elevating Youth Voices Honoree</em></div>
-        <p class="q-context"><strong>This work is brought to life by leaders like 2025 Elevating Youth Voices Honoree Maria Paula Gareza Degillo</strong>, whose $5,000 Bright Promises honorarium&mdash;provided in addition to Communities United&rsquo;s grant support&mdash;is strengthening her leadership and expanding the reach of Communities United&rsquo;s impact. This investment reflects Bright Promises&rsquo; belief that supporting individual leaders amplifies power far beyond a single organization.</p>
       </div>
     </section>
 
@@ -1221,8 +1219,8 @@
     <section class="slide s-hero s-layered" data-i="18" data-sec="ki5">
       <div class="bg" style="background-image:url('img/keyinsight_5.webp')"></div>
       <div class="content">
-        <div class="eyebrow">Looking Ahead</div>
-        <h2 class="sh"><strong>Key Insight 5:</strong> Scaling what works through trust, partnership, and community leadership creates lasting opportunity for children.</h2>
+        <div class="eyebrow">Key Insight #5</div>
+        <h2 class="sh">Scaling what works through trust, partnership, and community leadership creates lasting opportunity for children.</h2>
         <div class="sb"><p>Lasting systems change doesn&rsquo;t come from top-down replication alone. It happens when proven ideas are grown from the ground up&mdash;rooted in community trust, strengthened through shared learning, and supported by flexible, multi-year investment.</p></div>
       </div>
     </section>
@@ -1231,10 +1229,10 @@
     <section class="slide s-split-l" data-i="19" data-sec="ki5">
       <div class="photo"><div class="pbg" style="background-image:url('img/concordia-meaningful-play.webp');background-position:center"></div><span class="photo-credit">Image courtesy of Concordia Place</span></div>
       <div class="txt">
-        <div class="eyebrow">Looking Ahead</div>
-        <h2 class="sh">By combining the risk-tolerance of venture philanthropy with the relationship-building and movement power of grassroots organizing,</h2>
+        <div class="eyebrow">Key Insight #5</div>
+        <h2 class="sh">Bright Promises helps community-based organizations scale what works while staying responsive to the people they serve.</h2>
         <div class="sb">
-          <p>Bright Promises helps community-based organizations scale what works while staying responsive to the people they serve.</p>
+          <p>Bright Promises combines the risk-tolerance of venture philanthropy with the relationship-building and movement power of grassroots organizing.</p>
           <p><strong>The result</strong> is a stronger, more coordinated ecosystem where effective practices spread, organizations grow together, and children benefit from opportunity that lasts.</p>
         </div>
       </div>
@@ -1341,12 +1339,7 @@
       <div class="eyebrow">Our Supporters</div>
       <div class="donors-h">2025 Donor Honor Roll</div>
       <p class="donors-sub">Our donors and partners are an essential part of the ecosystem that makes this work possible.</p>
-      <div class="donors-section-h">Individuals</div>
-      <p class="donors-text">Abraham Salinas, Aimee Hilado, Alana Gunn, Alexa Berg, Alexandra Padrul, Alice Martin, Amanda Vallejo, Amy Dragland-Johnson, Andreason Brown, Angela Fontes, Anna Musci, Anne Finn, Anonymous, Anthony Richards, Arielle Lentz, Ayanna Brown, Baronica Roberson, Bela Mote, Bethel Kifle, Bethel Kifleo, Bill and Patty Moss, Brad Berliner, Brian Korey, Britton Videbeck, Bryan Stokes, Camille Moore, Candace Moore, Carlos Perez, Carmelita Colbert, Carmen Velasquez in memory of Jim Zander, C&eacute;sar Torruella, Cheryl Goldstein, Cheryl Wisniewski, Chris Kinnear, Christina Navarro, Christine Calderon, Chun Lung Lee, Clive Walcott, Craig Englert, Craig Llorens, Cyd Archer, Cynthia Hunt, Daniel Casara, Daniel Fumagalli, Darlene Murphy Jue, David and Susan Kreisman, David Beerman, David Chappell, David Hardy, David Rubenstein, Dean Benson, Deborah Frisch, Debra Schlies, Deepak Gaur, Deirdre Harrison, Diane Knoepke, Don Quincy Lamb Jr, Dorri McWhorter, Doug Moss, Elizabeth Tager, Emilio Araujo, Emily Fishman, Eric Zoberman, Gaylord and William Gieseke, Grace Araya, Harry and Lily Zoberman, Heather Kistner, Heather Parish, Helen J. Kessler, Helene Fishman, Ilene Korey, Iris Krieg, Jacki Davidoff, James P. Lynch, Jamie Klobuchar, Jamie Metcalf, Jason Kay, Jason Nierman, Jeff and Jamie Kost, Jeffrey Izenman, Jennifer Booth in honor of Tara Leja, Jennifer Lyons, Jesseca Rhymes, Jill Katz, Jill Scott, Jim Hirsch, Julia Gilman, Julia Luscombe, Julia Waggoner, Julie Shaw, Julie Weinberg, Karla Davis, Karyn Watkins, Katherine Dreher, Kellie Martial, Kelly Kirkman, Kenneth Bartman, Kevin Conlon, Kimberly Van Horn, Kimbra Bell, Krishnaiah Revuluri, Krystle Bradley, Larry Joe and Kelley O&rsquo;Hern in memory of Jim Zander, Larry Nierman, Lauren Gaither, Lauren Krieg, Lawrence Kuhn, Lee Menn, Lena Cohn, Linda Weinstein, Lionell Hill, Lisa Raju, Loester Lewis, Louise K. Smith, Luke Easterday, Lynda Wallis, M Steven Sager, Mallory Moreno, Marcella Oglesby, Margaret Anderson, Maria Allen, Maria Ghani and Emaad Rahman, Mark and Joni Croll, Mark McKinley, Matthew Colton, Matthew McGary, Matthew Somerman, Megan Rhyme, Melinda Hardy, Michele and Joel Shoolin in honor of Katherine Korey, Michelle O&rsquo;Sullivan, Mitch Sparber, Myla Weinstein, Nancy Schimmel, Nancy Snyder, Nancy Stermer, Nannette Zander, Neelamjit Dhaliwal, Nicholas Kennedy, Nina Wong, Patricio Cadena, Patrick Grady, Paul and Peggy Bodine, Paul Fyle, Paul Hilder, Paula Frey, Randall Hardy, Rebecca Nierman, Rhonda Fried, Richard Sieracki, Robert and Barbara Finley, Robert Footlik, Ron and Queta Bauer, Roy Walker, Russell Brown, Ryan Biller, Ryan Emmer, Salina Barih, Sam Coady, Sam Spencer, Sanford Peck, Sarah Klebo, Scott and Emily Bishop, Scott Gendell, Sendhil Revuluri and Venu Gupta, Shari Runner, Shel and Renee Goldstein in honor of Jason Nierman, Simone Weil, Sophie Padula, Stephanie Sorlien, Steven M Koch, Susan Gohl, Susan Irion, Tae Kim, Tanner Zelman, Tara Leja, Ted Cappas, Tenisha Phillips, Thomas Penning, Tiffany Scaparotti, Una Lewis, Valerie Coffman, Vickie and Irv Korey in honor of Katherine Korey, William Enright, William O&rsquo;Hara</p>
-      <div class="donors-section-h">Corporations</div>
-      <p class="donors-text compact-2col">AbbVie Inc., Allstate, Azteca Foods Inc., Carole Robertson Learning Center, Comcast NBC Universal, Concordia Place, Constellation, Discover, Hearst, RSM US, West Monroe, Wintrust</p>
-      <div class="donors-section-h">Foundations</div>
-      <p class="donors-text compact-2col">Clark-Halladay Memorial Foundation, Cigna Foundation, Comer Family Fund at the Chicago Community Trust, Field Foundation of Illinois, Francis Beidler III and Prudence R. Beidler Foundation, Gaylord and Dorothy Donnelley Foundation, Henry Crown &amp; Company, Hirsch Family Fund in honor of Julie &amp; Mark Nufer and Scott Bishop, National Philanthropic Trust, Pledging Foundation, Robert M. McCormick Foundation, Spencer Foundation</p>
+      <p class="donors-text">Abraham Salinas, Aimee Hilado, Alana Gunn, Alexa Berg, Alexandra Padrul, Alice Martin, Amanda Vallejo, Amy Dragland-Johnson, Andreason Brown, Angela Fontes, Anna Musci, Anne Finn, Anonymous, Anthony Richards, Arielle Lentz, Ayanna Brown, Baronica Roberson, Bela Mote, Bethel Kifle, Bethel Kifleo, Bill and Patty Moss, Brad Berliner, Brian Korey, Britton Videbeck, Bryan Stokes, Camille Moore, Candace Moore, Carlos Perez, Carmelita Colbert, Carmen Velasquez <em>in memory of</em> Jim Zander, C&eacute;sar Torruella, Cheryl Goldstein, Cheryl Wisniewski, Chris Kinnear, Christina Navarro, Christine Calderon, Chun Lung Lee, Clive Walcott, Craig Englert, Craig Llorens, Cyd Archer, Cynthia Hunt, Daniel Casara, Daniel Fumagalli, Darlene Murphy Jue, David and Susan Kreisman, David Beerman, David Chappell, David Hardy, David Rubenstein, Dean Benson, Deborah Frisch, Debra Schlies, Deepak Gaur, Deirdre Harrison, Diane Knoepke, Don Quincy Lamb Jr, Dorri McWhorter, Doug Moss, Elizabeth Tager, Emilio Araujo, Emily Fishman, Eric Zoberman, Gaylord and William Gieseke, Grace Araya, Harry and Lily Zoberman, Heather Kistner, Heather Parish, Helen J. Kessler, Helene Fishman, Ilene Korey, Iris Krieg, Jacki Davidoff, James P. Lynch, Jamie Klobuchar, Jamie Metcalf, Jason Kay, Jason Nierman, Jeff and Jamie Kost, Jeffrey Izenman, Jennifer Booth <em>in honor of</em> Tara Leja, Jennifer Lyons, Jesseca Rhymes, Jill Katz, Jill Scott, Jim Hirsch, Julia Gilman, Julia Luscombe, Julia Waggoner, Julie Shaw, Julie Weinberg, Karla Davis, Karyn Watkins, Katherine Dreher, Kellie Martial, Kelly Kirkman, Kenneth Bartman, Kevin Conlon, Kimberly Van Horn, Kimbra Bell, Krishnaiah Revuluri, Krystle Bradley, Larry Joe and Kelley O&rsquo;Hern <em>in memory of</em> Jim Zander, Larry Nierman, Lauren Gaither, Lauren Krieg, Lawrence Kuhn, Lee Menn, Lena Cohn, Linda Weinstein, Lionell Hill, Lisa Raju, Loester Lewis, Louise K. Smith, Luke Easterday, Lynda Wallis, M Steven Sager, Mallory Moreno, Marcella Oglesby, Margaret Anderson, Maria Allen, Maria Ghani and Emaad Rahman, Mark and Joni Croll, Mark McKinley, Matthew Colton, Matthew McGary, Matthew Somerman, Megan Rhyme, Melinda Hardy, Michele and Joel Shoolin <em>in honor of</em> Katherine Korey, Michelle O&rsquo;Sullivan, Mitch Sparber, Myla Weinstein, Nancy Schimmel, Nancy Snyder, Nancy Stermer, Nannette Zander, Neelamjit Dhaliwal, Nicholas Kennedy, Nina Wong, Patricio Cadena, Patrick Grady, Paul and Peggy Bodine, Paul Fyle, Paul Hilder, Paula Frey, Randall Hardy, Rebecca Nierman, Rhonda Fried, Richard Sieracki, Robert and Barbara Finley, Robert Footlik, Ron and Queta Bauer, Roy Walker, Russell Brown, Ryan Biller, Ryan Emmer, Salina Barih, Sam Coady, Sam Spencer, Sanford Peck, Sarah Klebo, Scott and Emily Bishop, Scott Gendell, Sendhil Revuluri and Venu Gupta, Shari Runner, Shel and Renee Goldstein <em>in honor of</em> Jason Nierman, Simone Weil, Sophie Padula, Stephanie Sorlien, Steven M Koch, Susan Gohl, Susan Irion, Tae Kim, Tanner Zelman, Tara Leja, Ted Cappas, Tenisha Phillips, Thomas Penning, Tiffany Scaparotti, Una Lewis, Valerie Coffman, Vickie and Irv Korey <em>in honor of</em> Katherine Korey, William Enright, William O&rsquo;Hara, AbbVie Inc., Allstate, Azteca Foods Inc., Carole Robertson Learning Center, Comcast NBC Universal, Concordia Place, Constellation, Discover, Hearst, RSM US, West Monroe, Wintrust, Clark-Halladay Memorial Foundation, Cigna Foundation, Comer Family Fund at the Chicago Community Trust, Field Foundation of Illinois, Francis Beidler III and Prudence R. Beidler Foundation, Gaylord and Dorothy Donnelley Foundation, Henry Crown &amp; Company, Hirsch Family Fund <em>in honor of</em> Julie &amp; Mark Nufer and Scott Bishop, National Philanthropic Trust, Pledging Foundation, Robert M. McCormick Foundation, Spencer Foundation</p>
       </div><!-- end .donors-scroll -->
     </section>
 
@@ -1405,13 +1398,14 @@
           <div class="thanks-grid">
             <div class="thanks-col">
               <div class="thanks-lbl">Board of Directors</div>
-              <p class="thanks-body">Nancy Snyder, <em style="opacity:0.75">President</em> &middot; Nanette Velasquez Zander, <em style="opacity:0.75">Vice President</em> &middot; Baronica Roberson, <em style="opacity:0.75">Treasurer</em> &middot; Nick Bruce, <em style="opacity:0.75">Secretary</em> &middot; Dean A. Benson &middot; Ryan A. Biller &middot; Scott Bishop &middot; Christine Calderon &middot; Neelamjit Kaur Dhaliwal &middot; Deepak Gaur &middot; Craig Guti&eacute;rrez, Ed.D. &middot; Randall D. Hardy &middot; Aimee Hilado, Ph.D., LCSW &middot; Tara Leja &middot; Jason Nierman &middot; Maricar Ramos &middot; Julia Waggoner &middot; Erik Wilkerson</p>
+              <p class="thanks-body">Nancy Snyder, <em style="opacity:0.75">President</em> &middot; Scott Bishop, <em style="opacity:0.75">Vice President</em> &middot; Baronica Roberson, <em style="opacity:0.75">Treasurer</em> &middot; Nick Bruce, <em style="opacity:0.75">Secretary</em> &middot; Dean A. Benson &middot; Ryan A. Biller &middot; Christine Calderon &middot; Neelamjit Kaur Dhaliwal &middot; Deepak Gaur &middot; Craig Guti&eacute;rrez, Ed.D. &middot; Randall D. Hardy &middot; Aimee Hilado, Ph.D., LCSW &middot; Tara Leja &middot; Jason Nierman &middot; Maricar Ramos &middot; Julia Waggoner &middot; Erik Wilkerson &middot; Nanette Velasquez Zander</p>
               <div class="thanks-lbl" style="margin-top:clamp(14px,2vh,22px)">Lifetime Trustees</div>
-              <p class="thanks-body">Jon N. Will &middot; Paul Bodine &middot; Shari Runner &middot; Gaylord Gieseke</p>
+              <!-- Maintained alphabetically by surname -->
+              <p class="thanks-body">Paul Bodine &middot; Gaylord Gieseke &middot; Shari Runner &middot; Jon N. Will</p>
             </div>
             <div class="thanks-col">
               <div class="thanks-lbl">Legacy Council</div>
-              <p class="thanks-body">Prudence Beidler &middot; Marjorie Craig Benton &middot; Peggy Bodine &middot; Dr. Barbara Bowman &middot; Vern Broders &middot; Robert Finley &middot; Elizabeth Foster &middot; Francia Harrington &middot; Iris Krieg &middot; Rodger Owen &middot; Janet Owen &middot; Neil Peck &middot; Gigi Pritzker Pucker &middot; Judith Walker Kendrick &middot; Bernice Weissbourd <em style="opacity:0.7">(1923&ndash;2022)</em></p>
+              <p class="thanks-body">Prudence Beidler &middot; Marjorie Craig Benton &middot; Peggy Bodine &middot; Dr. Barbara Bowman <em style="opacity:0.7">(1928&ndash;2024)</em> &middot; Vern Broders &middot; Robert Finley &middot; Elizabeth Foster &middot; Francia Harrington &middot; Iris Krieg &middot; Rodger Owen &middot; Janet Owen &middot; Neil Peck &middot; Gigi Pritzker Pucker &middot; Judith Walker Kendrick &middot; Bernice Weissbourd <em style="opacity:0.7">(1923&ndash;2022)</em></p>
             </div>
             <div class="thanks-col">
               <div class="thanks-lbl">Partners</div>
