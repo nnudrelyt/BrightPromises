@@ -180,7 +180,8 @@
     .photo .pbg { position:absolute; inset:-1px; background-size:cover; background-position:center; transform-origin:center; }
     /* TEMPORARY: slide number indicator for design review. Remove with
        its updateUI() call + the <div id="slide-num"> when finished. */
-    #slide-num { display:none; position:fixed; bottom:16px; left:16px; z-index:300; padding:6px 10px; border-radius:6px; background:rgba(0,0,0,0.55); color:#fff; font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:11px; letter-spacing:.04em; pointer-events:none; opacity:.85; }
+    #slide-num { position:fixed; bottom:16px; left:16px; z-index:300; padding:6px 10px; border-radius:6px; background:rgba(0,0,0,0.55); color:#fff; font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:11px; letter-spacing:.04em; pointer-events:none; opacity:.85; }
+    @media (max-width:900px) { #slide-num { display:none; } }
 
     /* ── Torn-paper edge ───────────────────────────────────────────────
        Pseudo-element overlay between the white text card and the photo,
@@ -217,7 +218,7 @@
     .s-split .photo-credit { left:74px; }
 
     .eyebrow { font-size:clamp(11px,0.95vw,14px); font-weight:800; letter-spacing:.12em; text-transform:uppercase; color:var(--orange); margin-bottom:clamp(12px,1.2vh,20px); }
-    .sh { font-size:clamp(22px,2.8vw,52px); font-weight:700; color:var(--teal); line-height:1.12; margin-bottom:clamp(16px,1.6vh,28px); }
+    .sh { font-size:clamp(22px,min(2.8vw,3.4vh),52px); font-weight:700; color:var(--teal); line-height:1.12; margin-bottom:clamp(16px,1.6vh,28px); }
     /* ── BODY TYPE SCALE ────────────────────────────────────────────
        4-tier system. All body / supporting content aligns to one tier
        (.body-lg | .body-md | .body-sm | .body-xs). Existing semantic
@@ -229,7 +230,7 @@
     .body-lg strong, .body-md strong, .body-sm strong, .body-xs strong { font-weight:700; color:var(--teal); }
 
     /* ── BODY CLASSES — aligned to tiers ── */
-    .sb { font-size:clamp(16px,1.4vw,20px); font-weight:400; color:var(--body); line-height:1.75; }      /* body-lg */
+    .sb { font-size:clamp(15px,min(1.4vw,1.8vh),20px); font-weight:400; color:var(--body); line-height:1.75; }      /* body-lg */
     .sb p+p { margin-top:1em; }
     .sb strong { font-weight:700; color:var(--teal); }
     .sb em { font-style:italic; }
@@ -278,6 +279,12 @@
     .letter-col em { font-style:italic; }
     .letter-sig { margin-top:clamp(18px,2vh,32px); font-size:clamp(14px,1.2vw,18px); color:var(--body); line-height:1.6; }
     .letter-sig strong { display:block; font-size:clamp(15px,1.4vw,20px); font-weight:700; color:var(--teal); margin-top:8px; }
+    /* Katherine's wet signature image above the typed name */
+    .letter-sig-img { display:block; width:clamp(140px,12vw,200px); height:auto; margin:clamp(10px,1.4vh,18px) 0 6px; }
+    /* Katherine's portrait floats top-right of col 2 */
+    .letter-portrait { float:right; width:clamp(120px,10vw,180px); height:auto; border-radius:50%; margin:0 0 clamp(12px,1.4vh,20px) clamp(12px,1.4vw,20px); shape-outside:circle(50%); }
+    /* Align col 2 body start with col 1 body start (skip past "Dear Partners,") */
+    .letter-col:nth-of-type(2) { padding-top:2.75em; }
 
     /* ── ACCORDION ── */
     .s-accordion { background:var(--white); display:flex; align-items:center; justify-content:center; padding:clamp(36px,4vh,72px) clamp(56px,7vw,140px); }
@@ -324,19 +331,19 @@
     .chart-sub { display:none; }
     .cop-grid { width:100%; display:grid; grid-template-columns:2fr 3fr; gap:clamp(32px,4vw,72px); align-items:start; }
     /* Community of Partners — editorial three-row stack (Layout C) on deep-teal bg */
-    .s-cop { background:var(--teal-dk); align-items:flex-start; padding:clamp(40px,5vh,80px) clamp(56px,6vw,120px) clamp(60px,7vh,100px) clamp(56px,6vw,120px); overflow-y:auto; }
+    .s-cop { background:var(--teal-dk); align-items:flex-start; padding:clamp(32px,4vh,72px) clamp(48px,6vw,120px) clamp(40px,5vh,88px) clamp(48px,6vw,120px); overflow-y:auto; }
     .s-cop .eyebrow { color:var(--orange); }
-    .cop-c-wrap { width:100%; max-width:1100px; margin:0 auto; display:flex; flex-direction:column; gap:clamp(20px,2.6vh,36px); position:relative; z-index:1; }
+    .cop-c-wrap { width:100%; max-width:1100px; margin:0 auto; display:flex; flex-direction:column; gap:clamp(14px,1.8vh,28px); position:relative; z-index:1; }
     .cop-c-top { text-align:left; max-width:none; margin:0; }
     /* Compensate for trailing letter-spacing so the eyebrow optically centers */
     .cop-c-top .eyebrow { margin-bottom:14px; padding-left:.12em; }
-    .cop-c-h { font-size:clamp(22px,2.8vw,52px); font-weight:700; color:#fff; line-height:1.12; margin-bottom:14px; }
-    .cop-c-p { font-size:clamp(16px,1.4vw,20px); font-weight:400; color:rgba(255,255,255,.95); line-height:1.75; max-width:none; margin:0; text-align:left; }
+    .cop-c-h { font-size:clamp(22px,min(2.8vw,3.6vh),52px); font-weight:700; color:#fff; line-height:1.12; margin-bottom:14px; }
+    .cop-c-p { font-size:clamp(15px,min(1.4vw,1.8vh),20px); font-weight:400; color:rgba(255,255,255,.95); line-height:1.75; max-width:none; margin:0; text-align:left; }
     .cop-c-p strong { font-weight:700; color:#fff; }
-    .cop-c-video { width:100%; max-width:608px; margin:0 auto; aspect-ratio:16/9; border-radius:14px; overflow:hidden; box-shadow:0 14px 44px rgba(0,0,0,0.22); position:relative; background:#000; }
+    .cop-c-video { width:100%; max-width:min(560px,55vw); margin:0 auto; aspect-ratio:16/9; border-radius:14px; overflow:hidden; box-shadow:0 14px 44px rgba(0,0,0,0.22); position:relative; background:#000; }
     .cop-c-video video { width:100%; height:100%; object-fit:cover; display:block; }
     .cop-c-orgs-h { font-size:clamp(10px,0.9vw,13px); font-weight:800; letter-spacing:.14em; text-transform:uppercase; color:var(--orange); margin-bottom:10px; text-align:left; padding-bottom:8px; border-bottom:1px solid rgba(255,255,255,.55); display:inline-block; }
-    .cop-c-orgs-line { font-size:clamp(14px,1.25vw,17px); font-weight:500; color:rgba(255,255,255,.95); line-height:1.55; text-align:left; max-width:none; margin:0; }
+    .cop-c-orgs-line { font-size:clamp(13px,min(1.25vw,1.5vh),17px); font-weight:500; color:rgba(255,255,255,.95); line-height:1.55; text-align:left; max-width:none; margin:0; }
     .cop-c-tag { font-size:clamp(13px,1.1vw,16px); font-weight:700; color:#fff; text-align:center; letter-spacing:.04em; margin-top:6px; }
     .chart-view { display:grid; grid-template-columns:1fr 1fr; gap:clamp(48px,6vw,96px); flex:1; align-items:center; width:100%; position:relative; z-index:1; min-height:0; }
     .chart-left { display:flex; flex-direction:column; justify-content:center; gap:clamp(10px,1.4vh,18px); }
@@ -475,6 +482,8 @@
        never outgrows the height budget no matter how wide/short the browser. */
     .donors-text { font-size:clamp(13px,min(1.2vw,1.7vh),17px); font-weight:400; color:var(--body); line-height:1.55; text-align:left; column-count:3; column-gap:clamp(20px,2.4vw,40px); }
     .donors-text.compact-2col { column-count:2; }
+    /* Inline section markers in the continuous donor paragraph */
+    .donor-section-inline { font-weight:800; color:var(--orange); text-transform:uppercase; letter-spacing:.08em; font-size:0.88em; }
     /* On sub-1440 desktop viewports, drop the cap a point to 16px so the full list fits without scrolling */
     @media (min-width:901px) and (max-width:1439px) {
       .donors-text { font-size:clamp(13px,min(1.2vw,1.7vh),16px); }
@@ -490,6 +499,13 @@
     .stat-head { display:block; font-size:clamp(15px,1.5vw,20px); font-weight:700; color:var(--teal); line-height:1.2; margin-bottom:clamp(4px,0.6vh,8px); }
     .stat-lbl { font-size:clamp(12px,1vw,16px); font-weight:700; color:var(--body); line-height:1.4; }
     .stat-card.narrative .stat-lbl { font-weight:400; line-height:1.55; font-size:clamp(16px,1.4vw,20px); }
+    .stat-card.narrative .stat-lbl strong { font-weight:700; color:var(--teal); }
+    /* Slide 9 (ASE): drop the narrative label one tier so the 3 bullets fit at typical laptop heights */
+    .slide[data-i="9"] .stat-card.narrative .stat-lbl { font-size:clamp(15px,1.3vw,19px); }
+    /* Slide 25 (West Monroe B): vh-aware body + stat sizing so content fits without scroll */
+    .slide[data-i="25"] .sb { font-size:clamp(14px,min(1.25vw,1.6vh),18px); }
+    .slide[data-i="25"] .stat-num { font-size:clamp(24px,min(3vw,4vh),48px); }
+    .slide[data-i="25"] .stat-lbl { font-size:clamp(11px,min(0.95vw,1.2vh),14px); }
 
     /* ── ORG TAGS ── */
     .org-tags { display:flex; flex-wrap:wrap; gap:clamp(6px,0.7vw,12px); margin-top:clamp(12px,1.4vh,22px); }
@@ -562,6 +578,7 @@
     .sb p+p { margin-top:1.2em; }
     .letter-col { line-height:1.85; }
     .letter-col p+p { margin-top:1.2em; }
+    .letter-portrait { float:none !important; display:block; margin:0 auto clamp(14px,2vh,24px) !important; }
     .acc-intro { line-height:1.85; }
     .acc-intro p+p { margin-top:1.2em; }
 
@@ -965,7 +982,7 @@
     <!-- 2: ED LETTER -->
     <section class="slide s-letter" data-i="2" data-sec="ed-letter">
       <div class="letter-grid">
-        <h2 class="letter-h">The 2025 Impact Report: Power of Promise</h2>
+        <h2 class="letter-h">The Power of Promise</h2>
         <div class="letter-col">
           <p>Dear Partners,</p>
           <p>The last year has laid bare how inequity continues to shape the environments where Chicagoland children grow up. These realities show up every day&mdash;in classrooms, in communities, and in futures constrained too early. And still, our young people remain hopeful. They have not given up on their futures, and neither can we.</p>
@@ -974,7 +991,7 @@
         <div class="letter-col">
           <p>In the pages that follow, <em>The Power of Promise</em> explores the critical space between environments and outcomes&mdash;the &ldquo;missing middle&rdquo; where development happens. This report shows what becomes possible when communities, partners, and donors come together to build the conditions young people need to thrive.</p>
           <p><strong>As you read, we invite you to see how acting early&mdash;together&mdash;protects opportunity and builds the future our children deserve.</strong></p>
-          <div class="letter-sig">In Solidarity,<strong>Katherine Korey</strong>Executive Director<br>Bright Promises Foundation</div>
+          <div class="letter-sig">In Solidarity,<img class="letter-sig-img" src="img/katherine-signature.webp" alt="Katherine Korey signature"><strong>Katherine Korey</strong>Executive Director<br>Bright Promises Foundation</div>
         </div>
       </div>
     </section>
@@ -993,11 +1010,11 @@
     <section class="slide s-split" data-i="4" data-sec="ki1">
       <div class="txt">
         <div class="eyebrow">Key Insight #1</div>
-        <h2 class="sh">The opportunity gap is widening across Chicagoland,<a class="footnote-ref" href="https://edworkingpapers.com/sites/default/files/ai26-1378.pdf" target="_blank" rel="noopener" aria-label="Source"><sup>1</sup></a></h2>
+        <h2 class="sh">Organizations are being asked to do more with dramatically less.<a class="footnote-ref" href="https://edworkingpapers.com/sites/default/files/ai26-1378.pdf" target="_blank" rel="noopener" aria-label="Source"><sup>1</sup></a></h2>
         <div class="sb">
-          <p>Organizations are being asked to do more with dramatically less. Rising stress, trauma, and fractured systems have increased demand for their services&mdash;just as funding has become more volatile and uncertain.</p>
+          <p>Rising stress, trauma, and fractured systems have increased demand for their services&mdash;just as funding has become more volatile and uncertain.</p>
           <p>Bright Promises is responding alongside our partners&mdash;building on trust, shared leadership, and local solutions&mdash;to ensure children and families have the support, tools, and relationships they need to navigate this moment and emerge stronger.</p>
-          <p>The collective giving of donors is helping to stabilize these trusted community anchors&mdash;so they can keep showing up when families need them most.</p>
+          <p>Bright Promises&rsquo; model of collective giving is helping stabilize these trusted community anchors&mdash;so they can keep showing up when families need them most.</p>
         </div>
       </div>
       <div class="photo"><div class="pbg" style="background-image:url('img/ki4-illuminate.webp')"></div><span class="photo-credit">Image courtesy of Brightpoint</span></div>
@@ -1027,8 +1044,8 @@
       <div class="bg" style="background-image:url('img/keyinsight_2.webp')"></div>
       <div class="content">
         <div class="eyebrow">Key Insight #2</div>
-        <h2 class="sh">Bright Promises pilot initiatives delivered measurable near and long-term outcomes for over 11,000 youth and families.</h2>
-        <div class="sb"><p>Increased <strong>confidence</strong> and <strong>agency</strong>, improved <strong>wellbeing</strong>, enhanced <strong>engagement</strong> &mdash; these outcomes don&rsquo;t happen by chance, they happen by intentionally building the conditions young people need to succeed.</p></div>
+        <h2 class="sh">Bright Promises pilot initiatives delivered measurable outcomes for over 11,000 youth and families.</h2>
+        <div class="sb"><p><strong>Increased confidence and agency, improved wellbeing, enhanced engagement</strong> &mdash; these outcomes don&rsquo;t happen by chance, they happen by intentionally building the conditions young people need to succeed.</p></div>
       </div>
     </section>
 
@@ -1036,10 +1053,9 @@
     <section class="slide s-split" data-i="7" data-sec="ki2">
       <div class="txt">
         <div class="eyebrow">Key Insight #2</div>
-        <h2 class="sh">Our approach centers what systems too often underfund: safe spaces, trusted relationships, and meaningful opportunities for young people to lead.</h2>
+        <h2 class="sh">Our approach centers what systems too often underfund:<br>safe spaces, trusted relationships, and meaningful opportunities for young people to lead.</h2>
         <div class="sb">
           <p>Through Bright Promises, donors help pilot and scale solutions that deliver measurable near- and long-term outcomes for <strong>over 11,000 youth and families</strong> each year.</p>
-          <p>Since 2016, Bright Promises has invested <strong>over $5.6 million in 100 community-based organizations</strong> serving low-income children and families across Chicagoland and Illinois through initiatives focused on early childhood, social emotional learning, childhood trauma, and youth mental health.</p>
         </div>
       </div>
       <div class="photo"><div class="pbg" style="background-image:url('img/IMG_0483-topaz-upscale-2x-face.webp');background-position:center"></div><span class="photo-credit">Images courtesy of Communities United and VOYCE</span></div>
@@ -1052,8 +1068,7 @@
           <div class="acc-intro">
             <div class="eyebrow">Key Insight #2</div>
             <h2 class="sh">Our investments translate into real results for kids.</h2>
-            <p>By strengthening the conditions young people need to succeed, Bright Promises and our partners <strong>reduce the need for more costly downstream responses</strong>&mdash;such as emergency intervention or lost educational and economic opportunity.</p>
-            <p>We&rsquo;ve learned that when communities are trusted and supported, these changes are not only possible&mdash;they&rsquo;re repeatable.<a class="footnote-ref" href="https://drive.google.com/file/d/1AKMB98YYUxBhfmUIDZixXpFBtuPoJpO1/view" target="_blank" rel="noopener" aria-label="Source"><sup>2</sup></a><a class="footnote-ref" href="https://cdn.prod.website-files.com/5710272db1eee97476da5897/67f675641e5840942fdeef3f_FINAL_EQUIP%20Assessment%202014-2023.pdf" target="_blank" rel="noopener" aria-label="Source"><sup>3</sup></a></p>
+            <p>By strengthening the conditions young people need to succeed, Bright Promises and our partners <strong>reduce the need for more costly downstream responses</strong>&mdash;such as emergency intervention or lost educational and economic opportunity. We&rsquo;ve learned that when communities are trusted and supported, these changes are not only possible&mdash;they&rsquo;re repeatable.<a class="footnote-ref" href="https://drive.google.com/file/d/1AKMB98YYUxBhfmUIDZixXpFBtuPoJpO1/view" target="_blank" rel="noopener" aria-label="Source"><sup>2</sup></a><a class="footnote-ref" href="https://cdn.prod.website-files.com/5710272db1eee97476da5897/67f675641e5840942fdeef3f_FINAL_EQUIP%20Assessment%202014-2023.pdf" target="_blank" rel="noopener" aria-label="Source"><sup>3</sup></a></p>
           </div>
           <div class="acc-item" id="acc-1">
             <button class="acc-toggle" onclick="toggleAcc('acc-1')"><span class="acc-icon"></span><span class="acc-title">within 12&ndash;24 months: Stabilizing the Conditions for Youth to Thrive</span></button>
@@ -1209,7 +1224,7 @@
     <section class="slide s-quote" data-i="17" data-sec="cu">
       <div class="q-inner">
         <span class="q-mark">&ldquo;</span>
-        <blockquote class="q-txt">This format is different. Bright Promises&rsquo; support has allowed me to grow as a leader, but the youth too feel that investment. Investing in one young person is investing in everyone they have an interaction with.&rdquo;</blockquote>
+        <blockquote class="q-txt">Bright Promises&rsquo; support has allowed me to grow as a leader, but the youth too feel that investment. Investing in one young person is investing in everyone they have an interaction with.&rdquo;</blockquote>
         <div class="q-attr"><strong>Maria Paula Gareza Degillo</strong>Director of Strategic Narratives, Communities United<br><em style="font-size:13px;color:var(--orange)">2025 Elevating Youth Voices Honoree</em></div>
       </div>
     </section>
@@ -1232,7 +1247,8 @@
         <h2 class="sh">Bright Promises helps community-based organizations scale what works while staying responsive to the people they serve.</h2>
         <div class="sb">
           <p>Bright Promises combines the risk-tolerance of venture philanthropy with the relationship-building and movement power of grassroots organizing.</p>
-          <p><strong>The result</strong> is a stronger, more coordinated ecosystem where effective practices spread, organizations grow together, and children benefit from opportunity that lasts.</p>
+          <p>Bright Promises&rsquo; cohort of community partners represent a variety of organization sizes, with operating budgets ranging from under $500,000 to over $10 million. Despite their differences in size or geography, leaders from these organizations unanimously agree that Bright Promises connects them with a community that provides a safe, positive learning environment.</p>
+          <p>The result is a <strong>stronger, more coordinated ecosystem</strong> where effective practices spread, organizations grow together, and children benefit from opportunity that lasts.</p>
         </div>
       </div>
     </section>
@@ -1240,14 +1256,14 @@
     <!-- 26: KI5 B — Goals -->
     <section class="slide s-content" data-i="20" data-sec="ki5">
       <div style="max-width:min(1640px,96vw);position:relative;z-index:1">
-        <div class="eyebrow">Our Goals</div>
-        <h2 class="sh" style="font-size:clamp(28px,3.6vw,60px);margin-bottom:clamp(24px,3.5vh,52px)">These commitments reflect what our community has told us matters most&mdash;now and for the future.</h2>
-        <div class="split-3">
-          <div class="goal-col"><div class="goal-content" style="border-top:3px solid var(--orange);padding-top:clamp(16px,2vh,28px)"><h3 style="font-size:clamp(16px,1.6vw,24px);font-weight:700;color:var(--teal);margin-bottom:12px">Embed trauma-informed and SEL practices</h3><p class="sb" style="font-size:clamp(14px,1.3vw,20px)">Into organizational policy, leadership, and daily practice across community-based organizations throughout Chicagoland&mdash;so care, safety, and belonging are built into the systems children experience every day.</p></div></div>
-          <div class="goal-col"><div class="goal-content" style="border-top:3px solid var(--orange);padding-top:clamp(16px,2vh,28px)"><h3 style="font-size:clamp(16px,1.6vw,24px);font-weight:700;color:var(--teal);margin-bottom:12px">Strengthen workforce stability and resilience</h3><p class="sb" style="font-size:clamp(14px,1.3vw,20px)">By reducing burnout, supporting retention, and investing in the people who carry this work forward, even under extraordinary strain.</p></div></div>
-          <div class="goal-col"><div class="goal-content" style="border-top:3px solid var(--orange);padding-top:clamp(16px,2vh,28px)"><h3 style="font-size:clamp(16px,1.6vw,24px);font-weight:700;color:var(--teal);margin-bottom:12px">Build shared infrastructure for scale and influence</h3><p class="sb" style="font-size:clamp(14px,1.3vw,20px)">Enabling tools, learning, and promising practices to spread beyond individual grantees and drive broader systems uptake.</p></div></div>
+        <div class="eyebrow">Looking Ahead: Our Goals</div>
+        <div class="split-3" style="margin-top:clamp(20px,2.6vh,36px)">
+          <div class="goal-col"><h3 style="font-size:clamp(20px,min(2.2vw,2.8vh),36px);font-weight:700;color:var(--teal);line-height:1.15;margin-bottom:14px">Embed trauma-informed and SEL practices</h3><div class="goal-content" style="border-top:3px solid var(--orange);padding-top:clamp(16px,2vh,28px)"><p class="sb" style="font-size:clamp(14px,1.3vw,20px)">Into organizational policy, leadership, and daily practice across community-based organizations throughout Chicagoland&mdash;so care, safety, and belonging are built into the systems children experience every day.</p></div></div>
+          <div class="goal-col"><h3 style="font-size:clamp(20px,min(2.2vw,2.8vh),36px);font-weight:700;color:var(--teal);line-height:1.15;margin-bottom:14px">Strengthen workforce stability and resilience</h3><div class="goal-content" style="border-top:3px solid var(--orange);padding-top:clamp(16px,2vh,28px)"><p class="sb" style="font-size:clamp(14px,1.3vw,20px)">By reducing burnout, supporting retention, and investing in the people who carry this work forward, even under extraordinary strain.</p></div></div>
+          <div class="goal-col"><h3 style="font-size:clamp(20px,min(2.2vw,2.8vh),36px);font-weight:700;color:var(--teal);line-height:1.15;margin-bottom:14px">Build shared infrastructure for scale and influence</h3><div class="goal-content" style="border-top:3px solid var(--orange);padding-top:clamp(16px,2vh,28px)"><p class="sb" style="font-size:clamp(14px,1.3vw,20px)">Enabling tools, learning, and promising practices to spread beyond individual grantees and drive broader systems uptake.</p></div></div>
         </div>
-        <p class="sb" style="margin-top:clamp(20px,3vh,44px);font-size:clamp(15px,1.5vw,22px)"><strong>If you believe children deserve more&mdash;and that communities already hold the answers&mdash;we invite you to keep building this future with us.</strong></p>
+        <p class="sb" style="margin-top:clamp(20px,3vh,44px);font-size:clamp(16px,1.6vw,24px);color:var(--body)">These goals reflect what our community has told us matters most&mdash;now and for the future.</p>
+        <p class="sb" style="margin-top:clamp(14px,2vh,28px);font-size:clamp(15px,1.5vw,22px)"><strong>If you believe children deserve more&mdash;and that communities already hold the answers&mdash;we invite you to keep building this future with us.</strong></p>
       </div>
     </section>
 
@@ -1338,7 +1354,7 @@
       <div class="eyebrow">Our Supporters</div>
       <div class="donors-h">2025 Donor Honor Roll</div>
       <p class="donors-sub">Our donors and partners are an essential part of the ecosystem that makes this work possible.</p>
-      <p class="donors-text">Abraham Salinas, Aimee Hilado, Alana Gunn, Alexa Berg, Alexandra Padrul, Alice Martin, Amanda Vallejo, Amy Dragland-Johnson, Andreason Brown, Angela Fontes, Anna Musci, Anne Finn, Anonymous, Anthony Richards, Arielle Lentz, Ayanna Brown, Baronica Roberson, Bela Mote, Bethel Kifle, Bethel Kifleo, Bill and Patty Moss, Brad Berliner, Brian Korey, Britton Videbeck, Bryan Stokes, Camille Moore, Candace Moore, Carlos Perez, Carmelita Colbert, Carmen Velasquez <em>in memory of</em> Jim Zander, C&eacute;sar Torruella, Cheryl Goldstein, Cheryl Wisniewski, Chris Kinnear, Christina Navarro, Christine Calderon, Chun Lung Lee, Clive Walcott, Craig Englert, Craig Llorens, Cyd Archer, Cynthia Hunt, Daniel Casara, Daniel Fumagalli, Darlene Murphy Jue, David and Susan Kreisman, David Beerman, David Chappell, David Hardy, David Rubenstein, Dean Benson, Deborah Frisch, Debra Schlies, Deepak Gaur, Deirdre Harrison, Diane Knoepke, Don Quincy Lamb Jr, Dorri McWhorter, Doug Moss, Elizabeth Tager, Emilio Araujo, Emily Fishman, Eric Zoberman, Gaylord and William Gieseke, Grace Araya, Harry and Lily Zoberman, Heather Kistner, Heather Parish, Helen J. Kessler, Helene Fishman, Ilene Korey, Iris Krieg, Jacki Davidoff, James P. Lynch, Jamie Klobuchar, Jamie Metcalf, Jason Kay, Jason Nierman, Jeff and Jamie Kost, Jeffrey Izenman, Jennifer Booth <em>in honor of</em> Tara Leja, Jennifer Lyons, Jesseca Rhymes, Jill Katz, Jill Scott, Jim Hirsch, Julia Gilman, Julia Luscombe, Julia Waggoner, Julie Shaw, Julie Weinberg, Karla Davis, Karyn Watkins, Katherine Dreher, Kellie Martial, Kelly Kirkman, Kenneth Bartman, Kevin Conlon, Kimberly Van Horn, Kimbra Bell, Krishnaiah Revuluri, Krystle Bradley, Larry Joe and Kelley O&rsquo;Hern <em>in memory of</em> Jim Zander, Larry Nierman, Lauren Gaither, Lauren Krieg, Lawrence Kuhn, Lee Menn, Lena Cohn, Linda Weinstein, Lionell Hill, Lisa Raju, Loester Lewis, Louise K. Smith, Luke Easterday, Lynda Wallis, M Steven Sager, Mallory Moreno, Marcella Oglesby, Margaret Anderson, Maria Allen, Maria Ghani and Emaad Rahman, Mark and Joni Croll, Mark McKinley, Matthew Colton, Matthew McGary, Matthew Somerman, Megan Rhyme, Melinda Hardy, Michele and Joel Shoolin <em>in honor of</em> Katherine Korey, Michelle O&rsquo;Sullivan, Mitch Sparber, Myla Weinstein, Nancy Schimmel, Nancy Snyder, Nancy Stermer, Nannette Zander, Neelamjit Dhaliwal, Nicholas Kennedy, Nina Wong, Patricio Cadena, Patrick Grady, Paul and Peggy Bodine, Paul Fyle, Paul Hilder, Paula Frey, Randall Hardy, Rebecca Nierman, Rhonda Fried, Richard Sieracki, Robert and Barbara Finley, Robert Footlik, Ron and Queta Bauer, Roy Walker, Russell Brown, Ryan Biller, Ryan Emmer, Salina Barih, Sam Coady, Sam Spencer, Sanford Peck, Sarah Klebo, Scott and Emily Bishop, Scott Gendell, Sendhil Revuluri and Venu Gupta, Shari Runner, Shel and Renee Goldstein <em>in honor of</em> Jason Nierman, Simone Weil, Sophie Padula, Stephanie Sorlien, Steven M Koch, Susan Gohl, Susan Irion, Tae Kim, Tanner Zelman, Tara Leja, Ted Cappas, Tenisha Phillips, Thomas Penning, Tiffany Scaparotti, Una Lewis, Valerie Coffman, Vickie and Irv Korey <em>in honor of</em> Katherine Korey, William Enright, William O&rsquo;Hara, AbbVie Inc., Allstate, Azteca Foods Inc., Carole Robertson Learning Center, Comcast NBC Universal, Concordia Place, Constellation, Discover, Hearst, RSM US, West Monroe, Wintrust, Clark-Halladay Memorial Foundation, Cigna Foundation, Comer Family Fund at the Chicago Community Trust, Field Foundation of Illinois, Francis Beidler III and Prudence R. Beidler Foundation, Gaylord and Dorothy Donnelley Foundation, Henry Crown &amp; Company, Hirsch Family Fund <em>in honor of</em> Julie &amp; Mark Nufer and Scott Bishop, National Philanthropic Trust, Pledging Foundation, Robert M. McCormick Foundation, Spencer Foundation</p>
+      <p class="donors-text"><span class="donor-section-inline">Individuals:</span> Abraham Salinas, Aimee Hilado, Alana Gunn, Alexa Berg, Alexandra Padrul, Alice Martin, Amanda Vallejo, Amy Dragland-Johnson, Andreason Brown, Angela Fontes, Anna Musci, Anne Finn, Anonymous, Anthony Richards, Arielle Lentz, Ayanna Brown, Baronica Roberson, Bela Mote, Bethel Kifle, Bethel Kifleo, Bill and Patty Moss, Brad Berliner, Brian Korey, Britton Videbeck, Bryan Stokes, Camille Moore, Candace Moore, Carlos Perez, Carmelita Colbert, Carmen Velasquez <em>in memory of</em> Jim Zander, C&eacute;sar Torruella, Cheryl Goldstein, Cheryl Wisniewski, Chris Kinnear, Christina Navarro, Christine Calderon, Chun Lung Lee, Clive Walcott, Craig Englert, Craig Llorens, Cyd Archer, Cynthia Hunt, Daniel Casara, Daniel Fumagalli, Darlene Murphy Jue, David and Susan Kreisman, David Beerman, David Chappell, David Hardy, David Rubenstein, Dean Benson, Deborah Frisch, Debra Schlies, Deepak Gaur, Deirdre Harrison, Diane Knoepke, Don Quincy Lamb Jr, Dorri McWhorter, Doug Moss, Elizabeth Tager, Emilio Araujo, Emily Fishman, Eric Zoberman, Gaylord and William Gieseke, Grace Araya, Harry and Lily Zoberman, Heather Kistner, Heather Parish, Helen J. Kessler, Helene Fishman, Ilene Korey, Iris Krieg, Jacki Davidoff, James P. Lynch, Jamie Klobuchar, Jamie Metcalf, Jason Kay, Jason Nierman, Jeff and Jamie Kost, Jeffrey Izenman, Jennifer Booth <em>in honor of</em> Tara Leja, Jennifer Lyons, Jesseca Rhymes, Jill Katz, Jill Scott, Jim Hirsch, Julia Gilman, Julia Luscombe, Julia Waggoner, Julie Shaw, Julie Weinberg, Karla Davis, Karyn Watkins, Katherine Dreher, Kellie Martial, Kelly Kirkman, Kenneth Bartman, Kevin Conlon, Kimberly Van Horn, Kimbra Bell, Krishnaiah Revuluri, Krystle Bradley, Larry Joe and Kelley O&rsquo;Hern <em>in memory of</em> Jim Zander, Larry Nierman, Lauren Gaither, Lauren Krieg, Lawrence Kuhn, Lee Menn, Lena Cohn, Linda Weinstein, Lionell Hill, Lisa Raju, Loester Lewis, Louise K. Smith, Luke Easterday, Lynda Wallis, M Steven Sager, Mallory Moreno, Marcella Oglesby, Margaret Anderson, Maria Allen, Maria Ghani and Emaad Rahman, Mark and Joni Croll, Mark McKinley, Matthew Colton, Matthew McGary, Matthew Somerman, Megan Rhyme, Melinda Hardy, Michele and Joel Shoolin <em>in honor of</em> Katherine Korey, Michelle O&rsquo;Sullivan, Mitch Sparber, Myla Weinstein, Nancy Schimmel, Nancy Snyder, Nancy Stermer, Nannette Zander, Neelamjit Dhaliwal, Nicholas Kennedy, Nina Wong, Patricio Cadena, Patrick Grady, Paul and Peggy Bodine, Paul Fyle, Paul Hilder, Paula Frey, Randall Hardy, Rebecca Nierman, Rhonda Fried, Richard Sieracki, Robert and Barbara Finley, Robert Footlik, Ron and Queta Bauer, Roy Walker, Russell Brown, Ryan Biller, Ryan Emmer, Salina Barih, Sam Coady, Sam Spencer, Sanford Peck, Sarah Klebo, Scott and Emily Bishop, Scott Gendell, Sendhil Revuluri and Venu Gupta, Shari Runner, Shel and Renee Goldstein <em>in honor of</em> Jason Nierman, Simone Weil, Sophie Padula, Stephanie Sorlien, Steven M Koch, Susan Gohl, Susan Irion, Tae Kim, Tanner Zelman, Tara Leja, Ted Cappas, Tenisha Phillips, Thomas Penning, Tiffany Scaparotti, Una Lewis, Valerie Coffman, Vickie and Irv Korey <em>in honor of</em> Katherine Korey, William Enright, William O&rsquo;Hara, <span class="donor-section-inline">Corporations:</span> AbbVie Inc., Allstate, Azteca Foods Inc., Carole Robertson Learning Center, Comcast NBC Universal, Concordia Place, Constellation, Discover, Hearst, RSM US, West Monroe, Wintrust, <span class="donor-section-inline">Foundations:</span> Clark-Halladay Memorial Foundation, Cigna Foundation, Comer Family Fund at the Chicago Community Trust, Field Foundation of Illinois, Francis Beidler III and Prudence R. Beidler Foundation, Gaylord and Dorothy Donnelley Foundation, Henry Crown &amp; Company, Hirsch Family Fund <em>in honor of</em> Julie &amp; Mark Nufer and Scott Bishop, National Philanthropic Trust, Pledging Foundation, Robert M. McCormick Foundation, Spencer Foundation</p>
       </div><!-- end .donors-scroll -->
     </section>
 
@@ -1375,7 +1391,7 @@
     <section class="slide s-quote" data-i="26" data-sec="wm">
       <div class="q-inner">
         <span class="q-mark">&ldquo;</span>
-        <blockquote class="q-txt">West Monroe is proud to partner with Bright Promises, as our commitment to Building the Next Generation of Leaders and investing in the future go hand in hand. Our employees see firsthand the impact Bright Promises brings to the Chicago community and are honored to volunteer their time in support of that mission.&rdquo;</blockquote>
+        <blockquote class="q-txt">Our commitment to Building the Next Generation of Leaders and investing in the future go hand in hand. Our employees see firsthand the impact Bright Promises brings to the Chicago community and are honored to volunteer their time in support of that mission.&rdquo;</blockquote>
         <div class="q-attr"><strong>Lauren Dern</strong>CSR Lead, West Monroe</div>
       </div>
     </section>
@@ -1389,7 +1405,6 @@
           <h2 class="sh" style="color:#fff;margin-bottom:clamp(16px,2vh,28px)">Bright Promises Foundation is of the community and for the community.</h2>
           <div class="sb" style="color:rgba(255,255,255,0.92)">
             <p>We are the only public foundation serving the State of Illinois solely focused on the needs of children and youth. Thank you to the partners, supporters, and advocates who are building this future with us.</p>
-            <p><strong style="color:#fff">Together, we are proving what&rsquo;s possible when we invest early, act collectively, and trust what communities know works.</strong> This is how we keep our promise&mdash;to children today and to the future we share.</p>
           </div>
         </div>
         <div class="close-thanks">
