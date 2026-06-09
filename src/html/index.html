@@ -278,8 +278,10 @@
     .letter-col em { font-style:italic; }
     .letter-sig { margin-top:clamp(18px,2vh,32px); font-size:clamp(14px,1.2vw,18px); color:var(--body); line-height:1.6; }
     .letter-sig strong { display:block; font-size:clamp(15px,1.4vw,20px); font-weight:700; color:var(--teal); margin-top:8px; }
-    /* Katherine's wet signature image above the typed name */
-    .letter-sig-img { display:block; width:clamp(140px,12vw,200px); height:auto; margin:clamp(10px,1.4vh,18px) 0 6px; }
+    /* Katherine's wet signature + circle thumbnail sit side-by-side above the typed name */
+    .letter-sig-row { display:flex; align-items:center; gap:clamp(12px,1.4vw,22px); margin:clamp(10px,1.4vh,18px) 0 6px; }
+    .letter-sig-thumb { width:clamp(72px,6.5vw,108px); height:clamp(72px,6.5vw,108px); border-radius:50%; object-fit:cover; object-position:center 28%; flex-shrink:0; }
+    .letter-sig-img { display:block; height:clamp(68px,5.85vw,101px); width:auto; margin:0; }
     /* Katherine's portrait floats top-right of col 2 */
     .letter-portrait { float:right; width:clamp(120px,10vw,180px); height:auto; border-radius:50%; margin:0 0 clamp(12px,1.4vh,20px) clamp(12px,1.4vw,20px); shape-outside:circle(50%); }
     /* Align col 2 body start with col 1 body start (skip past "Dear Partners,") */
@@ -990,7 +992,7 @@
         <div class="letter-col">
           <p>In the pages that follow, <em>The Power of Promise</em> explores the critical space between environments and outcomes&mdash;the &ldquo;missing middle&rdquo; where development happens. This report shows what becomes possible when communities, partners, and donors come together to build the conditions young people need to thrive.</p>
           <p><strong>As you read, we invite you to see how acting early&mdash;together&mdash;protects opportunity and builds the future our children deserve.</strong></p>
-          <div class="letter-sig">In Solidarity,<img class="letter-sig-img" src="img/katherine-signature.webp" alt="Katherine Korey signature"><strong>Katherine Korey</strong>Executive Director<br>Bright Promises Foundation</div>
+          <div class="letter-sig">In Solidarity,<div class="letter-sig-row"><img class="letter-sig-thumb" src="img/katherine-thumbnail.webp" alt=""><img class="letter-sig-img" src="img/katherine-signature.svg" alt="Katherine Korey signature"></div><strong>Katherine Korey</strong>Executive Director<br>Bright Promises Foundation</div>
         </div>
       </div>
     </section>
