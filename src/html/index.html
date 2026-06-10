@@ -180,7 +180,8 @@
     .photo .pbg { position:absolute; inset:-1px; background-size:cover; background-position:center; transform-origin:center; }
     /* TEMPORARY: slide number indicator for design review. Remove with
        its updateUI() call + the <div id="slide-num"> when finished. */
-    #slide-num { display:none; position:fixed; bottom:16px; left:16px; z-index:300; padding:6px 10px; border-radius:6px; background:rgba(0,0,0,0.55); color:#fff; font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:11px; letter-spacing:.04em; pointer-events:none; opacity:.85; }
+    #slide-num { position:fixed; bottom:16px; left:16px; z-index:300; padding:6px 10px; border-radius:6px; background:rgba(0,0,0,0.55); color:#fff; font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:11px; letter-spacing:.04em; pointer-events:none; opacity:.85; }
+    @media (max-width:900px) { #slide-num { display:none; } }
 
     /* ── Torn-paper edge ───────────────────────────────────────────────
        Pseudo-element overlay between the white text card and the photo,
@@ -1011,7 +1012,7 @@
     <section class="slide s-split" data-i="4" data-sec="ki1">
       <div class="txt">
         <div class="eyebrow">Key Insight #1</div>
-        <h2 class="sh">Organizations are being asked to do more with dramatically less.<a class="footnote-ref" href="https://edworkingpapers.com/sites/default/files/ai26-1378.pdf" target="_blank" rel="noopener" aria-label="Source"><sup>1</sup></a></h2>
+        <h2 class="sh">Organizations are being asked to do more with dramatically less.</h2>
         <div class="sb">
           <p>Rising stress, trauma, and fractured systems have increased demand for their services&mdash;just as funding has become more volatile and uncertain.</p>
           <p>Bright Promises is responding alongside our partners&mdash;building on trust, shared leadership, and local solutions&mdash;to ensure children and families have the support, tools, and relationships they need to navigate this moment and emerge stronger.</p>
@@ -1069,7 +1070,7 @@
           <div class="acc-intro">
             <div class="eyebrow">Key Insight #2</div>
             <h2 class="sh">Our investments translate into real results for kids.</h2>
-            <p>By strengthening the conditions young people need to succeed, Bright Promises and our partners <strong>reduce the need for more costly downstream responses</strong>&mdash;such as emergency intervention or lost educational and economic opportunity. We&rsquo;ve learned that when communities are trusted and supported, these changes are not only possible&mdash;they&rsquo;re repeatable.<a class="footnote-ref" href="https://drive.google.com/file/d/1AKMB98YYUxBhfmUIDZixXpFBtuPoJpO1/view" target="_blank" rel="noopener" aria-label="Source"><sup>2</sup></a><a class="footnote-ref" href="https://cdn.prod.website-files.com/5710272db1eee97476da5897/67f675641e5840942fdeef3f_FINAL_EQUIP%20Assessment%202014-2023.pdf" target="_blank" rel="noopener" aria-label="Source"><sup>3</sup></a></p>
+            <p>By strengthening the conditions young people need to succeed, Bright Promises and our partners <strong>reduce the need for more costly downstream responses</strong>&mdash;such as emergency intervention or lost educational and economic opportunity. We&rsquo;ve learned that when communities are trusted and supported, these changes are not only possible&mdash;they&rsquo;re repeatable.<a class="footnote-ref" href="https://drive.google.com/file/d/1AKMB98YYUxBhfmUIDZixXpFBtuPoJpO1/view" target="_blank" rel="noopener" aria-label="Source"><sup>1</sup></a><a class="footnote-ref" href="https://cdn.prod.website-files.com/5710272db1eee97476da5897/67f675641e5840942fdeef3f_FINAL_EQUIP%20Assessment%202014-2023.pdf" target="_blank" rel="noopener" aria-label="Source"><sup>2</sup></a></p>
           </div>
           <div class="acc-item" id="acc-1">
             <button class="acc-toggle" onclick="toggleAcc('acc-1')"><span class="acc-icon"></span><span class="acc-title">within 12&ndash;24 months: Stabilizing the Conditions for Youth to Thrive</span></button>
@@ -1165,7 +1166,7 @@
         <div class="eyebrow">Grantee Partner Spotlight: WellEQUIPD Leaders</div>
         <h2 class="sh">The WellEQUIPD pilot initiative is a multi-year effort to strengthen the early childhood workforce in Chicagoland.</h2>
         <div class="sb">
-          <p>Drawing on a decade of learning<a class="footnote-ref" href="https://cdn.prod.website-files.com/5710272db1eee97476da5897/67f675641e5840942fdeef3f_FINAL_EQUIP%20Assessment%202014-2023.pdf" target="_blank" rel="noopener" aria-label="Source"><sup>4</sup></a>, WellEQUIPD helps providers improve the environments children experience every day. We are bringing diverse leaders together to co-create solutions through a <strong>Community of Practice</strong> and investing <strong>over $1 million</strong> to create more stable classrooms, more confident educators, and a stronger early childhood system across Chicagoland and Illinois.</p>
+          <p>Drawing on a decade of learning<a class="footnote-ref" href="https://cdn.prod.website-files.com/5710272db1eee97476da5897/67f675641e5840942fdeef3f_FINAL_EQUIP%20Assessment%202014-2023.pdf" target="_blank" rel="noopener" aria-label="Source"><sup>3</sup></a>, WellEQUIPD helps providers improve the environments children experience every day. We are bringing diverse leaders together to co-create solutions through a <strong>Community of Practice</strong> and investing <strong>over $1 million</strong> to create more stable classrooms, more confident educators, and a stronger early childhood system across Chicagoland and Illinois.</p>
         </div>
         <p class="ki3-cohort-h">WellEQUIPD Inaugural Cohort</p>
         <p class="ki3-cohort-line">Chicago Commons &middot; Chicago Youth Centers &middot; Christopher House &middot; Concordia Place &middot; Gads Hill Center &middot; Onward Neighborhood House</p>
