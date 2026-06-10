@@ -174,10 +174,7 @@
     .s-split .txt { background:var(--white); }
     .s-split-l .txt { background:var(--white); }
     .photo { position:relative; overflow:hidden; }
-    /* inset:-1px oversizes the photo slightly so sub-pixel rounding from the
-       Ken Burns transform can't leave a hairline gap at the column boundary.
-       .photo { overflow:hidden } clips the excess. */
-    .photo .pbg { position:absolute; inset:-1px; background-size:cover; background-position:center; transform-origin:center; }
+    .photo .pbg { position:absolute; inset:0; background-size:cover; background-position:center; transform-origin:center; }
     /* TEMPORARY: slide number indicator for design review. Remove with
        its updateUI() call + the <div id="slide-num"> when finished. */
     #slide-num { position:fixed; bottom:16px; left:16px; z-index:300; padding:6px 10px; border-radius:6px; background:rgba(0,0,0,0.55); color:#fff; font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:11px; letter-spacing:.04em; pointer-events:none; opacity:.85; }
@@ -191,14 +188,14 @@
        Hidden on mobile where the layout stacks photo over copy. */
     .s-split .photo::before,
     .s-closing .close-photo::before {
-      content:''; position:absolute; left:0; top:0; bottom:0; width:62px;
+      content:''; position:absolute; left:0; top:0; bottom:0; width:32px;
       background:#fff;
       -webkit-mask:url('img/edge.svg') no-repeat center / 100% 100%;
               mask:url('img/edge.svg') no-repeat center / 100% 100%;
       transform:scaleX(-1); z-index:2; pointer-events:none;
     }
     .s-split-l .photo::before {
-      content:''; position:absolute; right:0; top:0; bottom:0; width:62px;
+      content:''; position:absolute; right:0; top:0; bottom:0; width:32px;
       background:#fff;
       -webkit-mask:url('img/edge.svg') no-repeat center / 100% 100%;
               mask:url('img/edge.svg') no-repeat center / 100% 100%;
@@ -215,7 +212,7 @@
     /* s-split slides have a 62px torn-paper overlay along the photo's
        left edge; shift the credit past it so the text isn't lost on
        the white tear. */
-    .s-split .photo-credit { left:74px; }
+    .s-split .photo-credit { left:44px; }
 
     .eyebrow { font-size:clamp(11px,0.95vw,14px); font-weight:800; letter-spacing:.12em; text-transform:uppercase; color:var(--orange); margin-bottom:clamp(12px,1.2vh,20px); }
     .sh { font-size:clamp(22px,min(2.8vw,3.4vh),52px); font-weight:700; color:var(--teal); line-height:1.12; margin-bottom:clamp(16px,1.6vh,28px); }
